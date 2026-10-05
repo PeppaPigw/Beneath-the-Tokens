@@ -11,7 +11,7 @@ prerequisites:
   - ch15-inference-execution
   - ch16-model-serving-system
   - ch17-kubernetes-gpu-orchestration
-  - ch18-ray-distributed-execution
+  - ch18-ray-distributed-application-runtimes
 learning_objectives:
   - 能从延迟、带宽、算力和内存四本账判断优化瓶颈
   - 能解释 eager、图编译、TensorRT engine、Triton kernel 和 Serving Engine 的边界
