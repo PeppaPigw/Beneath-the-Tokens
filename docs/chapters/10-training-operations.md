@@ -19,31 +19,6 @@ learning_objectives:
   - 能用 CPU-only 模拟验证调度、抢占、checkpoint 原子提交与恢复时间线
   - 能建立实验追踪、指标、制品和环境锁定，使结果可复现并能审计
 ---
-id: ch10-training-ops
-title: 大规模训练运维：调度、弹性、检查点与实验可复现
-slug: /chapters/10-training-ops
-description: 从队列与资源调度、数据局部性和抢占恢复，到检查点、实验追踪、集群利用率与发布回滚，建立可解释、可恢复、可复现的训练运维体系
-sidebar_position: 10
-level: systems
-prerequisites:
-  - ch02-linux
-  - ch04-performance-math
-  - ch06-pytorch-execution
-  - ch08-distributed-collectives
-learning_objectives:
-  - 能把训练作业拆成提交、排队、放置、运行、抢占、恢复和发布等可观测状态，并为每个状态定义超时与证据
-  - 能解释 gang scheduling、配额、公平性、优先级、碎片化和拓扑感知放置的取舍
-  - 能计算数据局部性、缓存命中、网络流量和 straggler 对端到端吞吐的影响
-  - 能设计包含模型、优化器、数据游标、随机数、配置和代码版本的可恢复 checkpoint
-  - 能区分静态 world size、弹性 world size 与抢占后的语义变化，避免重复样本或错误梯度累积
-  - 能用 CPU-only 模拟验证调度、抢占、checkpoint 原子提交与恢复时间线
-  - 能建立实验追踪、指标、制品和环境锁定，使结果可复现并能审计
-  - 能用利用率、队列等待、p95 恢复时延和发布回滚指标进行容量与风险决策
-estimated_hours: 22
-hardware: CPU-only baseline; GPU/高速网络/批处理调度器 optional
-risk_level: L2
-last_verified: 2026-10-05
----
 
 # 第10章　大规模训练运维：调度、弹性、检查点与实验可复现
 
