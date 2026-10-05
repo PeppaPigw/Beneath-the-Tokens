@@ -7,7 +7,7 @@ sidebar_position: 5
 level: systems
 prerequisites:
   - ch01-ai-infrastructure
-  - ch02-linux
+  - ch02-linux-process-files-observability
   - ch03-networking
   - ch04-performance-math
 learning_objectives:
