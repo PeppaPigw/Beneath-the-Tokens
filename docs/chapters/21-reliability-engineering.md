@@ -8,9 +8,9 @@ level: systems
 prerequisites:
   - ch02-linux-process-files-observability
   - ch03-networking
-  - ch04-performance-mathematics
+  - ch04-performance-math
   - ch10-training-ops
-  - ch16-model-serving-systems
+  - ch16-model-serving-system
   - ch20-observability-debugging-incident-response
 learning_objectives:
   - 能把用户可观察的成功、延迟、正确性和新鲜度写成 SLI 与 SLO，并计算错误预算
