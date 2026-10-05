@@ -218,7 +218,7 @@ if __name__ == "__main__":
 
 ### 18.6.1 如何运行和记录
 
-在干净 Python 环境中执行 `python3 ray_actor_toy.py`。预期得到六个平方结果、一个 `actor-add` 结果和 `actor_value 15`；顺序可能因线程调度改变，等待时间也会随机器变化。若把 `workers` 改成 1，平方任务的等待时间会近似阶梯式增加；改成 4，等待降低但线程调度开销和上下文切换增加。若把 `actor.add` 改为“先修改值再抛异常”，重试将把值增加两次，输出变成 20，这正是非幂等 actor 方法在崩溃点不明确时的风险。
+在干净 Python 环境中执行 `python3 ch18_ray_actor_toy.py`。预期得到六个平方结果、一个 `actor-add` 结果和 `actor_value 15`；顺序可能因线程调度改变，等待时间也会随机器变化。若把 `workers` 改成 1，平方任务的等待时间会近似阶梯式增加；改成 4，等待降低但线程调度开销和上下文切换增加。若把 `actor.add` 改为“先修改值再抛异常”，重试将把值增加两次，输出变成 20，这正是非幂等 actor 方法在崩溃点不明确时的风险。
 
 脚本把一个 actor 当作共享 Python 对象，而 Ray actor 实际运行在独立 worker 进程，状态不能依赖主进程内存。要更接近生产，可把 `Actor` 放入单独进程，用管道传输调用，并在进程被杀后从 JSON 检查点恢复；该扩展属于练习，不应被误称为 Ray 的网络协议。
 
@@ -358,12 +358,12 @@ python3 -m venv .venv-ray
 . .venv-ray/bin/activate
 python -m pip install --upgrade pip
 python -m pip install 'ray[serve]==2.9.3' requests
-python ray_task_bench.py --workers 2 --payload-bytes 1024
+python ch18_ray_actor_toy.py
 python serve_app.py --port 8000
 python load.py --url http://127.0.0.1:8000 --concurrency 1,4,16 --duration 30
 ```
 
-`ray_task_bench.py` 应比较本地调用、远程 task 和 actor 方法三列：提交延迟、执行延迟、总延迟和吞吐。`serve_app.py` 应暴露健康端点和业务端点，响应中包含部署版本与处理时间。`load.py` 应记录成功、超时、HTTP 错误、P50/P95/P99、请求字节和并发，而非只打印平均 QPS。
+若安装了 Ray，可将 `ray_task_bench.py` 作为扩展脚本，比较本地调用、远程 task 和 actor 方法三列：提交延迟、执行延迟、总延迟和吞吐；无 Ray 时直接运行随章提供的 `ch18_ray_actor_toy.py`。`serve_app.py` 应暴露健康端点和业务端点，响应中包含部署版本与处理时间。`load.py` 应记录成功、超时、HTTP 错误、P50/P95/P99、请求字节和并发，而非只打印平均 QPS。
 
 ### 18.11.3 预期观察和解释
 
@@ -528,20 +528,20 @@ Ray 把分布式应用的最小语义提升到函数、actor、对象和资源�
 
 下表列出本章主要依据。访问日期均为 2026-10-05；版本敏感的 API 以目标环境实际安装版本为准。
 
-| 来源 | 类型与版本/日期 | 支持的主张 |
+| 来源与 URL | 类型与版本/日期 | 支持的主张 |
 |---|---|---|
-| Ray Documentation, Tasks | 官方文档，Ray 2.x 系列，访问 2026-10-05 | task 提交、ObjectRef、重试与资源声明语义 |
-| Ray Documentation, Actors | 官方文档，Ray 2.x 系列，访问 2026-10-05 | actor 生命周期、方法调用、重启与命名空间 |
-| Ray Documentation, Placement Groups | 官方文档，Ray 2.x 系列，访问 2026-10-05 | bundle、PACK/SPREAD/STRICT 策略与资源预留 |
-| Ray Documentation, Memory Management | 官方文档，Ray 2.x 系列，访问 2026-10-05 | 对象存储、引用、spill 和内存诊断 |
-| Ray Serve Documentation | 官方文档，Ray 2.x 系列，访问 2026-10-05 | proxy、deployment、replica、批处理和 autoscaling |
-| KubeRay Documentation and API Reference | 官方文档，KubeRay 1.x 系列，访问 2026-10-05 | RayCluster、RayJob、RayService 与 operator 控制流 |
-| KubeRay GitHub repository and CRD schemas | 开源实现，提交版本需按部署锁定 | reconcile、conditions、升级与字段兼容性 |
-| Moritz et al., “Ray: A Distributed Framework for Emerging AI Applications” | 论文，OSDI 2018 | task/actor/object 抽象和应用级运行时动机 |
-| Kubernetes Documentation: Device Plugins, Scheduling, Resource Management | 官方文档，访问 2026-10-05 | Pod 资源、设备插件、节点调度和控制器边界 |
-| Kubernetes Documentation: HPA and Cluster Autoscaler | 官方文档，访问 2026-10-05 | Pod 指标扩缩容与节点扩容的语义边界 |
+| Ray Tasks，https://docs.ray.io/en/latest/ray-core/tasks.html | 官方文档，Ray 2.x 系列，访问 2026-10-05 | task 提交、ObjectRef、重试与资源声明语义（事实） |
+| Ray Actors，https://docs.ray.io/en/latest/ray-core/actors.html | 官方文档，Ray 2.x 系列，访问 2026-10-05 | actor 生命周期、方法调用、重启与命名空间（事实） |
+| Ray Placement Groups，https://docs.ray.io/en/latest/ray-core/scheduling/placement-group.html | 官方文档，Ray 2.x 系列，访问 2026-10-05 | bundle、PACK/SPREAD/STRICT 策略与资源预留（事实/机制） |
+| Ray Memory Management，https://docs.ray.io/en/latest/ray-core/objects/object-spilling.html | 官方文档，Ray 2.x 系列，访问 2026-10-05 | 对象存储、引用、spill 和内存诊断（事实） |
+| Ray Serve，https://docs.ray.io/en/latest/serve/ | 官方文档，Ray 2.x 系列，访问 2026-10-05 | proxy、deployment、replica、批处理和 autoscaling（事实/机制） |
+| KubeRay 文档，https://docs.ray.io/en/latest/cluster/kubernetes/ | 官方文档，KubeRay 1.x 系列，访问 2026-10-05 | RayCluster、RayJob、RayService 与 operator 控制流（事实） |
+| KubeRay GitHub 与 CRD schema，https://github.com/ray-project/kuberay | 开源实现，提交版本需按部署锁定，访问 2026-10-05 | reconcile、conditions、升级与字段兼容性（代码/机制） |
+| Moritz 等，“Ray: A Distributed Framework for Emerging AI Applications”，https://www.usenix.org/conference/osdi18/presentation/moritz | 论文，OSDI 2018，访问 2026-10-05 | task/actor/object 抽象和应用级运行时动机（论文事实） |
+| Kubernetes Device Plugins，https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/device-plugins/ | 官方文档，按目标 Kubernetes 版本核对，访问 2026-10-05 | Pod 资源、设备插件、节点调度和控制器边界（事实） |
+| Kubernetes HPA，https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/；Cluster Autoscaler，https://github.com/kubernetes/autoscaler | 官方文档与代码，访问 2026-10-05 | Pod 指标扩缩容与节点扩容的语义边界（事实/机制） |
 
-建议读者在实际实验中保存以下证据：`python --version`、`ray --version`、`kubectl version`、镜像 digest、Ray 集群节点资源表、PG 状态快照、Serve 配置、压测输入分布、P50/P95/P99、对象 spill 与磁盘指标、故障注入时间线和恢复日志。源码、YAML、实验命令与输出应随章节一起归档；若无法安装 Ray，使用 `ray_actor_toy.py` 完成机制实验，并明确标记为 CPU 模拟而非分布式运行时性能结论。
+建议读者在实际实验中保存以下证据：`python --version`、`ray --version`、`kubectl version`、镜像 digest、Ray 集群节点资源表、PG 状态快照、Serve 配置、压测输入分布、P50/P95/P99、对象 spill 与磁盘指标、故障注入时间线和恢复日志。源码、YAML、实验命令与输出应随章节一起归档；若无法安装 Ray，使用 `ch18_ray_actor_toy.py` 完成机制实验，并明确标记为 CPU 模拟而非分布式运行时性能结论。
 
 ### 术语补充
 
