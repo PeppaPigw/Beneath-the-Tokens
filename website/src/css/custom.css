@@ -1,5 +1,4 @@
-@import 'katex/dist/katex.min.css';
-
+@import "katex/dist/katex.min.css";
 :root { --ifm-color-primary: #2457d6; --ifm-color-primary-dark: #1d46ad; --ifm-code-font-size: 92%; }
 .hero__title { letter-spacing: -0.02em; }
 .markdown h1, .markdown h2, .markdown h3 { scroll-margin-top: 5rem; }
