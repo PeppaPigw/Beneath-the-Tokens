@@ -10,7 +10,7 @@ prerequisites:
   - ch04-performance-math
   - ch06-pytorch-execution
   - ch10-training-ops
-  - ch12-data-evaluation
+  - ch12-evaluation
 learning_objectives:
   - 能解释 embedding 的语义空间、距离函数、归一化、维度和模型漂移
   - 能为文档切块、元数据、索引构建和增量更新定义可追踪的数据契约
