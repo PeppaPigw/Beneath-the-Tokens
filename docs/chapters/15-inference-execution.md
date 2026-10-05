@@ -9,8 +9,8 @@ level: systems
 prerequisites:
   - ch04-performance-math
   - ch06-pytorch-execution
-  - ch08-distributed-runtime
-  - ch14-retrieval-rag
+  - ch08-distributed-collectives
+  - ch14-retrieval
 learning_objectives:
   - 能区分 prefill 与 decode 的算术强度、并行度、延迟和显存压力
   - 能推导 KV cache 的容量、带宽和生命周期，并解释 paged memory 如何降低碎片
