@@ -8,7 +8,7 @@ sidebar_position: 16
 level: systems
 prerequisites:
   - ch04-performance-math
-  - ch08-distributed-runtime
+  - ch08-distributed-collectives
   - ch15-inference-execution
 learning_objectives:
   - 能设计有界队列、worker 池和取消语义，并解释不同池化模型的取舍
