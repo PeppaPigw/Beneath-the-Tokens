@@ -6,7 +6,7 @@ description: 从 collective 语义、代价模型和环树算法出发，解释 
 sidebar_position: 8
 level: systems
 prerequisites:
-  - ch02-linux
+  - ch02-linux-process-files-observability
   - ch04-performance-math
   - ch06-pytorch-execution
 learning_objectives:
