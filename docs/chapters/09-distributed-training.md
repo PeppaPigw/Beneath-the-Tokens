@@ -448,11 +448,17 @@ print(f"TP-cross={A:.3f}, TP-local={B:.3f}, speedup={A/B:.2f}x")
 ```python
 # ch09_checkpoint_atomic.py
 from pathlib import Path
-import hashlib, json, os, tempfile
+import hashlib, json, os, shutil, tempfile
 
 root = Path('toy_ckpt'); root.mkdir(exist_ok=True)
 step = 3
-stage = root / f'step_{step:06d}.tmp'; stage.mkdir(exist_ok=True)
+final = root / f'step_{step:06d}'
+if final.exists():
+    shutil.rmtree(final)
+stage = root / f'step_{step:06d}.tmp'
+if stage.exists():
+    shutil.rmtree(stage)
+stage.mkdir(exist_ok=True)
 blob = b'parameter-shard-rank0'
 (path := stage / 'rank0.bin').write_bytes(blob)
 manifest = {'step': step, 'files': [{'name': path.name,
@@ -527,16 +533,18 @@ print('committed', (root / 'latest').read_text())
 
 ## 9.13 来源地图与阅读路线
 
-以下来源用于查语义和实现细节，版本可能变化，阅读时以当前文档为准：
+以下来源优先采用官方文档、论文和标准，链接用于核对语义、API、版本边界和实验假设；论文中的渐近公式仍需在目标硬件上复测。
 
-- **PyTorch Distributed Overview**：进程组、collective、启动器和后端选择。用于核对 AllReduce/ReduceScatter 语义及 CPU Gloo 实验。
-- **PyTorch FSDP 文档**：`FullyShardedDataParallel` 的参数生命周期、auto-wrap、state-dict 类型、混合精度和限制。用于实现 full-shard 与重分片恢复。
-- **DeepSpeed ZeRO 论文与文档**：ZeRO-1/2/3 的状态分片、通信/内存权衡、Infinity/offload 扩展。用于校准内存账本，不把宣传的理论峰值当成实测保证。
-- **Megatron-LM 技术说明**：Tensor Parallel、Pipeline Parallel、Sequence Parallel 和混合并行的层级设计。用于理解列/行并行和 1F1B 调度。
-- **NVIDIA NCCL 文档与性能指南**：拓扑探测、分层 collective、环境变量和故障日志。仅在拥有兼容 CUDA/NCCL 硬件时验证，避免把 GPU 专属开关复制到 CPU。
-- **GPipe、PipeDream、Megatron pipeline 论文**：流水线气泡、同步/异步调度和 stale 参数语义。用于推导 bubble 近似及其局限。
-- **Switch Transformer/负载均衡文献**：稀疏专家路由、容量因子和辅助损失。用于 EP 的 token dispatch 设计。
-- **分布式系统检查点/容错文献**：两阶段提交、manifest、原子 rename、对象存储一致性。用于设计可验证恢复，而非只保存一个权重文件。
+- [PyTorch Distributed 文档](https://docs.pytorch.org/docs/stable/distributed.html)：进程组、collective、启动器和后端选择；用于核对 AllReduce、AllGather、ReduceScatter 语义及 CPU Gloo 实验。
+- [PyTorch FSDP 文档](https://docs.pytorch.org/docs/stable/fsdp.html)：`FullyShardedDataParallel` 的参数生命周期、auto-wrap、state-dict 类型、混合精度和限制；用于实现 full-shard 与重分片恢复。
+- [PyTorch FSDP `fully_shard` 文档](https://docs.pytorch.org/docs/stable/distributed.fsdp.fully_shard.html)：参数 AllGather、梯度 ReduceScatter、reshard 和 stream 交互；用于检查新的 composable FSDP API。
+- [ZeRO 论文](https://arxiv.org/abs/1910.02054) 与 [DeepSpeed ZeRO 文档](https://www.deepspeed.ai/tutorials/zero/)：ZeRO-1/2/3 的状态分片、通信/内存权衡和 offload 扩展；用于校准内存账本，不把理论峰值当成实测保证。
+- [Megatron-LM 技术说明](https://github.com/NVIDIA/Megatron-LM)：Tensor Parallel、Pipeline Parallel、Sequence Parallel 和混合并行实现；用于理解列/行并行、1F1B 调度和 rank 网格。
+- [NVIDIA NCCL 用户指南](https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/index.html)：拓扑探测、分层 collective、环境变量和故障日志；仅在兼容 CUDA/NCCL 硬件上验证，不把 GPU 开关复制到 CPU。
+- [GPipe 论文](https://arxiv.org/abs/1811.06965)、[PipeDream 论文](https://arxiv.org/abs/1806.03377)：流水线气泡、同步/异步调度和 stale 参数语义；用于推导 bubble 近似及其局限。
+- [Switch Transformer 论文](https://arxiv.org/abs/2101.03961)：稀疏专家路由、容量因子和负载均衡；用于 EP 的 token dispatch 设计。
+- [MPI-4.1 标准](https://www.mpi-forum.org/docs/mpi-4.1/mpi41-report.pdf)：communicator、collective、datatype、非阻塞通信和线程模型；用于跨后端对照调用契约。
+- [NVIDIA `nvidia-smi topo` 文档](https://docs.nvidia.com/deploy/nvidia-smi/index.html)：GPU/NUMA/NIC 拓扑输出和 P2P 能力检查；用于验证 rank 映射假设。
 
 阅读顺序建议：先用第 9.9 节 CPU 实验验证 collective 与账本，再读 FSDP/ZeRO 文档；最后结合硬件拓扑和 profile 选择并行网格。论文中的 asymptotic 复杂度是上界模型，不能替代目标集群上的小规模 benchmark。
 
