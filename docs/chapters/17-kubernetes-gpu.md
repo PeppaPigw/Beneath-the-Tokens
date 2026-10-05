@@ -292,7 +292,7 @@ GPU 工作负载至少有六个版本维度：节点内核、GPU 驱动、容器
 
 恢复时验证三件事：模型参数与优化器状态匹配同一全局 step，数据分片和随机种子不会重复或跳过，安全策略和镜像版本仍然允许继续。若只能恢复模型权重而不能恢复优化器状态，应把它记录为降级恢复并重新评估收敛，而不是悄悄当作无缝续训。
 
-## 17.6 失败诊所：五个看起来健康却不可靠的案例
+## 17.6 失败诊所：八个看起来健康却不可靠的案例
 
 ### 案例一：Pod `Running`，但 CUDA 初始化失败
 
@@ -394,14 +394,7 @@ GPU 显存和缓存可能残留前一租户的数据。硬件复位、MIG 重建
 7. **测量**：在可用 GPU 集群上比较单 NUMA 与跨 NUMA 的 step time、NCCL 带宽、p99 和功耗。记录硬件、驱动、框架、镜像 digest、数据集和温度，避免把一次运行误当成普遍结论。
 8. **升级演练**：建立旧/新驱动与 operator 的双节点池，先升级一个节点，运行烟雾和短训练，再故意注入通信失败，验证停止扩批、保存 checkpoint、恢复旧池和审计记录。
 
-## 17.12 小结与下一依赖
-
-GPU 编排的核心不是把 `nvidia.com/gpu: 1` 写进 YAML，而是维护一条从镜像、运行时、驱动、设备插件到调度器和应用的可验证链路。OCI 和 Docker 解释封装边界，Kubernetes 提供声明式控制面，device plugin 把设备报告和分配接入 kubelet，operator 协调节点软件栈，Topology Manager 和调度插件处理局部性，gang scheduling、配额和队列处理共同启动与公平性。升级则要求把驱动、固件、插件、镜像、模型和 checkpoint 当成有依赖的发布列车，并且每一层都能独立停止、观测和回滚。
-
-下一章依赖本章的资源和生命周期契约，转向 Ray 等分布式应用运行时：Kubernetes 负责节点、设备和 Pod 的边界，Ray 的 actor、task、placement group 和 Serve 负责应用级状态与调度。进入第18章前，读者应能运行 CPU 模拟器、解释每个假设、读懂一份真实集群的资源和拓扑报告，并写出一份包含回滚触发器的升级计划。
-
-
-## 17.13 设备分区、DRA 与共享语义
+## 17.12 设备分区、DRA 与共享语义
 
 传统 device plugin 用一个扩展资源名描述可分配设备，适合“整卡给一个 Pod”的简单场景。当平台需要按显存、计算能力、互联位置或安全域选择设备时，Dynamic Resource Allocation（DRA）提供了更丰富的声明方式。工作负载通过 ResourceClaim 或 ResourceClaimTemplate 请求 DeviceClass，DRA 驱动依据属性筛选并返回设备句柄，调度器在绑定前把声明与节点可用性关联起来。DRA 仍然需要节点驱动和运行时注入；它解决的是资源声明与分配表达力，不会自动解决应用级通信或显存超量。
 
@@ -413,7 +406,7 @@ Time-slicing 通过多个副本让 Pod 交错使用整张 GPU，调度器看到�
 
 MPS、用户态多进程和框架级批处理又是另一组共享机制。它们可以提高利用率，也把内存、错误传播和计费复杂度推到应用层。无论使用哪种机制，都要定义“设备分配单位”“显存上限”“故障影响范围”“可观察的账单单位”和“清理动作”。如果这五项无法回答，宁可采用整卡或 MIG 的保守模式。
 
-## 17.14 状态机、证据链与容量账本
+## 17.13 状态机、证据链与容量账本
 
 排查 GPU Pod 时，建议把状态拆成五个相互独立的轴。第一轴是对象状态：API Server 是否接受对象、generation 是否更新、owner 是否存在。第二轴是调度状态：Pod 是否进入队列、过滤失败原因、是否通过 permit、是否已 bind。第三轴是节点状态：kubelet Lease、Node Ready、allocatable、驱动和 device plugin 注册。第四轴是容器状态：镜像拉取、sandbox、设备注入、进程退出码、探针。第五轴是应用状态：模型加载、首个训练 step、通信 rendezvous、吞吐和 checkpoint。
 
@@ -423,7 +416,7 @@ MPS、用户态多进程和框架级批处理又是另一组共享机制。它�
 
 建议每次调度决策都保留摘要：请求形状、过滤失败的第一原因、候选节点数量、最终节点、配额和优先级、是否跨拓扑域、设备插件返回的句柄类型。摘要中不要记录完整 prompt、Secret 或原始文档。长期统计可按租户输出等待 p50/p95、可行容量、拒绝率、有效 GPU 小时、抢占次数、恢复时间和碎片率。碎片率应说明分母，例如“无法满足队列头部形状的空闲 GPU 比例”，否则不同团队会用同一个词描述不同现象。
 
-## 17.15 端到端升级演练脚本
+## 17.14 端到端升级演练脚本
 
 为了把升级从口号变成可重复过程，可把一次 canary 演练分成十个门。门一是备份：导出 API 对象、operator 自定义资源、etcd 快照（由管理员完成）和最近 checkpoint。门二是冻结：暂停自动扩缩容和新作业准入，保留系统恢复作业。门三是选择：只挑一个没有高优先级作业的节点，并记录其故障域和旧版本摘要。门四是排空：cordon、等待可中断作业检查点、遵守 PDB，超时则停止而不是强删。
 
@@ -434,7 +427,7 @@ MPS、用户态多进程和框架级批处理又是另一组共享机制。它�
 升级报告至少包含：变更范围与负责人、对象和镜像摘要、每门开始结束时间、观测指标及对照、异常事件、是否触发回滚、剩余风险和下一步。报告面向下一次升级，而不是为了证明这次“成功”。没有报告的手工修复会把临时命令变成未记录的系统状态，下一次故障将无法判断哪些组件真正改变过。
 
 
-## 17.16 实验期望输出与解释指南
+## 17.15 实验期望输出与解释指南
 
 CPU 模拟器在默认输入下应打印四个作业，每行包含作业名、等待时间和运行时间。由于 `train-a` 先占用四张卡，`serve-b` 可以在另一节点获得一张卡；`train-c` 要求四卡 gang，必须等 `train-a` 释放整组资源，等待时间应明显高于 `serve-b`。如果把 `gang` 改为 `False`，`train-c` 可能分散启动，等待时间下降但会出现跨域通信惩罚；这正是“吞吐看起来更好、有效训练更差”的反例。若把 `team-a` 配额降到三，`train-a` 和 `train-c` 都应因配额检查失败而不能放置，日志应包含租户和请求形状，而不是只打印通用的 `no resources`。
 
@@ -454,6 +447,12 @@ gang 演练的成功标准不是“所有 Pod 最终运行”，而是等待期�
 
 将实验输出分成三层解读。第一层是控制契约：对象是否被接受、调度是否符合约束、插件是否上报设备。第二层是资源行为：等待、碎片、抢占、显存和通信是否按模型变化。第三层是应用结果：首 step、吞吐、数值、checkpoint 和用户可见错误。低层通过不能推导高层通过；例如 `Scheduled` 不能证明 CUDA 初始化，CUDA 初始化也不能证明训练收敛。若结果与假设矛盾，先保存原始事件和版本信息，再缩小实验规模，最后更新假设，不要直接修改阈值直到“通过”。
 
+## 17.16 小结与下一依赖
+
+GPU 编排的核心不是把 `nvidia.com/gpu: 1` 写进 YAML，而是维护一条从镜像、运行时、驱动、设备插件到调度器和应用的可验证链路。OCI 和 Docker 解释封装边界，Kubernetes 提供声明式控制面，device plugin 把设备报告和分配接入 kubelet，operator 协调节点软件栈，Topology Manager 和调度插件处理局部性，gang scheduling、配额和队列处理共同启动与公平性。升级则要求把驱动、固件、插件、镜像、模型和 checkpoint 当成有依赖的发布列车，并且每一层都能独立停止、观测和回滚。
+
+下一章依赖本章的资源和生命周期契约，转向 Ray 等分布式应用运行时：Kubernetes 负责节点、设备和 Pod 的边界，Ray 的 actor、task、placement group 和 Serve 负责应用级状态与调度。进入第18章前，读者应能运行 CPU 模拟器、解释每个假设、读懂一份真实集群的资源和拓扑报告，并写出一份包含回滚触发器的升级计划。
+
 ## 17.17 来源地图与可复现记录
 
 下表区分来源支持的事实与本章设计判断。访问日期统一为 2026-10-05；版本随集群升级应重新核对。
@@ -466,6 +465,7 @@ gang 演练的成功标准不是“所有 Pod 最终运行”，而是等待期�
 | Kubernetes Resource Management 文档，kubernetes.io/docs/concepts/configuration/manage-resources-containers/ | 在线文档（访问 2026-10-05；以目标集群版本为准） | requests、limits 和不可压缩资源语义 | 事实 |
 | Kubernetes Topology Manager，kubernetes.io/docs/tasks/administer-cluster/topology-manager/ | 在线文档（访问 2026-10-05；以目标集群版本为准） | NUMA hint、策略和 kubelet 协调 | 事实 |
 | Kubernetes Scheduling Framework，kubernetes.io/docs/concepts/scheduling-eviction/scheduling-framework/ | 在线文档（访问 2026-10-05；以目标集群版本为准） | 过滤、打分、绑定和扩展点 | 事实/机制 |
+| Kubernetes Gang Scheduling，kubernetes.io/docs/concepts/scheduling-eviction/gang-scheduling/ | 在线文档（访问 2026-10-05；版本/feature gate 敏感） | GenericWorkload、minCount、组级准入与默认禁用状态 | 事实/机制 |
 | Kubernetes ResourceQuota，kubernetes.io/docs/concepts/policy/resource-quotas/ | 在线文档（访问 2026-10-05；以目标集群版本为准） | Namespace 配额与准入行为 | 事实 |
 | Kubernetes Pod Security Standards，kubernetes.io/docs/concepts/security/pod-security-standards/ | 在线文档（访问 2026-10-05；以目标集群版本为准） | 特权、host namespace、capability 等安全边界 | 事实 |
 | Kubernetes JobSet/批处理工作负载文档，kubernetes.io | 2024–2025 | 作业组与批处理控制器的设计参考 | 机制 |
@@ -479,7 +479,7 @@ gang 演练的成功标准不是“所有 Pod 最终运行”，而是等待期�
 ### 可复现记录
 
 - 纯 CPU 实验：Python 3.11 或更新版本；仓库附带 `ch17_gpu_sim.py`，运行 `python ch17_gpu_sim.py` 可直接复现默认输出；随机性为零，输入顺序固定。
-- Kubernetes YAML 实验：Kubernetes 1.28–1.30、containerd 或 CRI-O、已安装并验证的 GPU device plugin；先在隔离 Namespace 运行，记录 `kubectl version`、节点标签、插件镜像 digest 和 operator 版本。
+- Kubernetes YAML 实验：Kubernetes 1.28+（按实际集群版本核对）、containerd 或 CRI-O、已安装并验证的 GPU device plugin；先在隔离 Namespace 运行，记录 `kubectl version`、节点标签、插件镜像 digest 和 operator 版本。
 - GPU 测量：记录 GPU 型号、显存、固件、驱动、CUDA、通信库、内核、CPU/NUMA、网络、温度、功耗、镜像 digest、数据和种子；至少重复三次并报告均值、标准差和 p95。
 - 任何升级实验都先保存 checkpoint 与对象清单，设置明确停止条件；若设备错误、跨租户可见性异常、数据校验失败或 p99 超过基线二倍，立即停止扩批并执行回滚计划。
 
