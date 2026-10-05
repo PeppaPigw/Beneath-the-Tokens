@@ -7,7 +7,7 @@ sidebar_position: 6
 level: systems
 prerequisites:
   - ch01-ai-infrastructure
-  - ch02-linux
+  - ch02-linux-process-files-observability
   - ch04-performance-math
 learning_objectives:
   - 能从一次 Python 运算追踪到 dispatcher、设备实现和 kernel
