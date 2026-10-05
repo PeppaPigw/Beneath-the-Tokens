@@ -6,7 +6,7 @@ description: 从队列与资源调度、数据局部性和抢占恢复，到检�
 sidebar_position: 10
 level: systems
 prerequisites:
-  - ch02-linux
+  - ch02-linux-process-files-observability
   - ch04-performance-math
   - ch06-pytorch-execution
   - ch08-distributed-collectives
