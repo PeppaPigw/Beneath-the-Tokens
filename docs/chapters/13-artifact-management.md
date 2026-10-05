@@ -6,12 +6,12 @@ description: 将配置、数据、代码、环境、模型和评估结果组织�
 sidebar_position: 13
 level: systems
 prerequisites:
-  - ch02-linux
+  - ch02-linux-process-files-observability
   - ch04-performance-math
   - ch06-pytorch-execution
   - ch10-training-ops
   - ch11-data-systems
-  - ch12-data-evaluation
+  - ch12-evaluation
 learning_objectives:
   - 能把配置、代码、数据、环境、检查点和评估报告区分为可寻址工件，并定义不可变边界
   - 能设计内容哈希、manifest、签名和注册表，使工件可以校验、去重、审计和回滚
