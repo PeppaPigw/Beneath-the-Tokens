@@ -7,7 +7,7 @@ sidebar_position: 4
 level: systems
 prerequisites:
   - ch01-ai-infrastructure
-  - ch02-linux
+  - ch02-linux-process-files-observability
   - ch03-networking
 learning_objectives:
   - 能用 Little's Law 从吞吐和延迟估算并发与容量
