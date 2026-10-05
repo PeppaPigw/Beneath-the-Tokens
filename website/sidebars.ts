@@ -28,6 +28,8 @@ const sidebars: SidebarsConfig = {
     'ch22-ai-infra-security-privacy-supply-chain',
     'ch23-ai-infra-cost-capacity-energy-carbon',
     'ch24-platform-engineering',
+    'ch25-ai-infra-frontiers',
+    'ch26-end-to-end-ai-infra-capstone',
     'chapter-template',
     'lab-standards',
     'source-policy',
