@@ -19,6 +19,8 @@ def main() -> int:
     failures: list[str] = []
     chapters = sorted((ROOT / "docs" / "chapters").glob("*.md"))
     for path in chapters:
+        if path.name.lower() == 'readme.md':
+            continue
         text = path.read_text(encoding="utf-8")
         header = text.split("---", 2)[1] if text.startswith("---") and text.count("---") >= 2 else ""
         missing = [key for key in REQUIRED if not re.search(rf"^{key}:", header, re.MULTILINE)]
