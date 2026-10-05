@@ -6,7 +6,7 @@ description: 把数据管道、基准评估、统计推断与人工质量门连�
 sidebar_position: 12
 level: systems
 prerequisites:
-  - ch01-python
+  - ch01-ai-infrastructure
   - ch04-performance-math
   - ch06-pytorch-execution
   - ch10-training-ops
