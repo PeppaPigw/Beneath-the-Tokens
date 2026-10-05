@@ -6,12 +6,12 @@ description: 从 task 和 actor 的生命周期出发，建立资源声明、pla
 sidebar_position: 18
 level: systems
 prerequisites:
-  - ch02-linux-processes-filesystems-observability
-  - ch03-networking-for-ai-systems
-  - ch08-distributed-communication
-  - ch10-training-operations
+  - ch02-linux-process-files-observability
+  - ch03-networking
+  - ch08-distributed-collectives
+  - ch10-training-ops
   - ch15-inference-execution
-  - ch16-model-serving-systems
+  - ch16-model-serving-system
   - ch17-kubernetes-gpu-orchestration
 learning_objectives:
   - 能区分 Ray task、actor、对象引用和 placement group 的语义与生命周期
