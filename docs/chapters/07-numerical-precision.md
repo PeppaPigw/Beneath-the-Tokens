@@ -706,6 +706,12 @@ lm_head        top-k 不变     可放大         质量优先       BF16/FP32
 
 并发场景需要检查 scale 和 scratch buffer 是否被请求共享。动态量化若把当前请求的 amax 写入全局变量，两个请求交错时可能互相覆盖，产生偶发错误。每次请求应拥有独立的 scale 状态，或者使用带版本号的只读快照。多 stream 下还要保证反量化完成后再复用 workspace；否则数值错误可能只在高并发和特定调度下出现。
 
+### 7.14.9 评估报告中的负结果同样重要
+
+一个诚实的低精度报告应同时记录“没有收益”的实验。比如在小 batch CPU 推理中，INT8 可能因为量化、重排和线程调度而比 BF16 更慢；在高算术强度 GPU GEMM 中，进一步压缩权重可能已经不改变瓶颈；在某个校准集上 clipping 百分位调得再精细，也可能无法改善最敏感层。负结果可以帮助团队停止无效调参，并揭示收益真正依赖的条件。
+
+报告应把平均值和尾部拆开：平均吞吐提升不代表 p99 延迟下降，显存减少不代表功耗下降，验证集指标不变不代表长尾输入安全。给每个结论附上适用范围，例如“在固定序列长度、batch=8、缓存命中、无重校准的情况下”，并列出未验证的 shape、语言、硬件和版本。这样下一次迁移到新的 GPU、编译器或流量分布时，才能快速判断哪些假设需要重测，而不是把旧数字当成承诺。
+
 ## 7.15 六个理解检查（含答案）
 
 ### 检查 1：BF16 和 FP16 都是 2 字节，为什么训练行为差异很大？
@@ -754,8 +760,8 @@ lm_head        top-k 不变     可放大         质量优先       BF16/FP32
 - [PyTorch quantization overview](https://docs.pytorch.org/docs/stable/quantization.html)：量化 API 迁移和 torchao/PT2E 方向。
 - [torchao quantization overview](https://docs.pytorch.org/ao/stable/contributing/quantization_overview.html)：当前量化类型、QAT 和低比特实现状态。
 - [torchao quantized inference](https://docs.pytorch.org/ao/stable/workflows/inference.html)：INT8/INT4/FP8 推理配置和硬件依赖。
-- [NVIDIA Transformer Engine FP8 primer](https://docs.nvidia.com/deeplearning/transformer-engine-releases/release-1.5/user-guide/examples/fp8_primer.html)：E4M3/E5M2、amax、delayed scaling 和 autocast。
-- [NVIDIA Transformer Engine scaling recipes](https://docs.nvidia.com/deeplearning/transformer-engine/user-guide/api/common.html?highlight=delayedscaling)：current/delayed/block scaling 的参数边界。
+- [NVIDIA Transformer Engine FP8 primer](https://docs.nvidia.com/deeplearning/transformer-engine/features/low_precision_training/index.html)：E4M3/E5M2、amax、delayed scaling 和 autocast。
+- [NVIDIA Transformer Engine scaling recipes](https://nvidia.github.io/TransformerEngine/features/low_precision_training/fp8_delayed_scaling/fp8_delayed_scaling.html)：current/delayed/block scaling 的参数边界。
 - [IEEE 754-2019 标准概览](https://ieeexplore.ieee.org/document/8766227)：浮点编码、舍入和特殊值的规范来源（可能需要订阅）。
 - [ONNX quantization docs](https://onnxruntime.ai/docs/performance/model-optimizations/quantization.html)：静态/动态量化、校准和误差调试的框架无关参考。
 - [Intel oneDNN quantization](https://uxlfoundation.github.io/oneDNN/dev_guide_int8_computations.html)：CPU INT8 scale、zero-point 和累加路径。
