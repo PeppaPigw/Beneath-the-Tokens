@@ -26,4 +26,4 @@ See:
 
 ## Status
 
-Current progress: 21 of 26 long-form chapters are published, each with frontmatter, source-oriented explanations, labs or lab specifications, failure analysis, comprehension checks, and exercises. Chapters 22–26 are being written and reviewed in parallel. The site scaffold and CI are present; the first GitHub Pages build still needs to run in Actions before the published site is considered verified.
+All 26 long-form chapters are now published. Each chapter has frontmatter, source-oriented explanations, failure analysis, comprehension checks, exercises, and a lab or lab specification; chapters with runnable standard-library experiments include the corresponding script under labs/. The Docusaurus site scaffold, sidebar, and CI are present. A final remote build and content audit remains the release gate before treating the GitHub Pages deployment as verified.
