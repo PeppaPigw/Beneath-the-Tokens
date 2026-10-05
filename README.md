@@ -26,4 +26,4 @@ See:
 
 ## Status
 
-This repository currently contains the curriculum and authoring foundation. Chapters will be added as independently reviewed commits.
+Current progress: six long-form chapters are published, each with frontmatter, source-oriented explanations, labs or lab specifications, failure analysis, comprehension checks, and exercises. The site scaffold and CI are present; the first GitHub Pages build still needs to run in Actions before the published site is considered verified. Chapters will continue to be added as independently reviewed commits.
