@@ -15,7 +15,7 @@ The goal is not to memorize frameworks. It is to understand how data, models, ke
 
 ## Site
 
-The book is published as a static GitHub Pages site. The current site scaffold uses MkDocs Material; the content remains plain Markdown so it can be audited, versioned, searched, and rendered by other toolchains.
+The book is published as a static GitHub Pages site. The current site scaffold uses Docusaurus 3; the content remains plain Markdown so it can be audited, versioned, searched, and rendered by other toolchains.
 
 See:
 
@@ -26,4 +26,4 @@ See:
 
 ## Status
 
-Current progress: six long-form chapters are published, each with frontmatter, source-oriented explanations, labs or lab specifications, failure analysis, comprehension checks, and exercises. The site scaffold and CI are present; the first GitHub Pages build still needs to run in Actions before the published site is considered verified. Chapters will continue to be added as independently reviewed commits.
+Current progress: ten long-form chapters are published, each with frontmatter, source-oriented explanations, labs or lab specifications, failure analysis, comprehension checks, and exercises. The site scaffold and CI are present; the first GitHub Pages build still needs to run in Actions before the published site is considered verified. Chapters will continue to be added as independently reviewed commits.
