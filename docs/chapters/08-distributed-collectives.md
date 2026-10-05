@@ -600,7 +600,103 @@ NCCL/MPI 的 debug 日志是辅助证据，不是唯一事实来源。把日志�
 
 这五步可以应用于梯度同步、参数分片、专家路由、检索服务的分布式缓存和多节点统计，不局限于深度学习训练。
 
-## 8.13 六个理解检查（含答案）
+## 8.13 案例推演：从一次梯度同步到可验证的时间线
+
+为了把前面的语义、代价和拓扑连接起来，设有 4 个 rank、每个 rank 一张 GPU，训练一个数据并行模型。每个 rank 在反向结束时得到 256 MiB 梯度 bucket。目标是让 optimizer 在每个 rank 上使用相同的梯度，同时尽量隐藏通信时间。
+
+### 8.13.1 先写出不带重叠的基线
+
+最直接的实现是：反向全部完成后，对 256 MiB 梯度执行一次 AllReduce，等待通信完成，再除以 world size 并更新参数。若通信库使用 ring，每个 rank 的算法发送量约为
+
+\[
+2(P-1)N/P = 2\times3/4\times256\text{ MiB}=384\text{ MiB}.
+\]
+
+若端到端测得 AllReduce 用时 6 ms，算法带宽约为 384 MiB / 6 ms ≈ 64 GiB/s。这个数字不能直接与单条 NVLink 或 NIC 的标称带宽比较，因为它包含了协议、chunk、kernel launch、拓扑和等待最慢 rank 的时间。基线还要记录反向计算耗时、optimizer 耗时、峰值显存和每个 rank 的 p95。
+
+基线的时间线可以写成：
+
+```text
+backward (所有 bucket)
+  -> all_reduce(bucket 0..K)
+  -> wait
+  -> optimizer.step
+```
+
+如果反向耗时 40 ms、通信 6 ms，理想情况下 step 至少约 46 ms（忽略其他成本）。此时通信没有隐藏，且所有梯度都要在通信开始前占据显存。
+
+### 8.13.2 把 bucket 变成流水线
+
+将 256 MiB 切成 8 个 32 MiB bucket。反向产生 bucket 7 时，立即在通信 stream 发起它的 AllReduce；主计算 stream 继续计算更早或尚未完成的层。理想时间线如下：
+
+```text
+计算:  b7  b6  b5  b4  b3  b2  b1  b0  optimizer
+通信:      AR7 AR6 AR5 AR4 AR3 AR2 AR1 AR0  tail
+```
+
+真实系统不会严格按字符图排列：bucket 的就绪顺序、kernel 资源冲突和通信 stream 的进度都会改变间隔。评估重叠要测三种时间：
+
+- **纯计算时间**：临时关闭通信或用单 rank，得到反向和 optimizer 的基线；
+- **纯通信时间**：固定相同 bucket，在空闲 stream 上测 AllReduce；
+- **流水端到端时间**：保留真实依赖，等待最后一个 bucket 完成后再更新。
+
+如果通信和计算完全重叠，step 时间接近 `max(计算,通信)+不可隐藏尾部`，而不是二者简单相加。不可隐藏尾部包括最后一个 bucket 的通信、stream 事件和 optimizer 依赖。报告中不要用“通信占用率高”代替这个结论。
+
+### 8.13.3 依赖图和缓冲区生命周期
+
+每个 bucket 至少有四个事件：梯度写入完成、通信读入开始、通信写回完成、optimizer 读取开始。可用如下依赖表示：
+
+```text
+backward writes bucket_i
+  -> event_compute_i
+  -> comm_stream waits event_compute_i
+  -> all_reduce_i (in-place or out-of-place)
+  -> event_comm_i
+  -> optimizer_stream waits event_comm_i
+  -> optimizer reads bucket_i
+```
+
+如果使用 in-place AllReduce，通信开始后反向不能再写同一 bucket；如果使用 out-of-place，必须确保输出 Tensor 的生命周期覆盖 optimizer。框架通常通过 autograd hook、bucket 状态和 `record_stream` 管理这些关系，但自定义通信代码不能假设临时 Tensor 会自动存活。
+
+一个常见错误是把 bucket 放入 Python 列表后立刻删除引用，以为通信库已经复制了数据。异步通信可能仍在读取原 storage；正确做法是等待 Work 完成，或使用后端规定的 buffer 生命周期 API。另一个错误是把同一个 bucket 交给两个 communicator，未建立跨 communicator 的顺序；两个 collective 可能在不同 stream 上竞争同一内存。
+
+### 8.13.4 拓扑变化如何改变结论
+
+假设机器 A 有 NVSwitch 和 8 张 GPU，机器 B 有 4 张 GPU、每张卡通过 PCIe 连接一张 NIC。相同 256 MiB bucket 在两台机器上的最佳算法可能不同：
+
+- A 的节点内带宽高且路径近似对称，多 ring 可以填满 NVSwitch；tree 可能只在小消息上占优；
+- B 的跨节点带宽和 GPU-NIC 亲和更关键，分层 AllReduce 可能先在节点内聚合，再用 2 张代表 GPU 跨节点通信；
+- 如果 B 的某张 NIC 位于远端 NUMA，绑定错误会让某一条 ring 边变慢，其他 rank 在每轮都等待它；
+- 当消息降到几十 KiB，算法启动延迟和进程调度会主导，减少轮数比追求峰值带宽更重要。
+
+因此不能把 A 上测得的“ring 比 tree 快 20%”写成通用规则。至少用消息大小、rank 数、拓扑和算法四维矩阵重新测量，并记录环境变量是否覆盖了库的自动选择。
+
+### 8.13.5 故障时的时间线
+
+继续上面的流水线，若 rank 2 在 bucket 4 的 kernel 中触发非法访问，可能发生：
+
+1. rank 2 的 CUDA 错误直到下一次同步才被发现；
+2. rank 0、1、3 已经进入 bucket 4 的 AllReduce，等待 rank 2；
+3. ProcessGroup timeout 触发，日志显示“collective seq=4 未完成”；
+4. 其他 rank 需要停止后续 bucket 和 optimizer，避免在不完整梯度上更新；
+5. 调度器或上层恢复逻辑 abort communicator，清理进程和临时端口；
+6. 从一致 checkpoint 重启，不能只让 rank 2 单独回来。
+
+故障演练应验证每一步都有可观察证据：seq 号、最后完成 bucket、错误码、abort 时间、进程退出码和 checkpoint 版本。若只验证“程序最终退出”，却没有检查数据是否来自同一 optimizer step，恢复逻辑仍可能静默损坏训练。
+
+### 8.13.6 将案例迁移到 ReduceScatter
+
+若模型使用参数分片，每个 rank 不需要完整梯度。把 AllReduce 改为 ReduceScatter：256 MiB 梯度按 4 份切分，每个 rank 最终只保留 64 MiB。ring ReduceScatter 只执行前 (P-1) 轮，算法发送量约为 \((P-1)N/P=192\) MiB，比完整 AllReduce 少一个阶段。随后 optimizer 只更新本地参数分片；下一次前向需要完整参数时，再按依赖 AllGather。
+
+这种方案减少了持久显存，但把通信依赖分散到前向和反向两个窗口。若 AllGather 没有及时完成，前向会在第一层等待；若 ReduceScatter 尚未完成，optimizer 不能读取梯度分片。衡量收益时要把两次通信、参数分片内存、重叠尾部和 checkpoint 格式一起计算，不能只比较单次 ReduceScatter 的时间。
+
+### 8.13.7 案例结论
+
+一次“梯度同步变慢”至少可能对应五个不同问题：bucket 太大导致启动晚、bucket 太小导致 α 占主导、拓扑映射把流量压到慢链路、通信 stream 依赖错误造成隐式同步、或某个 rank 的计算/数据加载落后造成 straggler。只有把语义序号、时间线、拓扑和 rank 进度放在同一份报告里，才知道应该改 bucket、改绑定、改算法还是修复数据迭代器。
+
+在实践中还应记录“没有发生什么”：没有等待的阶段、没有失败的 rank、没有变化的网络配置都属于证据。将正常路径和故障路径放在同一张时序图中，可以发现某些所谓优化只是把等待从通信 API 移到了隐式 stream 同步。报告结尾写出仍未验证的假设，例如交换机拥塞是否可重复、NIC 是否共享 PCIe root、非阻塞 MPI 是否启用 progress 线程，以及 checkpoint 是否包含完整 optimizer state。这样下一次迁移到新 GPU、新驱动或新调度器时，测试计划可以直接从假设列表生成，而不是重新猜测问题。
+
+## 8.14 六个理解检查（含答案）
 
 ### 检查 1：AllReduce 与 ReduceScatter 的主要差异是什么？
 
@@ -626,7 +722,7 @@ NCCL/MPI 的 debug 日志是辅助证据，不是唯一事实来源。把日志�
 
 **答案**：超时可能已让 communicator 进入错误状态，部分 rank 仍持有未完成请求或已退出。继续在同一通信域重试会造成连锁阻塞和数据不一致。应停止依赖它的工作，记录失败序号，按后端支持的流程 abort/rebuild，并从一致 checkpoint 恢复。
 
-## 8.14 练习
+## 8.15 练习
 
 1. **语义表**：为 Reduce、AllReduce、Gather、AllGather、Scatter、ReduceScatter、AllToAll 各画一张 rank×buffer 表，标出输入、输出和数据量。
 2. **代价比较**：设 P=8、N=64 MiB、α=2 μs、β=1/(100 GB/s)，分别估算 ring 和 tree AllReduce 的通信项。说明何时应加入 γ。
@@ -639,7 +735,7 @@ NCCL/MPI 的 debug 日志是辅助证据，不是唯一事实来源。把日志�
 9. **NCCL 算法矩阵**：在隔离 GPU 作业中比较默认、ring、tree（仅在目标版本支持的环境变量下），报告消息大小、拓扑和恢复默认方法。
 10. **故障恢复设计**：为训练服务画出 timeout、abort、checkpoint、重建 process group 和回滚的状态机，标出哪些步骤必须由调度器执行。
 
-## 8.15 安全边界与运维清单
+## 8.16 安全边界与运维清单
 
 ### 8.15.1 不把 collective 当作访问控制
 
@@ -661,7 +757,7 @@ NCCL/MPI 环境变量会改变网卡、P2P、共享内存、算法和日志。�
 
 故障报告包含足够诊断信息即可：rank/seq/op、shape/dtype、版本、拓扑摘要、错误码和时间线。不要上传训练样本、用户内容、私钥、完整环境变量或未脱敏网络配置。需要供应商支持时，先用可合成数据复现，再分享经过审查的日志。
 
-## 8.16 版本边界与迁移注意
+## 8.17 版本边界与迁移注意
 
 1. PyTorch `torch.distributed` 的 collective 名称和参数在 2.x 版本间持续增加；`all_gather_into_tensor`、`reduce_scatter_tensor`、DeviceMesh 和新 ProcessGroup 选项在旧版本可能不存在。先查目标版本文档。
 2. NCCL 的算法、协议、channel 和环境变量会随版本、GPU 架构与拓扑改变。默认自动选择通常比长期硬编码更可迁移；手动固定只用于经过基准和回滚验证的部署。
@@ -671,7 +767,7 @@ NCCL/MPI 环境变量会改变网卡、P2P、共享内存、算法和日志。�
 6. 浮点归约的确定性和误差阈值受 dtype、库 kernel、FMA、TF32、压缩/量化传输影响。升级驱动或通信库后重新运行数值验收。
 7. ProcessGroup 的 `Work.wait()`、barrier 和 CUDA stream 可见性语义应以目标后端文档为准。不能把 CPU Gloo 的“返回即完成”直推到 CUDA NCCL。
 
-## 8.17 来源地图
+## 8.18 来源地图
 
 以下优先使用官方文档和标准，链接用于核对语义、API 和版本边界；阅读时选择与环境匹配的版本。
 
@@ -691,7 +787,7 @@ NCCL/MPI 环境变量会改变网卡、P2P、共享内存、算法和日志。�
 
 [方法说明] α-β-γ 模型和 ring/tree 轮数是教学用近似，不是任何特定库的性能承诺。真实结果必须在目标硬件、驱动、库版本和进程映射上测量，并报告未验证假设。
 
-## 8.18 章节完成标准
+## 8.19 章节完成标准
 
 读者完成本章后，应能对一次分布式 collective 回答八个问题：
 
@@ -706,7 +802,7 @@ NCCL/MPI 环境变量会改变网卡、P2P、共享内存、算法和日志。�
 
 如果其中任何一项答不出来，先缩小到 CPU 两进程、固定 shape 和单个 collective，再逐步加入真实拓扑和重叠。不要用更多 barrier、无限 timeout 或盲目切换算法掩盖未验证的契约。
 
-## 8.19 小结
+## 8.20 小结
 
 Collective 的核心不是“把 Tensor 发到别的机器”，而是一个由参与集合、调用顺序、数据契约、归约语义和完成规则共同定义的协议。AllReduce 给所有 rank 完整归约结果，AllGather 复制分片，ReduceScatter 归约后分片；ring 以均衡带宽换取更多轮次，tree 以较少轮次换取上层链路压力，分层算法则利用节点内外拓扑差异。NCCL、MPI、Gloo 和 PyTorch ProcessGroup 提供不同的实现和异步边界，但都不能替应用修复错误顺序或错误 shape。
 
