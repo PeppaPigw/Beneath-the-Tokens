@@ -7,7 +7,7 @@ sidebar_position: 3
 level: core
 prerequisites:
   - ch01-ai-infrastructure
-  - ch02-linux
+  - ch02-linux-process-files-observability
 learning_objectives:
   - 能解释一次 AI 请求经过 TCP/IP、RPC、序列化和拷贝的时间线
   - 能区分带宽、延迟、并发、拥塞和尾延迟，并用模型做数量级估算
