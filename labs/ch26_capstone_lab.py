@@ -159,7 +159,7 @@ def checkpoint_drill(root: Path, fault: str) -> Dict[str, object]:
             "rpo_steps": (30 - recovered) if recovered is not None else None}
 
 
-def stage_gates() -> List[Dict[str, object]]:
+def stage_gates(summary: Dict[str, int | str], checkpoint: Dict[str, object]) -> List[Dict[str, object]]:
     gates = [
         ("G0-contract", ["request_schema", "SLO", "owner", "threat_model"]),
         ("G1-data", ["manifest", "lineage", "quality_report", "deletion_policy"]),
@@ -167,7 +167,19 @@ def stage_gates() -> List[Dict[str, object]]:
         ("G3-service", ["load_test", "rollback", "dashboards", "runbook"]),
         ("G4-operate", ["chaos_evidence", "cost_report", "postmortem_template"]),
     ]
-    return [{"gate": name, "evidence": evidence, "status": "PASS"} for name, evidence in gates]
+    # G0-G2 are document stubs in this teaching script. G3/G4 reflect the
+    # simulated run, so a fault drill cannot accidentally look production-ready.
+    statuses = {name: ("PASS", "document stub") for name, _ in gates}
+    if int(summary["failed"]) > 0:
+        statuses["G3-service"] = ("BLOCKED", "request failures observed")
+    if int(summary["degraded"]) > 0:
+        statuses["G3-service"] = ("BLOCKED", "degraded responses observed")
+    if checkpoint.get("rpo_steps") not in (0, None):
+        statuses["G2-model"] = ("BLOCKED", "checkpoint drill lost the latest step")
+    if int(summary["physical_audit_writes"]) != int(summary["logical_ok"]):
+        statuses["G4-operate"] = ("BLOCKED", "idempotency mismatch")
+    return [{"gate": name, "evidence": evidence, "status": statuses[name][0],
+             "reason": statuses[name][1]} for name, evidence in gates]
 
 
 def main() -> None:
@@ -182,7 +194,7 @@ def main() -> None:
     report = {
         "teaching_simulation": True,
         "parameters": vars(args),
-        "stage_gates": stage_gates(),
+        "stage_gates": stage_gates(summary, checkpoint),
         "request_summary": summary,
         "checkpoint_drill": checkpoint,
         "sample_requests": [asdict(r) for r in results[:5]],
