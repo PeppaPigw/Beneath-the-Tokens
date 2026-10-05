@@ -6,7 +6,7 @@ description: 从对象存储和本地文件系统，到 SSD、RocksDB、LSM、Pa
 sidebar_position: 11
 level: systems
 prerequisites:
-  - ch02-linux
+  - ch02-linux-process-files-observability
   - ch04-performance-math
   - ch06-pytorch-execution
   - ch08-distributed-collectives
