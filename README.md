@@ -26,4 +26,4 @@ See:
 
 ## Status
 
-All 26 long-form chapters are now published. Each chapter has frontmatter, source-oriented explanations, failure analysis, comprehension checks, exercises, and a lab or lab specification; chapters with runnable standard-library experiments include the corresponding script under labs/. The Docusaurus site scaffold, sidebar, and CI are present. A final remote build and content audit remains the release gate before treating the GitHub Pages deployment as verified.
+All 26 long-form chapters are now published. Each chapter has frontmatter, source-oriented explanations, failure analysis, comprehension checks, exercises, and a lab or lab specification; chapters with runnable standard-library experiments include the corresponding script under labs/. The Docusaurus site scaffold, sidebar, and CI are present. The remote content workflow has passed after the final sidebar and lockfile fixes; the Pages workflow is the deployment gate.
