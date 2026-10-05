@@ -41,7 +41,12 @@ def report(name, ref, approx, q=None):
     abs_err = np.abs(err)
     denom = np.maximum(np.abs(ref), 1e-6)
     rel = abs_err / denom
-    sat = 0.0 if q is None else float(np.mean((q == q.min()) | (q == q.max())))
+    if q is None:
+        sat = 0.0
+    elif np.issubdtype(q.dtype, np.unsignedinteger):
+        sat = float(np.mean((q == 0) | (q == np.iinfo(q.dtype).max)))
+    else:
+        sat = float(np.mean((q == -128) | (q == 127)))
     print(f"{name:26s} MAE={abs_err.mean():.6g} RMSE={np.sqrt(np.mean(err*err)):.6g} p99={np.percentile(abs_err,99):.6g} rel_p99={np.percentile(rel,99):.6g} sat={sat:.4%}")
 
 def matmul_error(seed=0):
