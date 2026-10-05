@@ -231,7 +231,7 @@ Sigstore/cosign、in-toto、TUF 等开源项目提供签名、透明日志、声
 
 ### 22.6.4 差分隐私、联合学习和机密计算的边界
 
-差分隐私（DP）用隐私预算量化单个记录加入或删除对输出分布的影响。NIST SP 800-226 强调评估 DP 保证时要看隐私预算、相邻数据定义、机制、实现和常见陷阱；“加了噪声”不是自动得到 DP。训练中使用 DP-SGD 还会影响效用、偏差、收敛和成本，必须记录采样率、裁剪范数、噪声乘子和预算会计器版本。 经典的 DP-SGD 论文 [Abadi 等，2016](https://arxiv.org/abs/1607.00133) 给出了深度学习中的裁剪与噪声机制；[Shokri 等，2017](https://www.cs.cmu.edu/~sangria/papers/ccs2017-mia.pdf) 的成员推断研究提醒我们，模型接口本身可能泄露训练成员关系。论文是机制和威胁模型的起点，不是对本系统配置的安全证明。
+差分隐私（DP）用隐私预算量化单个记录加入或删除对输出分布的影响。NIST SP 800-226 强调评估 DP 保证时要看隐私预算、相邻数据定义、机制、实现和常见陷阱；“加了噪声”不是自动得到 DP。训练中使用 DP-SGD 还会影响效用、偏差、收敛和成本，必须记录采样率、裁剪范数、噪声乘子和预算会计器版本。 经典的 DP-SGD 论文 [Abadi 等，2016](https://arxiv.org/abs/1607.00133) 给出了深度学习中的裁剪与噪声机制；[Shokri 等，2017](https://arxiv.org/abs/1610.05820) 的成员推断研究提醒我们，模型接口本身可能泄露训练成员关系。论文是机制和威胁模型的起点，不是对本系统配置的安全证明。
 
 联合学习减少原始数据集中，但梯度和更新仍可能泄露；安全聚合和客户端认证不能消除投毒、成员推断或服务器窥视。TEE/机密 VM 可以降低宿主窥视风险，需要验证远程证明、固件、驱动、密钥释放策略和侧信道模型。它们不替代应用层授权、日志最小化、数据删除和模型输出审查。模型反演、成员推断、提示词窃取和训练数据记忆应通过红队测试和抽样评估持续测量，而不是只在发布时做一次。
 
@@ -544,7 +544,7 @@ if __name__ == "__main__":
 | 供应链与来源 | [SLSA 1.0](https://slsa.dev/spec/v1.0/)、[SLSA Security Levels](https://slsa.dev/spec/v1.0/levels)、[in-toto Attestation](https://github.com/in-toto/attestation)、[Sigstore Cosign](https://docs.sigstore.dev/) | 生成并验证 provenance、SBOM、签名和工件摘要；故意替换输入或构建器，确认默认拒绝 |
 | SBOM | [CycloneDX](https://cyclonedx.org/specification/)、[SPDX](https://spdx.dev/specifications/) | 选择格式和字段，扫描容器、Python/Node 依赖、CUDA 扩展与模型包；验证组件到部署的反向查询 |
 | 隐私与 DP | [NIST SP 800-226](https://csrc.nist.gov/pubs/sp/800/226/final)，说明差分隐私保证和常见陷阱 | 记录相邻数据定义、预算、会计器和效用；做成员推断与重识别测试 |
-| 机器学习隐私论文 | [Deep Learning with Differential Privacy](https://arxiv.org/abs/1607.00133)、[Membership Inference Attacks](https://www.cs.cmu.edu/~sangria/papers/ccs2017-mia.pdf)，用于理解 DP-SGD 与成员推断威胁 | 固定威胁模型和实验数据；把论文结果与目标模型、采样率和接口逐项对照 |
+| 机器学习隐私论文 | [Deep Learning with Differential Privacy](https://arxiv.org/abs/1607.00133)、[Membership Inference Attacks](https://arxiv.org/abs/1610.05820)，用于理解 DP-SGD 与成员推断威胁 | 固定威胁模型和实验数据；把论文结果与目标模型、采样率和接口逐项对照 |
 | 云原生密钥 | [Kubernetes Secrets Good Practices](https://kubernetes.io/docs/concepts/security/secrets-good-practices/) 与目标 KMS/HSM 文档 | 检查 etcd 加密、访问审计、信封上下文、轮换、备份恢复和吊销传播 |
 | 事件响应 | [NIST SP 800-61](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final) 与 [NIST SP 800-34](https://csrc.nist.gov/publications/detail/sp/800-34/rev-1/final) | 为身份、供应链、隐私和节点入侵写 playbook，演练证据保全、RTO/RPO 与通知 |
 | 开源运行时 | [containerd](https://github.com/containerd/containerd)、[gVisor](https://gvisor.dev/)、[Kata Containers](https://katacontainers.io/)、[NVIDIA Kubernetes Device Plugin](https://github.com/NVIDIA/k8s-device-plugin/) | 锁定发行版和 commit；检查特权、设备挂载、RuntimeClass、GPU 分配与漏洞公告 |
