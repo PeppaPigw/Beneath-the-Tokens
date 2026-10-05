@@ -476,7 +476,13 @@ def report(name, ref, approx, q=None):
     abs_err = np.abs(err)
     denom = np.maximum(np.abs(ref), 1e-6)
     rel = abs_err / denom
-    sat = 0.0 if q is None else float(np.mean((q == q.min()) | (q == q.max())))
+    # 用理论量化端点统计饱和，而不是 q.min()/q.max()（后者会把观测到的边界误判为裁剪）
+    if q is None:
+        sat = 0.0
+    elif np.issubdtype(q.dtype, np.unsignedinteger):
+        sat = float(np.mean((q == 0) | (q == np.iinfo(q.dtype).max)))
+    else:
+        sat = float(np.mean((q == -128) | (q == 127)))
     print(f"{name:26s} MAE={abs_err.mean():.6g} "
           f"RMSE={np.sqrt(np.mean(err*err)):.6g} "
           f"p99={np.percentile(abs_err,99):.6g} "
@@ -691,6 +697,14 @@ lm_head        top-k 不变     可放大         质量优先       BF16/FP32
 量化参数不是一次性常量。模型版本、tokenizer、预处理、batch/序列长度、采样温度和硬件 kernel 改变后，旧 scale 可能不再适用。建议把 scale、zero-point、group size、clip 百分位、校准样本摘要和生成工具版本一起存储，给每个参数文件一个内容哈希。加载时验证张量名、shape、布局、dtype 和哈希；有一项不匹配就拒绝静默加载。
 
 线上监控只需聚合信息：按层统计 amax 分位数、饱和率、零值率、inf/nan 计数、回退次数和任务代理指标。设定一个观察窗口，只有连续多个窗口超过阈值才触发自动再校准或回退，避免单个异常请求引发抖动。再校准应在隔离流程完成并进行离线回归，不能直接拿未经审核的新 scale 覆盖生产。
+
+### 7.14.8 转换边界、缓存与并发的隐形成本
+
+很多性能报告只比较两个 GEMM，忽略了 dtype 转换发生在边界：数据加载后把 FP32 转成 BF16、量化前计算 amax、INT4 权重解包、输出回写 FP16 或把 logits 复制到 CPU 做采样。这些步骤可能各自很短，却会在小 batch 或逐 token 解码中占据主要时间。应在 profiler 中把转换、scale 读取和反量化标成独立的算子类别，计算它们在端到端延迟中的比例。
+
+缓存策略也会改变结论。权重如果每次请求都解包，INT4 的存储收益会被解包开销抵消；如果把解包后的高精度副本常驻显存，又会失去压缩带来的容量收益。一个实用折中是按层或按专家缓存最近使用的 tile，并记录命中率、显存上限和淘汰时间。缓存中保存的是模型参数衍生物，不应包含用户输入或可逆的敏感中间结果。
+
+并发场景需要检查 scale 和 scratch buffer 是否被请求共享。动态量化若把当前请求的 amax 写入全局变量，两个请求交错时可能互相覆盖，产生偶发错误。每次请求应拥有独立的 scale 状态，或者使用带版本号的只读快照。多 stream 下还要保证反量化完成后再复用 workspace；否则数值错误可能只在高并发和特定调度下出现。
 
 ## 7.15 六个理解检查（含答案）
 
