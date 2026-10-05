@@ -11,7 +11,7 @@ prerequisites:
   - ch15-inference-execution
   - ch16-model-serving-system
   - ch17-kubernetes-gpu-orchestration
-  - ch18-ray-distributed-execution
+  - ch18-ray-distributed-application-runtimes
   - ch19-inference-optimization-accelerator-stack
 learning_objectives:
   - 能为 AI 服务定义从请求到 GPU kernel 的指标、日志和 trace 语义
