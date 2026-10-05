@@ -1,7 +1,7 @@
 ---
 id: ch13-artifact-management
 title: 实验与模型工件管理：配置、注册表、版本、血缘与可复现构建
-slug: /chapters/13-artifact-management
+slug: /chapters/13-experiment-artifacts
 description: 将配置、数据、代码、环境、模型和评估结果组织成不可变、可寻址、可追溯且可回滚的工件链路
 sidebar_position: 13
 level: systems
@@ -369,6 +369,18 @@ compatibility:
 
 ### 13.8.4 取舍与被拒绝的替代方案
 
+### 13.8.5 审计查询、回放与影响范围
+
+发布完成后，最常见的调查问题不是“文件还在吗”，而是“这个服务在某段时间到底使用了哪组输入”。因此 registry 需要同时支持正向和反向查询。正向查询从一次 run 出发，列出代码、配置、数据、tokenizer、环境、checkpoint、评估和别名；反向查询从一个数据对象或策略版本出发，列出所有下游模型、报告、服务和时间窗口。两类查询都必须基于不可变摘要和带角色的关系，不能只在名称字段上模糊匹配。
+
+回放（replay）应分成三个层级。第一层是**元数据回放**：验证 manifest、provenance 和审计事件能否重建时间线，不需要重新执行训练。第二层是**构建回放**：在隔离环境重新生成模型或报告，比较输出 digest、指标和允许的差异预算。第三层是**行为回放**：把固定输入送入发布包，比较输出、延迟、拒答和安全门结果。调查先从低成本的元数据层开始，只有证据不足或质量影响重大时才升级到构建和行为层。这样可以避免为了确认一个别名错误而重新消耗整轮训练资源。
+
+影响范围分析不能只看模型直接输入。一个含敏感字段的原始分片可能经过规范化、去重、采样、特征聚合和缓存，最终影响多个数据快照和 checkpoint。lineage 边应保存活动的时间范围、过滤规则和抽样比例，使查询可以给出保守上界与已确认集合。若某一步没有完整血缘，应把结果标成未知，而不是把未知当成零影响。对于线上服务，还要结合部署时间、实例启动日志和缓存预热时间，确定哪些请求窗口可能使用了受影响 digest。
+
+审计回放也会遇到日志不完整、事件乱序和时钟漂移。事件应使用单调序列号或链式摘要排序，时间戳只作辅助；跨机器时间差应记录时区和时钟同步状态。发现缺口时，保留原始日志并创建更正事件，不要重写历史行。查询工具输出的每个结论都应带证据摘要、验证器版本和查询时间，方便另一位审查者独立复核。
+
+将这些查询纳入日常演练：每次发布随机抽取一个旧版本，验证能否在只读权限下追到输入；每季度模拟撤回一个数据分片，检查是否能列出受影响模型并阻断新发布；每次 registry 或 schema 升级，先在副本上回放历史事件。演练失败本身就是质量门结果，应阻止把新的可变别名推进生产。
+
 工件系统没有脱离上下文的“最佳”设计，以下选择应写进架构决策记录：
 
 - **Git 大文件 vs 对象存储 + registry**：Git 提供熟悉的审查和分支，但不适合海量样本和高吞吐 checkpoint；对象存储适合大对象，却需要额外的权限、生命周期和审计。小规模教学可用 Git LFS，生产通常把 Git commit 作为代码身份、registry digest 作为数据和模型身份。
@@ -604,7 +616,7 @@ if __name__ == "__main__":
 
 ### 13.9.2 两阶段提交、CURRENT 指针与回滚
 
-上面的脚本验证了内容，却还没有模拟发布时的原子指针。生产对象存储不能假设本地 `os.replace`，但可以先理解本地语义，再映射为带版本条件的对象写。下面片段把快照目录视为已完成的不可变工件：消费者只读取 `manifest.done` 存在的快照，`CURRENT` 是可变但受 CAS 保护的指针，回滚只移动指针而不删除新版本。
+上面的脚本验证了内容，却还没有模拟发布时的原子指针。生产对象存储不能假设本地 `os.replace`，但可以先理解本地语义，再映射为带版本条件的对象写。下面片段把快照目录视为已完成的不可变工件：消费者只读取 `manifest.done` 存在的快照，`CURRENT` 是可变指针；本地片段用 expected revision 做冲突检查，真正多进程或远端 registry 必须使用数据库事务或条件写（CAS），回滚只移动指针而不删除新版本。
 
 ```python
 import json, os, tempfile
@@ -643,15 +655,17 @@ def read_current(root):
         raise RuntimeError("artifact hash mismatch")
     return pointer["snapshot"]
 
-def publish(root, snapshot, reason, action="publish"):
+def publish(root, snapshot, reason, action="publish", expected_previous=None):
     done = root / snapshot / "manifest.done"
     if not done.is_file():
         raise RuntimeError("uncommitted snapshot")
     previous = read_current(root)
+    if expected_previous is not None and previous != expected_previous:
+        raise RuntimeError("revision conflict")
     pointer = {"snapshot": snapshot, "manifest_sha256": sha_file(done)}
     tmp = root / ".CURRENT.tmp"
     tmp.write_bytes(canon(pointer))
-    os.replace(tmp, root / "CURRENT")  # 远端用条件写/CAS替代
+    os.replace(tmp, root / "CURRENT")  # 单进程教学；远端用条件写/CAS替代
     append_audit(root, action, snapshot, previous, reason)
 
 # 运行示例：先创建两个已经校验通过的快照目录
@@ -663,7 +677,7 @@ with tempfile.TemporaryDirectory() as d:
         (snap / "manifest.done").write_bytes(canon({"snapshot": name,
                                                     "sha256": sha_file(snap / "model.bin")}))
     publish(root, "v1", "initial")
-    publish(root, "v2", "quality gate pass")
+    publish(root, "v2", "quality gate pass", expected_previous="v1")
     print("current_before_rollback:", read_current(root))
     (root / "v2" / "model.bin").write_bytes(b"corrupt-v2")
     try:
@@ -672,12 +686,12 @@ with tempfile.TemporaryDirectory() as d:
         print("tamper_rejected:", e)
     # 修复仅用于继续演示；生产应撤回并重建新 digest，而不是原地修复
     (root / "v2" / "model.bin").write_bytes(b"model-v2")
-    publish(root, "v1", "rollback after online error", action="rollback")
+    publish(root, "v1", "rollback after online error", action="rollback", expected_previous="v2")
     print("current_after_rollback:", read_current(root))
     print((root / "audit.jsonl").read_text(), end="")
 ```
 
-预期输出包含 `current_before_rollback: v2`、`tamper_rejected: artifact hash mismatch`、`current_after_rollback: v1`，以及三条按序号排列的 publish、publish、rollback 事件。片段把 `manifest.done` 中的模型摘要与模型文件交叉验证；完整实现还应在验证器中检查对象列表、总计和 manifest 摘要，并在快照目录创建阶段使用 `manifest.intent -> manifest.done -> 原子 rename` 的两阶段提交。验证失败、崩溃或只留下 intent 时，`CURRENT` 必须保持旧值。
+预期输出包含 `current_before_rollback: v2`、`tamper_rejected: artifact hash mismatch`、`current_after_rollback: v1`，以及三条按序号排列的 publish、publish、rollback 事件。片段把 `manifest.done` 中的模型摘要与模型文件交叉验证；完整实现还应在验证器中检查对象列表、总计和 manifest 摘要，并在快照目录创建阶段使用 `manifest.intent -> manifest.done -> 原子 rename` 的两阶段提交。验证失败、崩溃或只留下 intent 时，`CURRENT` 必须保持旧值。本地 `os.replace` 只保证一次替换的原子可见性，不能阻止两个进程同时读到同一旧值；生产实现应把 expected revision 放进事务条件，并在条件失败时重新读取再决定是否重试。
 
 ### 13.9.3 运行、预期输出与解释
 
@@ -822,6 +836,7 @@ print("toy_score", f"{score:.8f}")
 
 - [SLSA v1.0](https://slsa.dev/spec/v1.0/)：软件供应链等级、来源证明和构建要求。
 - [in-toto 规范](https://in-toto.io/)：以步骤和布局描述供应链完整性，适合把构建活动绑定到输入输出。
+- [in-toto: Providing Farm-to-Table Guarantees for Bits and Bytes](https://www.usenix.org/conference/usenixsecurity19/presentation/torres-arias)：USENIX Security 2019 论文，解释布局、步骤和链接元数据如何抵御供应链篡改；论文中的威胁模型不能直接替代本组织的风险评估。
 - [Sigstore](https://www.sigstore.dev/)：短期签名、透明日志和无密钥工作流的生态说明。
 - [SPDX 规范](https://spdx.dev/specifications/)：软件包、许可证和组件清单（SBOM）格式。
 - [CycloneDX](https://cyclonedx.org/specification/overview/)：SBOM 与依赖关系交换格式。
