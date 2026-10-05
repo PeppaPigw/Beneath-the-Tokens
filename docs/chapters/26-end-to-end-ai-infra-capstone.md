@@ -12,8 +12,8 @@ prerequisites:
   - ch17-kubernetes-gpu-orchestration
   - ch20-observability-debugging-incident-response
   - ch21-ai-reliability-engineering
-  - ch22-security-privacy-supply-chain
-  - ch23-cost-capacity-engineering
+  - ch22-ai-infra-security-privacy-supply-chain
+  - ch23-ai-infra-cost-capacity-energy-carbon
 learning_objectives:
   - 能把含糊的产品愿望拆成可验证的用户旅程、SLO、风险假设和退出条件
   - 能写出覆盖数据、训练、推理、Kubernetes、观测、可靠性、安全和成本的端到端架构与接口
