@@ -353,7 +353,7 @@ TensorRT 实验应保存 engine 构建日志和 profile 命中；Triton 实验�
 
 对多租户服务，调度器应为每个租户维护 token 预算和最大连续服务轮次。高优先级可获得更低等待，但仍需有全局上限，避免一个租户占满 paged KV。抢占时要区分可重算的 prefill 和代价高的 decode；抢占后若丢失 KV，重算成本应计入租户账单和容量模型。所有调度决策写入结构化事件，便于解释为什么某请求被延迟或拒绝。
 
-## 19.10 失败诊所：八个“看起来更快”或“看起来健康”的陷阱
+## 19.10 失败诊所：十二个“看起来更快”或“看起来健康”的陷阱
 
 ### 失败一：编译版本首请求超时
 
@@ -482,18 +482,21 @@ TensorRT 实验应保存 engine 构建日志和 profile 命中；Triton 实验�
 
 ## 19.16 来源地图与可复现记录
 
-以下来源按“论文、官方文档、实现、实验”分类。访问日期均为 2026-10-05；版本敏感项应在本地记录实际版本。
+以下来源按“论文、官方文档、实现、实验”分类。访问日期均为 2026-10-05；论文条目给出发表年份，官方文档和仓库条目以访问日的稳定页面为准，版本敏感项应在本地记录实际版本、commit 或容器摘要。每条都注明了它支持的主张，不能把来源存在本身当作端到端性能证明。
 
 - **FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness**，Tri Dao 等，论文与实现，支持分块、在线 softmax 与 IO 复杂度主张：<https://arxiv.org/abs/2205.14135>、<https://github.com/Dao-AILab/flash-attention>。
 - **FlashAttention-2**，Tri Dao，支持并行划分、负载平衡和不同 GPU 内核的机制说明：<https://arxiv.org/abs/2307.08691>。
 - **vLLM 与 PagedAttention**，Kwon 等，论文与文档，支持分页 KV、连续批处理和服务接口边界：<https://arxiv.org/abs/2309.06180>、<https://docs.vllm.ai/>。
 - **NVIDIA TensorRT Developer Guide**，NVIDIA，官方文档，支持 Builder、tactic、动态形状、插件、精度和 engine 约束：<https://docs.nvidia.com/deeplearning/tensorrt/developer-guide/>。
 - **NVIDIA TensorRT-LLM**，NVIDIA，参考实现，支持生成调度、量化、并行和 kernel 集成，但需按版本核对支持矩阵：<https://github.com/NVIDIA/TensorRT-LLM>。
+- **TensorRT-LLM Quantization**，NVIDIA，官方文档，支持 FP8、FP4、INT8、W4A16/W4A8、GPTQ、AWQ 与 KV cache dtype；具体格式和硬件支持随版本变化：<https://nvidia.github.io/TensorRT-LLM/latest/features/quantization.html>。
+- **TensorRT-LLM Memory and KV Cache**，NVIDIA，官方文档，说明 paged KV pool、block 分配和 in-flight batching 的内存约束：<https://nvidia.github.io/TensorRT-LLM/reference/memory.html>。
 - **Triton Language and Compiler**，OpenAI，官方仓库与教程，支持块级 kernel、编译参数和调优边界：<https://github.com/triton-lang/triton>。
 - **PyTorch torch.compile 与 TorchInductor**，PyTorch，官方文档，支持图捕获、graph break、缓存和后端选择：<https://pytorch.org/docs/stable/torch.compiler.html>。
 - **MLIR 文档**，LLVM 社区，支持多层 IR、方言降低和编译器结构，不证明某个模型自动获得性能：<https://mlir.llvm.org/>。
 - **TVM**，Apache TVM，参考实现，支持算子调度、自动调优和多后端代码生成：<https://tvm.apache.org/>。
 - **NVIDIA Triton Inference Server**，NVIDIA，官方文档，支持模型仓库、动态批处理、健康端点和后端配置：<https://docs.nvidia.com/deeplearning/triton-inference-server/>。
+- **Triton Dynamic Batcher**，NVIDIA，官方文档，支持 preferred batch、最大队列延迟、队列策略和动态批处理边界：<https://docs.nvidia.com/deeplearning/triton-inference-server/archives/triton-inference-server-2550/user-guide/docs/user_guide/batcher.html>。
 - **SmoothQuant**，Xiao 等，论文，支持权重-激活平滑与 INT8 校准思路：<https://arxiv.org/abs/2211.10438>。
 - **GPTQ**，Frantar 等，论文与实现，支持后训练权重量化和近似误差最小化：<https://arxiv.org/abs/2210.17323>。
 - **AWQ**，Lin 等，论文与实现，支持激活感知权重保护和低 bit 推理：<https://arxiv.org/abs/2306.00978>。
