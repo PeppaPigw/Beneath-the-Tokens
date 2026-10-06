@@ -18,7 +18,7 @@
           "hit_tokens": 384,
           "internal_waste_ratio": 0.07373271889400922,
           "logical_tokens": 1608,
-          "operation_us": 2658.71,
+          "operation_us": 2897.528,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -30,7 +30,7 @@
           "hit_tokens": 320,
           "internal_waste_ratio": 0.08863636363636364,
           "logical_tokens": 1604,
-          "operation_us": 2411.989,
+          "operation_us": 4158.951,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -42,7 +42,7 @@
           "hit_tokens": 448,
           "internal_waste_ratio": 0.10049019607843138,
           "logical_tokens": 1468,
-          "operation_us": 2602.335,
+          "operation_us": 3178.019,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -54,7 +54,7 @@
           "hit_tokens": 480,
           "internal_waste_ratio": 0.11635944700460829,
           "logical_tokens": 1534,
-          "operation_us": 2285.74,
+          "operation_us": 3603.046,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -66,7 +66,7 @@
           "hit_tokens": 384,
           "internal_waste_ratio": 0.15588235294117647,
           "logical_tokens": 1148,
-          "operation_us": 1822.414,
+          "operation_us": 2571.804,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -78,7 +78,7 @@
           "hit_tokens": 448,
           "internal_waste_ratio": 0.09346846846846847,
           "logical_tokens": 1610,
-          "operation_us": 2313.752,
+          "operation_us": 2851.078,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -90,7 +90,7 @@
           "hit_tokens": 416,
           "internal_waste_ratio": 0.06683673469387755,
           "logical_tokens": 1829,
-          "operation_us": 3029.246,
+          "operation_us": 3194.593,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -102,7 +102,7 @@
           "hit_tokens": 352,
           "internal_waste_ratio": 0.10667539267015706,
           "logical_tokens": 1365,
-          "operation_us": 2075.034,
+          "operation_us": 2212.239,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -114,7 +114,7 @@
           "hit_tokens": 288,
           "internal_waste_ratio": 0.12863372093023256,
           "logical_tokens": 1199,
-          "operation_us": 1866.15,
+          "operation_us": 2131.409,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -126,7 +126,7 @@
           "hit_tokens": 336,
           "internal_waste_ratio": 0.09407216494845361,
           "logical_tokens": 1406,
-          "operation_us": 2209.476,
+          "operation_us": 2586.131,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -138,7 +138,7 @@
           "hit_tokens": 288,
           "internal_waste_ratio": 0.08311855670103092,
           "logical_tokens": 1423,
-          "operation_us": 2066.952,
+          "operation_us": 2266.261,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -150,7 +150,7 @@
           "hit_tokens": 304,
           "internal_waste_ratio": 0.11162790697674418,
           "logical_tokens": 1528,
-          "operation_us": 2288.244,
+          "operation_us": 2735.144,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -162,7 +162,7 @@
           "hit_tokens": 272,
           "internal_waste_ratio": 0.11867977528089887,
           "logical_tokens": 1255,
-          "operation_us": 2555.024,
+          "operation_us": 2161.934,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -174,7 +174,7 @@
           "hit_tokens": 240,
           "internal_waste_ratio": 0.10980662983425414,
           "logical_tokens": 1289,
-          "operation_us": 2167.642,
+          "operation_us": 3227.218,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -186,7 +186,7 @@
           "hit_tokens": 352,
           "internal_waste_ratio": 0.08945497630331753,
           "logical_tokens": 1537,
-          "operation_us": 3524.899,
+          "operation_us": 3014.083,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -198,7 +198,7 @@
           "hit_tokens": 304,
           "internal_waste_ratio": 0.11363636363636363,
           "logical_tokens": 1326,
-          "operation_us": 2521.534,
+          "operation_us": 2555.575,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -210,7 +210,7 @@
           "hit_tokens": 352,
           "internal_waste_ratio": 0.08738425925925926,
           "logical_tokens": 1577,
-          "operation_us": 2525.971,
+          "operation_us": 4650.407,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -222,7 +222,7 @@
           "hit_tokens": 352,
           "internal_waste_ratio": 0.09487179487179487,
           "logical_tokens": 1412,
-          "operation_us": 2199.771,
+          "operation_us": 2311.098,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -234,7 +234,7 @@
           "hit_tokens": 288,
           "internal_waste_ratio": 0.07760416666666667,
           "logical_tokens": 1771,
-          "operation_us": 2658.059,
+          "operation_us": 2910.247,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -246,7 +246,7 @@
           "hit_tokens": 336,
           "internal_waste_ratio": 0.11065573770491803,
           "logical_tokens": 1302,
-          "operation_us": 1971.669,
+          "operation_us": 2291.088,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -258,7 +258,7 @@
           "hit_tokens": 384,
           "internal_waste_ratio": 0.09816753926701571,
           "logical_tokens": 1378,
-          "operation_us": 2437.338,
+          "operation_us": 3701.384,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -270,7 +270,7 @@
           "hit_tokens": 304,
           "internal_waste_ratio": 0.08430232558139535,
           "logical_tokens": 1575,
-          "operation_us": 2305.53,
+          "operation_us": 2861.104,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -282,7 +282,7 @@
           "hit_tokens": 320,
           "internal_waste_ratio": 0.10529556650246305,
           "logical_tokens": 1453,
-          "operation_us": 2153.562,
+          "operation_us": 2509.636,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -294,7 +294,7 @@
           "hit_tokens": 320,
           "internal_waste_ratio": 0.08744635193133048,
           "logical_tokens": 1701,
-          "operation_us": 2437.397,
+          "operation_us": 3928.545,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -306,7 +306,7 @@
           "hit_tokens": 368,
           "internal_waste_ratio": 0.11602564102564103,
           "logical_tokens": 1379,
-          "operation_us": 2104.007,
+          "operation_us": 3669.055,
           "peak_active_blocks": 8,
           "requests": 60
         }
@@ -358,13 +358,13 @@
           "p99": 0.14934268125855
         },
         "operation_us": {
-          "max": 3524.899,
-          "mean": 2367.6978,
-          "min": 1822.414,
+          "max": 4650.407,
+          "mean": 2967.1030800000003,
+          "min": 2131.409,
           "n": 25,
-          "p50": 2305.53,
-          "p95": 2955.1388,
-          "p99": 3405.9422800000007
+          "p50": 2861.104,
+          "p95": 4112.8698,
+          "p99": 4532.457560000001
         },
         "peak_active_blocks": {
           "max": 8.0,
@@ -379,7 +379,7 @@
       "warmup_repeats": 5
     }
   ],
-  "git_commit": "87959b2bbad41fbcc683cf35e0a8e50a50369c3d",
+  "git_commit": "f121f2112fee15e8e634ee9e7c85ac5246517c0f",
   "level": "L0",
   "measurement": "CPU Python state transitions; operation_us is not GPU latency",
   "parameters": {
