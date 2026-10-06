@@ -134,8 +134,15 @@ export default function DocItemContent({children}: {readonly children?: ReactNod
           <Heading as="h1">{syntheticTitle}</Heading>
         </header>
       )}
-      <ChapterMetadata frontMatter={frontMatter as ChapterFrontMatter} />
+      {/*
+       * A document with a synthetic title has its heading here, so metadata
+       * can follow it immediately. For documents with an explicit Markdown
+       * H1, MDXContent owns that heading; place metadata after that rendered
+       * content rather than before the title.
+       */}
+      {!contentTitle && <ChapterMetadata frontMatter={frontMatter as ChapterFrontMatter} />}
       <MDXContent>{children}</MDXContent>
+      {contentTitle && <ChapterMetadata frontMatter={frontMatter as ChapterFrontMatter} />}
     </div>
   );
 }
