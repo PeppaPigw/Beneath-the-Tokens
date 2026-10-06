@@ -1,0 +1,15 @@
+{
+  "manifest_version": 1,
+  "chapter_id": "phase2-01-evidence-language",
+  "entries": [
+    {
+      "claim": "",
+      "type": "guess",
+      "source_url": "ftp://invalid",
+      "version": "",
+      "experiment_id": 3,
+      "limitation": "",
+      "review_date": "2026-99-99"
+    }
+  ]
+}
