@@ -18,7 +18,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.03827751196172249,
           "logical_tokens": 1608,
-          "operation_us": 2652.129,
+          "operation_us": 3124.669,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -30,7 +30,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.04523809523809524,
           "logical_tokens": 1604,
-          "operation_us": 3572.27,
+          "operation_us": 4361.876,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -42,7 +42,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.05412371134020619,
           "logical_tokens": 1468,
-          "operation_us": 2424.357,
+          "operation_us": 2709.686,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -54,7 +54,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.05541871921182266,
           "logical_tokens": 1534,
-          "operation_us": 2642.365,
+          "operation_us": 2904.118,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -66,7 +66,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.07119741100323625,
           "logical_tokens": 1148,
-          "operation_us": 1953.531,
+          "operation_us": 2323.056,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -78,7 +78,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.0462085308056872,
           "logical_tokens": 1610,
-          "operation_us": 2767.122,
+          "operation_us": 3256.837,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -90,7 +90,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.03736842105263158,
           "logical_tokens": 1829,
-          "operation_us": 3001.163,
+          "operation_us": 3502.906,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -102,7 +102,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.054709141274238225,
           "logical_tokens": 1365,
-          "operation_us": 2458.439,
+          "operation_us": 2731.68,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -114,7 +114,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.06328125,
           "logical_tokens": 1199,
-          "operation_us": 2079.661,
+          "operation_us": 2155.345,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -126,7 +126,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.04742547425474255,
           "logical_tokens": 1406,
-          "operation_us": 2721.283,
+          "operation_us": 2485.76,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -138,7 +138,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.043682795698924734,
           "logical_tokens": 1423,
-          "operation_us": 2561.394,
+          "operation_us": 2382.966,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -150,7 +150,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.054455445544554455,
           "logical_tokens": 1528,
-          "operation_us": 2673.671,
+          "operation_us": 3892.691,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -162,7 +162,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.06062874251497006,
           "logical_tokens": 1255,
-          "operation_us": 2679.451,
+          "operation_us": 2582.706,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -174,7 +174,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.05498533724340176,
           "logical_tokens": 1289,
-          "operation_us": 2205.96,
+          "operation_us": 2375.355,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -186,7 +186,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.039375,
           "logical_tokens": 1537,
-          "operation_us": 2852.35,
+          "operation_us": 3521.835,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -198,7 +198,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.05555555555555555,
           "logical_tokens": 1326,
-          "operation_us": 2172.3,
+          "operation_us": 2857.968,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -210,7 +210,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.04308252427184466,
           "logical_tokens": 1577,
-          "operation_us": 2823.267,
+          "operation_us": 3667.033,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -222,7 +222,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.04336043360433604,
           "logical_tokens": 1412,
-          "operation_us": 2567.853,
+          "operation_us": 3006.281,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -234,7 +234,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.041666666666666664,
           "logical_tokens": 1771,
-          "operation_us": 3011.109,
+          "operation_us": 4022.957,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -246,7 +246,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.05102040816326531,
           "logical_tokens": 1302,
-          "operation_us": 2131.419,
+          "operation_us": 3038.71,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -258,7 +258,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.04834254143646409,
           "logical_tokens": 1378,
-          "operation_us": 2249.075,
+          "operation_us": 3091.84,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -270,7 +270,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.04429611650485437,
           "logical_tokens": 1575,
-          "operation_us": 2459.09,
+          "operation_us": 2700.803,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -282,7 +282,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.054036458333333336,
           "logical_tokens": 1453,
-          "operation_us": 2795.956,
+          "operation_us": 4096.747,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -294,7 +294,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.04652466367713005,
           "logical_tokens": 1701,
-          "operation_us": 2843.117,
+          "operation_us": 2913.993,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -306,7 +306,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.05806010928961749,
           "logical_tokens": 1379,
-          "operation_us": 2589.506,
+          "operation_us": 2557.518,
           "peak_active_blocks": 16,
           "requests": 60
         }
@@ -358,13 +358,13 @@
           "p99": 0.06929753236245956
         },
         "operation_us": {
-          "max": 3572.27,
-          "mean": 2595.51352,
-          "min": 1953.531,
+          "max": 4361.876,
+          "mean": 3050.6134399999996,
+          "min": 2155.345,
           "n": 25,
-          "p50": 2642.365,
-          "p95": 3009.1198,
-          "p99": 3437.591360000001
+          "p50": 2913.993,
+          "p95": 4081.9890000000005,
+          "p99": 4298.245040000001
         },
         "peak_active_blocks": {
           "max": 16.0,
@@ -392,7 +392,7 @@
           "hit_tokens": 208,
           "internal_waste_ratio": 0.03827751196172249,
           "logical_tokens": 1608,
-          "operation_us": 2804.848,
+          "operation_us": 3036.977,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -404,7 +404,7 @@
           "hit_tokens": 184,
           "internal_waste_ratio": 0.04523809523809524,
           "logical_tokens": 1604,
-          "operation_us": 2863.888,
+          "operation_us": 4207.164,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -416,7 +416,7 @@
           "hit_tokens": 232,
           "internal_waste_ratio": 0.05412371134020619,
           "logical_tokens": 1468,
-          "operation_us": 2699.691,
+          "operation_us": 3466.101,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -428,7 +428,7 @@
           "hit_tokens": 240,
           "internal_waste_ratio": 0.05541871921182266,
           "logical_tokens": 1534,
-          "operation_us": 2911.95,
+          "operation_us": 4650.779,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -440,7 +440,7 @@
           "hit_tokens": 192,
           "internal_waste_ratio": 0.07119741100323625,
           "logical_tokens": 1148,
-          "operation_us": 2084.668,
+          "operation_us": 2740.072,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -452,7 +452,7 @@
           "hit_tokens": 232,
           "internal_waste_ratio": 0.0462085308056872,
           "logical_tokens": 1610,
-          "operation_us": 3247.423,
+          "operation_us": 3562.025,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -464,7 +464,7 @@
           "hit_tokens": 240,
           "internal_waste_ratio": 0.03736842105263158,
           "logical_tokens": 1829,
-          "operation_us": 3746.893,
+          "operation_us": 3915.025,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -476,7 +476,7 @@
           "hit_tokens": 200,
           "internal_waste_ratio": 0.054709141274238225,
           "logical_tokens": 1365,
-          "operation_us": 2521.373,
+          "operation_us": 3053.953,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -488,7 +488,7 @@
           "hit_tokens": 176,
           "internal_waste_ratio": 0.06328125,
           "logical_tokens": 1199,
-          "operation_us": 2117.518,
+          "operation_us": 2529.125,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -500,7 +500,7 @@
           "hit_tokens": 192,
           "internal_waste_ratio": 0.04742547425474255,
           "logical_tokens": 1406,
-          "operation_us": 3065.179,
+          "operation_us": 3490.959,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -512,7 +512,7 @@
           "hit_tokens": 184,
           "internal_waste_ratio": 0.043682795698924734,
           "logical_tokens": 1423,
-          "operation_us": 2646.612,
+          "operation_us": 3000.072,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -524,7 +524,7 @@
           "hit_tokens": 168,
           "internal_waste_ratio": 0.054455445544554455,
           "logical_tokens": 1528,
-          "operation_us": 2590.507,
+          "operation_us": 3301.854,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -536,7 +536,7 @@
           "hit_tokens": 168,
           "internal_waste_ratio": 0.06062874251497006,
           "logical_tokens": 1255,
-          "operation_us": 2231.077,
+          "operation_us": 3107.644,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -548,7 +548,7 @@
           "hit_tokens": 152,
           "internal_waste_ratio": 0.05498533724340176,
           "logical_tokens": 1289,
-          "operation_us": 2602.224,
+          "operation_us": 2521.805,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -560,7 +560,7 @@
           "hit_tokens": 176,
           "internal_waste_ratio": 0.039375,
           "logical_tokens": 1537,
-          "operation_us": 2604.909,
+          "operation_us": 3592.561,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -572,7 +572,7 @@
           "hit_tokens": 168,
           "internal_waste_ratio": 0.05555555555555555,
           "logical_tokens": 1326,
-          "operation_us": 2432.82,
+          "operation_us": 3966.682,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -584,7 +584,7 @@
           "hit_tokens": 200,
           "internal_waste_ratio": 0.04308252427184466,
           "logical_tokens": 1577,
-          "operation_us": 5160.324,
+          "operation_us": 3103.277,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -596,7 +596,7 @@
           "hit_tokens": 216,
           "internal_waste_ratio": 0.04336043360433604,
           "logical_tokens": 1412,
-          "operation_us": 4733.483,
+          "operation_us": 2955.995,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -608,7 +608,7 @@
           "hit_tokens": 152,
           "internal_waste_ratio": 0.041666666666666664,
           "logical_tokens": 1771,
-          "operation_us": 5439.552,
+          "operation_us": 3942.626,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -620,7 +620,7 @@
           "hit_tokens": 192,
           "internal_waste_ratio": 0.05102040816326531,
           "logical_tokens": 1302,
-          "operation_us": 2669.476,
+          "operation_us": 2830.988,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -632,7 +632,7 @@
           "hit_tokens": 216,
           "internal_waste_ratio": 0.04834254143646409,
           "logical_tokens": 1378,
-          "operation_us": 3204.548,
+          "operation_us": 3228.875,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -644,7 +644,7 @@
           "hit_tokens": 152,
           "internal_waste_ratio": 0.04429611650485437,
           "logical_tokens": 1575,
-          "operation_us": 2709.305,
+          "operation_us": 3001.504,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -656,7 +656,7 @@
           "hit_tokens": 192,
           "internal_waste_ratio": 0.054036458333333336,
           "logical_tokens": 1453,
-          "operation_us": 2515.675,
+          "operation_us": 3206.442,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -668,7 +668,7 @@
           "hit_tokens": 192,
           "internal_waste_ratio": 0.04652466367713005,
           "logical_tokens": 1701,
-          "operation_us": 3398.659,
+          "operation_us": 3257.628,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -680,7 +680,7 @@
           "hit_tokens": 240,
           "internal_waste_ratio": 0.05806010928961749,
           "logical_tokens": 1379,
-          "operation_us": 2924.829,
+          "operation_us": 2663.888,
           "peak_active_blocks": 16,
           "requests": 60
         }
@@ -732,13 +732,13 @@
           "p99": 0.06929753236245956
         },
         "operation_us": {
-          "max": 5439.552,
-          "mean": 3037.09724,
-          "min": 2084.668,
+          "max": 4650.779,
+          "mean": 3293.36084,
+          "min": 2521.805,
           "n": 25,
-          "p50": 2709.305,
-          "p95": 5074.9558,
-          "p99": 5372.5372800000005
+          "p50": 3206.442,
+          "p95": 4159.0676,
+          "p99": 4544.3114000000005
         },
         "peak_active_blocks": {
           "max": 16.0,
@@ -766,7 +766,7 @@
           "hit_tokens": 392,
           "internal_waste_ratio": 0.03827751196172249,
           "logical_tokens": 1608,
-          "operation_us": 4857.909,
+          "operation_us": 3717.278,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -778,7 +778,7 @@
           "hit_tokens": 416,
           "internal_waste_ratio": 0.04523809523809524,
           "logical_tokens": 1604,
-          "operation_us": 3533.132,
+          "operation_us": 3535.576,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -790,7 +790,7 @@
           "hit_tokens": 360,
           "internal_waste_ratio": 0.05412371134020619,
           "logical_tokens": 1468,
-          "operation_us": 2948.464,
+          "operation_us": 3246.502,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -802,7 +802,7 @@
           "hit_tokens": 368,
           "internal_waste_ratio": 0.05541871921182266,
           "logical_tokens": 1534,
-          "operation_us": 3168.013,
+          "operation_us": 3089.827,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -814,7 +814,7 @@
           "hit_tokens": 336,
           "internal_waste_ratio": 0.07119741100323625,
           "logical_tokens": 1148,
-          "operation_us": 2319.42,
+          "operation_us": 2831.108,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -826,7 +826,7 @@
           "hit_tokens": 384,
           "internal_waste_ratio": 0.0462085308056872,
           "logical_tokens": 1610,
-          "operation_us": 4440.092,
+          "operation_us": 4678.25,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -838,7 +838,7 @@
           "hit_tokens": 440,
           "internal_waste_ratio": 0.03736842105263158,
           "logical_tokens": 1829,
-          "operation_us": 4468.045,
+          "operation_us": 3993.753,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -850,7 +850,7 @@
           "hit_tokens": 368,
           "internal_waste_ratio": 0.054709141274238225,
           "logical_tokens": 1365,
-          "operation_us": 2884.989,
+          "operation_us": 3284.979,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -862,7 +862,7 @@
           "hit_tokens": 344,
           "internal_waste_ratio": 0.06328125,
           "logical_tokens": 1199,
-          "operation_us": 2495.104,
+          "operation_us": 3157.878,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -874,7 +874,7 @@
           "hit_tokens": 368,
           "internal_waste_ratio": 0.04742547425474255,
           "logical_tokens": 1406,
-          "operation_us": 2912.4,
+          "operation_us": 3250.508,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -886,7 +886,7 @@
           "hit_tokens": 360,
           "internal_waste_ratio": 0.043682795698924734,
           "logical_tokens": 1423,
-          "operation_us": 2721.844,
+          "operation_us": 3035.625,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -898,7 +898,7 @@
           "hit_tokens": 384,
           "internal_waste_ratio": 0.054455445544554455,
           "logical_tokens": 1528,
-          "operation_us": 3006.531,
+          "operation_us": 4665.261,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -910,7 +910,7 @@
           "hit_tokens": 368,
           "internal_waste_ratio": 0.06062874251497006,
           "logical_tokens": 1255,
-          "operation_us": 2482.885,
+          "operation_us": 3310.829,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -922,7 +922,7 @@
           "hit_tokens": 352,
           "internal_waste_ratio": 0.05498533724340176,
           "logical_tokens": 1289,
-          "operation_us": 2372.51,
+          "operation_us": 3078.92,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -934,7 +934,7 @@
           "hit_tokens": 368,
           "internal_waste_ratio": 0.039375,
           "logical_tokens": 1537,
-          "operation_us": 3011.989,
+          "operation_us": 3120.483,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -946,7 +946,7 @@
           "hit_tokens": 328,
           "internal_waste_ratio": 0.05555555555555555,
           "logical_tokens": 1326,
-          "operation_us": 3226.632,
+          "operation_us": 2604.007,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -958,7 +958,7 @@
           "hit_tokens": 400,
           "internal_waste_ratio": 0.04308252427184466,
           "logical_tokens": 1577,
-          "operation_us": 3346.681,
+          "operation_us": 3275.114,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -970,7 +970,7 @@
           "hit_tokens": 344,
           "internal_waste_ratio": 0.04336043360433604,
           "logical_tokens": 1412,
-          "operation_us": 2594.312,
+          "operation_us": 2760.542,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -982,7 +982,7 @@
           "hit_tokens": 400,
           "internal_waste_ratio": 0.041666666666666664,
           "logical_tokens": 1771,
-          "operation_us": 3391.339,
+          "operation_us": 4085.981,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -994,7 +994,7 @@
           "hit_tokens": 352,
           "internal_waste_ratio": 0.05102040816326531,
           "logical_tokens": 1302,
-          "operation_us": 4183.547,
+          "operation_us": 3338.78,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -1006,7 +1006,7 @@
           "hit_tokens": 368,
           "internal_waste_ratio": 0.04834254143646409,
           "logical_tokens": 1378,
-          "operation_us": 3728.595,
+          "operation_us": 3269.857,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -1018,7 +1018,7 @@
           "hit_tokens": 376,
           "internal_waste_ratio": 0.04429611650485437,
           "logical_tokens": 1575,
-          "operation_us": 3429.786,
+          "operation_us": 3170.788,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -1030,7 +1030,7 @@
           "hit_tokens": 368,
           "internal_waste_ratio": 0.054036458333333336,
           "logical_tokens": 1453,
-          "operation_us": 3106.822,
+          "operation_us": 2750.107,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -1042,7 +1042,7 @@
           "hit_tokens": 368,
           "internal_waste_ratio": 0.04652466367713005,
           "logical_tokens": 1701,
-          "operation_us": 3118.64,
+          "operation_us": 3570.077,
           "peak_active_blocks": 16,
           "requests": 60
         },
@@ -1054,7 +1054,7 @@
           "hit_tokens": 424,
           "internal_waste_ratio": 0.05806010928961749,
           "logical_tokens": 1379,
-          "operation_us": 2766.07,
+          "operation_us": 3380.362,
           "peak_active_blocks": 16,
           "requests": 60
         }
@@ -1106,13 +1106,13 @@
           "p99": 0.06929753236245956
         },
         "operation_us": {
-          "max": 4857.909,
-          "mean": 3220.63004,
-          "min": 2319.42,
+          "max": 4678.25,
+          "mean": 3368.0956800000004,
+          "min": 2604.007,
           "n": 25,
-          "p50": 3106.822,
-          "p95": 4462.4544,
-          "p99": 4764.341640000001
+          "p50": 3269.857,
+          "p95": 4549.405000000001,
+          "p99": 4675.13264
         },
         "peak_active_blocks": {
           "max": 16.0,
@@ -1140,7 +1140,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.07373271889400922,
           "logical_tokens": 1608,
-          "operation_us": 2940.723,
+          "operation_us": 2394.763,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1152,7 +1152,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.08863636363636364,
           "logical_tokens": 1604,
-          "operation_us": 2709.987,
+          "operation_us": 2340.633,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1164,7 +1164,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.10049019607843138,
           "logical_tokens": 1468,
-          "operation_us": 2562.315,
+          "operation_us": 2200.592,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1176,7 +1176,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.11635944700460829,
           "logical_tokens": 1534,
-          "operation_us": 2990.448,
+          "operation_us": 2436.056,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1188,7 +1188,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.15588235294117647,
           "logical_tokens": 1148,
-          "operation_us": 1740.272,
+          "operation_us": 2243.887,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1200,7 +1200,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.09346846846846847,
           "logical_tokens": 1610,
-          "operation_us": 2791.438,
+          "operation_us": 2426.611,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1212,7 +1212,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.06683673469387755,
           "logical_tokens": 1829,
-          "operation_us": 6929.017,
+          "operation_us": 2600.743,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1224,7 +1224,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.10667539267015706,
           "logical_tokens": 1365,
-          "operation_us": 2460.236,
+          "operation_us": 2319.401,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1236,7 +1236,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.12863372093023256,
           "logical_tokens": 1199,
-          "operation_us": 2036.716,
+          "operation_us": 2233.732,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1248,7 +1248,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.09407216494845361,
           "logical_tokens": 1406,
-          "operation_us": 2506.551,
+          "operation_us": 2526.912,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1260,7 +1260,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.08311855670103092,
           "logical_tokens": 1423,
-          "operation_us": 2592.56,
+          "operation_us": 2674.693,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1272,7 +1272,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.11162790697674418,
           "logical_tokens": 1528,
-          "operation_us": 2749.154,
+          "operation_us": 2265.9,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1284,7 +1284,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.11867977528089887,
           "logical_tokens": 1255,
-          "operation_us": 1921.854,
+          "operation_us": 2061.864,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1296,7 +1296,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.10980662983425414,
           "logical_tokens": 1289,
-          "operation_us": 1838.72,
+          "operation_us": 2051.518,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1308,7 +1308,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.08945497630331753,
           "logical_tokens": 1537,
-          "operation_us": 2133.751,
+          "operation_us": 2648.394,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1320,7 +1320,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.11363636363636363,
           "logical_tokens": 1326,
-          "operation_us": 1862.605,
+          "operation_us": 2137.117,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1332,7 +1332,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.08738425925925926,
           "logical_tokens": 1577,
-          "operation_us": 2194.042,
+          "operation_us": 2406.561,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1344,7 +1344,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.09487179487179487,
           "logical_tokens": 1412,
-          "operation_us": 2320.092,
+          "operation_us": 2314.013,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1356,7 +1356,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.07760416666666667,
           "logical_tokens": 1771,
-          "operation_us": 2562.344,
+          "operation_us": 2806.04,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1368,7 +1368,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.11065573770491803,
           "logical_tokens": 1302,
-          "operation_us": 2013.061,
+          "operation_us": 2140.102,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1380,7 +1380,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.09816753926701571,
           "logical_tokens": 1378,
-          "operation_us": 1918.168,
+          "operation_us": 2133.892,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1392,7 +1392,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.08430232558139535,
           "logical_tokens": 1575,
-          "operation_us": 2500.271,
+          "operation_us": 5477.629,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1404,7 +1404,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.10529556650246305,
           "logical_tokens": 1453,
-          "operation_us": 2109.044,
+          "operation_us": 5369.357,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1416,7 +1416,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.08744635193133048,
           "logical_tokens": 1701,
-          "operation_us": 2354.383,
+          "operation_us": 2399.841,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1428,7 +1428,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.11602564102564103,
           "logical_tokens": 1379,
-          "operation_us": 2275.534,
+          "operation_us": 2028.224,
           "peak_active_blocks": 8,
           "requests": 60
         }
@@ -1480,13 +1480,13 @@
           "p99": 0.14934268125855
         },
         "operation_us": {
-          "max": 6929.017,
-          "mean": 2520.53144,
-          "min": 1740.272,
+          "max": 5477.629,
+          "mean": 2585.5389999999998,
+          "min": 2028.224,
           "n": 25,
-          "p50": 2354.383,
-          "p95": 2980.5029999999997,
-          "p99": 5983.7604400000055
+          "p50": 2340.633,
+          "p95": 4856.693600000002,
+          "p99": 5451.64372
         },
         "peak_active_blocks": {
           "max": 8.0,
@@ -1514,7 +1514,7 @@
           "hit_tokens": 384,
           "internal_waste_ratio": 0.07373271889400922,
           "logical_tokens": 1608,
-          "operation_us": 2312.791,
+          "operation_us": 2915.445,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1526,7 +1526,7 @@
           "hit_tokens": 320,
           "internal_waste_ratio": 0.08863636363636364,
           "logical_tokens": 1604,
-          "operation_us": 2403.827,
+          "operation_us": 2602.836,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1538,7 +1538,7 @@
           "hit_tokens": 448,
           "internal_waste_ratio": 0.10049019607843138,
           "logical_tokens": 1468,
-          "operation_us": 2252.39,
+          "operation_us": 2746.922,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1550,7 +1550,7 @@
           "hit_tokens": 480,
           "internal_waste_ratio": 0.11635944700460829,
           "logical_tokens": 1534,
-          "operation_us": 2389.456,
+          "operation_us": 2829.867,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1562,7 +1562,7 @@
           "hit_tokens": 384,
           "internal_waste_ratio": 0.15588235294117647,
           "logical_tokens": 1148,
-          "operation_us": 1805.459,
+          "operation_us": 2257.157,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1574,7 +1574,7 @@
           "hit_tokens": 448,
           "internal_waste_ratio": 0.09346846846846847,
           "logical_tokens": 1610,
-          "operation_us": 2371.919,
+          "operation_us": 2639.34,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1586,7 +1586,7 @@
           "hit_tokens": 416,
           "internal_waste_ratio": 0.06683673469387755,
           "logical_tokens": 1829,
-          "operation_us": 2668.364,
+          "operation_us": 2745.209,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1598,7 +1598,7 @@
           "hit_tokens": 352,
           "internal_waste_ratio": 0.10667539267015706,
           "logical_tokens": 1365,
-          "operation_us": 2227.733,
+          "operation_us": 2165.62,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1610,7 +1610,7 @@
           "hit_tokens": 288,
           "internal_waste_ratio": 0.12863372093023256,
           "logical_tokens": 1199,
-          "operation_us": 2483.277,
+          "operation_us": 1949.655,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1622,7 +1622,7 @@
           "hit_tokens": 336,
           "internal_waste_ratio": 0.09407216494845361,
           "logical_tokens": 1406,
-          "operation_us": 2568.114,
+          "operation_us": 2189.094,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1634,7 +1634,7 @@
           "hit_tokens": 288,
           "internal_waste_ratio": 0.08311855670103092,
           "logical_tokens": 1423,
-          "operation_us": 2691.198,
+          "operation_us": 2508.594,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1646,7 +1646,7 @@
           "hit_tokens": 304,
           "internal_waste_ratio": 0.11162790697674418,
           "logical_tokens": 1528,
-          "operation_us": 2458.319,
+          "operation_us": 2368.114,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1658,7 +1658,7 @@
           "hit_tokens": 272,
           "internal_waste_ratio": 0.11867977528089887,
           "logical_tokens": 1255,
-          "operation_us": 1888.143,
+          "operation_us": 1975.605,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1670,7 +1670,7 @@
           "hit_tokens": 240,
           "internal_waste_ratio": 0.10980662983425414,
           "logical_tokens": 1289,
-          "operation_us": 1878.749,
+          "operation_us": 1943.326,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1682,7 +1682,7 @@
           "hit_tokens": 352,
           "internal_waste_ratio": 0.08945497630331753,
           "logical_tokens": 1537,
-          "operation_us": 2310.226,
+          "operation_us": 2608.334,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1694,7 +1694,7 @@
           "hit_tokens": 304,
           "internal_waste_ratio": 0.11363636363636363,
           "logical_tokens": 1326,
-          "operation_us": 2066.08,
+          "operation_us": 2002.956,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1706,7 +1706,7 @@
           "hit_tokens": 352,
           "internal_waste_ratio": 0.08738425925925926,
           "logical_tokens": 1577,
-          "operation_us": 2531.078,
+          "operation_us": 2453.772,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1718,7 +1718,7 @@
           "hit_tokens": 352,
           "internal_waste_ratio": 0.09487179487179487,
           "logical_tokens": 1412,
-          "operation_us": 2281.904,
+          "operation_us": 2179.221,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1730,7 +1730,7 @@
           "hit_tokens": 288,
           "internal_waste_ratio": 0.07760416666666667,
           "logical_tokens": 1771,
-          "operation_us": 2601.514,
+          "operation_us": 2905.881,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1742,7 +1742,7 @@
           "hit_tokens": 336,
           "internal_waste_ratio": 0.11065573770491803,
           "logical_tokens": 1302,
-          "operation_us": 1928.263,
+          "operation_us": 2028.173,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1754,7 +1754,7 @@
           "hit_tokens": 384,
           "internal_waste_ratio": 0.09816753926701571,
           "logical_tokens": 1378,
-          "operation_us": 2474.663,
+          "operation_us": 2655.565,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1766,7 +1766,7 @@
           "hit_tokens": 304,
           "internal_waste_ratio": 0.08430232558139535,
           "logical_tokens": 1575,
-          "operation_us": 2489.215,
+          "operation_us": 2947.583,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1778,7 +1778,7 @@
           "hit_tokens": 320,
           "internal_waste_ratio": 0.10529556650246305,
           "logical_tokens": 1453,
-          "operation_us": 2095.745,
+          "operation_us": 2282.475,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1790,7 +1790,7 @@
           "hit_tokens": 320,
           "internal_waste_ratio": 0.08744635193133048,
           "logical_tokens": 1701,
-          "operation_us": 2925.559,
+          "operation_us": 2550.377,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1802,7 +1802,7 @@
           "hit_tokens": 368,
           "internal_waste_ratio": 0.11602564102564103,
           "logical_tokens": 1379,
-          "operation_us": 2163.356,
+          "operation_us": 2125.009,
           "peak_active_blocks": 8,
           "requests": 60
         }
@@ -1854,13 +1854,13 @@
           "p99": 0.14934268125855
         },
         "operation_us": {
-          "max": 2925.559,
-          "mean": 2330.6936800000003,
-          "min": 1805.459,
+          "max": 2947.583,
+          "mean": 2423.0452,
+          "min": 1943.326,
           "n": 25,
-          "p50": 2371.919,
-          "p95": 2686.6312,
-          "p99": 2869.3123600000004
+          "p50": 2453.772,
+          "p95": 2913.5322,
+          "p99": 2939.86988
         },
         "peak_active_blocks": {
           "max": 8.0,
@@ -1888,7 +1888,7 @@
           "hit_tokens": 720,
           "internal_waste_ratio": 0.07373271889400922,
           "logical_tokens": 1608,
-          "operation_us": 2689.595,
+          "operation_us": 2513.782,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1900,7 +1900,7 @@
           "hit_tokens": 688,
           "internal_waste_ratio": 0.08863636363636364,
           "logical_tokens": 1604,
-          "operation_us": 2441.403,
+          "operation_us": 3553.453,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1912,7 +1912,7 @@
           "hit_tokens": 656,
           "internal_waste_ratio": 0.10049019607843138,
           "logical_tokens": 1468,
-          "operation_us": 3109.887,
+          "operation_us": 2285.299,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1924,7 +1924,7 @@
           "hit_tokens": 704,
           "internal_waste_ratio": 0.11635944700460829,
           "logical_tokens": 1534,
-          "operation_us": 2623.776,
+          "operation_us": 2337.348,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1936,7 +1936,7 @@
           "hit_tokens": 608,
           "internal_waste_ratio": 0.15588235294117647,
           "logical_tokens": 1148,
-          "operation_us": 1820.382,
+          "operation_us": 3118.61,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1948,7 +1948,7 @@
           "hit_tokens": 736,
           "internal_waste_ratio": 0.09346846846846847,
           "logical_tokens": 1610,
-          "operation_us": 2438.209,
+          "operation_us": 3579.471,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1960,7 +1960,7 @@
           "hit_tokens": 752,
           "internal_waste_ratio": 0.06683673469387755,
           "logical_tokens": 1829,
-          "operation_us": 3155.485,
+          "operation_us": 4070.168,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1972,7 +1972,7 @@
           "hit_tokens": 640,
           "internal_waste_ratio": 0.10667539267015706,
           "logical_tokens": 1365,
-          "operation_us": 2210.928,
+          "operation_us": 2218.659,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1984,7 +1984,7 @@
           "hit_tokens": 576,
           "internal_waste_ratio": 0.12863372093023256,
           "logical_tokens": 1199,
-          "operation_us": 2122.585,
+          "operation_us": 2073.201,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -1996,7 +1996,7 @@
           "hit_tokens": 592,
           "internal_waste_ratio": 0.09407216494845361,
           "logical_tokens": 1406,
-          "operation_us": 2429.326,
+          "operation_us": 4044.549,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -2008,7 +2008,7 @@
           "hit_tokens": 592,
           "internal_waste_ratio": 0.08311855670103092,
           "logical_tokens": 1423,
-          "operation_us": 2564.157,
+          "operation_us": 2259.872,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -2020,7 +2020,7 @@
           "hit_tokens": 656,
           "internal_waste_ratio": 0.11162790697674418,
           "logical_tokens": 1528,
-          "operation_us": 2478.88,
+          "operation_us": 4841.626,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -2032,7 +2032,7 @@
           "hit_tokens": 576,
           "internal_waste_ratio": 0.11867977528089887,
           "logical_tokens": 1255,
-          "operation_us": 1875.414,
+          "operation_us": 2407.813,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -2044,7 +2044,7 @@
           "hit_tokens": 544,
           "internal_waste_ratio": 0.10980662983425414,
           "logical_tokens": 1289,
-          "operation_us": 1950.707,
+          "operation_us": 2411.809,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -2056,7 +2056,7 @@
           "hit_tokens": 688,
           "internal_waste_ratio": 0.08945497630331753,
           "logical_tokens": 1537,
-          "operation_us": 2370.708,
+          "operation_us": 2680.383,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -2068,7 +2068,7 @@
           "hit_tokens": 592,
           "internal_waste_ratio": 0.11363636363636363,
           "logical_tokens": 1326,
-          "operation_us": 2098.869,
+          "operation_us": 2221.263,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -2080,7 +2080,7 @@
           "hit_tokens": 688,
           "internal_waste_ratio": 0.08738425925925926,
           "logical_tokens": 1577,
-          "operation_us": 2496.045,
+          "operation_us": 2446.862,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -2092,7 +2092,7 @@
           "hit_tokens": 608,
           "internal_waste_ratio": 0.09487179487179487,
           "logical_tokens": 1412,
-          "operation_us": 2297.768,
+          "operation_us": 2545.75,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -2104,7 +2104,7 @@
           "hit_tokens": 688,
           "internal_waste_ratio": 0.07760416666666667,
           "logical_tokens": 1771,
-          "operation_us": 2765.45,
+          "operation_us": 2966.491,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -2116,7 +2116,7 @@
           "hit_tokens": 640,
           "internal_waste_ratio": 0.11065573770491803,
           "logical_tokens": 1302,
-          "operation_us": 1951.097,
+          "operation_us": 2072.891,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -2128,7 +2128,7 @@
           "hit_tokens": 608,
           "internal_waste_ratio": 0.09816753926701571,
           "logical_tokens": 1378,
-          "operation_us": 2582.805,
+          "operation_us": 2153.631,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -2140,7 +2140,7 @@
           "hit_tokens": 656,
           "internal_waste_ratio": 0.08430232558139535,
           "logical_tokens": 1575,
-          "operation_us": 2885.099,
+          "operation_us": 2336.806,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -2152,7 +2152,7 @@
           "hit_tokens": 608,
           "internal_waste_ratio": 0.10529556650246305,
           "logical_tokens": 1453,
-          "operation_us": 2317.588,
+          "operation_us": 2315.384,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -2164,7 +2164,7 @@
           "hit_tokens": 592,
           "internal_waste_ratio": 0.08744635193133048,
           "logical_tokens": 1701,
-          "operation_us": 2509.376,
+          "operation_us": 2961.935,
           "peak_active_blocks": 8,
           "requests": 60
         },
@@ -2176,7 +2176,7 @@
           "hit_tokens": 672,
           "internal_waste_ratio": 0.11602564102564103,
           "logical_tokens": 1379,
-          "operation_us": 2037.357,
+          "operation_us": 2114.353,
           "peak_active_blocks": 8,
           "requests": 60
         }
@@ -2228,13 +2228,13 @@
           "p99": 0.14934268125855
         },
         "operation_us": {
-          "max": 3155.485,
-          "mean": 2408.91584,
-          "min": 1820.382,
+          "max": 4841.626,
+          "mean": 2741.25636,
+          "min": 2072.891,
           "n": 25,
-          "p50": 2438.209,
-          "p95": 3064.9294000000004,
-          "p99": 3144.5414800000003
+          "p50": 2411.809,
+          "p95": 4065.0442000000003,
+          "p99": 4656.476080000001
         },
         "peak_active_blocks": {
           "max": 8.0,
@@ -2262,7 +2262,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.15546218487394958,
           "logical_tokens": 1608,
-          "operation_us": 2034.533,
+          "operation_us": 2217.998,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2274,7 +2274,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.17148760330578514,
           "logical_tokens": 1604,
-          "operation_us": 2100.251,
+          "operation_us": 2094.504,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2286,7 +2286,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.22245762711864406,
           "logical_tokens": 1468,
-          "operation_us": 1910.427,
+          "operation_us": 2032.29,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2298,7 +2298,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.233,
           "logical_tokens": 1534,
-          "operation_us": 2323.947,
+          "operation_us": 2120.412,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2310,7 +2310,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.31009615384615385,
           "logical_tokens": 1148,
-          "operation_us": 2004.978,
+          "operation_us": 1703.777,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2322,7 +2322,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.195,
           "logical_tokens": 1610,
-          "operation_us": 2119.26,
+          "operation_us": 2178.549,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2334,7 +2334,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.13399621212121213,
           "logical_tokens": 1829,
-          "operation_us": 2716.096,
+          "operation_us": 2339.911,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2346,7 +2346,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.23141891891891891,
           "logical_tokens": 1365,
-          "operation_us": 1908.163,
+          "operation_us": 2153.562,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2358,7 +2358,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.27245145631067963,
           "logical_tokens": 1199,
-          "operation_us": 1701.974,
+          "operation_us": 1676.225,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2370,7 +2370,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.20113636363636364,
           "logical_tokens": 1406,
-          "operation_us": 1903.657,
+          "operation_us": 2125.66,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2382,7 +2382,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.18405963302752293,
           "logical_tokens": 1423,
-          "operation_us": 1944.869,
+          "operation_us": 2033.712,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2394,7 +2394,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.22357723577235772,
           "logical_tokens": 1528,
-          "operation_us": 1956.495,
+          "operation_us": 2045.289,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2406,7 +2406,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.24579326923076922,
           "logical_tokens": 1255,
-          "operation_us": 1806.28,
+          "operation_us": 1725.059,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2418,7 +2418,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.23273809523809524,
           "logical_tokens": 1289,
-          "operation_us": 1984.387,
+          "operation_us": 1909.656,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2430,7 +2430,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.18591101694915255,
           "logical_tokens": 1537,
-          "operation_us": 2221.123,
+          "operation_us": 2480.032,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2442,7 +2442,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.24659090909090908,
           "logical_tokens": 1326,
-          "operation_us": 1817.106,
+          "operation_us": 1904.598,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2454,7 +2454,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.17864583333333334,
           "logical_tokens": 1577,
-          "operation_us": 2136.206,
+          "operation_us": 2188.634,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2466,7 +2466,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.20495495495495494,
           "logical_tokens": 1412,
-          "operation_us": 2264.138,
+          "operation_us": 1969.395,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2478,7 +2478,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.16145833333333334,
           "logical_tokens": 1771,
-          "operation_us": 2326.611,
+          "operation_us": 2301.684,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2490,7 +2490,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.23231132075471697,
           "logical_tokens": 1302,
-          "operation_us": 1839.27,
+          "operation_us": 1770.847,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2502,7 +2502,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.2025462962962963,
           "logical_tokens": 1378,
-          "operation_us": 2024.788,
+          "operation_us": 1834.963,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2514,7 +2514,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.1796875,
           "logical_tokens": 1575,
-          "operation_us": 2454.463,
+          "operation_us": 2085.008,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2526,7 +2526,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.21713362068965517,
           "logical_tokens": 1453,
-          "operation_us": 2378.52,
+          "operation_us": 1921.213,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2538,7 +2538,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.18845419847328243,
           "logical_tokens": 1701,
-          "operation_us": 2206.892,
+          "operation_us": 2249.085,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2550,7 +2550,7 @@
           "hit_tokens": 0,
           "internal_waste_ratio": 0.22353603603603603,
           "logical_tokens": 1379,
-          "operation_us": 1936.485,
+          "operation_us": 1855.024,
           "peak_active_blocks": 4,
           "requests": 60
         }
@@ -2602,13 +2602,13 @@
           "p99": 0.3010614264376401
         },
         "operation_us": {
-          "max": 2716.096,
-          "mean": 2080.83676,
-          "min": 1701.974,
+          "max": 2480.032,
+          "mean": 2036.68348,
+          "min": 1676.225,
           "n": 25,
-          "p50": 2024.788,
-          "p95": 2439.2744000000002,
-          "p99": 2653.3040800000003
+          "p50": 2045.289,
+          "p95": 2332.2656,
+          "p99": 2446.4029600000003
         },
         "peak_active_blocks": {
           "max": 4.0,
@@ -2636,7 +2636,7 @@
           "hit_tokens": 352,
           "internal_waste_ratio": 0.15546218487394958,
           "logical_tokens": 1608,
-          "operation_us": 2054.703,
+          "operation_us": 2198.869,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2648,7 +2648,7 @@
           "hit_tokens": 192,
           "internal_waste_ratio": 0.17148760330578514,
           "logical_tokens": 1604,
-          "operation_us": 2902.795,
+          "operation_us": 2711.368,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2660,7 +2660,7 @@
           "hit_tokens": 448,
           "internal_waste_ratio": 0.22245762711864406,
           "logical_tokens": 1468,
-          "operation_us": 3781.378,
+          "operation_us": 1932.29,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2672,7 +2672,7 @@
           "hit_tokens": 512,
           "internal_waste_ratio": 0.233,
           "logical_tokens": 1534,
-          "operation_us": 2254.513,
+          "operation_us": 2006.081,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2684,7 +2684,7 @@
           "hit_tokens": 288,
           "internal_waste_ratio": 0.31009615384615385,
           "logical_tokens": 1148,
-          "operation_us": 1825.379,
+          "operation_us": 1589.565,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2696,7 +2696,7 @@
           "hit_tokens": 416,
           "internal_waste_ratio": 0.195,
           "logical_tokens": 1610,
-          "operation_us": 2200.052,
+          "operation_us": 2409.756,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2708,7 +2708,7 @@
           "hit_tokens": 576,
           "internal_waste_ratio": 0.13399621212121213,
           "logical_tokens": 1829,
-          "operation_us": 2686.912,
+          "operation_us": 2450.437,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2720,7 +2720,7 @@
           "hit_tokens": 416,
           "internal_waste_ratio": 0.23141891891891891,
           "logical_tokens": 1365,
-          "operation_us": 2789.446,
+          "operation_us": 1833.571,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2732,7 +2732,7 @@
           "hit_tokens": 256,
           "internal_waste_ratio": 0.27245145631067963,
           "logical_tokens": 1199,
-          "operation_us": 2198.939,
+          "operation_us": 1671.999,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2744,7 +2744,7 @@
           "hit_tokens": 384,
           "internal_waste_ratio": 0.20113636363636364,
           "logical_tokens": 1406,
-          "operation_us": 2400.451,
+          "operation_us": 1883.106,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2756,7 +2756,7 @@
           "hit_tokens": 352,
           "internal_waste_ratio": 0.18405963302752293,
           "logical_tokens": 1423,
-          "operation_us": 2556.145,
+          "operation_us": 1947.443,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2768,7 +2768,7 @@
           "hit_tokens": 384,
           "internal_waste_ratio": 0.22357723577235772,
           "logical_tokens": 1528,
-          "operation_us": 2192.249,
+          "operation_us": 1979.761,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2780,7 +2780,7 @@
           "hit_tokens": 224,
           "internal_waste_ratio": 0.24579326923076922,
           "logical_tokens": 1255,
-          "operation_us": 2264.959,
+          "operation_us": 1683.276,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2792,7 +2792,7 @@
           "hit_tokens": 288,
           "internal_waste_ratio": 0.23273809523809524,
           "logical_tokens": 1289,
-          "operation_us": 1767.872,
+          "operation_us": 1710.166,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2804,7 +2804,7 @@
           "hit_tokens": 384,
           "internal_waste_ratio": 0.18591101694915255,
           "logical_tokens": 1537,
-          "operation_us": 2490.397,
+          "operation_us": 2353.793,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2816,7 +2816,7 @@
           "hit_tokens": 320,
           "internal_waste_ratio": 0.24659090909090908,
           "logical_tokens": 1326,
-          "operation_us": 1841.634,
+          "operation_us": 1829.795,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2828,7 +2828,7 @@
           "hit_tokens": 384,
           "internal_waste_ratio": 0.17864583333333334,
           "logical_tokens": 1577,
-          "operation_us": 2814.152,
+          "operation_us": 2014.553,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2840,7 +2840,7 @@
           "hit_tokens": 416,
           "internal_waste_ratio": 0.20495495495495494,
           "logical_tokens": 1412,
-          "operation_us": 2616.626,
+          "operation_us": 2452.461,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2852,7 +2852,7 @@
           "hit_tokens": 384,
           "internal_waste_ratio": 0.16145833333333334,
           "logical_tokens": 1771,
-          "operation_us": 3611.93,
+          "operation_us": 2485.499,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2864,7 +2864,7 @@
           "hit_tokens": 256,
           "internal_waste_ratio": 0.23231132075471697,
           "logical_tokens": 1302,
-          "operation_us": 3818.82,
+          "operation_us": 1745.029,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2876,7 +2876,7 @@
           "hit_tokens": 288,
           "internal_waste_ratio": 0.2025462962962963,
           "logical_tokens": 1378,
-          "operation_us": 2223.517,
+          "operation_us": 1823.436,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2888,7 +2888,7 @@
           "hit_tokens": 320,
           "internal_waste_ratio": 0.1796875,
           "logical_tokens": 1575,
-          "operation_us": 3343.027,
+          "operation_us": 2020.142,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2900,7 +2900,7 @@
           "hit_tokens": 256,
           "internal_waste_ratio": 0.21713362068965517,
           "logical_tokens": 1453,
-          "operation_us": 2029.205,
+          "operation_us": 1909.956,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2912,7 +2912,7 @@
           "hit_tokens": 544,
           "internal_waste_ratio": 0.18845419847328243,
           "logical_tokens": 1701,
-          "operation_us": 2175.003,
+          "operation_us": 2110.107,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -2924,7 +2924,7 @@
           "hit_tokens": 416,
           "internal_waste_ratio": 0.22353603603603603,
           "logical_tokens": 1379,
-          "operation_us": 2439.1,
+          "operation_us": 1836.086,
           "peak_active_blocks": 4,
           "requests": 60
         }
@@ -2976,13 +2976,13 @@
           "p99": 0.3010614264376401
         },
         "operation_us": {
-          "max": 3818.82,
-          "mean": 2531.1681599999997,
-          "min": 1767.872,
+          "max": 2711.368,
+          "mean": 2023.5418,
+          "min": 1589.565,
           "n": 25,
-          "p50": 2400.451,
-          "p95": 3747.4884,
-          "p99": 3809.83392
+          "p50": 1947.443,
+          "p95": 2478.8914,
+          "p99": 2657.1594400000004
         },
         "peak_active_blocks": {
           "max": 4.0,
@@ -3010,7 +3010,7 @@
           "hit_tokens": 672,
           "internal_waste_ratio": 0.15546218487394958,
           "logical_tokens": 1608,
-          "operation_us": 2146.741,
+          "operation_us": 2080.622,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -3022,7 +3022,7 @@
           "hit_tokens": 640,
           "internal_waste_ratio": 0.17148760330578514,
           "logical_tokens": 1604,
-          "operation_us": 2154.242,
+          "operation_us": 2141.864,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -3034,7 +3034,7 @@
           "hit_tokens": 640,
           "internal_waste_ratio": 0.22245762711864406,
           "logical_tokens": 1468,
-          "operation_us": 2156.626,
+          "operation_us": 1961.323,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -3046,7 +3046,7 @@
           "hit_tokens": 704,
           "internal_waste_ratio": 0.233,
           "logical_tokens": 1534,
-          "operation_us": 2061.202,
+          "operation_us": 1905.269,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -3058,7 +3058,7 @@
           "hit_tokens": 480,
           "internal_waste_ratio": 0.31009615384615385,
           "logical_tokens": 1148,
-          "operation_us": 1587.492,
+          "operation_us": 1535.764,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -3070,7 +3070,7 @@
           "hit_tokens": 736,
           "internal_waste_ratio": 0.195,
           "logical_tokens": 1610,
-          "operation_us": 1992.47,
+          "operation_us": 1999.21,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -3082,7 +3082,7 @@
           "hit_tokens": 928,
           "internal_waste_ratio": 0.13399621212121213,
           "logical_tokens": 1829,
-          "operation_us": 2559.751,
+          "operation_us": 2303.276,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -3094,7 +3094,7 @@
           "hit_tokens": 672,
           "internal_waste_ratio": 0.23141891891891891,
           "logical_tokens": 1365,
-          "operation_us": 2100.362,
+          "operation_us": 1710.707,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -3106,7 +3106,7 @@
           "hit_tokens": 544,
           "internal_waste_ratio": 0.27245145631067963,
           "logical_tokens": 1199,
-          "operation_us": 2688.394,
+          "operation_us": 1565.819,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -3118,7 +3118,7 @@
           "hit_tokens": 704,
           "internal_waste_ratio": 0.20113636363636364,
           "logical_tokens": 1406,
-          "operation_us": 3588.766,
+          "operation_us": 1816.836,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -3130,7 +3130,7 @@
           "hit_tokens": 608,
           "internal_waste_ratio": 0.18405963302752293,
           "logical_tokens": 1423,
-          "operation_us": 2752.079,
+          "operation_us": 1797.197,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -3142,7 +3142,7 @@
           "hit_tokens": 800,
           "internal_waste_ratio": 0.22357723577235772,
           "logical_tokens": 1528,
-          "operation_us": 2458.8,
+          "operation_us": 1903.326,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -3154,7 +3154,7 @@
           "hit_tokens": 512,
           "internal_waste_ratio": 0.24579326923076922,
           "logical_tokens": 1255,
-          "operation_us": 1701.423,
+          "operation_us": 1706.962,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -3166,7 +3166,7 @@
           "hit_tokens": 544,
           "internal_waste_ratio": 0.23273809523809524,
           "logical_tokens": 1289,
-          "operation_us": 1706.651,
+          "operation_us": 2255.594,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -3178,7 +3178,7 @@
           "hit_tokens": 800,
           "internal_waste_ratio": 0.18591101694915255,
           "logical_tokens": 1537,
-          "operation_us": 1851.067,
+          "operation_us": 2138.429,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -3190,7 +3190,7 @@
           "hit_tokens": 608,
           "internal_waste_ratio": 0.24659090909090908,
           "logical_tokens": 1326,
-          "operation_us": 1793.922,
+          "operation_us": 1756.316,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -3202,7 +3202,7 @@
           "hit_tokens": 800,
           "internal_waste_ratio": 0.17864583333333334,
           "logical_tokens": 1577,
-          "operation_us": 1893.842,
+          "operation_us": 2034.413,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -3214,7 +3214,7 @@
           "hit_tokens": 704,
           "internal_waste_ratio": 0.20495495495495494,
           "logical_tokens": 1412,
-          "operation_us": 1780.942,
+          "operation_us": 1863.286,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -3226,7 +3226,7 @@
           "hit_tokens": 864,
           "internal_waste_ratio": 0.16145833333333334,
           "logical_tokens": 1771,
-          "operation_us": 2569.145,
+          "operation_us": 2435.925,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -3238,7 +3238,7 @@
           "hit_tokens": 544,
           "internal_waste_ratio": 0.23231132075471697,
           "logical_tokens": 1302,
-          "operation_us": 1721.754,
+          "operation_us": 1771.328,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -3250,7 +3250,7 @@
           "hit_tokens": 512,
           "internal_waste_ratio": 0.2025462962962963,
           "logical_tokens": 1378,
-          "operation_us": 2504.589,
+          "operation_us": 2008.714,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -3262,7 +3262,7 @@
           "hit_tokens": 640,
           "internal_waste_ratio": 0.1796875,
           "logical_tokens": 1575,
-          "operation_us": 2251.909,
+          "operation_us": 2069.065,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -3274,7 +3274,7 @@
           "hit_tokens": 544,
           "internal_waste_ratio": 0.21713362068965517,
           "logical_tokens": 1453,
-          "operation_us": 1985.119,
+          "operation_us": 2007.913,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -3286,7 +3286,7 @@
           "hit_tokens": 896,
           "internal_waste_ratio": 0.18845419847328243,
           "logical_tokens": 1701,
-          "operation_us": 2237.588,
+          "operation_us": 2156.896,
           "peak_active_blocks": 4,
           "requests": 60
         },
@@ -3298,7 +3298,7 @@
           "hit_tokens": 672,
           "internal_waste_ratio": 0.22353603603603603,
           "logical_tokens": 1379,
-          "operation_us": 1869.785,
+          "operation_us": 2198.85,
           "peak_active_blocks": 4,
           "requests": 60
         }
@@ -3350,13 +3350,13 @@
           "p99": 0.3010614264376401
         },
         "operation_us": {
-          "max": 3588.766,
-          "mean": 2164.58644,
-          "min": 1587.492,
+          "max": 2435.925,
+          "mean": 1964.9961600000001,
+          "min": 1535.764,
           "n": 25,
-          "p50": 2100.362,
-          "p95": 2739.342,
-          "p99": 3387.9611200000013
+          "p50": 1999.21,
+          "p95": 2293.7396,
+          "p99": 2404.0892400000002
         },
         "peak_active_blocks": {
           "max": 4.0,
@@ -3371,7 +3371,7 @@
       "warmup_repeats": 5
     }
   ],
-  "git_commit": "87959b2bbad41fbcc683cf35e0a8e50a50369c3d",
+  "git_commit": "f121f2112fee15e8e634ee9e7c85ac5246517c0f",
   "level": "L0",
   "measurement": "CPU Python state transitions; operation_us is not GPU latency",
   "parameters": {
