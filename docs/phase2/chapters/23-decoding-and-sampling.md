@@ -18,12 +18,12 @@ learning_objectives:
   - 能运行 CPU 实验，报告支持集、KL、distinct-n、接受率和重复性限制
 paper_count: 13
 source_commits:
-  - btt-phase2@5aaeeb530385b740107f0b88f113227709ca1443
+  - btt-phase2@4a21f8fcd85c16cc210be6181227f6a6b8c81bab
   - transformers@v4.44.2
 lab_paths:
   - labs/phase2/decoding_sampler.py
 last_verified: 2026-10-06
-source_commit: btt-phase2@5aaeeb530385b740107f0b88f113227709ca1443
+source_commit: btt-phase2@4a21f8fcd85c16cc210be6181227f6a6b8c81bab
 lab_path: labs/phase2/decoding_sampler.py
 estimated_hours: 10
 ---
@@ -371,9 +371,9 @@ r(x)=\frac{[p(x)-q(x)]_+}{\sum_y[p(y)-q(y)]_+}
 
 ### 固定版本的源码阅读任务
 
-本仓库提交 `btt-phase2@5aaeeb530385b740107f0b88f113227709ca1443` 的 [softmax 片段](https://github.com/PeppaPigw/Beneath-the-Tokens/blob/5aaeeb530385b740107f0b88f113227709ca1443/labs/phase2/decoding_sampler.py#L50-L58) 只有 9 行：先调用温度缩放，排除 `-∞` mask，减去有限 logits 的最大值，再把指数和归一化。正常路径是返回和为 1 的列表；全是 `-∞`、NaN 或正无穷时，异常路径必须抛 `ValueError`，避免把空支持集伪装成概率。
+本仓库提交 `btt-phase2@4a21f8fcd85c16cc210be6181227f6a6b8c81bab` 的 [softmax 片段](https://github.com/PeppaPigw/Beneath-the-Tokens/blob/f9a574f55769e269554e785080543b7db52959ed/labs/phase2/decoding_sampler.py#L50-L58) 只有 9 行：先调用温度缩放，排除 `-∞` mask，减去有限 logits 的最大值，再把指数和归一化。正常路径是返回和为 1 的列表；全是 `-∞`、NaN 或正无穷时，异常路径必须抛 `ValueError`，避免把空支持集伪装成概率。
 
-[grammar mask 与 speculative 片段](https://github.com/PeppaPigw/Beneath-the-Tokens/blob/5aaeeb530385b740107f0b88f113227709ca1443/labs/phase2/decoding_sampler.py#L227-L268) 展示了另一个状态机：输入是同词表的 p、q 和 draft token，逐 token 计算 alpha；接受就追加并继续，拒绝就计算残差、采样替代并立即丢弃后缀。异常路径包括词表长度不一致、draft token 越界和空/非法概率。读者可以在 40 行以内逐行标出输入、状态和输出，再对照 `test_zero_draw_does_not_accept_zero_probability_token` 的 forced-RNG 回归测试。
+[grammar mask 与 speculative 片段](https://github.com/PeppaPigw/Beneath-the-Tokens/blob/f9a574f55769e269554e785080543b7db52959ed/labs/phase2/decoding_sampler.py#L227-L268) 展示了另一个状态机：输入是同词表的 p、q 和 draft token，逐 token 计算 alpha；接受就追加并继续，拒绝就计算残差、采样替代并立即丢弃后缀。异常路径包括词表长度不一致、draft token 越界和空/非法概率。读者可以在 40 行以内逐行标出输入、状态和输出，再对照 `test_zero_draw_does_not_accept_zero_probability_token` 的 forced-RNG 回归测试。
 
 ## 把伪代码映射到一次请求
 
@@ -745,7 +745,7 @@ python labs/phase2/decoding_sampler.py --aggregate > reports/decoding-toy-seeds-
 
 ## 源码观察与论文证据地图
 
-本章 lab 的固定入口是本仓库 `btt-phase2@5aaeeb530385b740107f0b88f113227709ca1443`（`labs/phase2/decoding_sampler.py`）；它展示稳定的数值和状态转移，不代表任何 GPU serving 框架的 kernel 性能。若读者阅读 Transformers，可从 `transformers@v4.44.2` 的 generation 目录开始，先找 logits processor/warper 的调用顺序，再对照自己的版本；不要把 `main` 的路径写成历史证据。
+本章 lab 的固定入口是本仓库 `btt-phase2@4a21f8fcd85c16cc210be6181227f6a6b8c81bab`（`labs/phase2/decoding_sampler.py`）；它展示稳定的数值和状态转移，不代表任何 GPU serving 框架的 kernel 性能。若读者阅读 Transformers，可从 `transformers@v4.44.2` 的 generation 目录开始，先找 logits processor/warper 的调用顺序，再对照自己的版本；不要把 `main` 的路径写成历史证据。
 
 论文来源按机制排列：Holtzman 的 nucleus 解释神经文本退化与自适应支持集；Meister 的 locally typical 给出 surprisal-熵排序；Basu 的 Mirostat 给出在线 PPL 控制；Su 的 contrastive search 给出隐藏状态重排；Geng、PICARD 相关工作说明 grammar/解析约束；Leviathan 给出接受—拒绝校正；Medusa、EAGLE、SpecInfer、Draft & Verify 和 Lookahead 分别探索多头、特征、自推测、树和无外部 draft 的验证路径。
 
