@@ -10,6 +10,7 @@ import {
   SIDEBAR_PANEL_ID,
   TOC_PANEL_ID,
   MOBILE_TOC_PANEL_ID,
+  ReadingLayoutAvailabilityContext,
 } from '../../readingLayout';
 
 import styles from './styles.module.css';
@@ -47,6 +48,13 @@ export function closeMobileDrawers(
   state: ReadingLayoutState,
 ): ReadingLayoutState {
   return {...state, sidebarCollapsed: true, tocCollapsed: true};
+}
+
+export function escapeFocusPanel(
+  tocAvailable: boolean,
+  tocCollapsed: boolean,
+): PanelName {
+  return tocAvailable && !tocCollapsed ? 'toc' : 'sidebar';
 }
 
 /** Parse only values written by this layout. Everything else is a safe default. */
@@ -183,6 +191,7 @@ export default function DocRootLayout({children}: Props): ReactNode {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [tocCollapsed, setTocCollapsed] = useState(false);
   const [preferencesLoaded, setPreferencesLoaded] = useState(false);
+  const [tocAvailable, setTocAvailable] = useState(false);
   const sidebarToggleRef = useRef<HTMLButtonElement>(null);
   const tocToggleRef = useRef<HTMLButtonElement>(null);
 
@@ -219,7 +228,7 @@ export default function DocRootLayout({children}: Props): ReactNode {
         return;
       }
       event.preventDefault();
-      const focusTarget = !tocCollapsed
+      const focusTarget = escapeFocusPanel(tocAvailable, tocCollapsed) === 'toc'
         ? tocToggleRef.current
         : sidebarToggleRef.current;
       const closed = closeMobileDrawers({sidebarCollapsed, tocCollapsed});
@@ -229,15 +238,19 @@ export default function DocRootLayout({children}: Props): ReactNode {
     };
     document.addEventListener('keydown', onKeyDown);
     return () => document.removeEventListener('keydown', onKeyDown);
-  }, [sidebarCollapsed, tocCollapsed]);
+  }, [sidebarCollapsed, tocAvailable, tocCollapsed]);
 
   return (
+    <ReadingLayoutAvailabilityContext.Provider value={{tocAvailable, setTocAvailable}}>
     <ReadingLayoutFrame
       sidebarCollapsed={sidebarCollapsed}
       tocCollapsed={tocCollapsed}
-      onSidebarToggle={() => setSidebarCollapsed((current) => !current)}
+      onSidebarToggle={() =>
+          setSidebarCollapsed((current) => !current)
+      }
       onTocToggle={() => setTocCollapsed((current) => !current)}
       sidebarAvailable={Boolean(sidebar)}
+      tocAvailable={tocAvailable}
       sidebarToggleRef={sidebarToggleRef}
       tocToggleRef={tocToggleRef}
       layoutReady={preferencesLoaded}
@@ -270,5 +283,6 @@ export default function DocRootLayout({children}: Props): ReactNode {
         </div>
       </div>
     </ReadingLayoutFrame>
+    </ReadingLayoutAvailabilityContext.Provider>
   );
 }
