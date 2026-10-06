@@ -1,16 +1,22 @@
-import React, {useEffect, useState, type ReactNode} from 'react';
+import React, {useEffect, useRef, useState, type ReactNode, type RefObject} from 'react';
 import {useDocsSidebar} from '@docusaurus/plugin-content-docs/client';
 import BackToTopButton from '@theme/BackToTopButton';
 import DocRootLayoutSidebar from '@theme/DocRoot/Layout/Sidebar';
 import DocRootLayoutMain from '@theme/DocRoot/Layout/Main';
+import DocSidebarItems from '@theme/DocSidebarItems';
+import {useLocation} from '@docusaurus/router';
 
-import {SIDEBAR_PANEL_ID, TOC_PANEL_ID} from '../../readingLayout';
+import {
+  SIDEBAR_PANEL_ID,
+  TOC_PANEL_ID,
+  MOBILE_TOC_PANEL_ID,
+} from '../../readingLayout';
 
 import styles from './styles.module.css';
 
-export {SIDEBAR_PANEL_ID, TOC_PANEL_ID} from '../../readingLayout';
+export {SIDEBAR_PANEL_ID, TOC_PANEL_ID, MOBILE_TOC_PANEL_ID} from '../../readingLayout';
 
-const STORAGE_KEYS = {
+export const STORAGE_KEYS = {
   sidebar: 'btt:reading-layout:sidebar-collapsed:v1',
   toc: 'btt:reading-layout:toc-collapsed:v1',
 } as const;
@@ -37,20 +43,31 @@ export function togglePanel(
   return {...state, tocCollapsed: !state.tocCollapsed};
 }
 
-function readCollapsedPreference(key: string): boolean {
+export function closeMobileDrawers(
+  state: ReadingLayoutState,
+): ReadingLayoutState {
+  return {...state, sidebarCollapsed: true, tocCollapsed: true};
+}
+
+/** Parse only values written by this layout. Everything else is a safe default. */
+export function parseCollapsedPreference(value: string | null): boolean {
+  return value === 'true';
+}
+
+export function readCollapsedPreference(key: string): boolean {
   if (typeof window === 'undefined') {
     return false;
   }
 
   try {
-    return window.localStorage.getItem(key) === 'true';
+    return parseCollapsedPreference(window.localStorage.getItem(key));
   } catch {
     // Private browsing and blocked storage should never break reading.
     return false;
   }
 }
 
-function writeCollapsedPreference(key: string, value: boolean): void {
+export function writeCollapsedPreference(key: string, value: boolean): void {
   if (typeof window === 'undefined') {
     return;
   }
@@ -69,6 +86,8 @@ export interface ReadingLayoutControlsProps {
   readonly onTocToggle: () => void;
   readonly sidebarAvailable?: boolean;
   readonly tocAvailable?: boolean;
+  readonly sidebarToggleRef?: RefObject<HTMLButtonElement | null>;
+  readonly tocToggleRef?: RefObject<HTMLButtonElement | null>;
 }
 
 export function ReadingLayoutControls({
@@ -78,6 +97,8 @@ export function ReadingLayoutControls({
   onTocToggle,
   sidebarAvailable = true,
   tocAvailable = true,
+  sidebarToggleRef,
+  tocToggleRef,
 }: ReadingLayoutControlsProps): ReactNode {
   return (
     <div className={styles.controls} role="group" aria-label="Reading layout controls">
@@ -89,6 +110,7 @@ export function ReadingLayoutControls({
           aria-label={`${sidebarCollapsed ? 'Expand' : 'Collapse'} sidebar`}
           aria-expanded={!sidebarCollapsed}
           onClick={onSidebarToggle}
+          ref={sidebarToggleRef}
         >
           {sidebarCollapsed ? 'Show sidebar' : 'Hide sidebar'}
         </button>
@@ -97,10 +119,11 @@ export function ReadingLayoutControls({
         <button
           className={styles.control}
           type="button"
-          aria-controls={TOC_PANEL_ID}
+          aria-controls={`${TOC_PANEL_ID} ${MOBILE_TOC_PANEL_ID}`}
           aria-label={`${tocCollapsed ? 'Expand' : 'Collapse'} table of contents`}
           aria-expanded={!tocCollapsed}
           onClick={onTocToggle}
+          ref={tocToggleRef}
         >
           {tocCollapsed ? 'Show table of contents' : 'Hide table of contents'}
         </button>
@@ -111,6 +134,7 @@ export function ReadingLayoutControls({
 
 export interface ReadingLayoutFrameProps extends ReadingLayoutControlsProps {
   readonly children?: ReactNode;
+  readonly layoutReady?: boolean;
 }
 
 export function ReadingLayoutFrame({
@@ -121,12 +145,16 @@ export function ReadingLayoutFrame({
   onTocToggle,
   sidebarAvailable = true,
   tocAvailable = true,
+  sidebarToggleRef,
+  tocToggleRef,
+  layoutReady = false,
 }: ReadingLayoutFrameProps): ReactNode {
   return (
     <div
       className={styles.docsWrapper}
       data-btt-sidebar-collapsed={sidebarCollapsed}
       data-btt-toc-collapsed={tocCollapsed}
+      data-btt-layout-ready={layoutReady}
     >
       <ReadingLayoutControls
         sidebarCollapsed={sidebarCollapsed}
@@ -134,6 +162,9 @@ export function ReadingLayoutFrame({
         onSidebarToggle={onSidebarToggle}
         onTocToggle={onTocToggle}
         sidebarAvailable={sidebarAvailable}
+        tocAvailable={tocAvailable}
+        sidebarToggleRef={sidebarToggleRef}
+        tocToggleRef={tocToggleRef}
       />
       <div className={styles.content}>{children}</div>
     </div>
@@ -147,10 +178,13 @@ export function ReadingLayoutFrame({
  */
 export default function DocRootLayout({children}: Props): ReactNode {
   const sidebar = useDocsSidebar();
+  const {pathname} = useLocation();
   const [hiddenSidebarContainer, setHiddenSidebarContainer] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [tocCollapsed, setTocCollapsed] = useState(false);
   const [preferencesLoaded, setPreferencesLoaded] = useState(false);
+  const sidebarToggleRef = useRef<HTMLButtonElement>(null);
+  const tocToggleRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     setSidebarCollapsed(readCollapsedPreference(STORAGE_KEYS.sidebar));
@@ -170,6 +204,33 @@ export default function DocRootLayout({children}: Props): ReactNode {
     }
   }, [preferencesLoaded, tocCollapsed]);
 
+  // A mobile drawer must always have an escape hatch. Keep this listener at the
+  // document level so Escape works while focus is inside a panel link.
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape' || (sidebarCollapsed && tocCollapsed)) {
+        return;
+      }
+      const mobile =
+        typeof window !== 'undefined' &&
+        (window.matchMedia?.('(max-width: 996px)').matches ??
+          window.innerWidth <= 996);
+      if (!mobile) {
+        return;
+      }
+      event.preventDefault();
+      const focusTarget = !tocCollapsed
+        ? tocToggleRef.current
+        : sidebarToggleRef.current;
+      const closed = closeMobileDrawers({sidebarCollapsed, tocCollapsed});
+      setSidebarCollapsed(closed.sidebarCollapsed);
+      setTocCollapsed(closed.tocCollapsed);
+      focusTarget?.focus();
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [sidebarCollapsed, tocCollapsed]);
+
   return (
     <ReadingLayoutFrame
       sidebarCollapsed={sidebarCollapsed}
@@ -177,6 +238,9 @@ export default function DocRootLayout({children}: Props): ReactNode {
       onSidebarToggle={() => setSidebarCollapsed((current) => !current)}
       onTocToggle={() => setTocCollapsed((current) => !current)}
       sidebarAvailable={Boolean(sidebar)}
+      sidebarToggleRef={sidebarToggleRef}
+      tocToggleRef={tocToggleRef}
+      layoutReady={preferencesLoaded}
     >
       <BackToTopButton />
       <div className={styles.docRoot}>
@@ -187,11 +251,23 @@ export default function DocRootLayout({children}: Props): ReactNode {
               hiddenSidebarContainer={hiddenSidebarContainer}
               setHiddenSidebarContainer={setHiddenSidebarContainer}
             />
+            <nav className={styles.mobileSidebar} aria-label="Docs sidebar">
+              <ul className="menu__list">
+                <DocSidebarItems
+                  items={sidebar.items}
+                  activePath={pathname}
+                  level={1}
+                  onItemClick={() => setSidebarCollapsed(true)}
+                />
+              </ul>
+            </nav>
           </div>
         )}
-        <DocRootLayoutMain hiddenSidebarContainer={hiddenSidebarContainer}>
-          {children}
-        </DocRootLayoutMain>
+        <div className={styles.mainPanel}>
+          <DocRootLayoutMain hiddenSidebarContainer={hiddenSidebarContainer}>
+            {children}
+          </DocRootLayoutMain>
+        </div>
       </div>
     </ReadingLayoutFrame>
   );
