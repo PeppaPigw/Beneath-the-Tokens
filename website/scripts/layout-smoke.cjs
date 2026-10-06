@@ -44,6 +44,8 @@ const stubs = {
   '@theme/BackToTopButton': 'module.exports = () => null;',
   '@theme/DocRoot/Layout/Sidebar': 'module.exports = () => null;',
   '@theme/DocRoot/Layout/Main': 'module.exports = ({children}) => children;',
+  '@theme/DocSidebarItems': 'module.exports = () => null;',
+  '@docusaurus/router': 'exports.useLocation = () => ({pathname: "/"});',
 };
 const resolvedStubs = Object.fromEntries(
   Object.entries(stubs).map(([name, source]) => {
