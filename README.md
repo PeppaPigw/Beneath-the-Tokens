@@ -26,4 +26,6 @@ See:
 
 ## Status
 
-All 26 long-form chapters are now published. Each chapter has frontmatter, source-oriented explanations, failure analysis, comprehension checks, exercises, and a lab or lab specification; chapters with runnable standard-library experiments include the corresponding script under labs/. The Docusaurus site scaffold, sidebar, and CI are present. The remote content workflow has passed after the final sidebar and lockfile fixes; the Pages workflow is the deployment gate.
+Current progress: ten long-form chapters are published, each with frontmatter, source-oriented explanations, labs or lab specifications, failure analysis, comprehension checks, and exercises. The site scaffold and CI are present; the first GitHub Pages build still needs to run in Actions before the published site is considered verified. Chapters will continue to be added as independently reviewed commits.
+
+Content CI now runs the existing content validator, the deterministic phase-two audit, audit unit tests, Python syntax checks, website typechecking, the layout smoke test, and a production Docusaurus build. Runs that reach the audit step upload `reports/phase2-content.json` for review, including when validation or the audit finds content errors. The Pages workflow installs from the committed lockfile and publishes the generated `website/build` directory.
