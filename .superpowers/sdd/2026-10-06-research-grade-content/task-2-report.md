@@ -4,7 +4,7 @@
 
 ## 状态
 
-完成研究级二期第 23 章、证据 manifest、标准库 CPU sampler、多 seed artifact、测试、phase2 audit 覆盖和 Docusaurus sidebar/build 接入。章节正文约 46,951 字符，其中中文字符 20,006，符合 20–40k 中文字符目标；内容补齐了开场双请求、五 token running example、熵/KL 数字核算、tokenizer-aware grammar、speculative 接受—拒绝证明、论文证据卡、失败注入、研究问题和复现清单。
+完成研究级二期第 23 章、证据 manifest、标准库 CPU sampler、多 seed artifact、测试、phase2 audit 覆盖和 Docusaurus sidebar/build 接入。章节正文约 47,146 字符，其中中文字符 20,023，符合 20–40k 中文字符目标；内容补齐了开场双请求、五 token running example、熵/KL 数字核算、tokenizer-aware grammar、speculative 接受—拒绝证明、论文证据卡、失败注入、研究问题和复现清单。
 
 ## 交付文件
 
