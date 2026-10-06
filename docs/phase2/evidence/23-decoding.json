@@ -266,8 +266,8 @@
     {
       "claim": "lab 的 logits-to-probabilities 使用减最大值的稳定 softmax，并固定 tie-break 与随机种子",
       "type": "source_observation",
-      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/blob/5aaeeb530385b740107f0b88f113227709ca1443/labs/phase2/decoding_sampler.py",
-      "version": "btt-phase2@5aaeeb530385b740107f0b88f113227709ca1443",
+      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/blob/f9a574f55769e269554e785080543b7db52959ed/labs/phase2/decoding_sampler.py",
+      "version": "btt-phase2@f9a574f55769e269554e785080543b7db52959ed",
       "experiment_id": "exp-23-lab-determinism-001",
       "limitation": "标准库 CPU 实现不代表 GPU reduction 的舍入顺序或跨设备位级一致性",
       "review_date": "2026-10-06"
@@ -275,8 +275,8 @@
     {
       "claim": "在五 token toy 分布和 seed=7 下，原始熵约 1.5359 bits，top-p=0.9 的支持集大小为 3",
       "type": "experiment_measurement",
-      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/blob/5aaeeb530385b740107f0b88f113227709ca1443/reports/decoding-toy-seed7.json",
-      "version": "btt-phase2@5aaeeb530385b740107f0b88f113227709ca1443",
+      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/blob/1a15ffb48b8e9cf9d932d4fb4143b25dbd443b36/reports/decoding-toy-seed7.json",
+      "version": "btt-phase2@1a15ffb48b8e9cf9d932d4fb4143b25dbd443b36",
       "experiment_id": "exp-23-toy-seed7-001",
       "limitation": "样本词表和序列很短，结果只验证计算路径，不能代表自然语言多样性或模型质量",
       "review_date": "2026-10-06"
@@ -284,8 +284,8 @@
     {
       "claim": "lab 的 grammar_filter 对空允许集或越界 token 显式报错，而不是静默放行所有 token",
       "type": "source_observation",
-      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/blob/5aaeeb530385b740107f0b88f113227709ca1443/labs/phase2/decoding_sampler.py",
-      "version": "btt-phase2@5aaeeb530385b740107f0b88f113227709ca1443",
+      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/blob/f9a574f55769e269554e785080543b7db52959ed/labs/phase2/decoding_sampler.py",
+      "version": "btt-phase2@f9a574f55769e269554e785080543b7db52959ed",
       "experiment_id": "exp-23-grammar-errors-001",
       "limitation": "这是最小 logits mask，不包含完整 JSON/CFG parser、Unicode 规范化或生产缓存",
       "review_date": "2026-10-06"
@@ -293,8 +293,8 @@
     {
       "claim": "lab 的单元测试覆盖稳定 softmax、温度熵方向、四类截断、Mirostat 更新、grammar mask 和 speculative 残差",
       "type": "experiment_measurement",
-      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/blob/5aaeeb530385b740107f0b88f113227709ca1443/labs/phase2/test_decoding_sampler.py",
-      "version": "btt-phase2@5aaeeb530385b740107f0b88f113227709ca1443",
+      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/blob/2f106e14983cf6f3e26edd3f54984ab8866eaa17/labs/phase2/test_decoding_sampler.py",
+      "version": "btt-phase2@2f106e14983cf6f3e26edd3f54984ab8866eaa17",
       "experiment_id": "exp-23-unittest-001",
       "limitation": "单元测试检查逻辑不变量，不检查真实模型质量、GPU 性能、长序列 drift 或服务尾延迟",
       "review_date": "2026-10-06"
@@ -311,8 +311,8 @@
     {
       "claim": "采样顺序、tokenizer、停止 token 和随机数流必须作为实验配置记录，否则跨实现比较不具可比性",
       "type": "design_judgment",
-      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/blob/5aaeeb530385b740107f0b88f113227709ca1443/docs/phase2/chapters/23-decoding-and-sampling.md",
-      "version": "btt-phase2@5aaeeb530385b740107f0b88f113227709ca1443",
+      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/blob/4a21f8fcd85c16cc210be6181227f6a6b8c81bab/docs/phase2/chapters/23-decoding-and-sampling.md",
+      "version": "btt-phase2@4a21f8fcd85c16cc210be6181227f6a6b8c81bab",
       "experiment_id": "exp-23-repro-config-001",
       "limitation": "这是可复现性设计判断，不是对某个线上框架行为的测量",
       "review_date": "2026-10-06"
@@ -320,8 +320,8 @@
     {
       "claim": "seed=0..4 的 toy runner 输出了 distinct-2、接受率和 accepted token 数的 min/p50/p95/max 汇总，且不把这些 percentiles 当成延迟分位数",
       "type": "experiment_measurement",
-      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/blob/5aaeeb530385b740107f0b88f113227709ca1443/reports/decoding-toy-seeds-0-4.json",
-      "version": "btt-phase2@5aaeeb530385b740107f0b88f113227709ca1443",
+      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/blob/b79b8d44429d6d00d4d24a29bf30f675529a413c/reports/decoding-toy-seeds-0-4.json",
+      "version": "btt-phase2@b79b8d44429d6d00d4d24a29bf30f675529a413c",
       "experiment_id": "exp-23-multiseed-001",
       "limitation": "五个 seed 和五 token 词表只验证教学逻辑；percentiles 是重复实验统计，不是模型服务 p95/TTFT/ITL",
       "review_date": "2026-10-06"
