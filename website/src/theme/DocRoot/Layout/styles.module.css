@@ -1,0 +1,55 @@
+.docRoot {
+  display: flex;
+  width: 100%;
+  flex: 1 0 auto;
+  min-width: 0;
+}
+
+.docsWrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  min-width: 0;
+}
+
+/* The wrapper is a real region so aria-controls has a semantic target. */
+.sidebarPanel {
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 0 auto 1rem;
+  padding: 0 1rem;
+  width: min(100%, var(--ifm-container-width));
+}
+
+.control {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 999px;
+  color: var(--ifm-font-color-base);
+  background: var(--ifm-background-surface-color);
+  cursor: pointer;
+  font: inherit;
+  padding: 0.35rem 0.75rem;
+}
+
+.control:hover {
+  background: var(--ifm-color-emphasis-100);
+}
+
+.control:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+}
+
+.content {
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+  min-width: 0;
+}
