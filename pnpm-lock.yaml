@@ -39,6 +39,12 @@ importers:
       '@docusaurus/module-type-aliases':
         specifier: ^3.9.2
         version: 3.10.2(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.28))(csso@5.0.5)(html-minifier-terser@7.2.0)(postcss@8.5.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(supports-color@8.1.1)(svgo@3.3.5)
+      '@docusaurus/plugin-content-docs':
+        specifier: ^3.10.2
+        version: 3.10.2(@mdx-js/react@3.1.1(@types/react@19.3.0)(react@18.3.1))(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.28))(csso@5.0.5)(debug@4.4.3(supports-color@8.1.1))(html-minifier-terser@7.2.0)(postcss@8.5.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(supports-color@8.1.1)(svgo@3.3.5)(typescript@5.8.3)
+      '@docusaurus/theme-common':
+        specifier: ^3.10.2
+        version: 3.10.2(@docusaurus/plugin-content-docs@3.10.2(@mdx-js/react@3.1.1(@types/react@19.3.0)(react@18.3.1))(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.28))(csso@5.0.5)(debug@4.4.3(supports-color@8.1.1))(html-minifier-terser@7.2.0)(postcss@8.5.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(supports-color@8.1.1)(svgo@3.3.5)(typescript@5.8.3))(clean-css@5.3.3)(cssnano@6.1.2(postcss@8.5.28))(csso@5.0.5)(html-minifier-terser@7.2.0)(postcss@8.5.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(supports-color@8.1.1)(svgo@3.3.5)
       '@docusaurus/tsconfig':
         specifier: ^3.9.2
         version: 3.10.2
