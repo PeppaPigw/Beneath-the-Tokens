@@ -1,0 +1,32 @@
+{
+  "distinct_2": 0.020089285714285716,
+  "entropy_bits": 1.535901266740545,
+  "probabilities": [
+    0.6156931153572915,
+    0.2265008392107448,
+    0.10177338745424531,
+    0.03744033690279245,
+    0.018592321074925908
+  ],
+  "seed": 7,
+  "speculative_round": {
+    "acceptance_probabilities": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "acceptance_rate": 1.0,
+    "accepted": 4,
+    "draft_length": 4,
+    "output_tokens": [
+      0,
+      0,
+      2,
+      0
+    ],
+    "rejected": false,
+    "seed": 7
+  },
+  "top_p_support": 3
+}
