@@ -17,6 +17,11 @@ try:
 except ModuleNotFoundError:  # ``python -m unittest scripts/test_phase2_template.py``
     from scripts.phase2_template import validate_chapter_file, validate_evidence_file, validate_evidence_manifest
 
+try:
+    from audit_phase2 import parse_frontmatter
+except ModuleNotFoundError:
+    from scripts.audit_phase2 import parse_frontmatter
+
 REPO_ROOT = Path(__file__).resolve().parents[1]
 FIXTURE_DIR = REPO_ROOT / "scripts" / "fixtures" / "phase2_template"
 
@@ -126,6 +131,30 @@ class Phase2TemplateContractTests(unittest.TestCase):
         result = validate_chapter_file("fixtures/beginner-first.md", fixture_text("beginner-first.md"))
         self.assertEqual(result, [])
 
+    def test_intro_heading_and_narrative_are_allowed_before_substantive_sequence(self) -> None:
+        text = VALID_FRONTMATTER + """# 标题
+
+开头先用一段叙述交代读者会遇到的故障。
+
+## 本章地图
+
+这是一段合法的导航，不应代替问题边界。
+
+""" + BEGINNER_FIRST_BODY
+        result = validate_chapter_file("fixtures/intro.md", text)
+        self.assertEqual(result, [])
+
+    def test_unknown_substantive_heading_before_problem_is_rejected(self) -> None:
+        text = VALID_FRONTMATTER + """# 标题
+
+## 先聊聊背景
+
+这段标题会把真正的问题边界推迟到第四个小节。
+
+""" + BEGINNER_FIRST_BODY
+        result = validate_chapter_file("fixtures/early-heading.md", text)
+        self.assertEqual([error["class"] for error in result], ["beginner_sequence"])
+
     def test_metadata_only_fixture_reports_editorial_gap_separately(self) -> None:
         # Metadata can be valid before an author has written the teaching body.
         result = validate_chapter_file("fixtures/metadata-only.md", VALID_FRONTMATTER + "# 标题\n")
@@ -171,6 +200,22 @@ last_verified: yesterday
     def test_manifest_fixture_passes(self) -> None:
         self.assertEqual(validate_evidence_manifest("fixtures/valid-evidence.json", fixture_json("valid-evidence.json")), [])
 
+    def test_manifest_rejects_empty_entries_even_when_root_is_well_formed(self) -> None:
+        empty = fixture_json("empty-evidence.json")
+        result = validate_evidence_manifest("fixtures/empty-evidence.json", empty)
+        self.assertEqual([error["class"] for error in result], ["invalid_entries"])
+
+    def test_manifest_rejects_unknown_top_level_keys(self) -> None:
+        extra = fixture_json("extra-evidence.json")
+        result = validate_evidence_manifest("fixtures/extra-evidence.json", extra)
+        self.assertEqual([error["class"] for error in result], ["unknown_manifest_field"])
+        self.assertEqual(result[0]["fields"], ["maintainer_note"])
+
+    def test_manifest_rejects_boolean_manifest_version(self) -> None:
+        boolean_version = fixture_json("bool-version-evidence.json")
+        result = validate_evidence_manifest("fixtures/bool-version-evidence.json", boolean_version)
+        self.assertEqual([error["class"] for error in result], ["invalid_manifest_version"])
+
     def test_manifest_errors_are_deterministic_and_explain_missing_provenance(self) -> None:
         invalid = {
             "manifest_version": 1,
@@ -211,6 +256,12 @@ last_verified: yesterday
         result = validate_evidence_manifest("fixtures/duplicate-evidence.json", duplicate)
         self.assertEqual([error["class"] for error in result], ["duplicate_experiment_id"])
 
+    def test_template_compatibility_aliases_match_plural_first_values(self) -> None:
+        template = (REPO_ROOT / "docs/phase2/chapter-template.md").read_text(encoding="utf-8")
+        frontmatter = parse_frontmatter(template)
+        self.assertEqual(frontmatter["source_commit"], frontmatter["source_commits"][0])
+        self.assertEqual(frontmatter["lab_path"], frontmatter["lab_paths"][0])
+
     def test_schema_declares_exact_evidence_fields(self) -> None:
         schema = json.loads((REPO_ROOT / "docs/phase2/evidence-manifest.schema.json").read_text(encoding="utf-8"))
         evidence = schema["$defs"]["evidence"]
@@ -219,6 +270,8 @@ last_verified: yesterday
             {"claim", "type", "source_url", "version", "experiment_id", "limitation", "review_date"},
         )
         self.assertEqual(evidence["additionalProperties"], False)
+        self.assertEqual(schema["additionalProperties"], False)
+        self.assertEqual(schema["properties"]["entries"]["minItems"], 1)
 
 
 if __name__ == "__main__":
