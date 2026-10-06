@@ -12,7 +12,7 @@ import DocItemContent from '@theme/DocItem/Content';
 import DocBreadcrumbs from '@theme/DocBreadcrumbs';
 import ContentVisibility from '@theme/ContentVisibility';
 
-import {TOC_PANEL_ID} from '../../readingLayout';
+import {MOBILE_TOC_PANEL_ID, TOC_PANEL_ID} from '../../readingLayout';
 import styles from './styles.module.css';
 
 function useDocTOC() {
@@ -44,14 +44,18 @@ export default function DocItemLayout({children}: Props): ReactNode {
           <article>
             <DocBreadcrumbs />
             <DocVersionBadge />
-            {docTOC.mobile}
+            {docTOC.mobile && (
+              <div id={MOBILE_TOC_PANEL_ID} className={styles.mobileTocPanel}>
+                {docTOC.mobile}
+              </div>
+            )}
             <DocItemContent>{children}</DocItemContent>
             <DocItemFooter />
           </article>
           <DocItemPaginator />
         </div>
       </div>
-      <div className="col col--3">
+      <div className={clsx('col col--3', styles.tocColumn)}>
         <div id={TOC_PANEL_ID}>
           {docTOC.desktop}
         </div>
