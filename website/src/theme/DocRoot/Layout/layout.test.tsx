@@ -16,6 +16,7 @@ import {
   ReadingLayoutControls,
   ReadingLayoutFrame,
   closeMobileDrawers,
+  escapeFocusPanel,
   parseCollapsedPreference,
   readCollapsedPreference,
   writeCollapsedPreference,
@@ -209,4 +210,8 @@ export function runLayoutSmokeTest(): void {
   const closed = closeMobileDrawers({sidebarCollapsed: false, tocCollapsed: true});
   assert(closed.sidebarCollapsed, 'Escape should close an open mobile sidebar drawer');
   assert(closed.tocCollapsed, 'Escape should leave the TOC drawer closed');
+  assert(
+    escapeFocusPanel(false, false) === 'sidebar',
+    'Escape should return focus to the sidebar when no TOC is available',
+  );
 }
