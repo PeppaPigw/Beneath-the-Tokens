@@ -26,8 +26,10 @@ jobs:
         with:
           node-version: 20
           cache: pnpm
-      - run: pnpm install --no-frozen-lockfile
-      - run: pnpm --filter beneath-the-tokens-site build
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Build website
+        run: pnpm --filter beneath-the-tokens-site build
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
