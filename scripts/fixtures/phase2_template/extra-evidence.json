@@ -1,0 +1,25 @@
+{
+  "manifest_version": 1,
+  "chapter_id": "phase2-01-evidence-language",
+  "entries": [
+    {
+      "claim": "排队会使高分位延迟显著高于中位数",
+      "type": "experiment_measurement",
+      "source_url": "https://example.com/lab/evidence-language",
+      "version": "0123456789abcdef0123456789abcdef01234567",
+      "experiment_id": "exp-evidence-001",
+      "limitation": "CPU 模型只说明数量级，不能证明 GPU serving 的绝对延迟",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "p95 是按排序后第 95 个百分位定义的统计量",
+      "type": "definition",
+      "source_url": "https://www.rfc-editor.org/rfc/rfc2330",
+      "version": "RFC 2330",
+      "experiment_id": null,
+      "limitation": "百分位插值约定可能因工具而异",
+      "review_date": "2026-10-06"
+    }
+  ],
+  "maintainer_note": "not part of the contract"
+}
