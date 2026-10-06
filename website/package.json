@@ -21,6 +21,8 @@
     "remark-math": "^6.0.0"
   },
   "devDependencies": {
+    "@docusaurus/plugin-content-docs": "^3.10.2",
+    "@docusaurus/theme-common": "^3.10.2",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@docusaurus/module-type-aliases": "^3.9.2",
