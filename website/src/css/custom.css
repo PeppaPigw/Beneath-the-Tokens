@@ -2,3 +2,19 @@
 :root { --ifm-color-primary: #2457d6; --ifm-color-primary-dark: #1d46ad; --ifm-code-font-size: 92%; }
 .hero__title { letter-spacing: -0.02em; }
 .markdown h1, .markdown h2, .markdown h3 { scroll-margin-top: 5rem; }
+
+.markdown h1:focus-visible,
+.markdown h2:focus-visible,
+.markdown h3:focus-visible,
+.markdown h4:focus-visible,
+.markdown h5:focus-visible,
+.markdown h6:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 0.2rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
