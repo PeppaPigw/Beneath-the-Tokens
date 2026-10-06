@@ -140,46 +140,46 @@
     {
       "claim": "在本章 CPU toy 中，非连续 block table、部分最后块和有效长度截断的 paged_attention 与 dense_attention 输出在 1e-12 容差内一致",
       "type": "experiment_measurement",
-      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/commit/87959b2bbad41fbcc683cf35e0a8e50a50369c3d",
-      "version": "btt-phase2@87959b2bbad41fbcc683cf35e0a8e50a50369c3d",
+      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/commit/f121f2112fee15e8e634ee9e7c85ac5246517c0f",
+      "version": "btt-phase2@f121f2112fee15e8e634ee9e7c85ac5246517c0f",
       "experiment_id": "exp-26-paged-equivalence-001",
       "limitation": "只测小型 Python 浮点参考实现，不覆盖 CUDA kernel、GQA head mapping、异步 stream 或真实模型数值误差",
       "review_date": "2026-10-06"
     },
     {
-      "claim": "本章 KVBlockPool toy 实现逻辑→物理 block table、refcount、最长前缀 hash、COW、eviction 和容量失败不变量",
+      "claim": "本章 KVBlockPool toy 用整个 token tuple 的 SHA-256 + 线性 longest-prefix scan 实现逻辑→物理 block table、refcount、COW、eviction 和容量错误；链式 block index 不是 toy 实现",
       "type": "source_observation",
-      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/commit/87959b2bbad41fbcc683cf35e0a8e50a50369c3d",
-      "version": "btt-phase2@87959b2bbad41fbcc683cf35e0a8e50a50369c3d",
+      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/commit/f121f2112fee15e8e634ee9e7c85ac5246517c0f",
+      "version": "btt-phase2@f121f2112fee15e8e634ee9e7c85ac5246517c0f",
       "experiment_id": null,
-      "limitation": "实现同步且单进程；没有真实 GPU allocator、异步完成、epoch/in-flight 或多 rank 一致性",
+      "limitation": "实现同步且单进程；没有真实 GPU allocator、异步完成、epoch/in-flight 或多 rank 一致性；snapshot_metrics 只统计 active request tables，release 后 pinned prefix blocks 需看 stats()",
       "review_date": "2026-10-06"
     },
     {
       "claim": "固定 seed=7、Python 3.12、60 请求、30 repeats（丢弃 5 次 warmup）的 block_size=8、prefix_rate=0.5 toy run 保留 25 个原始样本并计算 operation_us、waste、hit、COW 和 eviction recovery 的 p50/p95/p99",
       "type": "experiment_measurement",
-      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/blob/f340aa7bb9c6a71ce9f1ca8f7682fd25857ba3/reports/kv-block-toy-seed7.json",
-      "version": "btt-phase2@f340aa7bb9c6a71ce9f1ca8f7682fd25857ba3",
+      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/blob/3b013cb2063bf921b082f85483f246cd788a7bb6/reports/kv-block-toy-seed7.json",
+      "version": "btt-phase2@3b013cb2063bf921b082f85483f246cd788a7bb6",
       "experiment_id": "exp-26-kv-toy-seed7-008-050",
-      "limitation": "operation_us 只代表 Python 状态转换，不是 GPU TTFT/TPOT；25 个样本的 p99 不稳定且不能形成服务置信区间",
+      "limitation": "operation_us 只代表 Python 状态转换；benchmark 顺序创建并立即释放请求，snapshot 的 waste/physical_slots 只统计 active request tables，不含 pinned prefix-cache blocks；25 个样本的 p99 不稳定且不能形成服务置信区间",
       "review_date": "2026-10-06"
     },
     {
       "claim": "toy 矩阵在 block_size=4/8/16、prefix_rate=0/0.5/1 下显示块越大内部槽位浪费方向上升，而 prefix_rate 提高时 hit_tokens 上升",
       "type": "experiment_measurement",
-      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/blob/f340aa7bb9c6a71ce9f1ca8f7682fd25857ba3/reports/kv-block-toy-matrix.json",
-      "version": "btt-phase2@f340aa7bb9c6a71ce9f1ca8f7682fd25857ba3",
+      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/blob/3b013cb2063bf921b082f85483f246cd788a7bb6/reports/kv-block-toy-matrix.json",
+      "version": "btt-phase2@3b013cb2063bf921b082f85483f246cd788a7bb6",
       "experiment_id": "exp-26-kv-toy-matrix-001",
-      "limitation": "长度 trace 只有 [3,7,15,16,17,31,32,33,63]，结果是教学状态模型，不能外推真实请求分布或 kernel 性能",
+      "limitation": "benchmark 是顺序状态机而非并发工作集；waste/physical_slots 只统计 active request tables，prefix cache 驻留看 allocated/free/prefix_entries；长度 trace 只有 [3,7,15,16,17,31,32,33,63]，不能外推真实请求分布或 kernel 性能",
       "review_date": "2026-10-06"
     },
     {
-      "claim": "toy 的双重释放、重复 prefix 插入、部分块 COW、容量枯竭和 eviction 测试保持 refcount/free pool/request table 不变量",
+      "claim": "toy 回归覆盖重复 prefix 插入、部分块 COW、容量错误、eviction 和分页注意力等价，并保持 refcount/free pool/request table 不变量；double-release 独立回归和故障序列 artifact 尚待补齐",
       "type": "experiment_measurement",
-      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/commit/87959b2bbad41fbcc683cf35e0a8e50a50369c3d",
-      "version": "btt-phase2@87959b2bbad41fbcc683cf35e0a8e50a50369c3d",
+      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/commit/f121f2112fee15e8e634ee9e7c85ac5246517c0f",
+      "version": "btt-phase2@f121f2112fee15e8e634ee9e7c85ac5246517c0f",
       "experiment_id": "exp-26-kv-invariants-001",
-      "limitation": "测试通过只证明同步 Python 状态机的断言，不证明异步 GPU、网络传输、租户隔离或数值质量",
+      "limitation": "当前没有独立 double-release 测试或 failure artifact；同步 Python 状态机测试不证明异步 GPU、网络传输、租户隔离或数值质量；active snapshot 与 pinned cache stats 是不同口径",
       "review_date": "2026-10-06"
     },
     {
@@ -203,8 +203,8 @@
     {
       "claim": "CPU toy 没有实现 epoch/in-flight delayed completion；迟到写入和跨 rank 回收只能作为后续 connector lab 的协议练习",
       "type": "unverified_hypothesis",
-      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/commit/87959b2bbad41fbcc683cf35e0a8e50a50369c3d",
-      "version": "btt-phase2@87959b2bbad41fbcc683cf35e0a8e50a50369c3d",
+      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/commit/f121f2112fee15e8e634ee9e7c85ac5246517c0f",
+      "version": "btt-phase2@f121f2112fee15e8e634ee9e7c85ac5246517c0f",
       "experiment_id": null,
       "limitation": "需要在异步 DMA/远端传输模拟中加入 epoch、lease 和完成事件后才能测试该假设",
       "review_date": "2026-10-06"
