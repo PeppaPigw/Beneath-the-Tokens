@@ -42,7 +42,7 @@ require.extensions['.css'] = (module) => {
 };
 const stubDir = fs.mkdtempSync(path.join(os.tmpdir(), 'btt-layout-stubs-'));
 const stubs = {
-  '@docusaurus/plugin-content-docs/client': 'exports.useDocsSidebar = () => null; exports.useDoc = () => ({toc: [], frontMatter: {}, metadata: {title: ""}, contentTitle: ""});',
+  '@docusaurus/plugin-content-docs/client': 'exports.useDocsSidebar = () => null; exports.useDoc = () => global.__bttDoc || ({toc: [], frontMatter: {}, metadata: {title: ""}, contentTitle: ""});',
   '@docusaurus/theme-common': 'exports.ThemeClassNames = {docs: {docMarkdown: "theme-doc-markdown"}};',
   '@theme/Heading': 'const React = require("react"); module.exports = ({as = "h1", children}) => React.createElement(as, null, children);',
   '@theme/MDXContent': 'module.exports = ({children}) => children;',
