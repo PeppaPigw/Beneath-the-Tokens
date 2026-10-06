@@ -1,5 +1,28 @@
 # Chapter authoring contract
 
+## Frontmatter contract
+
+Copy this block into a new chapter and replace every placeholder. The learning metadata is optional for legacy documents; when a field is absent, the site omits that item instead of showing an empty value.
+
+```yaml
+---
+id: chXX-topic
+title: Chapter title
+description: One-sentence chapter description
+slug: /chapters/XX-topic
+sidebar_position: XX
+level: foundation # foundation | core | systems | advanced | frontier | capstone
+estimated_hours: 8
+prerequisites: []
+paper_count: 0
+source_commit: abc1234
+lab_path: labs/chXX-topic
+last_verified: 2026-10-06
+---
+```
+
+Use a stable source commit and a repository-relative lab path when those records exist. Keep `prerequisites` as chapter IDs, and use an ISO date for `last_verified`.
+
 Every chapter is a small, auditable course.
 
 ## Required structure
