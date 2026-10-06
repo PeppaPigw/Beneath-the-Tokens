@@ -1,4 +1,4 @@
-import React, {type ReactNode} from 'react';
+import React, {useEffect, type ReactNode} from 'react';
 import clsx from 'clsx';
 import {useWindowSize} from '@docusaurus/theme-common';
 import {useDoc} from '@docusaurus/plugin-content-docs/client';
@@ -12,7 +12,11 @@ import DocItemContent from '@theme/DocItem/Content';
 import DocBreadcrumbs from '@theme/DocBreadcrumbs';
 import ContentVisibility from '@theme/ContentVisibility';
 
-import {MOBILE_TOC_PANEL_ID, TOC_PANEL_ID} from '../../readingLayout';
+import {
+  MOBILE_TOC_PANEL_ID,
+  TOC_PANEL_ID,
+  useReadingLayoutAvailability,
+} from '../../readingLayout';
 import styles from './styles.module.css';
 
 function useDocTOC() {
@@ -35,6 +39,10 @@ interface Props {
 export default function DocItemLayout({children}: Props): ReactNode {
   const docTOC = useDocTOC();
   const {metadata} = useDoc();
+  const availability = useReadingLayoutAvailability();
+  useEffect(() => {
+    availability?.setTocAvailable(Boolean(docTOC.desktop || docTOC.mobile));
+  }, [availability, docTOC.desktop, docTOC.mobile]);
   return (
     <div className="row">
       <div className={clsx('col', !docTOC.hidden && styles.docItemCol)}>
@@ -55,11 +63,11 @@ export default function DocItemLayout({children}: Props): ReactNode {
           <DocItemPaginator />
         </div>
       </div>
-      <div className={clsx('col col--3', styles.tocColumn)}>
-        <div id={TOC_PANEL_ID}>
-          {docTOC.desktop}
+      {docTOC.desktop && (
+        <div className={clsx('col col--3', styles.tocColumn)}>
+          <div id={TOC_PANEL_ID}>{docTOC.desktop}</div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
