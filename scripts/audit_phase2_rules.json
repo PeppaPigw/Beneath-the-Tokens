@@ -1,20 +1,111 @@
 {
   "version": 1,
   "chapter_glob": "chapters/*.md",
-  "excluded_paths": ["README.md", "chapter-template.md", "superpowers/"],
-  "placeholder_patterns": ["\\bTODO\\b", "\\bTBD\\b", "\\bFIXME\\b", "\\bXXX\\b", "lorem ipsum", "<\\s*(?:insert|replace|todo)[^>]*>", "待补充", "待完善"],
-  "required_frontmatter": ["id", "prerequisites", "sidebar_position"],
+  "excluded_paths": [
+    "README.md",
+    "chapter-template.md",
+    "superpowers/"
+  ],
+  "placeholder_patterns": [
+    "\\bTODO\\b",
+    "\\bTBD\\b",
+    "\\bFIXME\\b",
+    "\\bXXX\\b",
+    "lorem ipsum",
+    "<\\s*(?:insert|replace|todo)[^>]*>",
+    "待补充",
+    "待完善"
+  ],
+  "required_frontmatter": [
+    "id",
+    "prerequisites",
+    "sidebar_position"
+  ],
   "required_section_groups": {
-    "problem_boundary": ["why", "problem", "motivation", "问题", "为什么", "边界", "目标", "需求", "困惑"],
-    "mental_model": ["mental model", "心智模型", "工作定义", "统一视角", "全景图", "执行心智", "地图"],
-    "mechanism": ["mechanism", "机制", "system", "系统", "request", "请求", "执行", "架构", "路径", "调度", "内存"],
-    "experiment": ["experiment", "实验", "measurement", "测量", "benchmark", "复现", "模拟", "可运行"],
-    "failure": ["failure", "fail", "失败", "故障", "事故", "排障", "诊所", "反模式", "复盘"],
-    "checks": ["comprehension", "理解检查", "理解", "检查"],
-    "exercises": ["exercise", "练习", "研究问题", "复盘问题"],
-    "sources": ["source", "来源", "论文", "证据", "参考", "地图"]
+    "problem_boundary": [
+      "why",
+      "problem",
+      "motivation",
+      "问题",
+      "为什么",
+      "边界",
+      "目标",
+      "需求",
+      "困惑"
+    ],
+    "mental_model": [
+      "mental model",
+      "心智模型",
+      "工作定义",
+      "统一视角",
+      "全景图",
+      "执行心智",
+      "地图"
+    ],
+    "mechanism": [
+      "mechanism",
+      "机制",
+      "system",
+      "系统",
+      "request",
+      "请求",
+      "执行",
+      "架构",
+      "路径",
+      "调度",
+      "内存"
+    ],
+    "experiment": [
+      "experiment",
+      "实验",
+      "measurement",
+      "测量",
+      "benchmark",
+      "复现",
+      "模拟",
+      "可运行"
+    ],
+    "failure": [
+      "failure",
+      "fail",
+      "失败",
+      "故障",
+      "事故",
+      "排障",
+      "诊所",
+      "反模式",
+      "复盘"
+    ],
+    "checks": [
+      "comprehension",
+      "理解检查",
+      "理解",
+      "检查"
+    ],
+    "exercises": [
+      "exercise",
+      "练习",
+      "研究问题",
+      "复盘问题"
+    ],
+    "sources": [
+      "source",
+      "来源",
+      "论文",
+      "证据",
+      "参考",
+      "地图"
+    ]
   },
   "url_timeout_seconds": 5,
   "max_url_workers": 8,
-  "script_languages": ["python", "py", "python3"]
+  "script_languages": [
+    "python",
+    "py",
+    "python3"
+  ],
+  "chapter_globs": [
+    "chapters/*.md",
+    "phase2/chapters/*.md"
+  ]
 }
