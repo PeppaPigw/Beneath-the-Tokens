@@ -187,6 +187,21 @@ class KVBlockPoolTests(unittest.TestCase):
             loaded = json.loads(path.read_text(encoding="utf-8"))
             self.assertEqual(loaded["prefix_hash"], first["prefix_hash"])
 
+    def test_snapshot_metrics_counts_shared_physical_block_once(self) -> None:
+        pool = KVBlockPool(capacity=4, block_size=4)
+        pool.create_request("seed", [1, 2, 3, 4], use_prefix_cache=False)
+        pool.cache_prefix(request_id="seed")
+        pool.create_request("hit", [1, 2, 3, 4], use_prefix_cache=True)
+        metrics = pool.snapshot_metrics()
+        self.assertEqual(metrics["logical_tokens"], 8)
+        self.assertEqual(metrics["active_blocks"], 1)
+        self.assertEqual(metrics["physical_slots"], 4)
+        self.assertEqual(metrics["active_used_slots"], 4)
+        self.assertEqual(metrics["internal_waste_ratio"], 0.0)
+        self.assertEqual(metrics["prefix_entries"], 1)
+        self.assertEqual(pool.stats()["allocated_blocks"], 1)
+        pool.assert_invariants()
+
     def test_benchmark_matrix_retains_raw_samples_and_percentiles(self) -> None:
         report = run_benchmark(
             seed=7,
