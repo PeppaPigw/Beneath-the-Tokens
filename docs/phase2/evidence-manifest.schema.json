@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://beneath-the-tokens.example/schema/phase2/evidence-manifest.schema.json",
+  "title": "Beneath the Tokens phase-two evidence manifest",
+  "description": "A versioned, reviewable map from a chapter claim to a pinned source or reproducible experiment.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["manifest_version", "chapter_id", "entries"],
+  "properties": {
+    "manifest_version": {
+      "const": 1,
+      "description": "Schema version. Increment only when the manifest contract changes."
+    },
+    "chapter_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]*$",
+      "description": "Stable chapter id shared with the Markdown frontmatter."
+    },
+    "entries": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/evidence"}
+    }
+  },
+  "$defs": {
+    "evidence": {
+      "title": "Evidence entry",
+      "description": "One claim and the source, version, experiment, and limitation needed to review it.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "claim",
+        "type",
+        "source_url",
+        "version",
+        "experiment_id",
+        "limitation",
+        "review_date"
+      ],
+      "properties": {
+        "claim": {
+          "type": "string",
+          "minLength": 1,
+          "description": "A single factual, definitional, derived, measured, or explicitly judged statement."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "fact",
+            "definition",
+            "derivation",
+            "paper_result",
+            "source_observation",
+            "experiment_measurement",
+            "inference",
+            "design_judgment",
+            "unverified_hypothesis"
+          ],
+          "description": "How the claim should be read; this is not a confidence score."
+        },
+        "source_url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https?://",
+          "description": "Canonical paper, documentation, repository, or experiment record URL."
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Pinned release, tag, commit, paper version, or RFC identifier; branch names are not acceptable."
+        },
+        "experiment_id": {
+          "type": ["string", "null"],
+          "minLength": 1,
+          "description": "Stable lab/run identifier, or null when the claim is not experimental."
+        },
+        "limitation": {
+          "type": "string",
+          "minLength": 1,
+          "description": "What this evidence does not establish, including portability or causal limits."
+        },
+        "review_date": {
+          "type": "string",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+          "description": "Date on which the source and claim were last checked (YYYY-MM-DD)."
+        }
+      }
+    }
+  }
+}
