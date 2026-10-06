@@ -17,7 +17,7 @@ learning_objectives:
   - 能运行 CPU 或目标硬件实验，报告分位数和限制
 paper_count: 0
 source_commits:
-  - REPLACE_WITH_REPOSITORY@REPLACE_WITH_PINNED_COMMIT
+  - REPLACE_WITH_PINNED_COMMIT
 lab_paths:
   - labs/phase2/REPLACE_WITH_LAB.py
 last_verified: 2026-10-06
