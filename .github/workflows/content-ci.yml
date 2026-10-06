@@ -10,12 +10,40 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
       - uses: pnpm/action-setup@v4
         with:
           version: 10
-      - run: pnpm install --no-frozen-lockfile
-      - run: python scripts/validate_content.py
-      - run: pnpm --filter beneath-the-tokens-site build
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Validate content contract
+        run: python scripts/validate_content.py
+      - name: Run phase-two audit
+        # Keep producing the report when the validator rejects content. The
+        # upload step below also runs when this audit itself fails.
+        if: always()
+        run: >-
+          python scripts/audit_phase2.py
+          --docs docs
+          --sidebar website/sidebars.ts
+          --report reports/phase2-content.json
+      - name: Run phase-two audit tests
+        run: python -m unittest discover -s scripts -p 'test_*.py'
+      - name: Check Python syntax
+        run: python -m py_compile scripts/*.py
+      - name: Typecheck website
+        run: pnpm --filter beneath-the-tokens-site typecheck
+      - name: Run layout smoke test
+        run: pnpm --filter beneath-the-tokens-site test:layout
+      - name: Build website
+        run: pnpm --filter beneath-the-tokens-site build
+      - name: Upload phase-two audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase2-content-audit
+          path: reports/phase2-content.json
+          if-no-files-found: warn
