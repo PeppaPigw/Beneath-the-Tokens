@@ -26,6 +26,6 @@ See:
 
 ## Status
 
-Current progress: ten long-form chapters are published, each with frontmatter, source-oriented explanations, labs or lab specifications, failure analysis, comprehension checks, and exercises. The site scaffold and CI are present; the first GitHub Pages build still needs to run in Actions before the published site is considered verified. Chapters will continue to be added as independently reviewed commits.
+Current progress: 26 long-form chapters are published, and the phase-two redesign has begun. The published first edition remains deployable while the new beginner-first, research-grade chapters and reading layout are added and reviewed in parallel.
 
 Content CI now runs the existing content validator, the deterministic phase-two audit, audit unit tests, Python syntax checks, website typechecking, the layout smoke test, and a production Docusaurus build. Runs that reach the audit step upload `reports/phase2-content.json` for review, including when validation or the audit finds content errors. The Pages workflow installs from the committed lockfile and publishes the generated `website/build` directory.
