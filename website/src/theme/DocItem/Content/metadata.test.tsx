@@ -1,10 +1,21 @@
 import React from 'react';
 import assert from 'node:assert/strict';
 import {renderToStaticMarkup} from 'react-dom/server';
-import {ChapterMetadata} from './index';
+import DocItemContent, {ChapterMetadata} from './index';
 
 function render(frontMatter?: Record<string, unknown>): string {
   return renderToStaticMarkup(<ChapterMetadata frontMatter={frontMatter} />);
+}
+
+type SmokeDoc = {
+  readonly frontMatter: Record<string, unknown>;
+  readonly metadata: {readonly title: string};
+  readonly contentTitle?: string;
+};
+
+function renderContent(doc: SmokeDoc, children: React.ReactNode): string {
+  (globalThis as typeof globalThis & {__bttDoc?: SmokeDoc}).__bttDoc = doc;
+  return renderToStaticMarkup(<DocItemContent>{children}</DocItemContent>);
 }
 
 export function runMetadataSmokeTest(): void {
@@ -34,4 +45,16 @@ export function runMetadataSmokeTest(): void {
 
   assert.equal(render(), '');
   assert.equal(render({prerequisites: [], level: '', lab_path: null}), '');
+
+  const explicit = renderContent(
+    {frontMatter: {level: 'systems'}, metadata: {title: 'Doc title'}, contentTitle: 'Doc title'},
+    <><h1>Doc title</h1><p>Body</p></>,
+  );
+  assert.ok(explicit.indexOf('<h1>Doc title') < explicit.indexOf('bttChapterMetadata'));
+
+  const synthetic = renderContent(
+    {frontMatter: {level: 'foundation'}, metadata: {title: 'Synthetic title'}},
+    <p>Body</p>,
+  );
+  assert.ok(synthetic.indexOf('<h1>Synthetic title') < synthetic.indexOf('bttChapterMetadata'));
 }
