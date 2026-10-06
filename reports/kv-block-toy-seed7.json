@@ -1,0 +1,410 @@
+{
+  "aggregation": {
+    "percentile": "linear interpolation on sorted samples",
+    "raw_samples_retained": true
+  },
+  "cases": [
+    {
+      "all_eviction_recoveries": true,
+      "block_size": 8,
+      "measured_repeats": 25,
+      "prefix_rate": 0.5,
+      "raw": [
+        {
+          "cow_copies": 1,
+          "eviction_count": 2,
+          "eviction_recovery": true,
+          "evictions": 2,
+          "hit_tokens": 384,
+          "internal_waste_ratio": 0.07373271889400922,
+          "logical_tokens": 1608,
+          "operation_us": 2658.71,
+          "peak_active_blocks": 8,
+          "requests": 60
+        },
+        {
+          "cow_copies": 1,
+          "eviction_count": 2,
+          "eviction_recovery": true,
+          "evictions": 2,
+          "hit_tokens": 320,
+          "internal_waste_ratio": 0.08863636363636364,
+          "logical_tokens": 1604,
+          "operation_us": 2411.989,
+          "peak_active_blocks": 8,
+          "requests": 60
+        },
+        {
+          "cow_copies": 1,
+          "eviction_count": 2,
+          "eviction_recovery": true,
+          "evictions": 2,
+          "hit_tokens": 448,
+          "internal_waste_ratio": 0.10049019607843138,
+          "logical_tokens": 1468,
+          "operation_us": 2602.335,
+          "peak_active_blocks": 8,
+          "requests": 60
+        },
+        {
+          "cow_copies": 1,
+          "eviction_count": 2,
+          "eviction_recovery": true,
+          "evictions": 2,
+          "hit_tokens": 480,
+          "internal_waste_ratio": 0.11635944700460829,
+          "logical_tokens": 1534,
+          "operation_us": 2285.74,
+          "peak_active_blocks": 8,
+          "requests": 60
+        },
+        {
+          "cow_copies": 1,
+          "eviction_count": 2,
+          "eviction_recovery": true,
+          "evictions": 2,
+          "hit_tokens": 384,
+          "internal_waste_ratio": 0.15588235294117647,
+          "logical_tokens": 1148,
+          "operation_us": 1822.414,
+          "peak_active_blocks": 8,
+          "requests": 60
+        },
+        {
+          "cow_copies": 1,
+          "eviction_count": 2,
+          "eviction_recovery": true,
+          "evictions": 2,
+          "hit_tokens": 448,
+          "internal_waste_ratio": 0.09346846846846847,
+          "logical_tokens": 1610,
+          "operation_us": 2313.752,
+          "peak_active_blocks": 8,
+          "requests": 60
+        },
+        {
+          "cow_copies": 1,
+          "eviction_count": 2,
+          "eviction_recovery": true,
+          "evictions": 2,
+          "hit_tokens": 416,
+          "internal_waste_ratio": 0.06683673469387755,
+          "logical_tokens": 1829,
+          "operation_us": 3029.246,
+          "peak_active_blocks": 8,
+          "requests": 60
+        },
+        {
+          "cow_copies": 1,
+          "eviction_count": 2,
+          "eviction_recovery": true,
+          "evictions": 2,
+          "hit_tokens": 352,
+          "internal_waste_ratio": 0.10667539267015706,
+          "logical_tokens": 1365,
+          "operation_us": 2075.034,
+          "peak_active_blocks": 8,
+          "requests": 60
+        },
+        {
+          "cow_copies": 1,
+          "eviction_count": 2,
+          "eviction_recovery": true,
+          "evictions": 2,
+          "hit_tokens": 288,
+          "internal_waste_ratio": 0.12863372093023256,
+          "logical_tokens": 1199,
+          "operation_us": 1866.15,
+          "peak_active_blocks": 8,
+          "requests": 60
+        },
+        {
+          "cow_copies": 1,
+          "eviction_count": 2,
+          "eviction_recovery": true,
+          "evictions": 2,
+          "hit_tokens": 336,
+          "internal_waste_ratio": 0.09407216494845361,
+          "logical_tokens": 1406,
+          "operation_us": 2209.476,
+          "peak_active_blocks": 8,
+          "requests": 60
+        },
+        {
+          "cow_copies": 1,
+          "eviction_count": 2,
+          "eviction_recovery": true,
+          "evictions": 2,
+          "hit_tokens": 288,
+          "internal_waste_ratio": 0.08311855670103092,
+          "logical_tokens": 1423,
+          "operation_us": 2066.952,
+          "peak_active_blocks": 8,
+          "requests": 60
+        },
+        {
+          "cow_copies": 1,
+          "eviction_count": 2,
+          "eviction_recovery": true,
+          "evictions": 2,
+          "hit_tokens": 304,
+          "internal_waste_ratio": 0.11162790697674418,
+          "logical_tokens": 1528,
+          "operation_us": 2288.244,
+          "peak_active_blocks": 8,
+          "requests": 60
+        },
+        {
+          "cow_copies": 1,
+          "eviction_count": 2,
+          "eviction_recovery": true,
+          "evictions": 2,
+          "hit_tokens": 272,
+          "internal_waste_ratio": 0.11867977528089887,
+          "logical_tokens": 1255,
+          "operation_us": 2555.024,
+          "peak_active_blocks": 8,
+          "requests": 60
+        },
+        {
+          "cow_copies": 1,
+          "eviction_count": 2,
+          "eviction_recovery": true,
+          "evictions": 2,
+          "hit_tokens": 240,
+          "internal_waste_ratio": 0.10980662983425414,
+          "logical_tokens": 1289,
+          "operation_us": 2167.642,
+          "peak_active_blocks": 8,
+          "requests": 60
+        },
+        {
+          "cow_copies": 1,
+          "eviction_count": 2,
+          "eviction_recovery": true,
+          "evictions": 2,
+          "hit_tokens": 352,
+          "internal_waste_ratio": 0.08945497630331753,
+          "logical_tokens": 1537,
+          "operation_us": 3524.899,
+          "peak_active_blocks": 8,
+          "requests": 60
+        },
+        {
+          "cow_copies": 1,
+          "eviction_count": 2,
+          "eviction_recovery": true,
+          "evictions": 2,
+          "hit_tokens": 304,
+          "internal_waste_ratio": 0.11363636363636363,
+          "logical_tokens": 1326,
+          "operation_us": 2521.534,
+          "peak_active_blocks": 8,
+          "requests": 60
+        },
+        {
+          "cow_copies": 1,
+          "eviction_count": 2,
+          "eviction_recovery": true,
+          "evictions": 2,
+          "hit_tokens": 352,
+          "internal_waste_ratio": 0.08738425925925926,
+          "logical_tokens": 1577,
+          "operation_us": 2525.971,
+          "peak_active_blocks": 8,
+          "requests": 60
+        },
+        {
+          "cow_copies": 1,
+          "eviction_count": 2,
+          "eviction_recovery": true,
+          "evictions": 2,
+          "hit_tokens": 352,
+          "internal_waste_ratio": 0.09487179487179487,
+          "logical_tokens": 1412,
+          "operation_us": 2199.771,
+          "peak_active_blocks": 8,
+          "requests": 60
+        },
+        {
+          "cow_copies": 1,
+          "eviction_count": 2,
+          "eviction_recovery": true,
+          "evictions": 2,
+          "hit_tokens": 288,
+          "internal_waste_ratio": 0.07760416666666667,
+          "logical_tokens": 1771,
+          "operation_us": 2658.059,
+          "peak_active_blocks": 8,
+          "requests": 60
+        },
+        {
+          "cow_copies": 1,
+          "eviction_count": 2,
+          "eviction_recovery": true,
+          "evictions": 2,
+          "hit_tokens": 336,
+          "internal_waste_ratio": 0.11065573770491803,
+          "logical_tokens": 1302,
+          "operation_us": 1971.669,
+          "peak_active_blocks": 8,
+          "requests": 60
+        },
+        {
+          "cow_copies": 1,
+          "eviction_count": 2,
+          "eviction_recovery": true,
+          "evictions": 2,
+          "hit_tokens": 384,
+          "internal_waste_ratio": 0.09816753926701571,
+          "logical_tokens": 1378,
+          "operation_us": 2437.338,
+          "peak_active_blocks": 8,
+          "requests": 60
+        },
+        {
+          "cow_copies": 1,
+          "eviction_count": 2,
+          "eviction_recovery": true,
+          "evictions": 2,
+          "hit_tokens": 304,
+          "internal_waste_ratio": 0.08430232558139535,
+          "logical_tokens": 1575,
+          "operation_us": 2305.53,
+          "peak_active_blocks": 8,
+          "requests": 60
+        },
+        {
+          "cow_copies": 1,
+          "eviction_count": 2,
+          "eviction_recovery": true,
+          "evictions": 2,
+          "hit_tokens": 320,
+          "internal_waste_ratio": 0.10529556650246305,
+          "logical_tokens": 1453,
+          "operation_us": 2153.562,
+          "peak_active_blocks": 8,
+          "requests": 60
+        },
+        {
+          "cow_copies": 1,
+          "eviction_count": 2,
+          "eviction_recovery": true,
+          "evictions": 2,
+          "hit_tokens": 320,
+          "internal_waste_ratio": 0.08744635193133048,
+          "logical_tokens": 1701,
+          "operation_us": 2437.397,
+          "peak_active_blocks": 8,
+          "requests": 60
+        },
+        {
+          "cow_copies": 1,
+          "eviction_count": 2,
+          "eviction_recovery": true,
+          "evictions": 2,
+          "hit_tokens": 368,
+          "internal_waste_ratio": 0.11602564102564103,
+          "logical_tokens": 1379,
+          "operation_us": 2104.007,
+          "peak_active_blocks": 8,
+          "requests": 60
+        }
+      ],
+      "summary": {
+        "cow_copies": {
+          "max": 1.0,
+          "mean": 1.0,
+          "min": 1.0,
+          "n": 25,
+          "p50": 1.0,
+          "p95": 1.0,
+          "p99": 1.0
+        },
+        "eviction_count": {
+          "max": 2.0,
+          "mean": 2.0,
+          "min": 2.0,
+          "n": 25,
+          "p50": 2.0,
+          "p95": 2.0,
+          "p99": 2.0
+        },
+        "evictions": {
+          "max": 2.0,
+          "mean": 2.0,
+          "min": 2.0,
+          "n": 25,
+          "p50": 2.0,
+          "p95": 2.0,
+          "p99": 2.0
+        },
+        "hit_tokens": {
+          "max": 480.0,
+          "mean": 345.6,
+          "min": 240.0,
+          "n": 25,
+          "p50": 336.0,
+          "p95": 448.0,
+          "p99": 472.32000000000005
+        },
+        "internal_waste_ratio": {
+          "max": 0.15588235294117647,
+          "mean": 0.10051460607235488,
+          "min": 0.06683673469387755,
+          "n": 25,
+          "p50": 0.09816753926701571,
+          "p95": 0.12664293180036584,
+          "p99": 0.14934268125855
+        },
+        "operation_us": {
+          "max": 3524.899,
+          "mean": 2367.6978,
+          "min": 1822.414,
+          "n": 25,
+          "p50": 2305.53,
+          "p95": 2955.1388,
+          "p99": 3405.9422800000007
+        },
+        "peak_active_blocks": {
+          "max": 8.0,
+          "mean": 8.0,
+          "min": 8.0,
+          "n": 25,
+          "p50": 8.0,
+          "p95": 8.0,
+          "p99": 8.0
+        }
+      },
+      "warmup_repeats": 5
+    }
+  ],
+  "git_commit": "87959b2bbad41fbcc683cf35e0a8e50a50369c3d",
+  "level": "L0",
+  "measurement": "CPU Python state transitions; operation_us is not GPU latency",
+  "parameters": {
+    "block_sizes": [
+      8
+    ],
+    "capacity": 64,
+    "prefix_rates": [
+      0.5
+    ],
+    "repeats": 30,
+    "request_lengths": [
+      3,
+      7,
+      15,
+      16,
+      17,
+      31,
+      32,
+      33,
+      63
+    ],
+    "requests": 60,
+    "seed": 7,
+    "warmup": 5
+  },
+  "python_version": "3.12.14"
+}
