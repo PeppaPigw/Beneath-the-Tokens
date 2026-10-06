@@ -56,6 +56,12 @@
   outline-offset: 3px;
 }
 
+/* The reading toggle owns sidebar visibility. Keep the stock collapse control
+ * from leaving its private hiddenSidebar state out of sync with our wrapper. */
+.sidebarPanel :global(button[class*='collapseSidebarButton']) {
+  display: none !important;
+}
+
 .content {
   display: flex;
   flex: 1 0 auto;
