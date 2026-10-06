@@ -16,6 +16,8 @@
 .sidebarPanel {
   flex: 0 0 auto;
   min-width: 0;
+  overflow: hidden;
+  transition: width var(--ifm-transition-fast) ease, transform var(--ifm-transition-fast) ease;
 }
 
 .controls {
@@ -47,9 +49,114 @@
   outline-offset: 2px;
 }
 
+.sidebarPanel :global(a:focus-visible),
+.content :global(a:focus-visible),
+.content :global(button:focus-visible) {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 3px;
+}
+
 .content {
   display: flex;
   flex: 1 0 auto;
   flex-direction: column;
   min-width: 0;
+}
+
+.mainPanel {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* This wrapper owns the sidebar allocation. The stock main component must not
+ * subtract the same sidebar width a second time, in either expanded state. */
+.mainPanel > * {
+  max-width: 100% !important;
+}
+
+.mobileSidebar {
+  display: none;
+}
+
+/* The stock Docusaurus sidebar uses a fixed child width. Constrain our real
+ * wrapper as well so collapsing it gives the document the reclaimed space. */
+@media (min-width: 997px) {
+  .sidebarPanel {
+    width: var(--doc-sidebar-width, 300px);
+  }
+
+  .docsWrapper[data-btt-sidebar-collapsed='true'] .sidebarPanel {
+    width: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+}
+
+/* Absent data attributes intentionally remain readable without JavaScript. */
+@media (max-width: 996px) {
+  .mobileSidebar {
+    display: block;
+    padding: 1rem;
+  }
+
+  /* The SSR sidebar stays in document flow without script. */
+  .docsWrapper:not([data-btt-layout-ready='true']) .sidebarPanel {
+    display: none;
+  }
+
+  .content :global(#btt-doc-toc) {
+    display: none;
+  }
+
+  .docsWrapper[data-btt-layout-ready='true'] .sidebarPanel {
+    background: var(--ifm-background-surface-color);
+    bottom: 0;
+    box-shadow: var(--ifm-global-shadow-md);
+    left: 0;
+    max-width: 85vw;
+    overflow-y: auto;
+    position: fixed;
+    top: var(--ifm-navbar-height);
+    transform: translateX(0);
+    width: min(var(--doc-sidebar-width, 300px), 85vw);
+    z-index: var(--ifm-z-index-fixed);
+  }
+
+  .docsWrapper[data-btt-layout-ready='true'][data-btt-sidebar-collapsed='true'] .sidebarPanel {
+    pointer-events: none;
+    transform: translateX(-105%);
+    visibility: hidden;
+  }
+
+  .docsWrapper[data-btt-layout-ready='true'] .content :global(#btt-doc-toc-mobile) {
+    background: var(--ifm-background-surface-color);
+    bottom: 0;
+    box-shadow: var(--ifm-global-shadow-md);
+    max-width: 85vw;
+    overflow-y: auto;
+    padding: 1rem;
+    position: fixed;
+    right: 0;
+    top: var(--ifm-navbar-height);
+    transform: translateX(0);
+    transition: transform var(--ifm-transition-fast) ease;
+    width: min(20rem, 85vw);
+    z-index: var(--ifm-z-index-fixed);
+  }
+
+  .docsWrapper[data-btt-layout-ready='true'][data-btt-toc-collapsed='true'] .content :global(#btt-doc-toc-mobile) {
+    pointer-events: none;
+    transform: translateX(105%);
+    visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebarPanel,
+  .content :global(#btt-doc-toc),
+  .content :global(#btt-doc-toc-mobile) {
+    scroll-behavior: auto;
+    transition-duration: 0ms;
+  }
 }
