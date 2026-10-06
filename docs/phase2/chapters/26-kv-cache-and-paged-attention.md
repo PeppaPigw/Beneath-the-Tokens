@@ -22,8 +22,8 @@ source_commits:
   - vllm@v0.6.3
   - vllm@v0.8.5
   - vllm@v0.10.1
-  - btt-phase2@f121f2112fee15e8e634ee9e7c85ac5246517c0f
-  - btt-phase2@3b013cb2063bf921b082f85483f246cd788a7bb6
+  - btt-phase2@330cbfbf7f3e8d5873ddb67969e6e67e4724d0a0
+  - btt-phase2@feddc3aabacc9218a8c666eb0fa5b7001303ce21
   - btt-phase2@24320761096cd8ba7deb02566e4afe2ca6c21814
 lab_paths:
   - labs/phase2/kv_block_pool.py
