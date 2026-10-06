@@ -252,8 +252,21 @@ def _is_excluded(relative: str, rules: Mapping[str, Any]) -> bool:
 
 
 def _chapter(relative: str, rules: Mapping[str, Any]) -> bool:
-    pattern = str(rules.get("chapter_glob", "chapters/*.md"))
-    return fnmatch.fnmatch(relative, pattern) and relative.endswith(".md") and not _is_excluded(relative, rules)
+    # Preserve the historical single-pattern override used by callers and
+    # fixtures; the default value delegates to the multi-pattern list.
+    single = rules.get("chapter_glob")
+    patterns = None if single in (None, "chapters/*.md") else [single]
+    if patterns is None:
+        patterns = rules.get("chapter_globs")
+    if patterns is None:
+        patterns = [rules.get("chapter_glob", "chapters/*.md")]
+    elif isinstance(patterns, str):
+        patterns = [patterns]
+    return (
+        any(fnmatch.fnmatch(relative, str(pattern)) for pattern in patterns)
+        and relative.endswith(".md")
+        and not _is_excluded(relative, rules)
+    )
 
 
 def _iter_documents(root: Path, rules: Mapping[str, Any]) -> list[Document]:
