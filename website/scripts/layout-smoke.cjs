@@ -14,6 +14,8 @@ const files = [
   path.join(sourceRoot, 'theme', 'readingLayout.ts'),
   path.join(sourceRoot, 'theme', 'DocRoot', 'Layout', 'index.tsx'),
   path.join(sourceRoot, 'theme', 'DocRoot', 'Layout', 'layout.test.tsx'),
+  path.join(sourceRoot, 'theme', 'DocItem', 'Content', 'index.tsx'),
+  path.join(sourceRoot, 'theme', 'DocItem', 'Content', 'metadata.test.tsx'),
 ];
 const compilerOptions = {
   jsx: ts.JsxEmit.ReactJSX,
@@ -40,7 +42,10 @@ require.extensions['.css'] = (module) => {
 };
 const stubDir = fs.mkdtempSync(path.join(os.tmpdir(), 'btt-layout-stubs-'));
 const stubs = {
-  '@docusaurus/plugin-content-docs/client': 'exports.useDocsSidebar = () => null; exports.useDoc = () => ({toc: [], frontMatter: {}});',
+  '@docusaurus/plugin-content-docs/client': 'exports.useDocsSidebar = () => null; exports.useDoc = () => ({toc: [], frontMatter: {}, metadata: {title: ""}, contentTitle: ""});',
+  '@docusaurus/theme-common': 'exports.ThemeClassNames = {docs: {docMarkdown: "theme-doc-markdown"}};',
+  '@theme/Heading': 'const React = require("react"); module.exports = ({as = "h1", children}) => React.createElement(as, null, children);',
+  '@theme/MDXContent': 'module.exports = ({children}) => children;',
   '@theme/BackToTopButton': 'module.exports = () => null;',
   '@theme/DocRoot/Layout/Sidebar': 'module.exports = () => null;',
   '@theme/DocRoot/Layout/Main': 'module.exports = ({children}) => children;',
@@ -60,4 +65,6 @@ Module._resolveFilename = function (request, parent, ...rest) {
 };
 const smoke = require(path.join(outputRoot, 'theme', 'DocRoot', 'Layout', 'layout.test.js'));
 smoke.runLayoutSmokeTest();
-console.log('layout smoke test passed');
+const metadataSmoke = require(path.join(outputRoot, 'theme', 'DocItem', 'Content', 'metadata.test.js'));
+metadataSmoke.runMetadataSmokeTest();
+console.log('layout and metadata smoke tests passed');
