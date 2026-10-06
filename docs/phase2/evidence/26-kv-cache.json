@@ -1,0 +1,213 @@
+{
+  "manifest_version": 1,
+  "chapter_id": "phase2-26-kv-cache-and-paged-attention",
+  "entries": [
+    {
+      "claim": "自回归 decode 需要每层历史 key 和 value；只保留最后一个 token 的投影会改变后续注意力结果",
+      "type": "definition",
+      "source_url": "https://arxiv.org/abs/1911.02150",
+      "version": "arXiv:1911.02150v1",
+      "experiment_id": null,
+      "limitation": "论文讨论增量解码的带宽成本，不规定所有模型的 cache layout 或服务调度",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "每层每 token 的理想 KV 字节数为 2 × KV_heads × head_dim × dtype_bytes，全模型再乘 attention layers",
+      "type": "derivation",
+      "source_url": "https://raw.githubusercontent.com/vllm-project/vllm/v0.6.3/vllm/worker/cache_engine.py",
+      "version": "vllm@v0.6.3",
+      "experiment_id": "exp-26-capacity-hand-001",
+      "limitation": "推导忽略 scale、对齐、元数据、混合层和运行时 workspace；源码实现还会按并行拓扑分块",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "GQA/MQA 的 KV cache 容量使用 KV heads 而不是 query heads",
+      "type": "fact",
+      "source_url": "https://arxiv.org/abs/2305.13245",
+      "version": "arXiv:2305.13245v3",
+      "experiment_id": null,
+      "limitation": "头数减少是模型结构与训练选择，不代表可以对任意 checkpoint 无损切换",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "MQA 通过跨 query heads 共享 K/V 来降低增量解码的内存带宽需求",
+      "type": "paper_result",
+      "source_url": "https://arxiv.org/abs/1911.02150",
+      "version": "arXiv:1911.02150v1",
+      "experiment_id": null,
+      "limitation": "论文的速度和质量结果依赖其模型与硬件，不能外推到本章 toy 或所有 GQA 配置",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "PagedAttention 将请求逻辑序列切成固定 token 数的 blocks，并允许物理 blocks 非连续存放",
+      "type": "paper_result",
+      "source_url": "https://arxiv.org/abs/2309.06180",
+      "version": "arXiv:2309.06180v1",
+      "experiment_id": null,
+      "limitation": "论文机制和评测针对特定 vLLM 原型、模型、GPU 和请求分布，未证明所有新版本都保持相同 API 或倍数",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "PagedAttention 论文报告 vLLM 在相同延迟水平下相对当时系统有 2–4× 吞吐提升",
+      "type": "paper_result",
+      "source_url": "https://arxiv.org/abs/2309.06180",
+      "version": "arXiv:2309.06180v1",
+      "experiment_id": null,
+      "limitation": "该数字是论文 workload 的系统结果，不是本书 CPU 实验或任何生产 SLO 保证",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "PagedAttention 论文报告 beam search 的 KV sharing 可节省约 37.6–55.2%，parallel sampling 可节省约 6.1–9.8% 的 KV cache memory",
+      "type": "paper_result",
+      "source_url": "https://arxiv.org/abs/2309.06180",
+      "version": "arXiv:2309.06180v1",
+      "experiment_id": null,
+      "limitation": "百分比依赖论文的 beam/parallel sampling workload、模型、GPU 和 block 配置，不能迁移为本 toy 或生产内存保证",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "按 block table 的逻辑 block→物理 block 映射 gather K/V，不改变逻辑 token 顺序；最后一个 block 只能读取有效 token",
+      "type": "definition",
+      "source_url": "https://github.com/vllm-project/vllm/tree/v0.6.3/vllm/core/block_manager_v1.py",
+      "version": "vllm@v0.6.3",
+      "experiment_id": null,
+      "limitation": "本条将源码接口抽象成教学伪代码，未证明具体 CUDA backend 的所有 stride、归约顺序和并发安全",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "vLLM v0.6.3 CacheEngine 用 block_size、KV heads、head_size、K/V 两份和 attention layers 计算 cache block size",
+      "type": "source_observation",
+      "source_url": "https://raw.githubusercontent.com/vllm-project/vllm/v0.6.3/vllm/worker/cache_engine.py",
+      "version": "vllm@v0.6.3",
+      "experiment_id": null,
+      "limitation": "源码路径固定到旧 tag；更早或更晚版本可能移动实现或引入不同 cache groups",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "vLLM v0.6.3 的 CacheEngine 同时维护 GPU/CPU cache，并通过 attention backend 处理 swap/copy",
+      "type": "source_observation",
+      "source_url": "https://raw.githubusercontent.com/vllm-project/vllm/v0.6.3/vllm/worker/cache_engine.py",
+      "version": "vllm@v0.6.3",
+      "experiment_id": null,
+      "limitation": "这只说明固定版本源码的分层接口，不能推出 CPU/GPU swap 的端到端延迟",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "vLLM v0.6.3 automatic prefix caching 以 prefix tokens + block tokens 的 hash 标识 KV block，并支持非连续物理分配",
+      "type": "source_observation",
+      "source_url": "https://docs.vllm.ai/en/v0.6.3/automatic_prefix_caching/details.html",
+      "version": "vLLM docs@v0.6.3",
+      "experiment_id": null,
+      "limitation": "文档描述核心机制，不覆盖不同 RoPE、租户 ACL、异步传输和后续版本的所有 metadata 字段",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "vLLM prefix cache 在没有 free blocks 时优先驱逐 refcount 为零的块，并在同条件下按 LRU 选择",
+      "type": "source_observation",
+      "source_url": "https://docs.vllm.ai/en/v0.6.3/automatic_prefix_caching/details.html",
+      "version": "vLLM docs@v0.6.3",
+      "experiment_id": null,
+      "limitation": "策略是固定文档版本的实现选择，不等于所有 serving 系统或未来 vLLM 的唯一 eviction policy",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "vLLM v0.10.1 KVCacheManager 要求命中的 computed blocks 为完整块，并为获得 logits 将最大命中长度限制为 prompt length 减一",
+      "type": "source_observation",
+      "source_url": "https://raw.githubusercontent.com/vllm-project/vllm/v0.10.1/vllm/v1/core/kv_cache_manager.py",
+      "version": "vllm@v0.10.1",
+      "experiment_id": null,
+      "limitation": "这是 V1 tag 的函数路径；不能把它倒推为 v0.6.3 的相同类名或行为",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "vLLM v0.10.1 的 BlockHash 同时保留哈希值、block token ids 和 extra keys，以降低哈希相同时的静默别名风险",
+      "type": "source_observation",
+      "source_url": "https://raw.githubusercontent.com/vllm-project/vllm/v0.10.1/vllm/v1/core/kv_cache_utils.py",
+      "version": "vllm@v0.10.1",
+      "experiment_id": null,
+      "limitation": "源码观察不等于密码学授权；ACL、模型版本和租户隔离仍需在调用方验证",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "FlashAttention 用 tiling 和在线归一化减少 HBM 与片上 SRAM 间的 IO，但它与跨请求 KV 生命周期管理是不同层次",
+      "type": "paper_result",
+      "source_url": "https://arxiv.org/abs/2205.14135",
+      "version": "arXiv:2205.14135v2",
+      "experiment_id": null,
+      "limitation": "论文的 IO/速度结果不直接证明 paged gather、prefix cache 或 block eviction 的收益",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "在本章 CPU toy 中，非连续 block table、部分最后块和有效长度截断的 paged_attention 与 dense_attention 输出在 1e-12 容差内一致",
+      "type": "experiment_measurement",
+      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/commit/87959b2bbad41fbcc683cf35e0a8e50a50369c3d",
+      "version": "btt-phase2@87959b2bbad41fbcc683cf35e0a8e50a50369c3d",
+      "experiment_id": "exp-26-paged-equivalence-001",
+      "limitation": "只测小型 Python 浮点参考实现，不覆盖 CUDA kernel、GQA head mapping、异步 stream 或真实模型数值误差",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "本章 KVBlockPool toy 实现逻辑→物理 block table、refcount、最长前缀 hash、COW、eviction 和容量失败不变量",
+      "type": "source_observation",
+      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/commit/87959b2bbad41fbcc683cf35e0a8e50a50369c3d",
+      "version": "btt-phase2@87959b2bbad41fbcc683cf35e0a8e50a50369c3d",
+      "experiment_id": null,
+      "limitation": "实现同步且单进程；没有真实 GPU allocator、异步完成、epoch/in-flight 或多 rank 一致性",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "固定 seed=7、Python 3.12、60 请求、30 repeats（丢弃 5 次 warmup）的 block_size=8、prefix_rate=0.5 toy run 保留 25 个原始样本并计算 operation_us、waste、hit、COW 和 eviction recovery 的 p50/p95/p99",
+      "type": "experiment_measurement",
+      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/blob/f340aa7bb9c6a71ce9f1ca8f7682fd25857ba3/reports/kv-block-toy-seed7.json",
+      "version": "btt-phase2@f340aa7bb9c6a71ce9f1ca8f7682fd25857ba3",
+      "experiment_id": "exp-26-kv-toy-seed7-008-050",
+      "limitation": "operation_us 只代表 Python 状态转换，不是 GPU TTFT/TPOT；25 个样本的 p99 不稳定且不能形成服务置信区间",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "toy 矩阵在 block_size=4/8/16、prefix_rate=0/0.5/1 下显示块越大内部槽位浪费方向上升，而 prefix_rate 提高时 hit_tokens 上升",
+      "type": "experiment_measurement",
+      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/blob/f340aa7bb9c6a71ce9f1ca8f7682fd25857ba3/reports/kv-block-toy-matrix.json",
+      "version": "btt-phase2@f340aa7bb9c6a71ce9f1ca8f7682fd25857ba3",
+      "experiment_id": "exp-26-kv-toy-matrix-001",
+      "limitation": "长度 trace 只有 [3,7,15,16,17,31,32,33,63]，结果是教学状态模型，不能外推真实请求分布或 kernel 性能",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "toy 的双重释放、重复 prefix 插入、部分块 COW、容量枯竭和 eviction 测试保持 refcount/free pool/request table 不变量",
+      "type": "experiment_measurement",
+      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/commit/87959b2bbad41fbcc683cf35e0a8e50a50369c3d",
+      "version": "btt-phase2@87959b2bbad41fbcc683cf35e0a8e50a50369c3d",
+      "experiment_id": "exp-26-kv-invariants-001",
+      "limitation": "测试通过只证明同步 Python 状态机的断言，不证明异步 GPU、网络传输、租户隔离或数值质量",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "完整块 prefix cache 的理想节省为 (N-1)×floor(P/B) 个公共块，尾部部分块和 COW 会降低实际节省",
+      "type": "derivation",
+      "source_url": "https://docs.vllm.ai/en/v0.6.3/automatic_prefix_caching/details.html",
+      "version": "vLLM docs@v0.6.3",
+      "experiment_id": "exp-26-prefix-saving-hand-001",
+      "limitation": "公式忽略 hash、调度、最后 logits、decode 读取和权限分区成本，只是容量上限",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "跨模型、tokenizer、RoPE、LoRA、dtype/layout 或租户域的 KV 复用必须被视为 metadata mismatch 并重算或拒绝",
+      "type": "design_judgment",
+      "source_url": "https://docs.vllm.ai/en/v0.6.3/automatic_prefix_caching/details.html",
+      "version": "vLLM docs@v0.6.3",
+      "experiment_id": null,
+      "limitation": "具体 key 字段和 ACL 实现取决于 serving 系统，本文给出安全边界而非统一标准",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "CPU toy 没有实现 epoch/in-flight delayed completion；迟到写入和跨 rank 回收只能作为后续 connector lab 的协议练习",
+      "type": "unverified_hypothesis",
+      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/commit/87959b2bbad41fbcc683cf35e0a8e50a50369c3d",
+      "version": "btt-phase2@87959b2bbad41fbcc683cf35e0a8e50a50369c3d",
+      "experiment_id": null,
+      "limitation": "需要在异步 DMA/远端传输模拟中加入 epoch、lease 和完成事件后才能测试该假设",
+      "review_date": "2026-10-06"
+    }
+  ]
+}
