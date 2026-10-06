@@ -784,20 +784,27 @@ class KVBlockPool:
 
     def snapshot_metrics(self) -> dict[str, Any]:
         """Return lab metrics for one synchronous state-machine snapshot."""
-        request_blocks = [
-            block_id
-            for request in self._requests.values()
-            for block_id in request.logical_to_physical
-        ]
+        # Metrics describe the active request tables only.  A physical block
+        # shared by two requests is counted once; cached blocks pinned after
+        # release are visible through ``stats()`` (allocated/free/prefix_entries)
+        # but intentionally excluded from this active-working-set snapshot.
+        used_slots_by_block: dict[int, int] = {}
         logical_tokens = sum(request.token_count for request in self._requests.values())
-        physical_slots = len(request_blocks) * self.block_size
-        active_blocks = len(set(request_blocks))
-        waste = (physical_slots - logical_tokens) / physical_slots if physical_slots else 0.0
+        for request in self._requests.values():
+            for logical_index, block_id in enumerate(request.logical_to_physical):
+                remaining = request.token_count - logical_index * self.block_size
+                used_slots = max(0, min(self.block_size, remaining))
+                used_slots_by_block[block_id] = max(used_slots_by_block.get(block_id, 0), used_slots)
+        active_blocks = len(used_slots_by_block)
+        physical_slots = active_blocks * self.block_size
+        active_used_slots = sum(used_slots_by_block.values())
+        waste = (physical_slots - active_used_slots) / physical_slots if physical_slots else 0.0
         return {
             "active_requests": len(self._requests),
             "active_blocks": active_blocks,
             "free_blocks": len(self._free),
             "logical_tokens": logical_tokens,
+            "active_used_slots": active_used_slots,
             "physical_slots": physical_slots,
             "internal_waste_ratio": waste,
             "hit_tokens": self._hit_tokens,
