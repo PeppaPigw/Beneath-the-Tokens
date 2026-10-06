@@ -1,0 +1,191 @@
+{
+  "per_seed": [
+    {
+      "distinct_2": 0.020089285714285716,
+      "entropy_bits": 1.535901266740545,
+      "probabilities": [
+        0.6156931153572915,
+        0.2265008392107448,
+        0.10177338745424531,
+        0.03744033690279245,
+        0.018592321074925908
+      ],
+      "seed": 0,
+      "speculative_round": {
+        "acceptance_probabilities": [
+          1.0,
+          1.0,
+          1.0,
+          0.8239305490237541
+        ],
+        "acceptance_rate": 1.0,
+        "accepted": 4,
+        "draft_length": 4,
+        "output_tokens": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "rejected": false,
+        "seed": 0
+      },
+      "top_p_support": 3
+    },
+    {
+      "distinct_2": 0.020089285714285716,
+      "entropy_bits": 1.535901266740545,
+      "probabilities": [
+        0.6156931153572915,
+        0.2265008392107448,
+        0.10177338745424531,
+        0.03744033690279245,
+        0.018592321074925908
+      ],
+      "seed": 1,
+      "speculative_round": {
+        "acceptance_probabilities": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "acceptance_rate": 1.0,
+        "accepted": 4,
+        "draft_length": 4,
+        "output_tokens": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "rejected": false,
+        "seed": 1
+      },
+      "top_p_support": 3
+    },
+    {
+      "distinct_2": 0.020089285714285716,
+      "entropy_bits": 1.535901266740545,
+      "probabilities": [
+        0.6156931153572915,
+        0.2265008392107448,
+        0.10177338745424531,
+        0.03744033690279245,
+        0.018592321074925908
+      ],
+      "seed": 2,
+      "speculative_round": {
+        "acceptance_probabilities": [
+          1.0,
+          1.0,
+          1.0,
+          0.7455231906196044
+        ],
+        "acceptance_rate": 1.0,
+        "accepted": 4,
+        "draft_length": 4,
+        "output_tokens": [
+          0,
+          0,
+          0,
+          4
+        ],
+        "rejected": false,
+        "seed": 2
+      },
+      "top_p_support": 3
+    },
+    {
+      "distinct_2": 0.020089285714285716,
+      "entropy_bits": 1.535901266740545,
+      "probabilities": [
+        0.6156931153572915,
+        0.2265008392107448,
+        0.10177338745424531,
+        0.03744033690279245,
+        0.018592321074925908
+      ],
+      "seed": 3,
+      "speculative_round": {
+        "acceptance_probabilities": [
+          1.0,
+          1.0,
+          0.8239305490237541,
+          1.0
+        ],
+        "acceptance_rate": 1.0,
+        "accepted": 4,
+        "draft_length": 4,
+        "output_tokens": [
+          0,
+          0,
+          1,
+          0
+        ],
+        "rejected": false,
+        "seed": 3
+      },
+      "top_p_support": 3
+    },
+    {
+      "distinct_2": 0.020089285714285716,
+      "entropy_bits": 1.535901266740545,
+      "probabilities": [
+        0.6156931153572915,
+        0.2265008392107448,
+        0.10177338745424531,
+        0.03744033690279245,
+        0.018592321074925908
+      ],
+      "seed": 4,
+      "speculative_round": {
+        "acceptance_probabilities": [
+          1.0,
+          0.8239305490237541,
+          0.8239305490237541,
+          1.0
+        ],
+        "acceptance_rate": 1.0,
+        "accepted": 4,
+        "draft_length": 4,
+        "output_tokens": [
+          0,
+          1,
+          1,
+          2
+        ],
+        "rejected": false,
+        "seed": 4
+      },
+      "top_p_support": 3
+    }
+  ],
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "summary": {
+    "acceptance_rate": {
+      "max": 1.0,
+      "min": 1.0,
+      "p50": 1.0,
+      "p95": 1.0
+    },
+    "accepted_tokens": {
+      "max": 4.0,
+      "min": 4.0,
+      "p50": 4.0,
+      "p95": 4.0
+    },
+    "distinct_2": {
+      "max": 0.020089285714285716,
+      "min": 0.020089285714285716,
+      "p50": 0.020089285714285716,
+      "p95": 0.020089285714285716
+    }
+  }
+}
