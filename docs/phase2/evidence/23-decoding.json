@@ -1,0 +1,330 @@
+{
+  "manifest_version": 1,
+  "chapter_id": "phase2-23-decoding-and-sampling",
+  "entries": [
+    {
+      "claim": "temperature 将 logits 除以 T 后再做 softmax，T 小时分布通常更尖，T 大时通常更平",
+      "type": "definition",
+      "source_url": "https://arxiv.org/abs/1904.09751",
+      "version": "arXiv:1904.09751v2",
+      "experiment_id": null,
+      "limitation": "温度只描述局部分布变换，不能单独证明文本质量或事实性",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "top-p 选择概率降序的最小前缀并重新归一化",
+      "type": "definition",
+      "source_url": "https://arxiv.org/abs/1904.09751",
+      "version": "arXiv:1904.09751v2",
+      "experiment_id": null,
+      "limitation": "论文实验集中在特定模型和故事/摘要任务，不能推出固定 p 在所有模型上最优",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "局部典型采样按 surprisal 与局部熵的距离选择支持集",
+      "type": "definition",
+      "source_url": "https://arxiv.org/abs/2202.00666",
+      "version": "arXiv:2202.00666v6",
+      "experiment_id": null,
+      "limitation": "阈值、温度和排序顺序会改变结果，论文不证明对任意领域都减少重复",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "Locally Typical Sampling 在论文所用摘要和故事实验中相对 top-k/top-p 展示了竞争性质量并减少退化重复",
+      "type": "paper_result",
+      "source_url": "https://aclanthology.org/2023.tacl-1.7/",
+      "version": "TACL 2023 11(1):102-121",
+      "experiment_id": null,
+      "limitation": "结果依赖论文模型、数据和人工/自动评估设置，不能当作线上质量保证",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "Mirostat 用观察到的 surprisal 反馈控制目标困惑度，并依赖尾部分布估计将状态映射为候选集",
+      "type": "definition",
+      "source_url": "https://arxiv.org/abs/2007.14966",
+      "version": "arXiv:2007.14966v2",
+      "experiment_id": null,
+      "limitation": "本章 lab 只实现标量控制更新，没有声称复现论文的 Zipf 斜率估计器",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "Mirostat 的 PPL 目标不是语义质量或事实性的充分代理",
+      "type": "inference",
+      "source_url": "https://openreview.net/pdf?id=W1G1JZEIy5_",
+      "version": "ICLR 2021 OpenReview revision",
+      "experiment_id": null,
+      "limitation": "这是由控制目标与任务质量定义的差异得到的推断，需要在具体任务上独立评测",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "对比搜索在 top-k 候选中用概率与隐藏状态相似度惩罚重排，属于改变目标的确定性策略",
+      "type": "definition",
+      "source_url": "https://arxiv.org/abs/2210.14140",
+      "version": "arXiv:2210.14140v3",
+      "experiment_id": null,
+      "limitation": "需要隐藏状态和历史相似度，长上下文成本与长度偏差没有由本章 toy lab 测量",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "Grammar-constrained decoding 将合法前缀对应的 token 支持集与 logits 相交并重新归一化",
+      "type": "definition",
+      "source_url": "https://arxiv.org/abs/2305.13971",
+      "version": "arXiv:2305.13971v6",
+      "experiment_id": null,
+      "limitation": "字符 grammar 必须适配 BPE/Unicode token 边界，空支持集和状态爆炸仍需工程处理",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "PICARD 等解析约束工作展示了结构约束在不微调或少微调条件下用于结构化 NLP 的路径",
+      "type": "paper_result",
+      "source_url": "https://aclanthology.org/2021.emnlp-main.779/",
+      "version": "EMNLP 2021",
+      "experiment_id": null,
+      "limitation": "结构通过率和下游任务分数依赖解析器、schema、tokenizer 与数据，不能推断零延迟开销",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "top-k、top-p、typical 和 min-p 的支持集变化会使新分布相对原分布的 KL 散度非零",
+      "type": "derivation",
+      "source_url": "https://arxiv.org/abs/1904.09751",
+      "version": "arXiv:1904.09751v2",
+      "experiment_id": "exp-23-support-kl-001",
+      "limitation": "示例只用五项离散分布，不能代表真实词表的语义或质量变化",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "拒绝采样使用 alpha=min(1,p(x)/q(x))，拒绝后从 [p-q]+ 归一化的残差抽样可保持 p 的边缘分布",
+      "type": "derivation",
+      "source_url": "https://proceedings.mlr.press/v202/leviathan23a.html",
+      "version": "PMLR 202, ICML 2023",
+      "experiment_id": null,
+      "limitation": "证明作用于逐位置条件分布和精确残差；浮点误差、不同 logits 变换或错误停止规则会破坏条件",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "Speculative decoding 的速度收益取决于 draft/target 成本、接受率、窗口长度、batch 和 KV/内存开销",
+      "type": "inference",
+      "source_url": "https://arxiv.org/abs/2211.17192",
+      "version": "arXiv:2211.17192v2",
+      "experiment_id": "exp-23-speculative-toy-001",
+      "limitation": "本章 CPU 模拟没有测目标模型前向、GPU kernel 或真实 KV 传输，不能报告生产 speedup",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "Medusa 使用多个预测头构造候选树，再由主模型验证，严格校正与未经校正的 draft-match 是不同目标",
+      "type": "fact",
+      "source_url": "https://arxiv.org/abs/2401.10774",
+      "version": "arXiv:2401.10774v3",
+      "experiment_id": null,
+      "limitation": "论文速度与质量数字依赖训练好的头、模型、硬件和验证实现，本章不复现这些数字",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "EAGLE 使用目标模型特征和轻量 draft 结构提出候选，再使用原 LM head 进行并行验证",
+      "type": "fact",
+      "source_url": "https://arxiv.org/abs/2401.15077",
+      "version": "arXiv:2401.15077v3",
+      "experiment_id": null,
+      "limitation": "需要训练或提供对应的 draft head，不能因为共享 backbone 就忽略训练和显存成本",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "SpecInfer 使用 token tree 组织草稿并由目标模型并行验证，主张在校正下保持输出质量",
+      "type": "paper_result",
+      "source_url": "https://arxiv.org/abs/2305.09781",
+      "version": "arXiv:2305.09781v4",
+      "experiment_id": null,
+      "limitation": "树宽、分支重合、显存和 serving batch 决定收益，论文系统结果不能直接移植到 CPU toy",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "Draft & Verify 用同一模型的早退或浅层路径作 draft，再由完整模型验证，属于自推测路线",
+      "type": "fact",
+      "source_url": "https://arxiv.org/abs/2309.08168",
+      "version": "arXiv:2309.08168v2",
+      "experiment_id": null,
+      "limitation": "早退层质量、校正实现和模型架构限制了可迁移性，不能假设所有模型都有有用的 early exit",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "Lookahead decoding 用 Jacobi/lookahead 序列并行提出和验证 n-gram，并将算法描述为 exact",
+      "type": "paper_result",
+      "source_url": "https://arxiv.org/abs/2402.02057",
+      "version": "arXiv:2402.02057v1",
+      "experiment_id": null,
+      "limitation": "exact 依赖实现遵守其随机、停止和数值假设；额外迭代与缓存开销可能抵消速度收益",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "min-p 使用最大 token 概率的相对阈值过滤候选，论文报告高温设置下的质量与多样性实验",
+      "type": "paper_result",
+      "source_url": "https://arxiv.org/abs/2407.01082",
+      "version": "arXiv:2407.01082v8",
+      "experiment_id": null,
+      "limitation": "高温实验不等于所有聊天、代码或结构化任务都适用，阈值需在固定模型与 prompt 集上重测",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "Holtzman 的 nucleus 实验在 GPT-2 WebText 上做 5000 个 passages、最多 200 token 的 open-ended continuation，并比较人类/机器分布及多样性、流畅性和连贯性",
+      "type": "paper_result",
+      "source_url": "https://arxiv.org/abs/1904.09751",
+      "version": "arXiv:1904.09751v2",
+      "experiment_id": null,
+      "limitation": "摘要没有给出可迁移的硬件型号和完整重复统计，不能推出服务 SLO",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "Locally Typical Sampling 在摘要和故事工作负载上比较自动/人工质量与退化重复",
+      "type": "paper_result",
+      "source_url": "https://aclanthology.org/2023.tacl-1.7/",
+      "version": "TACL 2023 11(1):102-121",
+      "experiment_id": null,
+      "limitation": "模型、阈值和评估者设置限制迁移，摘要未报告硬件型号",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "Mirostat 论文观察不同生成长度下 PPL/交叉熵、重复以及人工流畅性和连贯性",
+      "type": "paper_result",
+      "source_url": "https://arxiv.org/abs/2007.14966",
+      "version": "arXiv:2007.14966v2",
+      "experiment_id": null,
+      "limitation": "摘要未给出硬件型号；控制目标 PPL 不能替代事实性评测",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "Contrastive Search 论文覆盖 16 种语言的四类生成任务并使用人工评价",
+      "type": "paper_result",
+      "source_url": "https://arxiv.org/abs/2210.14140",
+      "version": "arXiv:2210.14140v3",
+      "experiment_id": null,
+      "limitation": "摘要未报告完整吞吐和硬件细节，表示训练与解码重排不能混为一谈",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "Geng 的 grammar-constrained 实验覆盖信息抽取、实体消歧和成分句法",
+      "type": "paper_result",
+      "source_url": "https://arxiv.org/abs/2305.13971",
+      "version": "arXiv:2305.13971v6",
+      "experiment_id": null,
+      "limitation": "任务分数依赖输入相关 grammar 和 tokenizer，不能推断零开销",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "PICARD 在 Spider 与 CoSQL text-to-SQL 任务中通过增量解析拒绝非法 token",
+      "type": "paper_result",
+      "source_url": "https://aclanthology.org/2021.emnlp-main.779/",
+      "version": "EMNLP 2021",
+      "experiment_id": null,
+      "limitation": "摘要未报告硬件型号，结构合法性和执行准确率需要按论文正文口径复核",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "Speculative decoding 论文以 T5 草稿/目标模型比较端到端加速与输出分布一致性",
+      "type": "paper_result",
+      "source_url": "https://proceedings.mlr.press/v202/leviathan23a.html",
+      "version": "PMLR 202, ICML 2023",
+      "experiment_id": null,
+      "limitation": "硬件、batch 和重复统计在正文；论文倍数不能迁移为生产保证",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "Medusa 比较不同模型大小与训练流程的 speedup 和生成质量",
+      "type": "paper_result",
+      "source_url": "https://arxiv.org/abs/2401.10774",
+      "version": "arXiv:2401.10774v3",
+      "experiment_id": null,
+      "limitation": "摘要未列硬件型号；Medusa-2 联合训练后的模型不是旧 target 的 exact 分布",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "EAGLE 评估 Vicuna、Llama2-Chat、Mixtral 以及对话、代码、数学和指令任务",
+      "type": "paper_result",
+      "source_url": "https://arxiv.org/abs/2401.15077",
+      "version": "arXiv:2401.15077v3",
+      "experiment_id": null,
+      "limitation": "摘要给出部分 speedup/throughput，但硬件细节需查正文，且需要训练 draft head",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "Lookahead 摘要报告 MT-Bench 约 1.8 倍和代码补全多 GPU 强扩展约 4 倍",
+      "type": "paper_result",
+      "source_url": "https://arxiv.org/abs/2402.02057",
+      "version": "arXiv:2402.02057v1",
+      "experiment_id": null,
+      "limitation": "硬件、重复次数和短请求行为在正文；额外迭代/缓存开销可能抵消收益",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "Min-p 论文在 GPQA、GSM8K 和 AlpacaEval Creative Writing 上比较 Mistral/Llama 3 的 1B–123B 模型",
+      "type": "paper_result",
+      "source_url": "https://arxiv.org/abs/2407.01082",
+      "version": "arXiv:2407.01082v8",
+      "experiment_id": null,
+      "limitation": "高温质量/多样性和人评结果不等于所有领域默认值，GPU 细节需查正文",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "lab 的 logits-to-probabilities 使用减最大值的稳定 softmax，并固定 tie-break 与随机种子",
+      "type": "source_observation",
+      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/blob/5aaeeb530385b740107f0b88f113227709ca1443/labs/phase2/decoding_sampler.py",
+      "version": "btt-phase2@5aaeeb530385b740107f0b88f113227709ca1443",
+      "experiment_id": "exp-23-lab-determinism-001",
+      "limitation": "标准库 CPU 实现不代表 GPU reduction 的舍入顺序或跨设备位级一致性",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "在五 token toy 分布和 seed=7 下，原始熵约 1.5359 bits，top-p=0.9 的支持集大小为 3",
+      "type": "experiment_measurement",
+      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/blob/5aaeeb530385b740107f0b88f113227709ca1443/reports/decoding-toy-seed7.json",
+      "version": "btt-phase2@5aaeeb530385b740107f0b88f113227709ca1443",
+      "experiment_id": "exp-23-toy-seed7-001",
+      "limitation": "样本词表和序列很短，结果只验证计算路径，不能代表自然语言多样性或模型质量",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "lab 的 grammar_filter 对空允许集或越界 token 显式报错，而不是静默放行所有 token",
+      "type": "source_observation",
+      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/blob/5aaeeb530385b740107f0b88f113227709ca1443/labs/phase2/decoding_sampler.py",
+      "version": "btt-phase2@5aaeeb530385b740107f0b88f113227709ca1443",
+      "experiment_id": "exp-23-grammar-errors-001",
+      "limitation": "这是最小 logits mask，不包含完整 JSON/CFG parser、Unicode 规范化或生产缓存",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "lab 的单元测试覆盖稳定 softmax、温度熵方向、四类截断、Mirostat 更新、grammar mask 和 speculative 残差",
+      "type": "experiment_measurement",
+      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/blob/5aaeeb530385b740107f0b88f113227709ca1443/labs/phase2/test_decoding_sampler.py",
+      "version": "btt-phase2@5aaeeb530385b740107f0b88f113227709ca1443",
+      "experiment_id": "exp-23-unittest-001",
+      "limitation": "单元测试检查逻辑不变量，不检查真实模型质量、GPU 性能、长序列 drift 或服务尾延迟",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "transformers v4.44.2 的 generation 实现是阅读采样器组合顺序的固定版本入口",
+      "type": "source_observation",
+      "source_url": "https://github.com/huggingface/transformers/tree/v4.44.2/src/transformers/generation",
+      "version": "v4.44.2",
+      "experiment_id": null,
+      "limitation": "框架内部路径会随版本变化，入口只用于源码导读，不等于 vLLM、TensorRT-LLM 或其他 runtime 的调用链",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "采样顺序、tokenizer、停止 token 和随机数流必须作为实验配置记录，否则跨实现比较不具可比性",
+      "type": "design_judgment",
+      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/blob/5aaeeb530385b740107f0b88f113227709ca1443/docs/phase2/chapters/23-decoding-and-sampling.md",
+      "version": "btt-phase2@5aaeeb530385b740107f0b88f113227709ca1443",
+      "experiment_id": "exp-23-repro-config-001",
+      "limitation": "这是可复现性设计判断，不是对某个线上框架行为的测量",
+      "review_date": "2026-10-06"
+    },
+    {
+      "claim": "seed=0..4 的 toy runner 输出了 distinct-2、接受率和 accepted token 数的 min/p50/p95/max 汇总，且不把这些 percentiles 当成延迟分位数",
+      "type": "experiment_measurement",
+      "source_url": "https://github.com/PeppaPigw/Beneath-the-Tokens/blob/5aaeeb530385b740107f0b88f113227709ca1443/reports/decoding-toy-seeds-0-4.json",
+      "version": "btt-phase2@5aaeeb530385b740107f0b88f113227709ca1443",
+      "experiment_id": "exp-23-multiseed-001",
+      "limitation": "五个 seed 和五 token 词表只验证教学逻辑；percentiles 是重复实验统计，不是模型服务 p95/TTFT/ITL",
+      "review_date": "2026-10-06"
+    }
+  ]
+}
