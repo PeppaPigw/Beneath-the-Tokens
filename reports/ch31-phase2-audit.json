@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "docs": "/workspace/scratch/4dcc55129e39/Beneath-the-Tokens/docs",
+  "target": "chapters/31-moe-and-expert-parallelism.md",
+  "files": [
+    {
+      "id": "ch31-moe-and-expert-parallelism",
+      "path": "chapters/31-moe-and-expert-parallelism.md",
+      "checks": {
+        "error_count": 0,
+        "frontmatter": true,
+        "fences": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "pedagogical_sections": true,
+        "script_syntax": true,
+        "headings": 43,
+        "urls": 0
+      },
+      "errors": []
+    }
+  ],
+  "error_classes": [],
+  "errors": [],
+  "structural_passed": true,
+  "passed": true,
+  "summary": {
+    "error_classes": [],
+    "errors": 0,
+    "fatal_errors": 0,
+    "files": 1,
+    "urls": 0
+  },
+  "network_checks": [],
+  "skipped_network_checks": [],
+  "note": "Focused local structural audit; remote scripts/audit_phase2.py was not present in this checkout."
+}
