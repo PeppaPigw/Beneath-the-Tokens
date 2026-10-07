@@ -255,6 +255,8 @@ vLLM 官方 disaggregated-prefill 文档区分 scheduler connector 和 worker co
 
 Pipe 是单向 FIFO 的 send_tensor/recv_tensor 抽象，适合明确方向的数据流；它不自动解决跨请求公平、取消或内存上限。scheduler 应维护在途窗口，worker 报告 credit 和完成；当 decoder buffer 满时，producer 暂停或选择重算。监控只看 pipe 吞吐会漏掉等待和堆积，需同时看 `post_time`、`xfer_time`、`ready_time`、inflight pages、lookup wait 和 recompute count。
 
+这里要特别保留 vLLM 官方文档的负面证据：disaggregated prefill 本身**不保证提高吞吐**，主要价值是让团队分别调节 TTFT、ITL 和尾部 ITL。只有当 P/D 独立扩容、缓存复用、批处理形状或 SLO 目标改变了端到端约束时，goodput 才可能改善；改善幅度必须在相同请求分布、质量门和错误预算下测量。把“已经能传 KV”直接写成“吞吐提升”是证据越界。
+
 ## 27.11 一张比较表：把职责、状态和证据对齐
 
 | 组件 | 主要职责 | 不应误解为 | 关键控制面 | 关键数据面 | 新人应查的证据 |
