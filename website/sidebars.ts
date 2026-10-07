@@ -43,6 +43,7 @@ const sidebars: SidebarsConfig = {
     'chapters/ch37-security-and-supply-chain',
     'chapters/ch38-cost-capacity-and-energy',
     'chapters/ch39-evaluation-and-benchmarks',
+    'chapters/ch40-production-capstone-and-roadmap',
     'chapter-template',
     'lab-standards',
     'source-policy',
