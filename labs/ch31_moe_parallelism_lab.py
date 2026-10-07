@@ -36,6 +36,8 @@ class RoutingResult:
     expert_prob: tuple[float, ...]
     selected_fraction: tuple[float, ...]
     dropped_tokens: int
+    residual_tokens: int
+    dropped_assignments: int
     overflow_assignments: int
     capacity: int
     aux_loss: float
@@ -98,7 +100,9 @@ def route_tokens(logits: Sequence[Sequence[float]], cfg: RoutingConfig | None = 
     accepted: list[list[int]] = [[] for _ in logits]
     load = [0] * cfg.num_experts
     overflow = 0
-    dropped = 0
+    dropped_assignments = 0
+    dropped_token_ids: set[int] = set()
+    residual_token_ids: set[int] = set()
     for token_id, choices in enumerate(selected):
         for slot, expert in enumerate(choices):
             # A fallback selected for an earlier overflowing slot may be the
@@ -110,6 +114,8 @@ def route_tokens(logits: Sequence[Sequence[float]], cfg: RoutingConfig | None = 
                 load[expert] += 1
                 continue
             overflow += 1
+            if cfg.overflow_policy == "residual":
+                residual_token_ids.add(token_id)
             fallback = None
             if cfg.overflow_policy == "second":
                 for alt in choices[slot + 1:]:
@@ -120,14 +126,20 @@ def route_tokens(logits: Sequence[Sequence[float]], cfg: RoutingConfig | None = 
                 accepted[token_id].append(fallback)
                 load[fallback] += 1
             else:
-                dropped += 1
+                if cfg.overflow_policy == "residual":
+                    # The dense residual path handles this route; it is not
+                    # an expert assignment drop, but remains observable.
+                    continue
+                dropped_assignments += 1
+                dropped_token_ids.add(token_id)
     selected_fraction = tuple(sum(1 for choices in accepted if e in choices) / tokens for e in range(cfg.num_experts))
     expert_prob = tuple(sum(p[e] for p in probs) / tokens for e in range(cfg.num_experts))
     # Switch/GShard-style proxy: E * sum(f_i * p_i), where f_i is selected
     # fraction.  It equals one for an ideal uniform assignment in expectation.
     aux = cfg.num_experts * sum(f * p for f, p in zip(selected_fraction, expert_prob))
     return RoutingResult(tuple(tuple(x) for x in accepted), tuple(load), expert_prob,
-                         selected_fraction, dropped, overflow, capacity, aux)
+                         selected_fraction, len(dropped_token_ids), len(residual_token_ids),
+                         dropped_assignments, overflow, capacity, aux)
 
 
 def make_logits(tokens: int, experts: int, seed: int = 31, hot_expert: int | None = None, hot_bias: float = 0.0) -> list[list[float]]:
@@ -196,6 +208,8 @@ def simulate(cfg: RoutingConfig | None = None, *, tokens: int = 256, hidden_byte
             "tokens": tokens,
             "accepted_assignments": accepted,
             "drop_rate": routed.dropped_tokens / max(1, tokens),
+            "dropped_assignments": routed.dropped_assignments,
+            "residual_tokens": routed.residual_tokens,
             "overflow_assignments": routed.overflow_assignments,
             "aux_loss": routed.aux_loss,
             "all_to_all_bytes": sum(plan.bytes_by_src),
