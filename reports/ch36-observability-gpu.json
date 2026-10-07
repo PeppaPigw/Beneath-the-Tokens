@@ -344,6 +344,11 @@
       "p95_ms": 26.88,
       "p99_ms": 27.936
     },
+    "labels": {
+      "device": "toy-gpu-0",
+      "model": "toy-llm",
+      "route": "/generate"
+    },
     "prefill": {
       "histogram": {
         "buckets": [
