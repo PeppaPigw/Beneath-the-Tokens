@@ -1,0 +1,109 @@
+{
+  "artifact": {
+    "artifact": {
+      "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "name": "toy-llm",
+      "version": "2026.10.0"
+    },
+    "decision": "allow",
+    "evidence": {
+      "digest": true,
+      "provenance": true,
+      "sbom": true,
+      "signature": true
+    },
+    "missing_or_invalid": []
+  },
+  "audit_events": [
+    {
+      "action": "release_check",
+      "actor": "policy-engine",
+      "fault": "poisoned_data",
+      "hash": "e3ca6af8d9dd4ec70bcb125f8908e56d9c33ebfaf27738107fdf96ffc4917dc1",
+      "prev_hash": "GENESIS",
+      "reason": "quarantine",
+      "seq": 0
+    },
+    {
+      "action": "evidence_review",
+      "actor": "security-ci",
+      "fault": "poisoned_data",
+      "hash": "f9308eb9da57dab4fa939dd5db752d51a828a3ff0dfc63f685959f7dbf26487f",
+      "prev_hash": "e3ca6af8d9dd4ec70bcb125f8908e56d9c33ebfaf27738107fdf96ffc4917dc1",
+      "reason": "model_data_poisoning",
+      "seq": 1
+    },
+    {
+      "action": "incident_action",
+      "actor": "on-call",
+      "fault": "poisoned_data",
+      "hash": "bc5973fe5928a6e84c060defe4e005591a7e898db5d974fb8e16dc0f29c70b70",
+      "prev_hash": "f9308eb9da57dab4fa939dd5db752d51a828a3ff0dfc63f685959f7dbf26487f",
+      "reason": "containment_recorded",
+      "seq": 2
+    }
+  ],
+  "decision": "quarantine",
+  "deny_reasons": [
+    "model_data_poisoning"
+  ],
+  "dependencies": {
+    "critical_or_high": 0,
+    "decision": "allow",
+    "findings": [],
+    "manifest_entries": 2
+  },
+  "fault": "poisoned_data",
+  "incident": {
+    "containment": "freeze_release_and_revoke_promotion",
+    "preserve_evidence": true,
+    "revocation": true
+  },
+  "invariants": {
+    "all_required_evidence": true,
+    "audit_chain_valid": true,
+    "fail_closed": true,
+    "no_secret_values_in_events": true
+  },
+  "model_data": {
+    "poisoning": {
+      "canary_relative_delta": 0.22,
+      "decision": "quarantine",
+      "detected": true,
+      "label_anomaly_rate": 0.11,
+      "model_hash": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "poison_rate": 0.15,
+      "reasons": [
+        "manifest_hash_mismatch",
+        "poison_rate_above_limit",
+        "label_anomaly_above_limit",
+        "canary_loss_regression"
+      ]
+    },
+    "quality": {
+      "canary_relative_delta": 0.22,
+      "decision": "quarantine",
+      "detected": true,
+      "label_anomaly_rate": 0.11,
+      "model_hash": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "poison_rate": 0.15,
+      "reasons": [
+        "manifest_hash_mismatch",
+        "poison_rate_above_limit",
+        "label_anomaly_above_limit",
+        "canary_loss_regression"
+      ]
+    }
+  },
+  "runtime": {
+    "decision": "allow",
+    "effective_boundary": {
+      "gpu_partition": "mig-isolated",
+      "network_policy": "model-registry-only",
+      "read_only_rootfs": true,
+      "rootless": true
+    },
+    "findings": []
+  },
+  "schema_version": 1
+}
