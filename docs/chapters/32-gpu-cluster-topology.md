@@ -6,7 +6,7 @@ description: 从 GPU、PCIe、NVLink 到节点间网络和 collective，建立�
 sidebar_position: 32
 level: advanced
 prerequisites:
-  - ch03-ai-networking
+  - ch03-networking
   - ch05-gpu-cuda
   - ch08-distributed-collectives
   - ch09-distributed-training
@@ -60,10 +60,9 @@ T(M)=L+\frac{8M}{B_{bit}},
 
 如果 rank i 发给多个 peer，关键是最大完成时间而不是平均时间：
 
-[
-T_{step}≥max_ileft(L_i+rac{8S_i}{B_i}
-ight),
-]
+\[
+T_{step}\ge\max_i\left(L_i+\frac{8S_i}{B_i}\right),
+\]
 
 其中 (S_i) 是 rank 或链路的发送字节。一个 hot rank 发送了平均值的两倍，其他 rank 即使空闲也要在 collective fence 等它。报告应同时保存 `mean`, `max`, `p95`, `p99`, `bytes_by_path` 和 `nonzero_peer_count`。
 
@@ -81,7 +80,7 @@ NVLink 提供 GPU 之间的高速点到点链路，NVSwitch 把多个 GPU 连接
 - **注入/汇聚点：** 某个 GPU 或 NVSwitch 的端口故障可能只影响部分 pair，也可能把一个 collective 的所有流量压到较慢路径。
 - **链路健康：** replay、CRC、Xid、温度和降频会让链路“可用但变慢”。只监控进程退出无法发现这类性能故障。
 
-NVIDIA 的 [NVLink 文档](https://docs.nvidia.com/networking/display/nvlink5) 描述了代际能力；[NVIDIA System Management Interface 文档](https://docs.nvidia.com/deploy/nvidia-smi/index.html) 提供拓扑、Xid 和设备健康的查询入口。具体平台要以机型和固件为准，不能把某一代 DGX 的图复制到任意服务器。
+NVIDIA 的 [NVLink 文档](https://docs.nvidia.com/multi-node-nvlink-systems/mnnvl-user-guide/) 描述了代际能力；[NVIDIA System Management Interface 文档](https://docs.nvidia.com/deploy/nvidia-smi/index.html) 提供拓扑、Xid 和设备健康的查询入口。具体平台要以机型和固件为准，不能把某一代 DGX 的图复制到任意服务器。
 
 ### 32.2.2 PCIe root complex、NUMA 和 GPUDirect RDMA
 
@@ -167,7 +166,7 @@ All-to-all 的矩阵 (M_{ij}) 直接暴露数据倾斜：rank i 发给 rank j �
 
 InfiniBand 和 RoCE 都可以提供 RDMA，但运维合同不同。IB 依赖 fabric manager、子网管理和端口状态；RoCE 在以太网上运行，通常依赖 PFC/ECN、无损队列和交换机缓冲配置。普通 TCP fallback 可能让作业“还能跑”，却把 step 时间放大数倍。应用必须记录 transport，而不是只记录 hostname 和端口。
 
-官方资料入口包括 [NVIDIA GPUDirect RDMA 文档](https://docs.nvidia.com/cuda/gpudirect-rdma/)、[NVIDIA DOCA RDMA 文档](https://docs.nvidia.com/doca/sdk/rdma-programming-guide/index.html)、[Linux rdma-core](https://github.com/linux-rdma/rdma-core) 和 [OpenFabrics 企业指南](https://docs.nvidia.com/networking/display/rdmaawareprogrammingv17)。这些资料描述能力和接口，不能替代目标集群的 burn-in。
+官方资料入口包括 [NVIDIA GPUDirect RDMA 文档](https://docs.nvidia.com/cuda/gpudirect-rdma/)、[NVIDIA DOCA RDMA 文档](https://docs.nvidia.com/doca/sdk/rdma-programming-guide/index.html)、[Linux rdma-core](https://github.com/linux-rdma/rdma-core) 和 [OpenFabrics 企业指南](https://docs.nvidia.com/doca/sdk/rdma-programming-guide/index.html)。这些资料描述能力和接口，不能替代目标集群的 burn-in。
 
 ### 32.5.2 PFC、ECN 与拥塞传播
 
@@ -332,6 +331,14 @@ python3 tests/test_ch32_gpu_topology_lab.py
 
 拓扑变更（换 NIC、交换机、GPU 固件、驱动、容器、调度器插件）应有 canary 节点和固定通信基准。若 p99 step 或首 token 超过预算，先回滚 placement/版本，而不是同时调整模型 batch、NCCL 参数和网络 QoS。所有调参都必须写入 manifest，包含生效时间、责任人、影响 job 和回滚命令。
 
+### 32.11.4 从告警到根因的最短路径
+
+值班时可以按数据面到控制面的顺序缩小范围。先看是否只有一个 job 变慢，还是同一 ToR 下多个 job 同时变慢；前者更像 rank、模型或 placement 问题，后者更像交换机队列、NIC 或电源故障。若只有跨节点 collective 变慢而节点内基准正常，比较每个 NIC 的 tx/rx、ECN/PFC、GID 和 `NCCL_SOCKET_IFNAME`；若节点内 P2P 也变慢，比较 `nvidia-smi topo -m`、NVLink counter、PCIe replay、GPU 时钟和温度。
+
+若日志出现 `MISMATCH`，优先检查 collective 顺序、tensor shape、异常分支和 rank-local 数据长度；若出现 `INCOMPLETE`/`DEAD`，检查进程退出、Xid、OOM、节点网络和 communicator 清理。只有在应用层证据排除后，才把问题升级为 fabric 故障。每一次判断都应写入 incident 时间线：观测、假设、反证命令、结论、修复和回滚条件。这样下一次相同症状可以直接复用，而不是重新猜测。
+
+故障期间不要把 debug 日志无限放大到所有租户。选择一个 canary job 设置 `NCCL_DEBUG=INFO`、`NCCL_DEBUG_SUBSYS=COLL,GRAPH` 或等价 trace，采样固定消息大小，并把日志 TTL 限制在演练窗口。恢复后关闭高基数标签和详细 payload 记录，保留摘要、版本、placement 和指标快照，避免诊断手段本身成为性能或隐私事故。
+
 ## 32.12 常见错误与纠正
 
 1. **把 `nvidia-smi -L` 当作拓扑。** 它只列设备，不列完整路径。补充 `nvidia-smi topo -m`、PCIe/NUMA/NIC 和交换机证据。
@@ -348,7 +355,7 @@ python3 tests/test_ch32_gpu_topology_lab.py
 
 - NVIDIA [NCCL User Guide](https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/index.html)：collective、环境变量、拓扑和错误处理入口。
 - NVIDIA [nccl-tests](https://github.com/NVIDIA/nccl-tests)：all-reduce、all-to-all 等基准源码。
-- NVIDIA [NVLink 文档](https://docs.nvidia.com/networking/display/nvlink5)：NVLink 代际与互连资料。
+- NVIDIA [NVLink 文档](https://docs.nvidia.com/multi-node-nvlink-systems/mnnvl-user-guide/)：NVLink 代际与互连资料。
 - NVIDIA [nvidia-smi 文档](https://docs.nvidia.com/deploy/nvidia-smi/index.html)：拓扑、Xid、健康和计数器。
 - NVIDIA [CUDA GPUDirect RDMA](https://docs.nvidia.com/cuda/gpudirect-rdma/)：GPU 显存与 RDMA 的接口约束。
 - Linux [rdma-core](https://github.com/linux-rdma/rdma-core)：用户态 RDMA 栈源码。
@@ -363,9 +370,9 @@ python3 tests/test_ch32_gpu_topology_lab.py
 - Slurm [GRES](https://slurm.schedmd.com/gres.html)：GPU 资源分配与 `CUDA_VISIBLE_DEVICES`。
 - Slurm [cons_tres](https://slurm.schedmd.com/cons_tres.html)：可消费资源调度。
 - Slurm [Topology](https://slurm.schedmd.com/topology.html)：调度拓扑插件。
-- NVIDIA [DGX SuperPOD 网络参考](https://docs.nvidia.com/dgx-superpod/reference-architecture/latest/)：多节点 GPU 集群参考架构。
-- NVIDIA [InfiniBand Fabric Manager](https://docs.nvidia.com/networking/display/ibfabricmanager) ：IB fabric 管理入口。
-- OpenFabrics [企业 RDMA 指南](https://docs.nvidia.com/networking/display/rdmaawareprogrammingv17)：RDMA verbs、队列和错误语义。
+- NVIDIA [DGX SuperPOD 网络参考](https://docs.nvidia.com/dgx-superpod/reference-architecture-scalable-infrastructure-b200/latest/dgx-superpod-architecture.html)：多节点 GPU 集群参考架构。
+- NVIDIA [InfiniBand Fabric Manager](https://docs.nvidia.com/hgx-platforms/fabric-manager-user-guide/index.html) ：IB fabric 管理入口。
+- OpenFabrics [企业 RDMA 指南](https://docs.nvidia.com/doca/sdk/rdma-programming-guide/index.html)：RDMA verbs、队列和错误语义。
 - NCCL [GitHub 源码](https://github.com/NVIDIA/nccl)：拓扑发现、transport 和 collective 实现。
 - UCX [GitHub 源码](https://github.com/openucx/ucx)：高性能传输层和 RDMA 支持。
 - UCC [GitHub 源码](https://github.com/openucx/ucc)：统一 collective 通信库。
@@ -379,3 +386,13 @@ python3 tests/test_ch32_gpu_topology_lab.py
 ## 小结
 
 GPU 集群不是一组可互换的加速器，而是由 GPU、互连、PCIe/NUMA、NIC、交换机和故障域组成的分布式系统。训练的同步边界通常比推理副本更脆弱：一个 rank 的异常即可阻断 collective；推理可以通过跨故障域副本降低影响，但 TP/PP/EP 组仍然要整体摘除。拓扑感知的 rank mapping、分层 collective、NIC/交换机可观测性和明确的 checkpoint/retry 合同，是把“偶发慢”和“集群挂住”变成可定位事件的基础。CPU-only lab 只负责验证逻辑；生产结论必须由目标硬件、真实通信库、版本锁定和故障演练共同证明。
+
+## 心智模型
+
+把一次分布式 step 看成“放置、搬运、同步、提交”四个阶段：placement 决定 rank 与故障域，搬运受 PCIe/NUMA/NIC/交换机路径约束，同步由 collective 的最慢参与者决定，提交则把 checkpoint、重试和指标写入可恢复状态。任何性能或故障结论都必须同时标注这四个阶段。
+
+## 练习
+
+1. 画出一个 8-GPU、双 NUMA、双 NIC 节点到两节点 IB fabric 的 rank mapping，并标出可能的 PCIe crossing 和 oversubscribed link。
+2. 让 toy lab 注入单 NIC 或单 rank 故障，比较 fail-fast、重试和摘除副本三种策略的可观测差异。
+3. 根据 NCCL RAS 与 Slurm GRES 文档，写一份上线前检查表：版本、拓扑、可见设备、collective timeout、checkpoint 与回滚证据。
