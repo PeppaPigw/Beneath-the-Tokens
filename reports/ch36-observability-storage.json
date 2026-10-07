@@ -445,6 +445,57 @@
       "p50_ms": 276.05,
       "p95_ms": 526.97,
       "p99_ms": 538.674
+    },
+    "ttft": {
+      "histogram": {
+        "buckets": [
+          {
+            "cumulative_count": 0,
+            "le_ms": 5.0
+          },
+          {
+            "cumulative_count": 0,
+            "le_ms": 10.0
+          },
+          {
+            "cumulative_count": 1,
+            "le_ms": 25.0
+          },
+          {
+            "cumulative_count": 1,
+            "le_ms": 50.0
+          },
+          {
+            "cumulative_count": 2,
+            "le_ms": 100.0
+          },
+          {
+            "cumulative_count": 5,
+            "le_ms": 250.0
+          },
+          {
+            "cumulative_count": 10,
+            "le_ms": 500.0
+          },
+          {
+            "cumulative_count": 12,
+            "le_ms": 1000.0
+          },
+          {
+            "cumulative_count": 12,
+            "le_ms": 2000.0
+          },
+          {
+            "cumulative_count": 12,
+            "le_ms": null
+          }
+        ],
+        "count": 12,
+        "sum": 3466.7
+      },
+      "p50_ms": 286.1,
+      "p95_ms": 534.325,
+      "p99_ms": 556.545
     }
   },
   "profiles": [
@@ -1719,108 +1770,132 @@
     {
       "device_uuid": "toy-gpu-0",
       "disk_io_latency_ms": 0.0,
+      "gpu_throttle_ms": 0.0,
       "memory_used_bytes": 2008192,
       "network_retransmits": 0,
       "nvlink_tx_bytes": 0,
+      "power_throttle": false,
       "sm_active_ratio": 0.82,
       "timestamp_ms": 18.6
     },
     {
       "device_uuid": "toy-gpu-0",
       "disk_io_latency_ms": 0.0,
+      "gpu_throttle_ms": 0.0,
       "memory_used_bytes": 2010240,
       "network_retransmits": 0,
       "nvlink_tx_bytes": 0,
+      "power_throttle": false,
       "sm_active_ratio": 0.82,
       "timestamp_ms": 64.1
     },
     {
       "device_uuid": "toy-gpu-0",
       "disk_io_latency_ms": 125.0,
+      "gpu_throttle_ms": 0.0,
       "memory_used_bytes": 2012288,
       "network_retransmits": 0,
       "nvlink_tx_bytes": 0,
+      "power_throttle": false,
       "sm_active_ratio": 0.57,
       "timestamp_ms": 114.0
     },
     {
       "device_uuid": "toy-gpu-0",
       "disk_io_latency_ms": 0.0,
+      "gpu_throttle_ms": 0.0,
       "memory_used_bytes": 2014336,
       "network_retransmits": 0,
       "nvlink_tx_bytes": 0,
+      "power_throttle": false,
       "sm_active_ratio": 0.82,
       "timestamp_ms": 170.3
     },
     {
       "device_uuid": "toy-gpu-0",
       "disk_io_latency_ms": 0.0,
+      "gpu_throttle_ms": 0.0,
       "memory_used_bytes": 2016384,
       "network_retransmits": 0,
       "nvlink_tx_bytes": 0,
+      "power_throttle": false,
       "sm_active_ratio": 0.82,
       "timestamp_ms": 232.0
     },
     {
       "device_uuid": "toy-gpu-0",
       "disk_io_latency_ms": 0.0,
+      "gpu_throttle_ms": 0.0,
       "memory_used_bytes": 2008192,
       "network_retransmits": 0,
       "nvlink_tx_bytes": 0,
+      "power_throttle": false,
       "sm_active_ratio": 0.82,
       "timestamp_ms": 275.6
     },
     {
       "device_uuid": "toy-gpu-0",
       "disk_io_latency_ms": 95.0,
+      "gpu_throttle_ms": 0.0,
       "memory_used_bytes": 2010240,
       "network_retransmits": 0,
       "nvlink_tx_bytes": 0,
+      "power_throttle": false,
       "sm_active_ratio": 0.63,
       "timestamp_ms": 324.1
     },
     {
       "device_uuid": "toy-gpu-0",
       "disk_io_latency_ms": 0.0,
+      "gpu_throttle_ms": 0.0,
       "memory_used_bytes": 2012288,
       "network_retransmits": 0,
       "nvlink_tx_bytes": 0,
+      "power_throttle": false,
       "sm_active_ratio": 0.82,
       "timestamp_ms": 379.5
     },
     {
       "device_uuid": "toy-gpu-0",
       "disk_io_latency_ms": 0.0,
+      "gpu_throttle_ms": 0.0,
       "memory_used_bytes": 2014336,
       "network_retransmits": 0,
       "nvlink_tx_bytes": 0,
+      "power_throttle": false,
       "sm_active_ratio": 0.82,
       "timestamp_ms": 438.8
     },
     {
       "device_uuid": "toy-gpu-0",
       "disk_io_latency_ms": 0.0,
+      "gpu_throttle_ms": 0.0,
       "memory_used_bytes": 2016384,
       "network_retransmits": 0,
       "nvlink_tx_bytes": 0,
+      "power_throttle": false,
       "sm_active_ratio": 0.82,
       "timestamp_ms": 488.5
     },
     {
       "device_uuid": "toy-gpu-0",
       "disk_io_latency_ms": 110.0,
+      "gpu_throttle_ms": 0.0,
       "memory_used_bytes": 2008192,
       "network_retransmits": 0,
       "nvlink_tx_bytes": 0,
+      "power_throttle": false,
       "sm_active_ratio": 0.6,
       "timestamp_ms": 536.6
     },
     {
       "device_uuid": "toy-gpu-0",
       "disk_io_latency_ms": 0.0,
+      "gpu_throttle_ms": 0.0,
       "memory_used_bytes": 2010240,
       "network_retransmits": 0,
       "nvlink_tx_bytes": 0,
+      "power_throttle": false,
       "sm_active_ratio": 0.82,
       "timestamp_ms": 589.6
     }
