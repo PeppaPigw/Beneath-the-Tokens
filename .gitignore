@@ -1,10 +1,5 @@
+
 node_modules/
-.pnpm-store/
+website/node_modules/
 website/build/
 website/.docusaurus/
-labs/*/dist/
-.DS_Store
-*.log
-.env
-.env.*
-!.env.example
