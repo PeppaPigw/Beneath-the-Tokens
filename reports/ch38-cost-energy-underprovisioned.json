@@ -1,0 +1,109 @@
+{
+  "assumptions": {
+    "formula_note": "synthetic rates, PUE and carbon factor; not a production meter or invoice",
+    "horizon_hours": 2.0,
+    "training_gpu_hours": 96.0
+  },
+  "capacity": {
+    "active_replicas": 1,
+    "plan": {
+      "capacity_shortfall": false,
+      "headroom": 0.1,
+      "max_replicas": 8,
+      "planned_replicas": 3,
+      "raw_replicas": 2.074074,
+      "replicas": 3
+    },
+    "planned_power_w": 1410.0,
+    "thermal_ok": true
+  },
+  "decision": "deny",
+  "deny_reasons": [
+    "capacity_shortfall",
+    "slo_violation"
+  ],
+  "energy": {
+    "carbon_budget_headroom_kg": 79.58875,
+    "carbon_budget_kg": 80.0,
+    "carbon_factor_kg_per_kwh": 0.35,
+    "carbon_kg": 0.41125,
+    "facility_kwh": 1.175,
+    "hours": 2.0,
+    "it_kwh": 0.94,
+    "it_power_w": 470.0,
+    "peak_power_w": 470.0,
+    "pue": 1.25,
+    "replicas": 1
+  },
+  "fault": "underprovisioned",
+  "finops": {
+    "budget_action": "within_fixture_budget",
+    "carbon_kg": 0.41125,
+    "device_utilization": 0.99,
+    "effective_utilization": 0.707143,
+    "tags_complete": true,
+    "unallocated": false,
+    "unit": "usd_per_slo_compliant_request_and_kg_per_request"
+  },
+  "invariants": {
+    "carbon_formula_consistent": true,
+    "cpu_only": true,
+    "deterministic_fixture": true,
+    "effective_utilization_not_above_one": true,
+    "fail_closed_on_constraint": true,
+    "no_external_side_effects": true
+  },
+  "procurement": {
+    "capacity_mix": {
+      "on_demand": 0.15000000000000002,
+      "reserved": 0.6,
+      "spot": 0.25
+    },
+    "effective_usd_per_successful_gpu_hour": 1.515918,
+    "expected_compute_usd": 142.6176,
+    "failure_rate": 0.0,
+    "gpu_hours_requested": 96.0,
+    "on_demand_rate_usd": 2.4,
+    "recovery_usd": 0.9216,
+    "reserved_rate_usd": 1.56,
+    "spot_rate_usd": 0.72,
+    "successful_gpu_hours_expected": 94.08
+  },
+  "queue": {
+    "arrival_rate_rps": 70.0,
+    "availability": 0.664728,
+    "capacity_rps": 50.0,
+    "deadline_miss_rate": 0.069381,
+    "device_utilization": 0.99,
+    "effective_rate_rps": 50.0,
+    "effective_tokens_per_second": 45000.0,
+    "effective_utilization": 0.707143,
+    "failure_rate": 0.0,
+    "overflow_rps": 20.0,
+    "p95_wait_ms": 4162.857,
+    "replicas": 1,
+    "rho": 1.4,
+    "service_success_rate": 0.714286
+  },
+  "schema_version": 1,
+  "slo": {
+    "availability_limit": 0.99,
+    "ok": false,
+    "p95_limit_ms": 800.0
+  },
+  "tco": {
+    "inference": {
+      "kg_per_million_requests": 1.142361,
+      "slo_compliant_requests": 360000,
+      "total_usd": 77.91616,
+      "usd_per_slo_request": 0.000216434
+    },
+    "shared_cost_usd": 28.0,
+    "training": {
+      "successful_steps": 1000,
+      "total_usd": 170.6176,
+      "usd_per_gpu_hour_effective": 1.777267,
+      "usd_per_successful_step": 0.1706176
+    }
+  }
+}
