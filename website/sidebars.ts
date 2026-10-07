@@ -30,8 +30,6 @@ const sidebars: SidebarsConfig = {
     'chapters/ch24-platform-engineering',
     'chapters/ch25-ai-infra-frontiers',
     'chapters/ch26-end-to-end-ai-infra-capstone',
-    'phase2/chapters/phase2-23-decoding-and-sampling',
-    'phase2/chapters/phase2-26-kv-cache-and-paged-attention',
     'chapter-template',
     'lab-standards',
     'source-policy',
