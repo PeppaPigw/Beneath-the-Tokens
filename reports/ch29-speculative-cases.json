@@ -1,1 +1,255 @@
-cat: reports/ch29-speculative-cases.json: No such file or directory
+{
+  "schema_version": 1,
+  "experiment": "ch29-speculative-structured-decoding-toy",
+  "config": {
+    "seed": 29,
+    "requests": 24,
+    "concurrency": 6,
+    "output_len": 32,
+    "draft_len": 4,
+    "accept_rate": 0.72,
+    "grammar_reject_rate": 0.0,
+    "max_batch_tokens": 32,
+    "mode": "baseline",
+    "grammar": false
+  },
+  "summary": {
+    "requests": 24,
+    "completed": 24,
+    "steps": 4,
+    "logical_time_ms": 63.64,
+    "ttft_ms": {
+      "p50": 15.01,
+      "p95": 43.58
+    },
+    "target_tokens": 768,
+    "draft_tokens": 0,
+    "accepted_tokens": 0,
+    "acceptance_rate": 0.0,
+    "grammar_rejects": 0,
+    "exact_output_token_count": 768
+  },
+  "requests": [
+    {
+      "request_id": "req-000",
+      "output_tokens": 32,
+      "draft_tokens": 0,
+      "accepted_tokens": 0,
+      "grammar_rejects": 0,
+      "verify_rejections": 0,
+      "status": "FINISHED"
+    },
+    {
+      "request_id": "req-001",
+      "output_tokens": 32,
+      "draft_tokens": 0,
+      "accepted_tokens": 0,
+      "grammar_rejects": 0,
+      "verify_rejections": 0,
+      "status": "FINISHED"
+    },
+    {
+      "request_id": "req-002",
+      "output_tokens": 32,
+      "draft_tokens": 0,
+      "accepted_tokens": 0,
+      "grammar_rejects": 0,
+      "verify_rejections": 0,
+      "status": "FINISHED"
+    },
+    {
+      "request_id": "req-003",
+      "output_tokens": 32,
+      "draft_tokens": 0,
+      "accepted_tokens": 0,
+      "grammar_rejects": 0,
+      "verify_rejections": 0,
+      "status": "FINISHED"
+    },
+    {
+      "request_id": "req-004",
+      "output_tokens": 32,
+      "draft_tokens": 0,
+      "accepted_tokens": 0,
+      "grammar_rejects": 0,
+      "verify_rejections": 0,
+      "status": "FINISHED"
+    },
+    {
+      "request_id": "req-005",
+      "output_tokens": 32,
+      "draft_tokens": 0,
+      "accepted_tokens": 0,
+      "grammar_rejects": 0,
+      "verify_rejections": 0,
+      "status": "FINISHED"
+    },
+    {
+      "request_id": "req-006",
+      "output_tokens": 32,
+      "draft_tokens": 0,
+      "accepted_tokens": 0,
+      "grammar_rejects": 0,
+      "verify_rejections": 0,
+      "status": "FINISHED"
+    },
+    {
+      "request_id": "req-007",
+      "output_tokens": 32,
+      "draft_tokens": 0,
+      "accepted_tokens": 0,
+      "grammar_rejects": 0,
+      "verify_rejections": 0,
+      "status": "FINISHED"
+    },
+    {
+      "request_id": "req-008",
+      "output_tokens": 32,
+      "draft_tokens": 0,
+      "accepted_tokens": 0,
+      "grammar_rejects": 0,
+      "verify_rejections": 0,
+      "status": "FINISHED"
+    },
+    {
+      "request_id": "req-009",
+      "output_tokens": 32,
+      "draft_tokens": 0,
+      "accepted_tokens": 0,
+      "grammar_rejects": 0,
+      "verify_rejections": 0,
+      "status": "FINISHED"
+    },
+    {
+      "request_id": "req-010",
+      "output_tokens": 32,
+      "draft_tokens": 0,
+      "accepted_tokens": 0,
+      "grammar_rejects": 0,
+      "verify_rejections": 0,
+      "status": "FINISHED"
+    },
+    {
+      "request_id": "req-011",
+      "output_tokens": 32,
+      "draft_tokens": 0,
+      "accepted_tokens": 0,
+      "grammar_rejects": 0,
+      "verify_rejections": 0,
+      "status": "FINISHED"
+    },
+    {
+      "request_id": "req-012",
+      "output_tokens": 32,
+      "draft_tokens": 0,
+      "accepted_tokens": 0,
+      "grammar_rejects": 0,
+      "verify_rejections": 0,
+      "status": "FINISHED"
+    },
+    {
+      "request_id": "req-013",
+      "output_tokens": 32,
+      "draft_tokens": 0,
+      "accepted_tokens": 0,
+      "grammar_rejects": 0,
+      "verify_rejections": 0,
+      "status": "FINISHED"
+    },
+    {
+      "request_id": "req-014",
+      "output_tokens": 32,
+      "draft_tokens": 0,
+      "accepted_tokens": 0,
+      "grammar_rejects": 0,
+      "verify_rejections": 0,
+      "status": "FINISHED"
+    },
+    {
+      "request_id": "req-015",
+      "output_tokens": 32,
+      "draft_tokens": 0,
+      "accepted_tokens": 0,
+      "grammar_rejects": 0,
+      "verify_rejections": 0,
+      "status": "FINISHED"
+    },
+    {
+      "request_id": "req-016",
+      "output_tokens": 32,
+      "draft_tokens": 0,
+      "accepted_tokens": 0,
+      "grammar_rejects": 0,
+      "verify_rejections": 0,
+      "status": "FINISHED"
+    },
+    {
+      "request_id": "req-017",
+      "output_tokens": 32,
+      "draft_tokens": 0,
+      "accepted_tokens": 0,
+      "grammar_rejects": 0,
+      "verify_rejections": 0,
+      "status": "FINISHED"
+    },
+    {
+      "request_id": "req-018",
+      "output_tokens": 32,
+      "draft_tokens": 0,
+      "accepted_tokens": 0,
+      "grammar_rejects": 0,
+      "verify_rejections": 0,
+      "status": "FINISHED"
+    },
+    {
+      "request_id": "req-019",
+      "output_tokens": 32,
+      "draft_tokens": 0,
+      "accepted_tokens": 0,
+      "grammar_rejects": 0,
+      "verify_rejections": 0,
+      "status": "FINISHED"
+    },
+    {
+      "request_id": "req-020",
+      "output_tokens": 32,
+      "draft_tokens": 0,
+      "accepted_tokens": 0,
+      "grammar_rejects": 0,
+      "verify_rejections": 0,
+      "status": "FINISHED"
+    },
+    {
+      "request_id": "req-021",
+      "output_tokens": 32,
+      "draft_tokens": 0,
+      "accepted_tokens": 0,
+      "grammar_rejects": 0,
+      "verify_rejections": 0,
+      "status": "FINISHED"
+    },
+    {
+      "request_id": "req-022",
+      "output_tokens": 32,
+      "draft_tokens": 0,
+      "accepted_tokens": 0,
+      "grammar_rejects": 0,
+      "verify_rejections": 0,
+      "status": "FINISHED"
+    },
+    {
+      "request_id": "req-023",
+      "output_tokens": 32,
+      "draft_tokens": 0,
+      "accepted_tokens": 0,
+      "grammar_rejects": 0,
+      "verify_rejections": 0,
+      "status": "FINISHED"
+    }
+  ],
+  "notes": [
+    "Logical simulator only; no model logits, GPU kernels, CUDA graphs, tokenizer or network",
+    "Acceptance ratio is a toy proposal quality parameter and not a benchmark result",
+    "Grammar masks are finite-state and intentionally smaller than JSON Schema"
+  ]
+}
