@@ -38,6 +38,7 @@ const sidebars: SidebarsConfig = {
     'chapters/ch32-gpu-cluster-topology',
     'chapters/ch33-storage-and-data-plane',
     'chapters/ch34-compilers-and-kernels',
+    'chapters/ch35-serving-scheduling-and-slo',
     'chapter-template',
     'lab-standards',
     'source-policy',
