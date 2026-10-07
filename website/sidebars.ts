@@ -37,6 +37,7 @@ const sidebars: SidebarsConfig = {
     'chapters/ch31-moe-and-expert-parallelism',
     'chapters/ch32-gpu-cluster-topology',
     'chapters/ch33-storage-and-data-plane',
+    'chapters/ch34-compilers-and-kernels',
     'chapter-template',
     'lab-standards',
     'source-policy',
