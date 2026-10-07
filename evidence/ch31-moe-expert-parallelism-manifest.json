@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "chapter": "31-moe-and-expert-parallelism",
+  "access_date": "2026-10-07",
+  "purpose": "Evidence index for MoE routing, capacity/overflow, load balancing, expert parallel all-to-all, training frameworks and serving boundaries",
+  "entries": [
+    {
+      "id": "sparsely-gated-moe",
+      "type": "paper",
+      "title": "Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer",
+      "url": "https://arxiv.org/abs/1701.06538",
+      "claims": ["sparsely gated expert layer", "conditional computation", "router and expert scaling"],
+      "verification": "pin model/training code, count selected experts and compare dense versus sparse compute under the stated workload",
+      "status": "primary-source"
+    },
+    {
+      "id": "gshard",
+      "type": "paper",
+      "title": "GShard: Scaling Giant Models with Conditional Computation and Automatic Sharding",
+      "url": "https://arxiv.org/abs/2006.16668",
+      "claims": ["top-2 routing", "capacity and token dispatch", "automatic sharding for sparse expert layers"],
+      "verification": "record top-k, capacity formula, overflow policy, expert placement and mesh topology; validate route/slot conservation",
+      "status": "primary-source"
+    },
+    {
+      "id": "switch-transformer",
+      "type": "paper",
+      "title": "Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity",
+      "url": "https://arxiv.org/abs/2101.03961",
+      "claims": ["top-1 routing", "capacity factor and token dropping", "load balancing auxiliary objective"],
+      "verification": "pin capacity scope and auxiliary-loss reduction; report expert load, drop and task quality by workload",
+      "status": "primary-source"
+    },
+    {
+      "id": "mixture-of-experts-survey",
+      "type": "paper",
+      "title": "Mixture-of-Experts with Expert Choice Routing",
+      "url": "https://arxiv.org/abs/2202.09368",
+      "claims": ["expert-choice routing", "fixed expert capacity", "contrast with token-choice semantics"],
+      "verification": "separate token-choice and expert-choice implementation; report coverage, duplicate routes and combine behavior",
+      "status": "primary-source"
+    },
+    {
+      "id": "deepspeed-moe-docs",
+      "type": "official_documentation",
+      "title": "DeepSpeed Mixture of Experts documentation",
+      "url": "https://www.deepspeed.ai/tutorials/mixture-of-experts/",
+      "claims": ["DeepSpeed MoE layer and expert parallel configuration", "training integration"],
+      "verification": "pin DeepSpeed commit, capture effective config and launch topology, then run route/overflow and checkpoint tests",
+      "status": "primary-source"
+    },
+    {
+      "id": "deepspeed-moe-source",
+      "type": "mature_source_code",
+      "title": "DeepSpeed source repository",
+      "url": "https://github.com/microsoft/DeepSpeed",
+      "claims": ["MoE gate/token dispatch implementation", "expert parallel communication paths"],
+      "verification": "record source commit and paths for gate, token dispatcher, expert groups, capacity and all-to-all",
+      "status": "primary-source"
+    },
+    {
+      "id": "megatron-core-moe",
+      "type": "official_documentation",
+      "title": "Megatron-LM / Megatron-Core Mixture of Experts documentation",
+      "url": "https://docs.nvidia.com/megatron-core/developer-guide/latest/api-guide/moe.html",
+      "claims": ["expert parallel and token dispatcher APIs", "MoE training configuration", "grouped expert compute"],
+      "verification": "pin Megatron-Core commit, save parallel group mapping, dispatcher, dtype, capacity and checkpoint metadata",
+      "status": "primary-source"
+    },
+    {
+      "id": "megatron-core-source",
+      "type": "mature_source_code",
+      "title": "NVIDIA Megatron-LM source repository",
+      "url": "https://github.com/NVIDIA/Megatron-LM",
+      "claims": ["MoE router/token dispatcher/expert parallel source", "TP/PP/EP composition"],
+      "verification": "trace MoELayer, router, token dispatcher and parallel-state group construction at a pinned commit",
+      "status": "primary-source"
+    },
+    {
+      "id": "vllm-moe-docs",
+      "type": "official_documentation",
+      "title": "vLLM supported models and distributed serving documentation",
+      "url": "https://docs.vllm.ai/en/stable/models/supported_models.html",
+      "claims": ["versioned model/backend support", "distributed serving configuration entry points"],
+      "verification": "pin vLLM tag and model revision; capture --help/config, worker source paths, expert placement and all-to-all metrics",
+      "status": "primary-source"
+    },
+    {
+      "id": "vllm-source",
+      "type": "mature_source_code",
+      "title": "vLLM source repository",
+      "url": "https://github.com/vllm-project/vllm",
+      "claims": ["MoE model implementations", "scheduler/worker execution and distributed paths"],
+      "verification": "record commit and inspect router, model runner, scheduler, worker, quantization and EP source paths",
+      "status": "primary-source"
+    },
+    {
+      "id": "sglang-docs",
+      "type": "official_documentation",
+      "title": "SGLang documentation",
+      "url": "https://docs.sglang.ai/",
+      "claims": ["continuous batching, RadixAttention and serving configuration", "runtime feature/version boundaries"],
+      "verification": "pin SGLang commit, inspect MoE backend and EP flags, and run route, cache, cancellation and timeout tests",
+      "status": "primary-source"
+    },
+    {
+      "id": "sglang-source",
+      "type": "mature_source_code",
+      "title": "SGLang source repository",
+      "url": "https://github.com/sgl-project/sglang",
+      "claims": ["scheduler/radix cache/model runner source", "distributed serving implementation"],
+      "verification": "record commit and source paths for MoE model, scheduler, cache, collective and error cleanup",
+      "status": "primary-source"
+    },
+    {
+      "id": "ch31-toy-lab",
+      "type": "reproducible_measurement",
+      "title": "Chapter 31 CPU MoE routing and expert-parallel toy",
+      "path": "labs/ch31_moe_parallelism_lab.py",
+      "claims": ["stable top-k routing", "capacity/overflow policies", "auxiliary load-balance proxy", "EP send/recv matrix and rank skew"],
+      "verification": "python3 labs/ch31_moe_parallelism_lab.py --seed 31 --tokens 256 --experts 8 --ranks 4 --top-k 2 --capacity-factor 1.25 --overflow-policy drop --hidden-bytes 4096",
+      "status": "local-measurement-not-production-proof"
+    },
+    {
+      "id": "ch31-toy-tests",
+      "type": "reproducible_measurement",
+      "title": "Chapter 31 toy contract tests",
+      "path": "tests/test_ch31_moe_parallelism_lab.py",
+      "claims": ["softmax stability", "capacity and overflow bounds", "fallback uniqueness", "all-to-all conservation", "seed reproducibility", "CLI JSON contract"],
+      "verification": "python3 tests/test_ch31_moe_parallelism_lab.py",
+      "status": "local-test-only"
+    },
+    {
+      "id": "ch31-report-default",
+      "type": "reproducible_measurement",
+      "title": "Chapter 31 default routing JSON",
+      "path": "reports/ch31-moe-routing-default.json",
+      "claims": ["seed-31 top-2 capacity and EP result"],
+      "verification": "rerun command in reports/ch31-moe-routing-report.md and compare JSON",
+      "status": "local-measurement-not-production-proof"
+    },
+    {
+      "id": "ch31-report-hot",
+      "type": "reproducible_measurement",
+      "title": "Chapter 31 hot-expert routing JSON",
+      "path": "reports/ch31-moe-routing.json",
+      "claims": ["hot expert overflow, drop and rank-skew result"],
+      "verification": "rerun hot-expert command in reports/ch31-moe-routing-report.md and compare JSON",
+      "status": "local-measurement-not-production-proof"
+    },
+    {
+      "id": "ch31-report",
+      "type": "reproducible_measurement",
+      "title": "Chapter 31 experiment report",
+      "path": "reports/ch31-moe-routing-report.md",
+      "claims": ["commands, result table, interpretation and explicit non-production boundaries"],
+      "verification": "compare report table with both JSON outputs and rerun contract tests",
+      "status": "local-measurement-not-production-proof"
+    }
+  ]
+}
