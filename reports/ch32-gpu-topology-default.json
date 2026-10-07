@@ -1,0 +1,1685 @@
+{
+  "collectives": {
+    "alltoall": {
+      "bottleneck_ms": 0.39147924,
+      "inter_node_bytes": 306783380,
+      "intra_node_bytes": 230087532,
+      "links": [
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 9586981,
+          "dst": 1,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 0,
+          "transfer_ms": 0.0872176088888889
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 9586981,
+          "dst": 2,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 0,
+          "transfer_ms": 0.0872176088888889
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 9586981,
+          "dst": 3,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 0,
+          "transfer_ms": 0.0872176088888889
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586981,
+          "dst": 4,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 0,
+          "transfer_ms": 0.39147924
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586980,
+          "dst": 5,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 0,
+          "transfer_ms": 0.3914792
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586980,
+          "dst": 6,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 0,
+          "transfer_ms": 0.3914792
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586980,
+          "dst": 7,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 0,
+          "transfer_ms": 0.3914792
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 9586981,
+          "dst": 0,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 1,
+          "transfer_ms": 0.0872176088888889
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 9586981,
+          "dst": 2,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 1,
+          "transfer_ms": 0.0872176088888889
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 9586981,
+          "dst": 3,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 1,
+          "transfer_ms": 0.0872176088888889
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586981,
+          "dst": 4,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 1,
+          "transfer_ms": 0.39147924
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586980,
+          "dst": 5,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 1,
+          "transfer_ms": 0.3914792
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586980,
+          "dst": 6,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 1,
+          "transfer_ms": 0.3914792
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586980,
+          "dst": 7,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 1,
+          "transfer_ms": 0.3914792
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 9586981,
+          "dst": 0,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 2,
+          "transfer_ms": 0.0872176088888889
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 9586981,
+          "dst": 1,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 2,
+          "transfer_ms": 0.0872176088888889
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 9586981,
+          "dst": 3,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 2,
+          "transfer_ms": 0.0872176088888889
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586981,
+          "dst": 4,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 2,
+          "transfer_ms": 0.39147924
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586980,
+          "dst": 5,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 2,
+          "transfer_ms": 0.3914792
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586980,
+          "dst": 6,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 2,
+          "transfer_ms": 0.3914792
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586980,
+          "dst": 7,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 2,
+          "transfer_ms": 0.3914792
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 9586981,
+          "dst": 0,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 3,
+          "transfer_ms": 0.0872176088888889
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 9586981,
+          "dst": 1,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 3,
+          "transfer_ms": 0.0872176088888889
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 9586981,
+          "dst": 2,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 3,
+          "transfer_ms": 0.0872176088888889
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586981,
+          "dst": 4,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 3,
+          "transfer_ms": 0.39147924
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586980,
+          "dst": 5,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 3,
+          "transfer_ms": 0.3914792
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586980,
+          "dst": 6,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 3,
+          "transfer_ms": 0.3914792
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586980,
+          "dst": 7,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 3,
+          "transfer_ms": 0.3914792
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586981,
+          "dst": 0,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 4,
+          "transfer_ms": 0.39147924
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586981,
+          "dst": 1,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 4,
+          "transfer_ms": 0.39147924
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586981,
+          "dst": 2,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 4,
+          "transfer_ms": 0.39147924
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586981,
+          "dst": 3,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 4,
+          "transfer_ms": 0.39147924
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 9586980,
+          "dst": 5,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 4,
+          "transfer_ms": 0.08721759999999999
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 9586980,
+          "dst": 6,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 4,
+          "transfer_ms": 0.08721759999999999
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 9586980,
+          "dst": 7,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 4,
+          "transfer_ms": 0.08721759999999999
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586981,
+          "dst": 0,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 5,
+          "transfer_ms": 0.39147924
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586981,
+          "dst": 1,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 5,
+          "transfer_ms": 0.39147924
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586981,
+          "dst": 2,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 5,
+          "transfer_ms": 0.39147924
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586981,
+          "dst": 3,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 5,
+          "transfer_ms": 0.39147924
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 9586980,
+          "dst": 4,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 5,
+          "transfer_ms": 0.08721759999999999
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 9586980,
+          "dst": 6,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 5,
+          "transfer_ms": 0.08721759999999999
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 9586980,
+          "dst": 7,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 5,
+          "transfer_ms": 0.08721759999999999
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586981,
+          "dst": 0,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 6,
+          "transfer_ms": 0.39147924
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586981,
+          "dst": 1,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 6,
+          "transfer_ms": 0.39147924
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586981,
+          "dst": 2,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 6,
+          "transfer_ms": 0.39147924
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586981,
+          "dst": 3,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 6,
+          "transfer_ms": 0.39147924
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 9586980,
+          "dst": 4,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 6,
+          "transfer_ms": 0.08721759999999999
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 9586980,
+          "dst": 5,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 6,
+          "transfer_ms": 0.08721759999999999
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 9586980,
+          "dst": 7,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 6,
+          "transfer_ms": 0.08721759999999999
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586981,
+          "dst": 0,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 7,
+          "transfer_ms": 0.39147924
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586981,
+          "dst": 1,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 7,
+          "transfer_ms": 0.39147924
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586981,
+          "dst": 2,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 7,
+          "transfer_ms": 0.39147924
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 9586981,
+          "dst": 3,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 7,
+          "transfer_ms": 0.39147924
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 9586980,
+          "dst": 4,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 7,
+          "transfer_ms": 0.08721759999999999
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 9586980,
+          "dst": 5,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 7,
+          "transfer_ms": 0.08721759999999999
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 9586980,
+          "dst": 6,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 7,
+          "transfer_ms": 0.08721759999999999
+        }
+      ],
+      "operation": "alltoall",
+      "p50_link_ms": 0.3914792,
+      "p95_link_ms": 0.39147924,
+      "payload_bytes": 67108864,
+      "rank_send_bytes": [
+        67108864,
+        67108864,
+        67108864,
+        67108864,
+        67108864,
+        67108864,
+        67108864,
+        67108864
+      ],
+      "world_size": 8
+    },
+    "ring_allreduce": {
+      "bottleneck_ms": 0.34354432,
+      "inter_node_bytes": 234881024,
+      "intra_node_bytes": 704643072,
+      "links": [
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 1,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 0,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 1,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 0,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 1,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 0,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 1,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 0,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 1,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 0,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 1,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 0,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 1,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 0,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 1,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 0,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 1,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 0,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 1,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 0,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 1,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 0,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 1,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 0,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 1,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 0,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 1,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 0,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 2,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 1,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 2,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 1,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 2,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 1,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 2,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 1,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 2,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 1,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 2,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 1,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 2,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 1,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 2,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 1,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 2,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 1,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 2,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 1,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 2,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 1,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 2,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 1,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 2,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 1,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 2,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 1,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 3,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 2,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 3,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 2,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 3,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 2,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 3,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 2,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 3,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 2,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 3,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 2,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 3,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 2,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 3,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 2,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 3,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 2,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 3,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 2,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 3,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 2,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 3,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 2,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 3,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 2,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 3,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 2,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 8388608,
+          "dst": 4,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 3,
+          "transfer_ms": 0.34354432
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 8388608,
+          "dst": 4,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 3,
+          "transfer_ms": 0.34354432
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 8388608,
+          "dst": 4,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 3,
+          "transfer_ms": 0.34354432
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 8388608,
+          "dst": 4,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 3,
+          "transfer_ms": 0.34354432
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 8388608,
+          "dst": 4,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 3,
+          "transfer_ms": 0.34354432
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 8388608,
+          "dst": 4,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 3,
+          "transfer_ms": 0.34354432
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 8388608,
+          "dst": 4,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 3,
+          "transfer_ms": 0.34354432
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 8388608,
+          "dst": 4,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 3,
+          "transfer_ms": 0.34354432
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 8388608,
+          "dst": 4,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 3,
+          "transfer_ms": 0.34354432
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 8388608,
+          "dst": 4,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 3,
+          "transfer_ms": 0.34354432
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 8388608,
+          "dst": 4,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 3,
+          "transfer_ms": 0.34354432
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 8388608,
+          "dst": 4,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 3,
+          "transfer_ms": 0.34354432
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 8388608,
+          "dst": 4,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 3,
+          "transfer_ms": 0.34354432
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 8388608,
+          "dst": 4,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 3,
+          "transfer_ms": 0.34354432
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 5,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 4,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 5,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 4,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 5,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 4,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 5,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 4,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 5,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 4,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 5,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 4,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 5,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 4,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 5,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 4,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 5,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 4,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 5,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 4,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 5,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 4,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 5,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 4,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 5,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 4,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 5,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 4,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 6,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 5,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 6,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 5,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 6,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 5,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 6,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 5,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 6,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 5,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 6,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 5,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 6,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 5,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 6,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 5,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 6,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 5,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 6,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 5,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 6,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 5,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 6,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 5,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 6,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 5,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 6,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 5,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 7,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 6,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 7,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 6,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 7,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 6,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 7,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 6,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 7,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 6,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 7,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 6,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 7,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 6,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 7,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 6,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 7,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 6,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 7,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 6,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 7,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 6,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 7,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 6,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 7,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 6,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 900.0,
+          "bytes": 8388608,
+          "dst": 7,
+          "latency_us": 2.0,
+          "path": "intra_node",
+          "src": 6,
+          "transfer_ms": 0.07656540444444446
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 8388608,
+          "dst": 0,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 7,
+          "transfer_ms": 0.34354432
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 8388608,
+          "dst": 0,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 7,
+          "transfer_ms": 0.34354432
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 8388608,
+          "dst": 0,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 7,
+          "transfer_ms": 0.34354432
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 8388608,
+          "dst": 0,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 7,
+          "transfer_ms": 0.34354432
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 8388608,
+          "dst": 0,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 7,
+          "transfer_ms": 0.34354432
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 8388608,
+          "dst": 0,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 7,
+          "transfer_ms": 0.34354432
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 8388608,
+          "dst": 0,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 7,
+          "transfer_ms": 0.34354432
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 8388608,
+          "dst": 0,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 7,
+          "transfer_ms": 0.34354432
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 8388608,
+          "dst": 0,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 7,
+          "transfer_ms": 0.34354432
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 8388608,
+          "dst": 0,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 7,
+          "transfer_ms": 0.34354432
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 8388608,
+          "dst": 0,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 7,
+          "transfer_ms": 0.34354432
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 8388608,
+          "dst": 0,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 7,
+          "transfer_ms": 0.34354432
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 8388608,
+          "dst": 0,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 7,
+          "transfer_ms": 0.34354432
+        },
+        {
+          "bandwidth_gbps": 200.0,
+          "bytes": 8388608,
+          "dst": 0,
+          "latency_us": 8.0,
+          "path": "inter_node",
+          "src": 7,
+          "transfer_ms": 0.34354432
+        }
+      ],
+      "operation": "ring_allreduce",
+      "p50_link_ms": 0.07656540444444446,
+      "p95_link_ms": 0.34354432,
+      "payload_bytes": 67108864,
+      "rank_send_bytes": [
+        117440512,
+        117440512,
+        117440512,
+        117440512,
+        117440512,
+        117440512,
+        117440512,
+        117440512
+      ],
+      "world_size": 8
+    }
+  },
+  "config": {
+    "gpus_per_node": 4,
+    "inter_bw_gbps": 200.0,
+    "inter_latency_us": 8.0,
+    "intra_bw_gbps": 900.0,
+    "intra_latency_us": 2.0,
+    "nodes": 2,
+    "payload_bytes": 67108864,
+    "replicas": 2,
+    "requests": 128
+  },
+  "experiment": "ch32-gpu-cluster-topology-cpu-toy",
+  "failure": null,
+  "inference": {
+    "dropped": 0,
+    "replicas_available": 2,
+    "replicas_configured": 2,
+    "requests": 128,
+    "served": 128
+  },
+  "placement": {
+    "path_matrix": [
+      [
+        "self",
+        "intra_node",
+        "intra_node",
+        "intra_node",
+        "inter_node",
+        "inter_node",
+        "inter_node",
+        "inter_node"
+      ],
+      [
+        "intra_node",
+        "self",
+        "intra_node",
+        "intra_node",
+        "inter_node",
+        "inter_node",
+        "inter_node",
+        "inter_node"
+      ],
+      [
+        "intra_node",
+        "intra_node",
+        "self",
+        "intra_node",
+        "inter_node",
+        "inter_node",
+        "inter_node",
+        "inter_node"
+      ],
+      [
+        "intra_node",
+        "intra_node",
+        "intra_node",
+        "self",
+        "inter_node",
+        "inter_node",
+        "inter_node",
+        "inter_node"
+      ],
+      [
+        "inter_node",
+        "inter_node",
+        "inter_node",
+        "inter_node",
+        "self",
+        "intra_node",
+        "intra_node",
+        "intra_node"
+      ],
+      [
+        "inter_node",
+        "inter_node",
+        "inter_node",
+        "inter_node",
+        "intra_node",
+        "self",
+        "intra_node",
+        "intra_node"
+      ],
+      [
+        "inter_node",
+        "inter_node",
+        "inter_node",
+        "inter_node",
+        "intra_node",
+        "intra_node",
+        "self",
+        "intra_node"
+      ],
+      [
+        "inter_node",
+        "inter_node",
+        "inter_node",
+        "inter_node",
+        "intra_node",
+        "intra_node",
+        "intra_node",
+        "self"
+      ]
+    ],
+    "rank_to_node": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1
+    ]
+  },
+  "schema_version": 1,
+  "seed": 32,
+  "summary": {
+    "alltoall_bottleneck_ms": 0.391479,
+    "alltoall_inter_node_bytes": 306783380,
+    "inference_drop_rate": 0.0,
+    "ring_bottleneck_ms": 0.343544,
+    "ring_inter_node_bytes": 234881024,
+    "training_survives_failure": true,
+    "world_size": 8
+  }
+}
