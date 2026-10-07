@@ -50,6 +50,13 @@ def test_network_fault_keeps_tail_and_reports_retransmit():
     assert any("network.rpc" == row["name"] for row in result["traces"])
 
 
+def test_gpu_throttle_fault_uses_gpu_evidence():
+    result = simulate(fault="gpu_throttle")
+    assert result["diagnosis"]["root_cause"] == "gpu_power_or_thermal_throttle"
+    assert any(row["name"] == "gpu.throttle" for row in result["traces"])
+    assert any(item["power_throttle"] for item in result["telemetry"])
+
+
 def test_storage_fault_links_io_to_queue():
     result = simulate(fault="storage_tail")
     assert result["diagnosis"]["root_cause"] == "storage_io_tail"
@@ -111,6 +118,7 @@ if __name__ == "__main__":
     test_baseline_is_deterministic_and_terminal()
     test_trace_tree_and_signal_correlation()
     test_network_fault_keeps_tail_and_reports_retransmit()
+    test_gpu_throttle_fault_uses_gpu_evidence()
     test_storage_fault_links_io_to_queue()
     test_cardinality_budget_and_forbidden_ids_are_explicit()
     test_tail_sampler_error_and_slow_predicates()
