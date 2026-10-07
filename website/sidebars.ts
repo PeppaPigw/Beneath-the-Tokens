@@ -35,6 +35,7 @@ const sidebars: SidebarsConfig = {
     'chapters/ch29-speculative-and-structured-decoding',
     'chapters/ch30-kv-compression-and-tiering',
     'chapters/ch31-moe-and-expert-parallelism',
+    'chapters/ch32-gpu-cluster-topology',
     'chapter-template',
     'lab-standards',
     'source-policy',
