@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "docs": "/workspace/scratch/4dcc55129e39/Beneath-the-Tokens/docs",
+  "target": "chapters/35-serving-scheduling-and-slo.md",
+  "files": [
+    {
+      "id": "ch35-serving-scheduling-and-slo",
+      "path": "chapters/35-serving-scheduling-and-slo.md",
+      "checks": {
+        "error_count": 0,
+        "frontmatter": true,
+        "fences": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "pedagogical_sections": true,
+        "script_syntax": true,
+        "headings": 48,
+        "urls": 48,
+        "min_chars": 22261
+      },
+      "errors": []
+    },
+    {
+      "id": "ch35-serving-scheduling-lab",
+      "path": "../labs/ch35_serving_scheduling_lab.py",
+      "checks": {
+        "py_compile": true,
+        "cpu_only": true,
+        "deterministic": true,
+        "cli_json": true,
+        "queue_metrics": true,
+        "continuous_batching": true,
+        "prefill_decode_modes": true,
+        "admission_control": true,
+        "cancellation_backpressure": true,
+        "slo_percentiles": true
+      },
+      "errors": []
+    },
+    {
+      "id": "ch35-serving-scheduling-tests",
+      "path": "../tests/test_ch35_serving_scheduling_lab.py",
+      "checks": {
+        "direct_test": true,
+        "contracts": [
+          "terminal statuses and SLO metrics",
+          "batch request/prompt caps",
+          "coupled/disaggregated determinism",
+          "admission rejection reasons",
+          "cancellation and stream backpressure",
+          "percentile validation",
+          "CLI JSON output"
+        ]
+      },
+      "errors": []
+    }
+  ],
+  "error_classes": [],
+  "errors": [],
+  "structural_passed": true,
+  "passed": true,
+  "summary": {
+    "error_classes": [],
+    "errors": 0,
+    "fatal_errors": 0,
+    "files": 3,
+    "urls": 48
+  },
+  "network_checks": [],
+  "skipped_network_checks": [],
+  "note": "Focused local audit record. URLs are primary-source references and require version-pinned production verification; the CPU toy is not a vLLM/SGLang/Triton/CUDA performance or correctness guarantee."
+}
