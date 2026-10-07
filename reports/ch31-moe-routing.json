@@ -934,6 +934,7 @@
     ],
     "aux_loss": 2.49566092651681,
     "capacity": 80,
+    "dropped_assignments": 176,
     "dropped_tokens": 176,
     "expert_load": [
       80,
@@ -956,6 +957,7 @@
       0.0004641546865397373
     ],
     "overflow_assignments": 176,
+    "residual_tokens": 0,
     "selected_fraction": [
       0.3125,
       0.171875,
@@ -973,8 +975,10 @@
     "all_to_all_bytes": 1376256,
     "aux_loss": 2.49566092651681,
     "drop_rate": 0.6875,
+    "dropped_assignments": 176,
     "latency_proxy_ms": 0.895402,
     "overflow_assignments": 176,
+    "residual_tokens": 0,
     "tokens": 256
   }
 }
