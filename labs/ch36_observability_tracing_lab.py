@@ -105,6 +105,14 @@ def make_workload() -> tuple[Request, ...]:
     )
 
 
+# Public aliases used by chapter exercises and downstream contract tests.
+make_requests = make_workload
+
+
+def cardinality_guard(metric_labels: Sequence[str], budget: int) -> dict[str, object]:
+    return _metric_series_guard(metric_labels, budget)
+
+
 def _id(prefix: str, index: int) -> str:
     return f"{prefix}-{index:04d}"
 
@@ -154,8 +162,8 @@ def tail_sample(spans: Sequence[Span], *, fault: str, threshold_ms: float = 180.
 
 def simulate(*, fault: str = "none", seed: int = 7, cardinality_budget: int = 8,
              requests: Sequence[Request] | None = None) -> dict[str, object]:
-    if fault not in {"none", "network_tail", "storage_tail"}:
-        raise ValueError("fault must be none, network_tail or storage_tail")
+    if fault not in {"none", "network_tail", "storage_tail", "gpu_throttle"}:
+        raise ValueError("fault must be none, network_tail, storage_tail or gpu_throttle")
     reqs = tuple(requests or make_workload())
     for req in reqs:
         req.validate()
@@ -164,7 +172,7 @@ def simulate(*, fault: str = "none", seed: int = 7, cardinality_budget: int = 8,
     logs: list[LogRecord] = []
     profiles: list[ProfileSample] = []
     telemetry: list[dict[str, object]] = []
-    phase_values: dict[str, list[float]] = {"queue": [], "prefill": [], "decode": [], "e2e": [], "itl": []}
+    phase_values: dict[str, list[float]] = {"queue": [], "prefill": [], "decode": [], "ttft": [], "e2e": [], "itl": []}
     metric_labels: list[str] = []
     request_rows: list[dict[str, object]] = []
     cursor = 0.0
@@ -178,12 +186,16 @@ def simulate(*, fault: str = "none", seed: int = 7, cardinality_budget: int = 8,
         decode_ms = round(7.0 + req.output_tokens * 4.0, 3)
         network_ms = 0.0
         storage_ms = 0.0
+        gpu_throttle_ms = 0.0
         if fault == "network_tail" and i % 3 == 1:
             network_ms = 75.0 + (i % 4) * 8.0
             decode_ms += network_ms
         if fault == "storage_tail" and i % 4 == 2:
             storage_ms = 95.0 + (i % 3) * 15.0
             queue_ms += storage_ms * 0.2
+        if fault == "gpu_throttle" and i % 4 == 1:
+            gpu_throttle_ms = 90.0 + (i % 3) * 12.0
+            decode_ms += gpu_throttle_ms
         prefill_start = round(queue_start, 3)
         prefill_end = round(prefill_start + prefill_ms, 3)
         first_token = round(prefill_end + 3.0, 3)
@@ -214,22 +226,30 @@ def simulate(*, fault: str = "none", seed: int = 7, cardinality_budget: int = 8,
                               prefill_start + storage_ms, {"device": "nvme0", "bytes": 4096}))
             logs.append(LogRecord(prefill_start + storage_ms, "WARN", "storage tail injected", trace_id,
                                   {"device": "nvme0", "io_latency_ms": storage_ms}))
+        if gpu_throttle_ms:
+            spans.append(Span(trace_id, _id("span", i * 10 + 7), decode_id, "gpu.throttle", decode_start,
+                              decode_start + gpu_throttle_ms, {"reason": "power_limit", "device_uuid": "toy-gpu-0"}))
+            logs.append(LogRecord(decode_start + gpu_throttle_ms, "WARN", "GPU throttle injected", trace_id,
+                                  {"device_uuid": "toy-gpu-0", "throttle_ms": gpu_throttle_ms}))
         logs.append(LogRecord(req.arrival_ms, "INFO", "request accepted", trace_id,
                               {"request_id": req.request_id, "tenant": req.tenant}))
         profiles.extend([
             ProfileSample(prefill_start + prefill_ms / 2, "cpu", "tokenizer.encode", round(prefill_ms * 0.2, 3), trace_id),
             ProfileSample(decode_start + decode_ms / 2, "gpu", "toy.decode_kernel", round(decode_ms * 0.65, 3), trace_id),
         ])
-        gpu_util = round(max(0.1, min(0.98, 0.82 - network_ms / 400.0 - storage_ms / 500.0)), 3)
+        gpu_util = round(max(0.1, min(0.98, 0.82 - network_ms / 400.0 - storage_ms / 500.0 - gpu_throttle_ms / 300.0)), 3)
         telemetry.append({"timestamp_ms": decode_start, "device_uuid": "toy-gpu-0", "sm_active_ratio": gpu_util,
                           "memory_used_bytes": 2_000_000 + req.prompt_tokens * 1024,
                           "nvlink_tx_bytes": 0 if not network_ms else 120_000,
                           "network_retransmits": 0 if not network_ms else 3 + i % 2,
-                          "disk_io_latency_ms": storage_ms})
+                          "disk_io_latency_ms": storage_ms,
+                          "power_throttle": gpu_throttle_ms > 0,
+                          "gpu_throttle_ms": gpu_throttle_ms})
         itl = round(decode_ms / max(req.output_tokens, 1), 3)
         phase_values["queue"].append(queue_ms)
         phase_values["prefill"].append(prefill_ms)
         phase_values["decode"].append(decode_ms)
+        phase_values["ttft"].append(round(first_token - req.arrival_ms, 3))
         phase_values["itl"].append(itl)
         phase_values["e2e"].append(round(finish - req.arrival_ms, 3))
         metric_labels.extend(["toy-llm|/generate|toy-gpu-0", f"request-{req.request_id}"])
@@ -256,8 +276,9 @@ def simulate(*, fault: str = "none", seed: int = 7, cardinality_budget: int = 8,
         "metrics_exclude_trace_id_labels": "trace_id" in cardinality["forbidden_labels"],
         "deterministic_seed": seed >= 0,
     }
+    trace_rows = [asdict(span) | {"duration_ms": span.duration_ms} for span in spans]
     return {"schema_version": 1, "seed": seed, "fault": fault, "requests": request_rows,
-            "traces": [asdict(span) | {"duration_ms": span.duration_ms} for span in spans],
+            "traces": trace_rows, "spans": trace_rows,
             "metrics": metrics, "logs": [asdict(log) for log in logs], "profiles": [asdict(profile) for profile in profiles],
             "telemetry": telemetry, "cardinality": cardinality, "sampling": sampling,
             "diagnosis": diagnosis, "invariants": invariants}
@@ -266,7 +287,11 @@ def simulate(*, fault: str = "none", seed: int = 7, cardinality_budget: int = 8,
 def diagnose(*, fault: str, metrics: dict[str, object], telemetry: Sequence[dict[str, object]], spans: Sequence[Span]) -> dict[str, object]:
     network_retx = sum(int(item["network_retransmits"]) for item in telemetry)
     disk_tail = max(float(item["disk_io_latency_ms"]) for item in telemetry)
-    if fault == "network_tail" or network_retx > 0:
+    throttle_count = sum(1 for item in telemetry if item.get("power_throttle"))
+    if fault == "gpu_throttle" or throttle_count > 0:
+        root_cause = "gpu_power_or_thermal_throttle"
+        evidence = ["gpu.throttle spans", "power_throttle", "GPU utilization/clocks"]
+    elif fault == "network_tail" or network_retx > 0:
         root_cause = "network_or_collective_tail"
         evidence = ["network.rpc spans", "network_retransmits", "decode/ITL tail"]
     elif fault == "storage_tail" or disk_tail > 0:
@@ -282,7 +307,7 @@ def diagnose(*, fault: str, metrics: dict[str, object], telemetry: Sequence[dict
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--fault", choices=("none", "network_tail", "storage_tail"), default="none")
+    parser.add_argument("--fault", choices=("none", "network_tail", "storage_tail", "gpu_throttle"), default="none")
     parser.add_argument("--seed", type=int, default=7)
     parser.add_argument("--cardinality-budget", type=int, default=8)
     parser.add_argument("--output", type=Path)
