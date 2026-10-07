@@ -52,7 +52,7 @@ last_verified: 2026-10-07
 
 合同先于 flag。`--speculative-model`、`--num-speculative-tokens` 或 `--grammar-backend` 只是实现选择，不能取代这些可观测断言。
 
-## 29.2 自回归目标、草稿与验证的统一表示
+## 29.2 心智模型：自回归目标、草稿与验证的统一表示
 
 给定上下文 (x_{<t})，目标模型定义下一个 token 的分布 (p_t(v)=P_M(vmid x_{<t}))。草稿模型或草稿头给出 (q_t(v)=P_D(vmid x_{<t}))。普通解码从 (p_t) 采样一个 token，追加后再计算下一位置。speculative 一轮让草稿连续提出 (k) 个 token (y_{t:t+k-1})，随后目标以一次批量 forward 得到每个位置的 (p_{t+j})。
 
@@ -373,6 +373,10 @@ python3 tests/test_ch29_speculative_lab.py
 先比较 target-only 与 speculative 的 `steps`、`target_tokens`、`draft_tokens`、`accepted_tokens`、`acceptance_rate` 和 TTFT；再比较 grammar 开关下的 `grammar_rejects`。若 speculative steps 下降但 logical time 上升，说明 draft/verify 常数抵消了候选收益；这正是生产中应关注的信号。若 grammar rejects 上升而 output count 不变，不能推出 JSON 语义正确，只能说明 toy 的 mask/retry bookkeeping 工作。
 
 做受控扫描时一次只变一个参数：k=1/2/4/8；accept rate=0.2/0.5/0.8/1.0；grammar reject=0/0.1/0.5；并发=1/6/24；token budget=8/32/128。保存 stdout JSON 和命令行，避免只复制摘要表。对每个点至少重复多个 seed，报告均值、p95 和随机波动；toy 的 Bernoulli 不是硬件噪声模型。
+
+## 29.10.2 理解检查：提交边界与可观测性
+
+在进入真实 GPU benchmark 前，逐项检查：第一，客户端是否只收到 committed token，draft/rollback 是否永远不可见；第二，target logits、grammar state、KV slot 和 request generation id 是否能在同一个 trace 中对齐；第三，acceptance、grammar reject、target correction、compile time、TTFT/ITL/TPOT 是否分开统计；第四，取消、超时、schema dead end 和 page OOM 是否有可重现的最小样例。若任何一项无法回答，应把结果标成“协议未验收”，不要仅凭 tok/s 开启默认 speculative。
 
 ## 29.11 故障模式与排查 runbook
 
