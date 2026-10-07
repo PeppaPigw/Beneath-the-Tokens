@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "chapter": "29-speculative-and-structured-decoding",
+  "access_date": "2026-10-07",
+  "purpose": "Evidence index for exact speculative decoding, structured/grammar constraints, scheduler integration, and vLLM/SGLang serving",
+  "entries": [
+    {
+      "id": "leviathan-speculative",
+      "type": "paper",
+      "title": "Fast Inference from Transformers via Speculative Decoding",
+      "url": "https://arxiv.org/abs/2211.17192",
+      "claims": ["draft/target accept-reject", "residual distribution", "exact target sampling distribution"],
+      "verification": "reproduce a finite-vocabulary p/q enumeration and report temperature/truncation details",
+      "status": "primary-source"
+    },
+    {
+      "id": "speculative-sampling",
+      "type": "paper",
+      "title": "Accelerating Large Language Model Decoding with Speculative Sampling",
+      "url": "https://arxiv.org/abs/2302.01318",
+      "claims": ["speculative sampling implementation and speed/quality trade-offs"],
+      "verification": "pin model/tokenizer and compare target-only distribution tests",
+      "status": "primary-source"
+    },
+    {
+      "id": "medusa",
+      "type": "paper",
+      "title": "Medusa: Simple LLM Inference Acceleration Framework with Multiple Decoding Heads",
+      "url": "https://arxiv.org/abs/2401.10774",
+      "claims": ["multiple prediction heads", "tree candidates", "tree verification"],
+      "verification": "record head checkpoint, tree width/depth, mask and accepted candidates",
+      "status": "primary-source"
+    },
+    {
+      "id": "eagle",
+      "type": "paper",
+      "title": "EAGLE: Speculative Sampling Requires Rethinking Feature Uncertainty",
+      "url": "https://arxiv.org/abs/2401.15077",
+      "claims": ["feature-level draft head", "target feature reuse", "speculative sampling"],
+      "verification": "pin target revision, feature layer, dtype and head checkpoint",
+      "status": "primary-source"
+    },
+    {
+      "id": "specinfer",
+      "type": "paper",
+      "title": "SpecInfer: Accelerating Generative Large Language Model Serving with Speculative Inference and Token Tree Verification",
+      "url": "https://arxiv.org/abs/2305.09781",
+      "claims": ["token tree verification", "tree attention", "shared ancestor computation"],
+      "verification": "test sibling attention mask, parent/position ids and rollback",
+      "status": "primary-source"
+    },
+    {
+      "id": "lookahead-decoding",
+      "type": "paper",
+      "title": "Break the Sequential Dependency of LLM Inference Using Lookahead Decoding",
+      "url": "https://arxiv.org/abs/2402.02057",
+      "claims": ["lookahead slots/n-gram style candidates", "breaking sequential dependency under stated workloads"],
+      "verification": "report repetition distribution, candidate hit rate and target verification cost",
+      "status": "primary-source"
+    },
+    {
+      "id": "vllm-speculative-docs",
+      "type": "official_documentation",
+      "title": "vLLM speculative decoding documentation",
+      "url": "https://docs.vllm.ai/en/stable/features/speculative_decoding.html",
+      "claims": ["supported speculative methods/configuration", "feature limitations and runtime flags"],
+      "verification": "pin vLLM tag and capture --help/config plus acceptance metrics",
+      "status": "primary-source"
+    },
+    {
+      "id": "vllm-structured-docs",
+      "type": "official_documentation",
+      "title": "vLLM structured outputs documentation",
+      "url": "https://docs.vllm.ai/en/stable/features/structured_outputs.html",
+      "claims": ["guided JSON/grammar/regex structured output entry points"],
+      "verification": "pin backend/version; test parser, schema cache, timeout and fallback semantics",
+      "status": "primary-source"
+    },
+    {
+      "id": "vllm-architecture-source",
+      "type": "mature_source_code",
+      "title": "vLLM architecture overview and source repository",
+      "url": "https://github.com/vllm-project/vllm",
+      "claims": ["API/engine core/worker path", "scheduler and model runner entry points", "KV block management"],
+      "verification": "record target commit and source paths for scheduler, speculative worker, guided decoding and metrics",
+      "status": "primary-source"
+    },
+    {
+      "id": "sglang-speculative-docs",
+      "type": "official_documentation",
+      "title": "SGLang speculative decoding documentation",
+      "url": "https://docs.sglang.ai/advanced_features/speculative_decoding.html",
+      "claims": ["speculative backend configuration", "runtime integration and limitations"],
+      "verification": "pin docs/commit, run target configuration and collect request-level acceptance",
+      "status": "primary-source"
+    },
+    {
+      "id": "sglang-paper",
+      "type": "paper",
+      "title": "SGLang: Efficient Execution of Structured Language Model Programs",
+      "url": "https://arxiv.org/abs/2312.07104",
+      "claims": ["structured program execution", "RadixAttention", "compressed FSM and continuous batching"],
+      "verification": "cross-check structured/grammar and cache claims against target source",
+      "status": "primary-source"
+    },
+    {
+      "id": "sglang-repo",
+      "type": "mature_source_code",
+      "title": "SGLang source repository",
+      "url": "https://github.com/sgl-project/sglang",
+      "claims": ["scheduler/radix cache/grammar/speculative implementation entry points", "serving benchmark scripts"],
+      "verification": "pin commit and run backend tests for tree mask, rollback, grammar and cancellation",
+      "status": "primary-source"
+    },
+    {
+      "id": "ch29-toy-lab",
+      "type": "reproducible_measurement",
+      "title": "Chapter 29 CPU speculative and structured decoding toy",
+      "path": "labs/ch29_speculative_lab.py",
+      "claims": ["exact accept-reject finite vocabulary", "grammar mask state machine", "baseline/speculative/lookahead scheduler accounting"],
+      "verification": "python3 labs/ch29_speculative_lab.py --seed 29 --requests 24 --concurrency 6 --output-len 32 --draft-len 4 --accept-rate 0.72 --mode speculative --grammar --grammar-reject-rate 0.10",
+      "status": "local-measurement-not-production-proof"
+    },
+    {
+      "id": "ch29-toy-tests",
+      "type": "reproducible_measurement",
+      "title": "Chapter 29 toy contract tests",
+      "path": "tests/test_ch29_speculative_lab.py",
+      "claims": ["residual correction on rejection", "zero probability for grammar-forbidden tokens", "completion/reproducibility", "CLI JSON contract"],
+      "verification": "python3 tests/test_ch29_speculative_lab.py (or pytest -q)",
+      "status": "local-test-only"
+    },
+    {
+      "id": "ch29-report",
+      "type": "reproducible_measurement",
+      "title": "Chapter 29 experiment report and JSON outputs",
+      "path": "reports/ch29-speculative-report.md",
+      "claims": ["commands, toy results, interpretation and explicit non-production boundaries"],
+      "verification": "compare report table to reports/ch29-target-only.json, reports/ch29-speculative-json.json and reports/ch29-lookahead-json.json",
+      "status": "local-measurement-not-production-proof"
+    }
+  ]
+}
