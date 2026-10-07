@@ -36,6 +36,7 @@ const sidebars: SidebarsConfig = {
     'chapters/ch30-kv-compression-and-tiering',
     'chapters/ch31-moe-and-expert-parallelism',
     'chapters/ch32-gpu-cluster-topology',
+    'chapters/ch33-storage-and-data-plane',
     'chapter-template',
     'lab-standards',
     'source-policy',
