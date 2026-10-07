@@ -39,6 +39,7 @@ const sidebars: SidebarsConfig = {
     'chapters/ch33-storage-and-data-plane',
     'chapters/ch34-compilers-and-kernels',
     'chapters/ch35-serving-scheduling-and-slo',
+    'chapters/ch36-observability-and-tracing',
     'chapter-template',
     'lab-standards',
     'source-policy',
