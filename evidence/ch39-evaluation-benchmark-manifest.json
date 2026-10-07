@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "chapter": "39-evaluation-and-benchmarks",
+  "access_date": "2026-10-07",
+  "purpose": "Evidence index for benchmark design, micro/meso/macro measurement, quality-system joint gates, contamination, statistics, reproducibility, shadow/canary and regression controls",
+  "entries": [
+    {"id": "mlperf", "type": "benchmark", "title": "MLCommons MLPerf Benchmarks", "url": "https://mlcommons.org/benchmarks/", "claims": ["reproducible ML benchmark rules and result reporting"], "status": "primary-source"},
+    {"id": "tpu-performance", "type": "official_documentation", "title": "Google Cloud TPU performance guide", "url": "https://cloud.google.com/tpu/docs/performance-guide", "claims": ["shape, input pipeline and accelerator performance considerations"], "status": "primary-source"},
+    {"id": "dcgm", "type": "official_documentation", "title": "NVIDIA Data Center GPU Manager", "url": "https://docs.nvidia.com/datacenter/dcgm/latest/", "claims": ["GPU health, utilization and telemetry boundaries"], "status": "primary-source"},
+    {"id": "nvml", "type": "official_documentation", "title": "NVIDIA Management Library API", "url": "https://docs.nvidia.com/deploy/nvml-api/", "claims": ["device-side power and utilization API"], "status": "primary-source"},
+    {"id": "otel-metrics", "type": "specification", "title": "OpenTelemetry Metrics specification", "url": "https://opentelemetry.io/docs/specs/otel/metrics/", "claims": ["metric semantic conventions and aggregation"], "status": "primary-source"},
+    {"id": "otel-traces", "type": "specification", "title": "OpenTelemetry Trace specification", "url": "https://opentelemetry.io/docs/specs/otel/trace/", "claims": ["trace/span context for request timing"], "status": "primary-source"},
+    {"id": "hpa", "type": "official_documentation", "title": "Kubernetes Horizontal Pod Autoscaling", "url": "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/", "claims": ["metric-driven scaling control semantics"], "status": "primary-source"},
+    {"id": "keda", "type": "official_documentation", "title": "KEDA ScaledObject", "url": "https://keda.sh/docs/latest/concepts/scaling-deployments/", "claims": ["queue/event-driven scaling reference"], "status": "primary-source"},
+    {"id": "datasheets", "type": "paper", "title": "Datasheets for Datasets", "url": "https://dl.acm.org/doi/10.1145/3458723", "claims": ["dataset provenance and limitations"], "status": "primary-source"},
+    {"id": "model-cards", "type": "paper", "title": "Model Cards for Model Reporting", "url": "https://arxiv.org/abs/1810.03993", "claims": ["model scope, evaluation and limitations"], "status": "primary-source"},
+    {"id": "ghg-scope2", "type": "standard_guidance", "title": "GHG Protocol Scope 2 Guidance", "url": "https://ghgprotocol.org/scope-2-guidance", "claims": ["location-based and market-based electricity accounting"], "status": "primary-source"},
+    {"id": "sci-ai", "type": "methodology", "title": "Software Carbon Intensity for AI", "url": "https://greensoftware.foundation/articles/software-carbon-intensity-for-ai", "claims": ["AI software carbon boundary discussion"], "status": "primary-source"},
+    {"id": "pue", "type": "industry_methodology", "title": "The Green Grid PUE", "url": "https://www.thegreengrid.org/en/resources/library-and-tools/1-puetm", "claims": ["PUE measurement boundary"], "status": "primary-source"},
+    {"id": "carbon-aware-sdk", "type": "github", "title": "Green Software Foundation Carbon Aware SDK", "url": "https://github.com/Green-Software-Foundation/carbon-aware-sdk", "claims": ["carbon-aware scheduling implementation reference"], "status": "primary-source"},
+    {"id": "kepler", "type": "github", "title": "Kepler energy exporter", "url": "https://github.com/sustainable-computing-io/kepler", "claims": ["Kubernetes energy estimation implementation reference"], "status": "primary-source"},
+    {"id": "carbontracker", "type": "github", "title": "CarbonTracker", "url": "https://github.com/lfwa/carbontracker", "claims": ["ML operational energy and carbon estimation"], "status": "primary-source"},
+    {"id": "codecarbon", "type": "github", "title": "CodeCarbon", "url": "https://github.com/mlco2/codecarbon", "claims": ["ML energy and emissions estimation"], "status": "primary-source"},
+    {"id": "mlcommons-power", "type": "github", "title": "MLCommons Power", "url": "https://github.com/mlcommons/power", "claims": ["ML power measurement methodology"], "status": "primary-source"},
+    {"id": "lab", "type": "reproducible_measurement", "title": "Chapter 39 CPU-only evaluation benchmark toy", "path": "labs/ch39_evaluation_benchmark_lab.py", "claims": ["micro/meso/macro metrics, CI, contamination, joint and regression gates, shadow/canary"], "verification": "python3 labs/ch39_evaluation_benchmark_lab.py --fault none", "status": "local-measurement-not-production-proof"},
+    {"id": "tests", "type": "reproducible_measurement", "title": "Chapter 39 contract tests", "path": "tests/test_ch39_evaluation_benchmark_lab.py", "claims": ["determinism, matrix, statistics, gates, faults and CLI JSON"], "verification": "python3 tests/test_ch39_evaluation_benchmark_lab.py", "status": "local-test-only"},
+    {"id": "report", "type": "reproducible_measurement", "title": "Chapter 39 experiment report", "path": "reports/ch39-evaluation-benchmark-report.md", "claims": ["commands, synthetic outcomes, failure boundaries and production acceptance"], "status": "local-measurement-not-production-proof"}
+  ],
+  "notes": [
+    "URLs are primary-source references and require version-pinned production verification.",
+    "Synthetic latency, quality, cost and energy values are CPU-only teaching inputs, not model, GPU, cloud billing, facility-meter or SLO certification.",
+    "A benchmark result is valid only with its workload, software/hardware matrix, raw samples, statistical method and stated boundary."
+  ]
+}
