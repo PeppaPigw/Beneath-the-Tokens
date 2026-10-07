@@ -14,9 +14,9 @@
         "prerequisites": true,
         "pedagogical_sections": true,
         "script_syntax": true,
-        "headings": 63,
+        "headings": 64,
         "urls": 18,
-        "min_chars": 20054,
+        "min_chars": 20767,
         "required_headings": ["问题/边界", "心智模型", "机制", "实验", "故障诊所/失败", "理解检查", "练习", "来源"]
       },
       "errors": []
