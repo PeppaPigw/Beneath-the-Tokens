@@ -1,0 +1,278 @@
+{
+  "schema_version": 1,
+  "chapter": "33-storage-and-data-plane",
+  "access_date": "2026-10-07",
+  "purpose": "Evidence index for object storage, POSIX/parallel filesystems, NVMe, data loading, checkpoint protocols, consistency and training/inference data planes",
+  "entries": [
+    {
+      "id": "s3-api",
+      "type": "official_documentation",
+      "title": "Amazon S3 API Reference",
+      "url": "https://docs.aws.amazon.com/AmazonS3/latest/API/Welcome.html",
+      "claims": ["object key/version/multipart APIs", "conditional requests", "checksum headers"],
+      "verification": "pin provider/region API behavior; capture request id, version id, size and checksum",
+      "status": "primary-source"
+    },
+    {
+      "id": "s3-consistency",
+      "type": "official_documentation",
+      "title": "Amazon S3 data consistency",
+      "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html",
+      "claims": ["provider consistency contract", "read/list/delete semantics"],
+      "verification": "run target-region write/read/list/delete probes and record object version",
+      "status": "primary-source"
+    },
+    {
+      "id": "linux-fsync",
+      "type": "official_documentation",
+      "title": "Linux fsync(2)",
+      "url": "https://man7.org/linux/man-pages/man2/fsync.2.html",
+      "claims": ["file data persistence boundary", "directory fsync requirement"],
+      "verification": "test filesystem/mount/device behavior under controlled power-loss or crash harness",
+      "status": "primary-source"
+    },
+    {
+      "id": "linux-rename",
+      "type": "official_documentation",
+      "title": "Linux rename(2)",
+      "url": "https://man7.org/linux/man-pages/man2/rename.2.html",
+      "claims": ["same-filesystem name replacement semantics", "cross-mount limitation"],
+      "verification": "exercise temp-write/rename protocol on target filesystem",
+      "status": "primary-source"
+    },
+    {
+      "id": "linux-block",
+      "type": "official_documentation",
+      "title": "Linux block layer documentation",
+      "url": "https://docs.kernel.org/block/index.html",
+      "claims": ["block I/O queues", "scheduler and device boundary"],
+      "verification": "pin kernel and collect queue, latency and error counters",
+      "status": "primary-source"
+    },
+    {
+      "id": "nvme-spec",
+      "type": "official_documentation",
+      "title": "NVM Express specifications",
+      "url": "https://nvmexpress.org/specifications/",
+      "claims": ["NVMe command/queue model", "namespace and endurance concepts"],
+      "verification": "record controller, firmware, namespace and SMART data",
+      "status": "primary-source"
+    },
+    {
+      "id": "spdk",
+      "type": "mature_source_code",
+      "title": "Storage Performance Development Kit",
+      "url": "https://github.com/spdk/spdk",
+      "claims": ["user-space NVMe I/O", "polling and queue design"],
+      "verification": "pin release and benchmark with fixed core/NUMA/queue settings",
+      "status": "primary-source"
+    },
+    {
+      "id": "fio",
+      "type": "mature_source_code",
+      "title": "fio I/O benchmark",
+      "url": "https://github.com/axboe/fio",
+      "claims": ["controlled sequential/random workload", "iodepth/numjobs and percentile output"],
+      "verification": "save job file, block size, cache mode, device and raw JSON",
+      "status": "primary-source"
+    },
+    {
+      "id": "lustre",
+      "type": "official_documentation",
+      "title": "Lustre manual",
+      "url": "https://doc.lustre.org/lustre_manual.xhtml",
+      "claims": ["MDS/MDT and OST path", "striping and client behavior"],
+      "verification": "record filesystem version, stripe count/size and target health",
+      "status": "primary-source"
+    },
+    {
+      "id": "beegfs",
+      "type": "official_documentation",
+      "title": "BeeGFS documentation",
+      "url": "https://doc.beegfs.io/latest/",
+      "claims": ["metadata/storage target separation", "striping and failover"],
+      "verification": "pin server/client versions and inspect target and metadata placement",
+      "status": "primary-source"
+    },
+    {
+      "id": "cephfs",
+      "type": "official_documentation",
+      "title": "CephFS documentation",
+      "url": "https://docs.ceph.com/en/latest/cephfs/",
+      "claims": ["MDS and RADOS data path", "cache and client semantics"],
+      "verification": "capture cluster health, MDS state and pool placement",
+      "status": "primary-source"
+    },
+    {
+      "id": "nfs-rfc",
+      "type": "standard",
+      "title": "NFSv4.1 RFC 8881",
+      "url": "https://www.rfc-editor.org/rfc/rfc8881",
+      "claims": ["NFS state, locking and session semantics"],
+      "verification": "test mount options, lease recovery and server failover",
+      "status": "primary-source"
+    },
+    {
+      "id": "pytorch-dataloader",
+      "type": "official_documentation",
+      "title": "PyTorch DataLoader",
+      "url": "https://pytorch.org/docs/stable/data.html",
+      "claims": ["worker processes", "sampler, prefetch and pin-memory interfaces"],
+      "verification": "log worker/rank, sampler seed, cursor and batch order",
+      "status": "primary-source"
+    },
+    {
+      "id": "webdataset",
+      "type": "mature_source_code",
+      "title": "WebDataset",
+      "url": "https://github.com/webdataset/webdataset",
+      "claims": ["tar shard streaming", "distributed sample partitioning"],
+      "verification": "pin commit and verify shard order, resampling and error policy",
+      "status": "primary-source"
+    },
+    {
+      "id": "dali",
+      "type": "official_documentation",
+      "title": "NVIDIA DALI user guide",
+      "url": "https://docs.nvidia.com/deeplearning/dali/user-guide/docs/",
+      "claims": ["pipeline prefetch and decode", "CPU/GPU data stages"],
+      "verification": "measure decode/copy queue and fixed input shape on target version",
+      "status": "primary-source"
+    },
+    {
+      "id": "pytorch-dcp",
+      "type": "official_documentation",
+      "title": "PyTorch Distributed Checkpoint",
+      "url": "https://pytorch.org/docs/stable/distributed.checkpoint.html",
+      "claims": ["distributed state dict and sharded checkpoint API", "planner/storage reader/writer"],
+      "verification": "run fixed world-size and resharding recovery tests with checksums",
+      "status": "primary-source"
+    },
+    {
+      "id": "pytorch-dcp-source",
+      "type": "mature_source_code",
+      "title": "torch.distributed.checkpoint source",
+      "url": "https://github.com/pytorch/pytorch/tree/main/torch/distributed/checkpoint",
+      "claims": ["checkpoint planner and storage implementation"],
+      "verification": "pin PyTorch commit and inspect commit/error paths",
+      "status": "primary-source"
+    },
+    {
+      "id": "torchelastic",
+      "type": "official_documentation",
+      "title": "TorchElastic run",
+      "url": "https://pytorch.org/docs/stable/elastic/run.html",
+      "claims": ["rendezvous/restart semantics", "rank and world-size changes"],
+      "verification": "inject worker failure and validate checkpoint/sampler restoration",
+      "status": "primary-source"
+    },
+    {
+      "id": "deepspeed-checkpoint",
+      "type": "official_documentation",
+      "title": "DeepSpeed model checkpointing",
+      "url": "https://deepspeed.readthedocs.io/en/latest/model-checkpointing.html",
+      "claims": ["ZeRO optimizer/parameter shard checkpointing", "load and conversion boundaries"],
+      "verification": "pin DeepSpeed release; test stage/world-size conversion and optimizer state",
+      "status": "primary-source"
+    },
+    {
+      "id": "megatron-paper",
+      "type": "paper",
+      "title": "Efficient Large-Scale Language Model Training on GPU Clusters",
+      "url": "https://arxiv.org/abs/2104.04473",
+      "claims": ["data/tensor/pipeline parallel state and training throughput"],
+      "verification": "map checkpoint and data sampler state to target parallel groups",
+      "status": "primary-source"
+    },
+    {
+      "id": "zero-paper",
+      "type": "paper",
+      "title": "ZeRO: Memory Optimizations Toward Training Trillion Parameter Models",
+      "url": "https://arxiv.org/abs/1910.02054",
+      "claims": ["optimizer/gradient/parameter sharding trade-offs"],
+      "verification": "measure shard bytes, checkpoint time and recovery with target ZeRO stage",
+      "status": "primary-source"
+    },
+    {
+      "id": "megascale-paper",
+      "type": "paper",
+      "title": "MegaScale: Scaling Large Language Model Training to More Than 10,000 GPUs",
+      "url": "https://www.usenix.org/system/files/nsdi24-jiang-ziheng.pdf",
+      "claims": ["large-scale checkpoint, diagnosis and failure recovery"],
+      "verification": "compare published mechanisms with target cluster; do not generalize throughput",
+      "status": "primary-source"
+    },
+    {
+      "id": "vllm",
+      "type": "official_documentation",
+      "title": "vLLM documentation",
+      "url": "https://docs.vllm.ai/en/stable/",
+      "claims": ["weight loading, KV cache and serving data paths"],
+      "verification": "pin vLLM/model revision; record cache and startup timings",
+      "status": "primary-source"
+    },
+    {
+      "id": "tensorrt-disagg",
+      "type": "official_documentation",
+      "title": "TensorRT-LLM disaggregated serving",
+      "url": "https://nvidia.github.io/TensorRT-LLM/features/disagg-serving.html",
+      "claims": ["prefill/decode split and KV transfer boundary"],
+      "verification": "measure TTFT/TPOT, KV bytes, retry and failure isolation",
+      "status": "primary-source"
+    },
+    {
+      "id": "sglang",
+      "type": "official_documentation",
+      "title": "SGLang documentation",
+      "url": "https://docs.sglang.ai/",
+      "claims": ["serving scheduler and cache data path"],
+      "verification": "pin release/model and inspect cache key/version behavior",
+      "status": "primary-source"
+    },
+    {
+      "id": "otel-traces",
+      "type": "official_documentation",
+      "title": "OpenTelemetry traces",
+      "url": "https://opentelemetry.io/docs/concepts/signals/traces/",
+      "claims": ["request/span correlation across data-plane stages"],
+      "verification": "propagate request, shard, rank and backend attributes",
+      "status": "primary-source"
+    },
+    {
+      "id": "prom-histograms",
+      "type": "official_documentation",
+      "title": "Prometheus histograms",
+      "url": "https://prometheus.io/docs/practices/histograms/",
+      "claims": ["latency percentile instrumentation and trade-offs"],
+      "verification": "choose buckets from workload and retain p50/p95/p99 evidence",
+      "status": "primary-source"
+    },
+    {
+      "id": "ch33-toy-lab",
+      "type": "reproducible_measurement",
+      "title": "Chapter 33 CPU storage/data-plane toy",
+      "path": "labs/ch33_storage_data_plane_lab.py",
+      "claims": ["shard assignment", "backend latency proxy", "checkpoint commit/failure semantics"],
+      "verification": "python3 labs/ch33_storage_data_plane_lab.py --shards 12 --workers 3 --shard-mib 4 --checkpoint-step 100",
+      "status": "local-measurement-not-production-proof"
+    },
+    {
+      "id": "ch33-tests",
+      "type": "reproducible_measurement",
+      "title": "Chapter 33 toy contract tests",
+      "path": "tests/test_ch33_storage_data_plane_lab.py",
+      "claims": ["deterministic shard coverage", "latency ordering", "checkpoint atomicity", "CLI JSON"],
+      "verification": "python3 tests/test_ch33_storage_data_plane_lab.py",
+      "status": "local-test-only"
+    },
+    {
+      "id": "ch33-report",
+      "type": "reproducible_measurement",
+      "title": "Chapter 33 experiment report",
+      "path": "reports/ch33-storage-data-plane-report.md",
+      "claims": ["commands", "measurements", "failure interpretation", "production boundary"],
+      "verification": "compare report tables with default/failure JSON outputs",
+      "status": "local-measurement-not-production-proof"
+    }
+  ]
+}
