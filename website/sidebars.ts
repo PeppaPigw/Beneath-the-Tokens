@@ -40,6 +40,7 @@ const sidebars: SidebarsConfig = {
     'chapters/ch34-compilers-and-kernels',
     'chapters/ch35-serving-scheduling-and-slo',
     'chapters/ch36-observability-and-tracing',
+    'chapters/ch37-security-and-supply-chain',
     'chapter-template',
     'lab-standards',
     'source-policy',
