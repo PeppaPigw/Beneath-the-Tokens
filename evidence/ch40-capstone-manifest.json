@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "chapter": "40-production-capstone-and-roadmap",
+  "access_date": "2026-10-07",
+  "purpose": "Evidence index for end-to-end AI Infra production capstone: requirements, SLO, architecture, capacity, data, training, serving, scheduling, storage, network, security, cost, observability, rollout, rollback, fault drills and roadmap",
+  "entries": [
+    {"id": "k8s-hpa", "type": "official_documentation", "title": "Kubernetes Horizontal Pod Autoscaling", "url": "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/", "claims": ["metric-driven scaling controller semantics"], "status": "primary-source"},
+    {"id": "k8s-security", "type": "official_documentation", "title": "Kubernetes Pod Security Standards", "url": "https://kubernetes.io/docs/concepts/security/pod-security-standards/", "claims": ["workload security boundaries"], "status": "primary-source"},
+    {"id": "k8s-resources", "type": "official_documentation", "title": "Kubernetes Resource Management", "url": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/", "claims": ["resource requests and limits"], "status": "primary-source"},
+    {"id": "keda", "type": "official_documentation", "title": "KEDA ScaledObject", "url": "https://keda.sh/docs/latest/concepts/scaling-deployments/", "claims": ["queue/event-driven scaling"], "status": "primary-source"},
+    {"id": "otel-trace", "type": "specification", "title": "OpenTelemetry Trace specification", "url": "https://opentelemetry.io/docs/specs/otel/trace/", "claims": ["trace context propagation"], "status": "primary-source"},
+    {"id": "otel-metrics", "type": "specification", "title": "OpenTelemetry Metrics specification", "url": "https://opentelemetry.io/docs/specs/otel/metrics/", "claims": ["metric semantics and aggregation"], "status": "primary-source"},
+    {"id": "otel-logs", "type": "specification", "title": "OpenTelemetry Logs data model", "url": "https://opentelemetry.io/docs/specs/otel/logs/data-model/", "claims": ["structured log fields"], "status": "primary-source"},
+    {"id": "dcgm", "type": "official_documentation", "title": "NVIDIA DCGM", "url": "https://docs.nvidia.com/datacenter/dcgm/latest/", "claims": ["GPU health and telemetry boundaries"], "status": "primary-source"},
+    {"id": "nvml", "type": "official_documentation", "title": "NVIDIA NVML API", "url": "https://docs.nvidia.com/deploy/nvml-api/", "claims": ["device power and utilization interfaces"], "status": "primary-source"},
+    {"id": "mlperf", "type": "benchmark", "title": "MLCommons MLPerf Benchmarks", "url": "https://mlcommons.org/benchmarks/", "claims": ["reproducible benchmark reporting"], "status": "primary-source"},
+    {"id": "model-cards", "type": "paper", "title": "Model Cards for Model Reporting", "url": "https://arxiv.org/abs/1810.03993", "claims": ["model scope and limitations"], "status": "primary-source"},
+    {"id": "datasheets", "type": "paper", "title": "Datasheets for Datasets", "url": "https://dl.acm.org/doi/10.1145/3458723", "claims": ["dataset provenance and limitations"], "status": "primary-source"},
+    {"id": "slsa", "type": "specification", "title": "SLSA specification", "url": "https://slsa.dev/spec/v1.0/", "claims": ["software provenance levels"], "status": "primary-source"},
+    {"id": "cosign", "type": "github", "title": "Sigstore Cosign", "url": "https://github.com/sigstore/cosign", "claims": ["artifact signing and verification"], "status": "primary-source"},
+    {"id": "scorecard", "type": "github", "title": "OpenSSF Scorecard", "url": "https://github.com/ossf/scorecard", "claims": ["dependency security signals"], "status": "primary-source"},
+    {"id": "nist-ir", "type": "standard_guidance", "title": "NIST SP 800-61 Rev. 2", "url": "https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final", "claims": ["incident response lifecycle"], "status": "primary-source"},
+    {"id": "nist-ai-rmf", "type": "standard_guidance", "title": "NIST AI Risk Management Framework", "url": "https://www.nist.gov/itl/ai-risk-management-framework", "claims": ["AI risk governance"], "status": "primary-source"},
+    {"id": "ghg-scope2", "type": "standard_guidance", "title": "GHG Protocol Scope 2 Guidance", "url": "https://ghgprotocol.org/scope-2-guidance", "claims": ["electricity emissions accounting"], "status": "primary-source"},
+    {"id": "sci-ai", "type": "methodology", "title": "Software Carbon Intensity for AI", "url": "https://greensoftware.foundation/articles/software-carbon-intensity-for-ai", "claims": ["AI software carbon boundary"], "status": "primary-source"},
+    {"id": "carbon-aware-sdk", "type": "github", "title": "Carbon Aware SDK", "url": "https://github.com/Green-Software-Foundation/carbon-aware-sdk", "claims": ["carbon-aware scheduling reference"], "status": "primary-source"},
+    {"id": "kepler", "type": "github", "title": "Kepler energy exporter", "url": "https://github.com/sustainable-computing-io/kepler", "claims": ["Kubernetes energy estimation"], "status": "primary-source"},
+    {"id": "vllm", "type": "official_documentation", "title": "vLLM documentation", "url": "https://docs.vllm.ai/", "claims": ["inference runtime and serving mechanisms"], "status": "primary-source"},
+    {"id": "sglang", "type": "official_documentation", "title": "SGLang documentation", "url": "https://docs.sglang.ai/", "claims": ["structured generation runtime"], "status": "primary-source"},
+    {"id": "ray", "type": "official_documentation", "title": "Ray documentation", "url": "https://docs.ray.io/", "claims": ["distributed application scheduling"], "status": "primary-source"},
+    {"id": "sre-workbook", "type": "official_guidance", "title": "Google SRE Workbook: Implementing SLOs", "url": "https://sre.google/workbook/implementing-slos/", "claims": ["SLO and error budget practice"], "status": "primary-source"},
+    {"id": "lab", "type": "reproducible_measurement", "title": "Chapter 40 CPU-only capstone toy", "path": "labs/ch40_capstone_lab.py", "claims": ["capacity, SLO budget, rollout, cost/energy, evidence and faults"], "verification": "python3 labs/ch40_capstone_lab.py --fault none", "status": "local-measurement-not-production-proof"},
+    {"id": "tests", "type": "reproducible_measurement", "title": "Chapter 40 contract tests", "path": "tests/test_ch40_capstone_lab.py", "claims": ["determinism, units, gates, faults and CLI JSON"], "verification": "python3 tests/test_ch40_capstone_lab.py", "status": "local-test-only"},
+    {"id": "report", "type": "reproducible_measurement", "title": "Chapter 40 experiment report", "path": "reports/ch40-capstone-report.md", "claims": ["commands, baseline, fault outcomes and production boundaries"], "status": "local-measurement-not-production-proof"}
+  ],
+  "notes": [
+    "URLs are primary-source references and require version-pinned production verification.",
+    "Synthetic capacity, SLO, quality, cost and energy values are CPU-only teaching inputs, not performance, billing, energy, safety or compliance certification.",
+    "A production capstone decision is valid only with requirements, owners, artifact/data versions, raw measurements, rollback evidence and stated boundaries."
+  ]
+}
