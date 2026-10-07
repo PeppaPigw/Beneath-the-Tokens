@@ -41,6 +41,7 @@ const sidebars: SidebarsConfig = {
     'chapters/ch35-serving-scheduling-and-slo',
     'chapters/ch36-observability-and-tracing',
     'chapters/ch37-security-and-supply-chain',
+    'chapters/ch38-cost-capacity-and-energy',
     'chapter-template',
     'lab-standards',
     'source-policy',
