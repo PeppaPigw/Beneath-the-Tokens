@@ -349,3 +349,15 @@ MoE 用稀疏激活换参数容量，但每个 token 都要付 router、容量�
 ### 31.15.3 用小实验校准大系统的假设
 
 toy lab 可以回答三个可迁移的问题：容量取整是否有清晰语义、overflow 计数是否守恒、rank skew 是否随 hot expert 增加。它不能回答 expert GEMM 在 H100、MI300 或其他 GPU 上的 occupancy，也不能模拟 NCCL/ROCm 的协议选择、节点拓扑、网络拥塞和故障恢复。生产实验应沿着同一字段名扩展：把 toy 的 `expert_load` 对应到框架的真实计数，把 `send_matrix` 对应到 collective profiler，把 `latency_proxy_ms` 替换为分段 wall time，再在报告中并列 toy 与真实结果，避免把简化数字误写成硬件承诺。
+
+## 理解检查
+
+1. 为什么 `selected_fraction` 均衡不能证明 `prob_mean` 或实际通信负载均衡？
+2. 给定 top-2、capacity factor 和一个 hot expert，分别计算 requested、accepted、overflow 与 dropped 的分母含义。
+3. send matrix 守恒但 combine 后 token 顺序错误时，应先检查哪一组 permutation/index 证据？
+
+## 练习
+
+1. 修改 CPU lab，让第二候选 expert 也发生 overflow，输出 drop、residual 和 fallback 的守恒账本。
+2. 为 4-rank、8-expert 拓扑设计 `(dp, pp, tp, ep)` 到 global rank 的映射，并比较节点内与跨节点 all-to-all 的尾延迟风险。
+3. 阅读固定版本的 Megatron-Core 或 vLLM token dispatcher，记录 route table、slot、padding、collective 与 combine 字段，写出升级前后的 golden test。
