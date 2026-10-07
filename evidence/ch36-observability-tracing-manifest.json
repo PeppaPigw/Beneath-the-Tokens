@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "chapter": "36-observability-and-tracing",
+  "access_date": "2026-10-07",
+  "purpose": "Evidence index for OpenTelemetry signals, Prometheus histograms/cardinality, profiling, eBPF, GPU telemetry, cross-layer correlation and CPU-only failure injection",
+  "entries": [
+    {"id": "otel-traces", "type": "official_documentation", "title": "OpenTelemetry traces", "url": "https://opentelemetry.io/docs/concepts/signals/traces/", "claims": ["span/context model", "trace propagation"], "status": "primary-source"},
+    {"id": "otel-metrics", "type": "official_documentation", "title": "OpenTelemetry metrics", "url": "https://opentelemetry.io/docs/concepts/signals/metrics/", "claims": ["counter/gauge/histogram signals"], "status": "primary-source"},
+    {"id": "otel-logs", "type": "official_documentation", "title": "OpenTelemetry logs", "url": "https://opentelemetry.io/docs/concepts/signals/logs/", "claims": ["structured log correlation"], "status": "primary-source"},
+    {"id": "otlp", "type": "specification", "title": "OTLP specification", "url": "https://opentelemetry.io/docs/specs/otlp/", "claims": ["signal transport"], "status": "primary-source"},
+    {"id": "otel-genai", "type": "specification", "title": "OpenTelemetry GenAI semantic conventions", "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/", "claims": ["generative AI attribute vocabulary"], "status": "primary-source"},
+    {"id": "otel-tail", "type": "github", "title": "Collector tail sampling processor", "url": "https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/tailsamplingprocessor", "claims": ["tail sampling policies"], "status": "primary-source"},
+    {"id": "w3c-trace-context", "type": "standard", "title": "W3C Trace Context", "url": "https://www.w3.org/TR/trace-context/", "claims": ["traceparent format"], "status": "primary-source"},
+    {"id": "prom-hist", "type": "official_documentation", "title": "Prometheus histograms", "url": "https://prometheus.io/docs/practices/histograms/", "claims": ["bucket quantiles and tradeoffs"], "status": "primary-source"},
+    {"id": "prom-exemplars", "type": "official_documentation", "title": "Prometheus exemplars", "url": "https://prometheus.io/docs/prometheus/latest/feature_flags/#exemplars-storage", "claims": ["metric to trace navigation"], "status": "primary-source"},
+    {"id": "dcgm", "type": "official_documentation", "title": "NVIDIA Data Center GPU Manager", "url": "https://docs.nvidia.com/datacenter/dcgm/latest/", "claims": ["GPU health, utilization, memory and interconnect fields"], "status": "primary-source"},
+    {"id": "dcgm-exporter", "type": "github", "title": "DCGM exporter", "url": "https://github.com/NVIDIA/dcgm-exporter", "claims": ["Prometheus exposition for DCGM"], "status": "primary-source"},
+    {"id": "nsight-systems", "type": "official_documentation", "title": "NVIDIA Nsight Systems", "url": "https://docs.nvidia.com/nsight-systems/", "claims": ["system timeline and CUDA ranges"], "status": "primary-source"},
+    {"id": "nsight-compute", "type": "official_documentation", "title": "NVIDIA Nsight Compute", "url": "https://docs.nvidia.com/nsight-compute/", "claims": ["kernel occupancy and memory counters"], "status": "primary-source"},
+    {"id": "pytorch-profiler", "type": "official_documentation", "title": "PyTorch Profiler", "url": "https://pytorch.org/docs/stable/profiler.html", "claims": ["CPU/CUDA operator and memory profiling"], "status": "primary-source"},
+    {"id": "ebpf", "type": "official_documentation", "title": "eBPF overview", "url": "https://ebpf.io/what-is-ebpf/", "claims": ["kernel-safe programmable observability"], "status": "primary-source"},
+    {"id": "bcc", "type": "github", "title": "BCC tools", "url": "https://github.com/iovisor/bcc", "claims": ["runqlat/biolatency style tools"], "status": "primary-source"},
+    {"id": "bpftrace", "type": "github", "title": "bpftrace", "url": "https://github.com/bpftrace/bpftrace", "claims": ["tracepoint and kprobe scripting"], "status": "primary-source"},
+    {"id": "nvtx", "type": "official_documentation", "title": "NVIDIA NVTX", "url": "https://nvidia.github.io/NVTX/", "claims": ["application ranges for timeline correlation"], "status": "primary-source"},
+    {"id": "dapper", "type": "paper", "title": "Dapper distributed tracing", "url": "https://research.google/pubs/dapper-a-large-scale-distributed-systems-tracing-infrastructure/", "claims": ["large-scale trace correlation"], "status": "primary-source"},
+    {"id": "tail-at-scale", "type": "paper", "title": "The Tail at Scale", "url": "https://research.google/pubs/the-tail-at-scale/", "claims": ["tail latency amplification"], "status": "primary-source"},
+    {"id": "lab", "type": "reproducible_measurement", "title": "Chapter 36 CPU observability toy", "path": "labs/ch36_observability_tracing_lab.py", "claims": ["deterministic spans, metrics, logs, profiles, telemetry, sampling and diagnosis"], "verification": "python3 labs/ch36_observability_tracing_lab.py --fault network_tail", "status": "local-measurement-not-production-proof"},
+    {"id": "tests", "type": "reproducible_measurement", "title": "Chapter 36 contract tests", "path": "tests/test_ch36_observability_tracing_lab.py", "claims": ["determinism, correlation, faults, cardinality and CLI"], "verification": "python3 tests/test_ch36_observability_tracing_lab.py", "status": "local-test-only"},
+    {"id": "report", "type": "reproducible_measurement", "title": "Chapter 36 experiment report", "path": "reports/ch36-observability-tracing-report.md", "claims": ["commands, results and production boundaries"], "status": "local-measurement-not-production-proof"}
+  ]
+}
