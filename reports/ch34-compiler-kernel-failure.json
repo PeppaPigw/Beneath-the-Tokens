@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "experiment": "ch34-compiler-kernel-cpu-toy",
+  "config": {
+    "backend": "inductor",
+    "dynamic_shape": true,
+    "unsupported_op": true,
+    "fail_after": 1,
+    "budget_ms": 8.0
+  },
+  "graph": {
+    "nodes": [
+      {
+        "name": "add",
+        "op": "add",
+        "shape": [
+          null
+        ],
+        "dtype": "fp32",
+        "layout": "contiguous",
+        "bytes": 64,
+        "flops": 16,
+        "side_effect": false
+      },
+      {
+        "name": "mul",
+        "op": "mul",
+        "shape": [
+          null
+        ],
+        "dtype": "fp32",
+        "layout": "contiguous",
+        "bytes": 64,
+        "flops": 16,
+        "side_effect": false
+      },
+      {
+        "name": "relu",
+        "op": "relu",
+        "shape": [
+          null
+        ],
+        "dtype": "fp32",
+        "layout": "contiguous",
+        "bytes": 64,
+        "flops": 16,
+        "side_effect": false
+      },
+      {
+        "name": "custom",
+        "op": "custom",
+        "shape": [
+          null
+        ],
+        "dtype": "fp32",
+        "layout": "contiguous",
+        "bytes": 64,
+        "flops": 32,
+        "side_effect": true
+      }
+    ],
+    "guards": [
+      "backend=inductor",
+      "shape=(None,)",
+      "dtype=fp32",
+      "layout=contiguous",
+      "dynamic_shape=true"
+    ],
+    "breaks": [
+      "custom:unsupported_or_side_effect"
+    ],
+    "graphable": false
+  },
+  "fusion": {
+    "groups": [
+      {
+        "nodes": [
+          "add",
+          "mul",
+          "relu"
+        ],
+        "fused": true,
+        "reason": "pointwise_chain"
+      },
+      {
+        "nodes": [
+          "custom"
+        ],
+        "fused": false,
+        "reason": "reduction_or_side_effect"
+      }
+    ],
+    "fused_group_count": 1
+  },
+  "compile": {
+    "first": {
+      "cache_key": "65fb8c8d6bc5287185e9d80a65a84d1686402d230ebde44bdc0e4068050a20d2",
+      "cache_hit": false,
+      "backend": "inductor",
+      "shape_key": [
+        null
+      ],
+      "dtype": "fp32",
+      "groups": [
+        [
+          "add",
+          "mul",
+          "relu"
+        ],
+        [
+          "custom"
+        ]
+      ]
+    },
+    "second": {
+      "cache_key": "65fb8c8d6bc5287185e9d80a65a84d1686402d230ebde44bdc0e4068050a20d2",
+      "cache_hit": true,
+      "backend": "inductor",
+      "shape_key": [
+        null
+      ],
+      "dtype": "fp32",
+      "groups": [
+        [
+          "add",
+          "mul",
+          "relu"
+        ],
+        [
+          "custom"
+        ]
+      ]
+    },
+    "cache_entries": 1
+  },
+  "cost": {
+    "first": {
+      "launches": 2,
+      "bytes": 256,
+      "flops": 80,
+      "compile_ms": 5.2,
+      "steady_ms": 0.024003,
+      "total_first_ms": 5.224003
+    },
+    "hot": {
+      "launches": 2,
+      "bytes": 256,
+      "flops": 80,
+      "compile_ms": 0.0,
+      "steady_ms": 0.024003,
+      "total_first_ms": 0.024003
+    }
+  },
+  "correctness": {
+    "max_abs_error": 0.0,
+    "within_tolerance": true,
+    "values": 16
+  },
+  "autotune": {
+    "result": {
+      "best": {
+        "block": 64,
+        "warps": 1,
+        "stages": 1,
+        "proxy_ms": 1.45
+      },
+      "candidates": [
+        {
+          "block": 64,
+          "warps": 1,
+          "stages": 1,
+          "proxy_ms": 1.45
+        },
+        {
+          "block": 128,
+          "warps": 2,
+          "stages": 1,
+          "proxy_ms": 1.575
+        },
+        {
+          "block": 256,
+          "warps": 4,
+          "stages": 2,
+          "proxy_ms": 2.225
+        }
+      ],
+      "compile_budget_ms": 8.0,
+      "spent_ms": 5.25,
+      "stopped_early": true
+    },
+    "selected": {
+      "mode": "reference_fallback",
+      "failed_candidates": 1
+    },
+    "fallback": true
+  },
+  "summary": {
+    "cache_hit_on_second": true,
+    "graph_break_count": 1,
+    "fusion_reduced_launches": true,
+    "correctness_pass": true,
+    "safe_fallback": true
+  }
+}
