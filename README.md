@@ -1,31 +1,51 @@
 # Beneath the Tokens
 
-**Beneath the Tokens** is a production-oriented, first-principles textbook for Artificial Intelligence Infrastructure.
+Beneath the Tokens is a research-grade, first-principles textbook for AI infrastructure. It is written for readers who want to move from zero background to designing, debugging, measuring, and operating production AI systems.
 
-The goal is not to memorize frameworks. It is to understand how data, models, kernels, accelerators, networks, schedulers, storage, serving systems, observability, and organizations compose into reliable AI systems.
+## What this book teaches
 
-## Learning contract
+The book follows one continuous path:
 
-- Start from zero and build toward staff/principal-level AI infrastructure reasoning
-- Every chapter combines concepts, mathematics, systems mechanisms, source-code reading, experiments, failure analysis, and exercises
-- Each chapter targets at least 10,000 Chinese characters in the final edition
-- Claims are linked to papers, official documentation, source code, and reproducible measurements
-- The repository distinguishes explanatory text, runnable labs, reference implementations, and production caveats
-- No chapter is considered complete until its comprehension checks, lab, and verification checklist are present
+- Linux processes, files, memory, observability, and failure diagnosis
+- Networking, performance mathematics, GPU/CUDA, PyTorch execution, and numerical precision
+- Collective communication, distributed training, scheduling, checkpointing, and experiment operations
+- Data systems, evaluation, artifact management, retrieval/RAG, inference execution, and serving
+- Kubernetes GPU orchestration, Ray runtimes, inference optimization, observability, reliability, security, cost, platform engineering, and AI-infrastructure frontiers
+- An end-to-end capstone that connects the layers into one auditable system
 
-## Site
+The phase-two research track adds deeper chapters on decoding and sampling, KV cache/PagedAttention, and related inference mechanisms. These chapters include paper evidence, fixed-version source maps, mathematical derivations, runnable CPU experiments, reports, and explicit boundaries between toy evidence and production claims.
 
-The book is published as a static GitHub Pages site. The current site scaffold uses Docusaurus 3; the content remains plain Markdown so it can be audited, versioned, searched, and rendered by other toolchains.
+## How to read
 
-See:
+Start with [the curriculum](docs/curriculum.md), then read the chapters in order. Each chapter is organized around a concrete failure or design problem and progresses through:
 
-- [Curriculum](docs/curriculum.md)
-- [Chapter authoring contract](docs/chapter-template.md)
+1. a mental model
+2. mechanism and equations
+3. source-code and paper evidence
+4. a runnable experiment or reproducible protocol
+5. failure diagnosis
+6. exercises and comprehension checks
+
+The chapter authoring contract, lab standards, and source policy are part of the book itself:
+
+- [Chapter template](docs/chapter-template.md)
 - [Lab and verification standards](docs/lab-standards.md)
 - [Source and evidence policy](docs/source-policy.md)
 
-## Status
+## Verification
 
-Current progress: 26 long-form chapters are published, and the phase-two redesign has begun. The published first edition remains deployable while the new beginner-first, research-grade chapters and reading layout are added and reviewed in parallel.
+The repository includes content validation and phase-two evidence audits. Before publishing changes, run:
 
-Content CI now runs the existing content validator, the deterministic phase-two audit, audit unit tests, Python syntax checks, website typechecking, the layout smoke test, and a production Docusaurus build. Runs that reach the audit step upload `reports/phase2-content.json` for review, including when validation or the audit finds content errors. The Pages workflow installs from the committed lockfile and publishes the generated `website/build` directory.
+```bash
+python scripts/validate_content.py
+python scripts/audit_phase2.py --docs docs --sidebar website/sidebars.ts
+```
+
+The checks cover frontmatter, chapter structure, evidence manifests, sidebar references, source links, and reproducibility metadata. GPU and production-serving performance claims are never inferred from the CPU toy labs.
+
+## Site
+
+The book is deployed as a static GitHub Pages site from the `website` directory. The public repository is:
+
+https://github.com/PeppaPigw/Beneath-the-Tokens
+
