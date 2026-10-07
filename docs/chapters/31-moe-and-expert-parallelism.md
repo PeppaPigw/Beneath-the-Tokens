@@ -350,6 +350,10 @@ MoE 用稀疏激活换参数容量，但每个 token 都要付 router、容量�
 
 toy lab 可以回答三个可迁移的问题：容量取整是否有清晰语义、overflow 计数是否守恒、rank skew 是否随 hot expert 增加。它不能回答 expert GEMM 在 H100、MI300 或其他 GPU 上的 occupancy，也不能模拟 NCCL/ROCm 的协议选择、节点拓扑、网络拥塞和故障恢复。生产实验应沿着同一字段名扩展：把 toy 的 `expert_load` 对应到框架的真实计数，把 `send_matrix` 对应到 collective profiler，把 `latency_proxy_ms` 替换为分段 wall time，再在报告中并列 toy 与真实结果，避免把简化数字误写成硬件承诺。
 
+## 心智模型
+
+把每个 MoE layer 看成一个带容量和版本的分布式路由协议：先决定 token 去哪个 expert，再按 slot 搬运，执行 expert 计算，最后按 token id 合并。任何 drop、fallback、collective timeout 或权重版本不一致，都必须在这条状态链上找到对应的账本字段。
+
 ## 理解检查
 
 1. 为什么 `selected_fraction` 均衡不能证明 `prob_mean` 或实际通信负载均衡？
