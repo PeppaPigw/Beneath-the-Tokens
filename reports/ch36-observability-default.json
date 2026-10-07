@@ -1,0 +1,2779 @@
+{
+  "cardinality": {
+    "accepted_series": 8,
+    "budget": 8,
+    "dropped_series": 4,
+    "forbidden_labels": [
+      "trace_id",
+      "request_id"
+    ],
+    "observed_series": 12
+  },
+  "diagnosis": {
+    "confidence": "toy-high",
+    "cross_layer_links": {
+      "metric_to_resource": true,
+      "resource_to_profile": true,
+      "trace_to_metric": true
+    },
+    "evidence": [
+      "network.rpc spans",
+      "network_retransmits",
+      "decode/ITL tail"
+    ],
+    "root_cause": "network_or_collective_tail"
+  },
+  "fault": "network_tail",
+  "invariants": {
+    "all_requests_terminal": true,
+    "deterministic_seed": true,
+    "metrics_exclude_trace_id_labels": true,
+    "no_negative_span_duration": true,
+    "span_parent_ids_resolve": true,
+    "trace_context_complete": true
+  },
+  "logs": [
+    {
+      "attributes": {
+        "request_id": "r00",
+        "tenant": "gold"
+      },
+      "message": "request accepted",
+      "severity": "INFO",
+      "timestamp_ms": 0.0,
+      "trace_id": "de56b5d0a2f8b5d6"
+    },
+    {
+      "attributes": {
+        "collective_seq": 1,
+        "retransmits": 4
+      },
+      "message": "network tail injected",
+      "severity": "WARN",
+      "timestamp_ms": 147.1,
+      "trace_id": "b0dae400a143f4d0"
+    },
+    {
+      "attributes": {
+        "request_id": "r01",
+        "tenant": "silver"
+      },
+      "message": "request accepted",
+      "severity": "INFO",
+      "timestamp_ms": 2.5,
+      "trace_id": "b0dae400a143f4d0"
+    },
+    {
+      "attributes": {
+        "request_id": "r02",
+        "tenant": "bronze"
+      },
+      "message": "request accepted",
+      "severity": "INFO",
+      "timestamp_ms": 5.0,
+      "trace_id": "007b31a2353e37af"
+    },
+    {
+      "attributes": {
+        "request_id": "r03",
+        "tenant": "gold"
+      },
+      "message": "request accepted",
+      "severity": "INFO",
+      "timestamp_ms": 7.5,
+      "trace_id": "81e4271a1172a77b"
+    },
+    {
+      "attributes": {
+        "collective_seq": 4,
+        "retransmits": 3
+      },
+      "message": "network tail injected",
+      "severity": "WARN",
+      "timestamp_ms": 390.0,
+      "trace_id": "f783b1e1aeaadc25"
+    },
+    {
+      "attributes": {
+        "request_id": "r04",
+        "tenant": "silver"
+      },
+      "message": "request accepted",
+      "severity": "INFO",
+      "timestamp_ms": 10.0,
+      "trace_id": "f783b1e1aeaadc25"
+    },
+    {
+      "attributes": {
+        "request_id": "r05",
+        "tenant": "bronze"
+      },
+      "message": "request accepted",
+      "severity": "INFO",
+      "timestamp_ms": 12.5,
+      "trace_id": "4c780c6b8c968bb9"
+    },
+    {
+      "attributes": {
+        "request_id": "r06",
+        "tenant": "gold"
+      },
+      "message": "request accepted",
+      "severity": "INFO",
+      "timestamp_ms": 15.0,
+      "trace_id": "66b25b6db2c3b576"
+    },
+    {
+      "attributes": {
+        "collective_seq": 7,
+        "retransmits": 4
+      },
+      "message": "network tail injected",
+      "severity": "WARN",
+      "timestamp_ms": 636.5,
+      "trace_id": "f315e4a477c8e93f"
+    },
+    {
+      "attributes": {
+        "request_id": "r07",
+        "tenant": "silver"
+      },
+      "message": "request accepted",
+      "severity": "INFO",
+      "timestamp_ms": 17.5,
+      "trace_id": "f315e4a477c8e93f"
+    },
+    {
+      "attributes": {
+        "request_id": "r08",
+        "tenant": "bronze"
+      },
+      "message": "request accepted",
+      "severity": "INFO",
+      "timestamp_ms": 20.0,
+      "trace_id": "a0a3ded97a52da7e"
+    },
+    {
+      "attributes": {
+        "request_id": "r09",
+        "tenant": "gold"
+      },
+      "message": "request accepted",
+      "severity": "INFO",
+      "timestamp_ms": 22.5,
+      "trace_id": "c6ecc293c71edbdc"
+    },
+    {
+      "attributes": {
+        "collective_seq": 10,
+        "retransmits": 3
+      },
+      "message": "network tail injected",
+      "severity": "WARN",
+      "timestamp_ms": 884.6,
+      "trace_id": "329542d289780310"
+    },
+    {
+      "attributes": {
+        "request_id": "r10",
+        "tenant": "silver"
+      },
+      "message": "request accepted",
+      "severity": "INFO",
+      "timestamp_ms": 25.0,
+      "trace_id": "329542d289780310"
+    },
+    {
+      "attributes": {
+        "request_id": "r11",
+        "tenant": "bronze"
+      },
+      "message": "request accepted",
+      "severity": "INFO",
+      "timestamp_ms": 27.5,
+      "trace_id": "34c1f5b6a881769a"
+    }
+  ],
+  "metrics": {
+    "counters": {
+      "inference_errors_total": 1,
+      "inference_requests_total": 12,
+      "network_retransmits_total": 14,
+      "telemetry_dropped_spans_total": 0
+    },
+    "decode": {
+      "histogram": {
+        "buckets": [
+          {
+            "cumulative_count": 0,
+            "le_ms": 5.0
+          },
+          {
+            "cumulative_count": 0,
+            "le_ms": 10.0
+          },
+          {
+            "cumulative_count": 2,
+            "le_ms": 25.0
+          },
+          {
+            "cumulative_count": 8,
+            "le_ms": 50.0
+          },
+          {
+            "cumulative_count": 9,
+            "le_ms": 100.0
+          },
+          {
+            "cumulative_count": 12,
+            "le_ms": 250.0
+          },
+          {
+            "cumulative_count": 12,
+            "le_ms": 500.0
+          },
+          {
+            "cumulative_count": 12,
+            "le_ms": 1000.0
+          },
+          {
+            "cumulative_count": 12,
+            "le_ms": 2000.0
+          },
+          {
+            "cumulative_count": 12,
+            "le_ms": null
+          }
+        ],
+        "count": 12,
+        "sum": 696.0
+      },
+      "p50_ms": 33.0,
+      "p95_ms": 127.4,
+      "p99_ms": 132.68
+    },
+    "e2e": {
+      "histogram": {
+        "buckets": [
+          {
+            "cumulative_count": 0,
+            "le_ms": 5.0
+          },
+          {
+            "cumulative_count": 0,
+            "le_ms": 10.0
+          },
+          {
+            "cumulative_count": 0,
+            "le_ms": 25.0
+          },
+          {
+            "cumulative_count": 1,
+            "le_ms": 50.0
+          },
+          {
+            "cumulative_count": 1,
+            "le_ms": 100.0
+          },
+          {
+            "cumulative_count": 3,
+            "le_ms": 250.0
+          },
+          {
+            "cumulative_count": 7,
+            "le_ms": 500.0
+          },
+          {
+            "cumulative_count": 12,
+            "le_ms": 1000.0
+          },
+          {
+            "cumulative_count": 12,
+            "le_ms": 2000.0
+          },
+          {
+            "cumulative_count": 12,
+            "le_ms": null
+          }
+        ],
+        "count": 12,
+        "sum": 6022.7
+      },
+      "p50_ms": 474.6,
+      "p95_ms": 916.625,
+      "p99_ms": 940.605
+    },
+    "itl": {
+      "histogram": {
+        "buckets": [
+          {
+            "cumulative_count": 2,
+            "le_ms": 5.0
+          },
+          {
+            "cumulative_count": 8,
+            "le_ms": 10.0
+          },
+          {
+            "cumulative_count": 12,
+            "le_ms": 25.0
+          },
+          {
+            "cumulative_count": 12,
+            "le_ms": 50.0
+          },
+          {
+            "cumulative_count": 12,
+            "le_ms": 100.0
+          },
+          {
+            "cumulative_count": 12,
+            "le_ms": 250.0
+          },
+          {
+            "cumulative_count": 12,
+            "le_ms": 500.0
+          },
+          {
+            "cumulative_count": 12,
+            "le_ms": 1000.0
+          },
+          {
+            "cumulative_count": 12,
+            "le_ms": 2000.0
+          },
+          {
+            "cumulative_count": 12,
+            "le_ms": null
+          }
+        ],
+        "count": 12,
+        "sum": 128.61
+      },
+      "p50_ms": 5.575,
+      "p95_ms": 23.125,
+      "p99_ms": 24.225
+    },
+    "prefill": {
+      "histogram": {
+        "buckets": [
+          {
+            "cumulative_count": 0,
+            "le_ms": 5.0
+          },
+          {
+            "cumulative_count": 0,
+            "le_ms": 10.0
+          },
+          {
+            "cumulative_count": 12,
+            "le_ms": 25.0
+          },
+          {
+            "cumulative_count": 12,
+            "le_ms": 50.0
+          },
+          {
+            "cumulative_count": 12,
+            "le_ms": 100.0
+          },
+          {
+            "cumulative_count": 12,
+            "le_ms": 250.0
+          },
+          {
+            "cumulative_count": 12,
+            "le_ms": 500.0
+          },
+          {
+            "cumulative_count": 12,
+            "le_ms": 1000.0
+          },
+          {
+            "cumulative_count": 12,
+            "le_ms": 2000.0
+          },
+          {
+            "cumulative_count": 12,
+            "le_ms": null
+          }
+        ],
+        "count": 12,
+        "sum": 219.6
+      },
+      "p50_ms": 17.95,
+      "p95_ms": 21.425,
+      "p99_ms": 21.645
+    },
+    "queue": {
+      "histogram": {
+        "buckets": [
+          {
+            "cumulative_count": 1,
+            "le_ms": 5.0
+          },
+          {
+            "cumulative_count": 1,
+            "le_ms": 10.0
+          },
+          {
+            "cumulative_count": 1,
+            "le_ms": 25.0
+          },
+          {
+            "cumulative_count": 2,
+            "le_ms": 50.0
+          },
+          {
+            "cumulative_count": 2,
+            "le_ms": 100.0
+          },
+          {
+            "cumulative_count": 4,
+            "le_ms": 250.0
+          },
+          {
+            "cumulative_count": 8,
+            "le_ms": 500.0
+          },
+          {
+            "cumulative_count": 12,
+            "le_ms": 1000.0
+          },
+          {
+            "cumulative_count": 12,
+            "le_ms": 2000.0
+          },
+          {
+            "cumulative_count": 12,
+            "le_ms": null
+          }
+        ],
+        "count": 12,
+        "sum": 5053.1
+      },
+      "p50_ms": 424.55,
+      "p95_ms": 812.82,
+      "p99_ms": 874.244
+    }
+  },
+  "profiles": [
+    {
+      "domain": "cpu",
+      "duration_ms": 3.12,
+      "symbol": "tokenizer.encode",
+      "timestamp_ms": 7.8,
+      "trace_id": "de56b5d0a2f8b5d6"
+    },
+    {
+      "domain": "gpu",
+      "duration_ms": 14.95,
+      "symbol": "toy.decode_kernel",
+      "timestamp_ms": 30.1,
+      "trace_id": "de56b5d0a2f8b5d6"
+    },
+    {
+      "domain": "cpu",
+      "duration_ms": 3.5,
+      "symbol": "tokenizer.encode",
+      "timestamp_ms": 52.35,
+      "trace_id": "b0dae400a143f4d0"
+    },
+    {
+      "domain": "gpu",
+      "duration_ms": 71.5,
+      "symbol": "toy.decode_kernel",
+      "timestamp_ms": 119.1,
+      "trace_id": "b0dae400a143f4d0"
+    },
+    {
+      "domain": "cpu",
+      "duration_ms": 3.68,
+      "symbol": "tokenizer.encode",
+      "timestamp_ms": 184.79999999999998,
+      "trace_id": "007b31a2353e37af"
+    },
+    {
+      "domain": "gpu",
+      "duration_ms": 20.15,
+      "symbol": "toy.decode_kernel",
+      "timestamp_ms": 212.5,
+      "trace_id": "007b31a2353e37af"
+    },
+    {
+      "domain": "cpu",
+      "duration_ms": 4.06,
+      "symbol": "tokenizer.encode",
+      "timestamp_ms": 240.15,
+      "trace_id": "81e4271a1172a77b"
+    },
+    {
+      "domain": "gpu",
+      "duration_ms": 22.75,
+      "symbol": "toy.decode_kernel",
+      "timestamp_ms": 270.8,
+      "trace_id": "81e4271a1172a77b"
+    },
+    {
+      "domain": "cpu",
+      "duration_ms": 4.24,
+      "symbol": "tokenizer.encode",
+      "timestamp_ms": 301.40000000000003,
+      "trace_id": "f783b1e1aeaadc25"
+    },
+    {
+      "domain": "gpu",
+      "duration_ms": 63.7,
+      "symbol": "toy.decode_kernel",
+      "timestamp_ms": 364.0,
+      "trace_id": "f783b1e1aeaadc25"
+    },
+    {
+      "domain": "cpu",
+      "duration_ms": 3.22,
+      "symbol": "tokenizer.encode",
+      "timestamp_ms": 422.55,
+      "trace_id": "4c780c6b8c968bb9"
+    },
+    {
+      "domain": "gpu",
+      "duration_ms": 17.55,
+      "symbol": "toy.decode_kernel",
+      "timestamp_ms": 447.1,
+      "trace_id": "4c780c6b8c968bb9"
+    },
+    {
+      "domain": "cpu",
+      "duration_ms": 3.4,
+      "symbol": "tokenizer.encode",
+      "timestamp_ms": 470.6,
+      "trace_id": "66b25b6db2c3b576"
+    },
+    {
+      "domain": "gpu",
+      "duration_ms": 20.15,
+      "symbol": "toy.decode_kernel",
+      "timestamp_ms": 497.6,
+      "trace_id": "66b25b6db2c3b576"
+    },
+    {
+      "domain": "cpu",
+      "duration_ms": 3.78,
+      "symbol": "tokenizer.encode",
+      "timestamp_ms": 525.0500000000001,
+      "trace_id": "f315e4a477c8e93f"
+    },
+    {
+      "domain": "gpu",
+      "duration_ms": 87.1,
+      "symbol": "toy.decode_kernel",
+      "timestamp_ms": 604.5,
+      "trace_id": "f315e4a477c8e93f"
+    },
+    {
+      "domain": "cpu",
+      "duration_ms": 3.96,
+      "symbol": "tokenizer.encode",
+      "timestamp_ms": 682.9,
+      "trace_id": "a0a3ded97a52da7e"
+    },
+    {
+      "domain": "gpu",
+      "duration_ms": 14.95,
+      "symbol": "toy.decode_kernel",
+      "timestamp_ms": 707.3,
+      "trace_id": "a0a3ded97a52da7e"
+    },
+    {
+      "domain": "cpu",
+      "duration_ms": 4.34,
+      "symbol": "tokenizer.encode",
+      "timestamp_ms": 731.65,
+      "trace_id": "c6ecc293c71edbdc"
+    },
+    {
+      "domain": "gpu",
+      "duration_ms": 17.55,
+      "symbol": "toy.decode_kernel",
+      "timestamp_ms": 759.0,
+      "trace_id": "c6ecc293c71edbdc"
+    },
+    {
+      "domain": "cpu",
+      "duration_ms": 3.12,
+      "symbol": "tokenizer.encode",
+      "timestamp_ms": 782.8,
+      "trace_id": "329542d289780310"
+    },
+    {
+      "domain": "gpu",
+      "duration_ms": 79.3,
+      "symbol": "toy.decode_kernel",
+      "timestamp_ms": 854.6,
+      "trace_id": "329542d289780310"
+    },
+    {
+      "domain": "cpu",
+      "duration_ms": 3.5,
+      "symbol": "tokenizer.encode",
+      "timestamp_ms": 925.85,
+      "trace_id": "34c1f5b6a881769a"
+    },
+    {
+      "domain": "gpu",
+      "duration_ms": 22.75,
+      "symbol": "toy.decode_kernel",
+      "timestamp_ms": 955.1,
+      "trace_id": "34c1f5b6a881769a"
+    }
+  ],
+  "requests": [
+    {
+      "decode_ms": 23.0,
+      "e2e_ms": 43.1,
+      "itl_ms": 5.75,
+      "prefill_ms": 15.6,
+      "queue_ms": 0.0,
+      "request_id": "r00",
+      "status": "OK",
+      "tenant": "gold",
+      "trace_id": "de56b5d0a2f8b5d6"
+    },
+    {
+      "decode_ms": 110.0,
+      "e2e_ms": 173.1,
+      "itl_ms": 22.0,
+      "prefill_ms": 17.5,
+      "queue_ms": 41.1,
+      "request_id": "r01",
+      "status": "OK",
+      "tenant": "silver",
+      "trace_id": "b0dae400a143f4d0"
+    },
+    {
+      "decode_ms": 31.0,
+      "e2e_ms": 224.5,
+      "itl_ms": 5.167,
+      "prefill_ms": 18.4,
+      "queue_ms": 170.6,
+      "request_id": "r02",
+      "status": "OK",
+      "tenant": "bronze",
+      "trace_id": "007b31a2353e37af"
+    },
+    {
+      "decode_ms": 35.0,
+      "e2e_ms": 282.3,
+      "itl_ms": 5.0,
+      "prefill_ms": 20.3,
+      "queue_ms": 222.5,
+      "request_id": "r03",
+      "status": "OK",
+      "tenant": "gold",
+      "trace_id": "81e4271a1172a77b"
+    },
+    {
+      "decode_ms": 98.0,
+      "e2e_ms": 404.5,
+      "itl_ms": 24.5,
+      "prefill_ms": 21.2,
+      "queue_ms": 280.8,
+      "request_id": "r04",
+      "status": "OK",
+      "tenant": "silver",
+      "trace_id": "f783b1e1aeaadc25"
+    },
+    {
+      "decode_ms": 27.0,
+      "e2e_ms": 449.6,
+      "itl_ms": 5.4,
+      "prefill_ms": 16.1,
+      "queue_ms": 402.0,
+      "request_id": "r05",
+      "status": "OK",
+      "tenant": "bronze",
+      "trace_id": "4c780c6b8c968bb9"
+    },
+    {
+      "decode_ms": 31.0,
+      "e2e_ms": 499.6,
+      "itl_ms": 5.167,
+      "prefill_ms": 17.0,
+      "queue_ms": 447.1,
+      "request_id": "r06",
+      "status": "OK",
+      "tenant": "gold",
+      "trace_id": "66b25b6db2c3b576"
+    },
+    {
+      "decode_ms": 134.0,
+      "e2e_ms": 655.5,
+      "itl_ms": 19.143,
+      "prefill_ms": 18.9,
+      "queue_ms": 498.1,
+      "request_id": "r07",
+      "status": "OK",
+      "tenant": "silver",
+      "trace_id": "f315e4a477c8e93f"
+    },
+    {
+      "decode_ms": 23.0,
+      "e2e_ms": 700.3,
+      "itl_ms": 5.75,
+      "prefill_ms": 19.8,
+      "queue_ms": 653.0,
+      "request_id": "r08",
+      "status": "OK",
+      "tenant": "bronze",
+      "trace_id": "a0a3ded97a52da7e"
+    },
+    {
+      "decode_ms": 27.0,
+      "e2e_ms": 751.5,
+      "itl_ms": 5.4,
+      "prefill_ms": 21.7,
+      "queue_ms": 698.3,
+      "request_id": "r09",
+      "status": "OK",
+      "tenant": "gold",
+      "trace_id": "c6ecc293c71edbdc"
+    },
+    {
+      "decode_ms": 122.0,
+      "e2e_ms": 892.1,
+      "itl_ms": 20.333,
+      "prefill_ms": 15.6,
+      "queue_ms": 750.0,
+      "request_id": "r10",
+      "status": "ERROR",
+      "tenant": "silver",
+      "trace_id": "329542d289780310"
+    },
+    {
+      "decode_ms": 35.0,
+      "e2e_ms": 946.6,
+      "itl_ms": 5.0,
+      "prefill_ms": 17.5,
+      "queue_ms": 889.6,
+      "request_id": "r11",
+      "status": "OK",
+      "tenant": "bronze",
+      "trace_id": "34c1f5b6a881769a"
+    }
+  ],
+  "sampling": {
+    "head_rate": 0.1,
+    "kept_count": 11,
+    "kept_trace_ids": [
+      "007b31a2353e37af",
+      "329542d289780310",
+      "34c1f5b6a881769a",
+      "4c780c6b8c968bb9",
+      "66b25b6db2c3b576",
+      "81e4271a1172a77b",
+      "a0a3ded97a52da7e",
+      "b0dae400a143f4d0",
+      "c6ecc293c71edbdc",
+      "f315e4a477c8e93f",
+      "f783b1e1aeaadc25"
+    ],
+    "reasons": {
+      "007b31a2353e37af": [
+        "head_sample",
+        "slow"
+      ],
+      "329542d289780310": [
+        "error",
+        "fault_signal",
+        "slow"
+      ],
+      "34c1f5b6a881769a": [
+        "slow"
+      ],
+      "4c780c6b8c968bb9": [
+        "slow"
+      ],
+      "66b25b6db2c3b576": [
+        "slow"
+      ],
+      "81e4271a1172a77b": [
+        "slow"
+      ],
+      "a0a3ded97a52da7e": [
+        "slow"
+      ],
+      "b0dae400a143f4d0": [
+        "fault_signal"
+      ],
+      "c6ecc293c71edbdc": [
+        "slow"
+      ],
+      "f315e4a477c8e93f": [
+        "fault_signal",
+        "slow"
+      ],
+      "f783b1e1aeaadc25": [
+        "fault_signal",
+        "slow"
+      ]
+    },
+    "tail_threshold_ms": 180.0,
+    "total_traces": 12
+  },
+  "schema_version": 1,
+  "seed": 7,
+  "spans": [
+    {
+      "attributes": {
+        "model": "toy-llm",
+        "request_id": "r00",
+        "route": "/generate",
+        "tenant": "gold"
+      },
+      "duration_ms": 43.1,
+      "end_ms": 43.1,
+      "name": "inference.server",
+      "parent_span_id": null,
+      "span_id": "span-0000",
+      "start_ms": 0.0,
+      "status": "OK",
+      "trace_id": "de56b5d0a2f8b5d6"
+    },
+    {
+      "attributes": {
+        "batch_id": "batch-00",
+        "queue": "decode"
+      },
+      "duration_ms": 0.0,
+      "end_ms": 0.0,
+      "name": "scheduler.queue_wait",
+      "parent_span_id": "span-0000",
+      "span_id": "span-0001",
+      "start_ms": 0.0,
+      "status": "OK",
+      "trace_id": "de56b5d0a2f8b5d6"
+    },
+    {
+      "attributes": {
+        "device_uuid": "toy-gpu-0",
+        "prompt_tokens": 8
+      },
+      "duration_ms": 15.6,
+      "end_ms": 15.6,
+      "name": "model.prefill",
+      "parent_span_id": "span-0000",
+      "span_id": "span-0002",
+      "start_ms": 0.0,
+      "status": "OK",
+      "trace_id": "de56b5d0a2f8b5d6"
+    },
+    {
+      "attributes": {
+        "collective_seq": 0,
+        "network_ms": 0.0,
+        "output_tokens": 4
+      },
+      "duration_ms": 23.0,
+      "end_ms": 41.6,
+      "name": "model.decode",
+      "parent_span_id": "span-0000",
+      "span_id": "span-0003",
+      "start_ms": 18.6,
+      "status": "OK",
+      "trace_id": "de56b5d0a2f8b5d6"
+    },
+    {
+      "attributes": {
+        "stream": true
+      },
+      "duration_ms": 1.5,
+      "end_ms": 43.1,
+      "name": "response.serialize",
+      "parent_span_id": "span-0000",
+      "span_id": "span-0004",
+      "start_ms": 41.6,
+      "status": "OK",
+      "trace_id": "de56b5d0a2f8b5d6"
+    },
+    {
+      "attributes": {
+        "model": "toy-llm",
+        "request_id": "r01",
+        "route": "/generate",
+        "tenant": "silver"
+      },
+      "duration_ms": 173.1,
+      "end_ms": 175.6,
+      "name": "inference.server",
+      "parent_span_id": null,
+      "span_id": "span-0010",
+      "start_ms": 2.5,
+      "status": "OK",
+      "trace_id": "b0dae400a143f4d0"
+    },
+    {
+      "attributes": {
+        "batch_id": "batch-00",
+        "queue": "decode"
+      },
+      "duration_ms": 41.1,
+      "end_ms": 43.6,
+      "name": "scheduler.queue_wait",
+      "parent_span_id": "span-0010",
+      "span_id": "span-0011",
+      "start_ms": 2.5,
+      "status": "OK",
+      "trace_id": "b0dae400a143f4d0"
+    },
+    {
+      "attributes": {
+        "device_uuid": "toy-gpu-0",
+        "prompt_tokens": 10
+      },
+      "duration_ms": 17.5,
+      "end_ms": 61.1,
+      "name": "model.prefill",
+      "parent_span_id": "span-0010",
+      "span_id": "span-0012",
+      "start_ms": 43.6,
+      "status": "OK",
+      "trace_id": "b0dae400a143f4d0"
+    },
+    {
+      "attributes": {
+        "collective_seq": 1,
+        "network_ms": 83.0,
+        "output_tokens": 5
+      },
+      "duration_ms": 110.0,
+      "end_ms": 174.1,
+      "name": "model.decode",
+      "parent_span_id": "span-0010",
+      "span_id": "span-0013",
+      "start_ms": 64.1,
+      "status": "OK",
+      "trace_id": "b0dae400a143f4d0"
+    },
+    {
+      "attributes": {
+        "stream": true
+      },
+      "duration_ms": 1.5,
+      "end_ms": 175.6,
+      "name": "response.serialize",
+      "parent_span_id": "span-0010",
+      "span_id": "span-0014",
+      "start_ms": 174.1,
+      "status": "OK",
+      "trace_id": "b0dae400a143f4d0"
+    },
+    {
+      "attributes": {
+        "peer": "shard-1",
+        "retransmits": 4
+      },
+      "duration_ms": 83.0,
+      "end_ms": 148.1,
+      "name": "network.rpc",
+      "parent_span_id": "span-0013",
+      "span_id": "span-0015",
+      "start_ms": 65.1,
+      "status": "OK",
+      "trace_id": "b0dae400a143f4d0"
+    },
+    {
+      "attributes": {
+        "model": "toy-llm",
+        "request_id": "r02",
+        "route": "/generate",
+        "tenant": "bronze"
+      },
+      "duration_ms": 224.5,
+      "end_ms": 229.5,
+      "name": "inference.server",
+      "parent_span_id": null,
+      "span_id": "span-0020",
+      "start_ms": 5.0,
+      "status": "OK",
+      "trace_id": "007b31a2353e37af"
+    },
+    {
+      "attributes": {
+        "batch_id": "batch-00",
+        "queue": "decode"
+      },
+      "duration_ms": 170.6,
+      "end_ms": 175.6,
+      "name": "scheduler.queue_wait",
+      "parent_span_id": "span-0020",
+      "span_id": "span-0021",
+      "start_ms": 5.0,
+      "status": "OK",
+      "trace_id": "007b31a2353e37af"
+    },
+    {
+      "attributes": {
+        "device_uuid": "toy-gpu-0",
+        "prompt_tokens": 12
+      },
+      "duration_ms": 18.4,
+      "end_ms": 194.0,
+      "name": "model.prefill",
+      "parent_span_id": "span-0020",
+      "span_id": "span-0022",
+      "start_ms": 175.6,
+      "status": "OK",
+      "trace_id": "007b31a2353e37af"
+    },
+    {
+      "attributes": {
+        "collective_seq": 2,
+        "network_ms": 0.0,
+        "output_tokens": 6
+      },
+      "duration_ms": 31.0,
+      "end_ms": 228.0,
+      "name": "model.decode",
+      "parent_span_id": "span-0020",
+      "span_id": "span-0023",
+      "start_ms": 197.0,
+      "status": "OK",
+      "trace_id": "007b31a2353e37af"
+    },
+    {
+      "attributes": {
+        "stream": true
+      },
+      "duration_ms": 1.5,
+      "end_ms": 229.5,
+      "name": "response.serialize",
+      "parent_span_id": "span-0020",
+      "span_id": "span-0024",
+      "start_ms": 228.0,
+      "status": "OK",
+      "trace_id": "007b31a2353e37af"
+    },
+    {
+      "attributes": {
+        "model": "toy-llm",
+        "request_id": "r03",
+        "route": "/generate",
+        "tenant": "gold"
+      },
+      "duration_ms": 282.3,
+      "end_ms": 289.8,
+      "name": "inference.server",
+      "parent_span_id": null,
+      "span_id": "span-0030",
+      "start_ms": 7.5,
+      "status": "OK",
+      "trace_id": "81e4271a1172a77b"
+    },
+    {
+      "attributes": {
+        "batch_id": "batch-01",
+        "queue": "decode"
+      },
+      "duration_ms": 222.5,
+      "end_ms": 230.0,
+      "name": "scheduler.queue_wait",
+      "parent_span_id": "span-0030",
+      "span_id": "span-0031",
+      "start_ms": 7.5,
+      "status": "OK",
+      "trace_id": "81e4271a1172a77b"
+    },
+    {
+      "attributes": {
+        "device_uuid": "toy-gpu-0",
+        "prompt_tokens": 14
+      },
+      "duration_ms": 20.3,
+      "end_ms": 250.3,
+      "name": "model.prefill",
+      "parent_span_id": "span-0030",
+      "span_id": "span-0032",
+      "start_ms": 230.0,
+      "status": "OK",
+      "trace_id": "81e4271a1172a77b"
+    },
+    {
+      "attributes": {
+        "collective_seq": 3,
+        "network_ms": 0.0,
+        "output_tokens": 7
+      },
+      "duration_ms": 35.0,
+      "end_ms": 288.3,
+      "name": "model.decode",
+      "parent_span_id": "span-0030",
+      "span_id": "span-0033",
+      "start_ms": 253.3,
+      "status": "OK",
+      "trace_id": "81e4271a1172a77b"
+    },
+    {
+      "attributes": {
+        "stream": true
+      },
+      "duration_ms": 1.5,
+      "end_ms": 289.8,
+      "name": "response.serialize",
+      "parent_span_id": "span-0030",
+      "span_id": "span-0034",
+      "start_ms": 288.3,
+      "status": "OK",
+      "trace_id": "81e4271a1172a77b"
+    },
+    {
+      "attributes": {
+        "model": "toy-llm",
+        "request_id": "r04",
+        "route": "/generate",
+        "tenant": "silver"
+      },
+      "duration_ms": 404.5,
+      "end_ms": 414.5,
+      "name": "inference.server",
+      "parent_span_id": null,
+      "span_id": "span-0040",
+      "start_ms": 10.0,
+      "status": "OK",
+      "trace_id": "f783b1e1aeaadc25"
+    },
+    {
+      "attributes": {
+        "batch_id": "batch-01",
+        "queue": "decode"
+      },
+      "duration_ms": 280.8,
+      "end_ms": 290.8,
+      "name": "scheduler.queue_wait",
+      "parent_span_id": "span-0040",
+      "span_id": "span-0041",
+      "start_ms": 10.0,
+      "status": "OK",
+      "trace_id": "f783b1e1aeaadc25"
+    },
+    {
+      "attributes": {
+        "device_uuid": "toy-gpu-0",
+        "prompt_tokens": 16
+      },
+      "duration_ms": 21.2,
+      "end_ms": 312.0,
+      "name": "model.prefill",
+      "parent_span_id": "span-0040",
+      "span_id": "span-0042",
+      "start_ms": 290.8,
+      "status": "OK",
+      "trace_id": "f783b1e1aeaadc25"
+    },
+    {
+      "attributes": {
+        "collective_seq": 4,
+        "network_ms": 75.0,
+        "output_tokens": 4
+      },
+      "duration_ms": 98.0,
+      "end_ms": 413.0,
+      "name": "model.decode",
+      "parent_span_id": "span-0040",
+      "span_id": "span-0043",
+      "start_ms": 315.0,
+      "status": "OK",
+      "trace_id": "f783b1e1aeaadc25"
+    },
+    {
+      "attributes": {
+        "stream": true
+      },
+      "duration_ms": 1.5,
+      "end_ms": 414.5,
+      "name": "response.serialize",
+      "parent_span_id": "span-0040",
+      "span_id": "span-0044",
+      "start_ms": 413.0,
+      "status": "OK",
+      "trace_id": "f783b1e1aeaadc25"
+    },
+    {
+      "attributes": {
+        "peer": "shard-1",
+        "retransmits": 3
+      },
+      "duration_ms": 75.0,
+      "end_ms": 391.0,
+      "name": "network.rpc",
+      "parent_span_id": "span-0043",
+      "span_id": "span-0045",
+      "start_ms": 316.0,
+      "status": "OK",
+      "trace_id": "f783b1e1aeaadc25"
+    },
+    {
+      "attributes": {
+        "model": "toy-llm",
+        "request_id": "r05",
+        "route": "/generate",
+        "tenant": "bronze"
+      },
+      "duration_ms": 449.6,
+      "end_ms": 462.1,
+      "name": "inference.server",
+      "parent_span_id": null,
+      "span_id": "span-0050",
+      "start_ms": 12.5,
+      "status": "OK",
+      "trace_id": "4c780c6b8c968bb9"
+    },
+    {
+      "attributes": {
+        "batch_id": "batch-01",
+        "queue": "decode"
+      },
+      "duration_ms": 402.0,
+      "end_ms": 414.5,
+      "name": "scheduler.queue_wait",
+      "parent_span_id": "span-0050",
+      "span_id": "span-0051",
+      "start_ms": 12.5,
+      "status": "OK",
+      "trace_id": "4c780c6b8c968bb9"
+    },
+    {
+      "attributes": {
+        "device_uuid": "toy-gpu-0",
+        "prompt_tokens": 8
+      },
+      "duration_ms": 16.1,
+      "end_ms": 430.6,
+      "name": "model.prefill",
+      "parent_span_id": "span-0050",
+      "span_id": "span-0052",
+      "start_ms": 414.5,
+      "status": "OK",
+      "trace_id": "4c780c6b8c968bb9"
+    },
+    {
+      "attributes": {
+        "collective_seq": 5,
+        "network_ms": 0.0,
+        "output_tokens": 5
+      },
+      "duration_ms": 27.0,
+      "end_ms": 460.6,
+      "name": "model.decode",
+      "parent_span_id": "span-0050",
+      "span_id": "span-0053",
+      "start_ms": 433.6,
+      "status": "OK",
+      "trace_id": "4c780c6b8c968bb9"
+    },
+    {
+      "attributes": {
+        "stream": true
+      },
+      "duration_ms": 1.5,
+      "end_ms": 462.1,
+      "name": "response.serialize",
+      "parent_span_id": "span-0050",
+      "span_id": "span-0054",
+      "start_ms": 460.6,
+      "status": "OK",
+      "trace_id": "4c780c6b8c968bb9"
+    },
+    {
+      "attributes": {
+        "model": "toy-llm",
+        "request_id": "r06",
+        "route": "/generate",
+        "tenant": "gold"
+      },
+      "duration_ms": 499.6,
+      "end_ms": 514.6,
+      "name": "inference.server",
+      "parent_span_id": null,
+      "span_id": "span-0060",
+      "start_ms": 15.0,
+      "status": "OK",
+      "trace_id": "66b25b6db2c3b576"
+    },
+    {
+      "attributes": {
+        "batch_id": "batch-02",
+        "queue": "decode"
+      },
+      "duration_ms": 447.1,
+      "end_ms": 462.1,
+      "name": "scheduler.queue_wait",
+      "parent_span_id": "span-0060",
+      "span_id": "span-0061",
+      "start_ms": 15.0,
+      "status": "OK",
+      "trace_id": "66b25b6db2c3b576"
+    },
+    {
+      "attributes": {
+        "device_uuid": "toy-gpu-0",
+        "prompt_tokens": 10
+      },
+      "duration_ms": 17.0,
+      "end_ms": 479.1,
+      "name": "model.prefill",
+      "parent_span_id": "span-0060",
+      "span_id": "span-0062",
+      "start_ms": 462.1,
+      "status": "OK",
+      "trace_id": "66b25b6db2c3b576"
+    },
+    {
+      "attributes": {
+        "collective_seq": 6,
+        "network_ms": 0.0,
+        "output_tokens": 6
+      },
+      "duration_ms": 31.0,
+      "end_ms": 513.1,
+      "name": "model.decode",
+      "parent_span_id": "span-0060",
+      "span_id": "span-0063",
+      "start_ms": 482.1,
+      "status": "OK",
+      "trace_id": "66b25b6db2c3b576"
+    },
+    {
+      "attributes": {
+        "stream": true
+      },
+      "duration_ms": 1.5,
+      "end_ms": 514.6,
+      "name": "response.serialize",
+      "parent_span_id": "span-0060",
+      "span_id": "span-0064",
+      "start_ms": 513.1,
+      "status": "OK",
+      "trace_id": "66b25b6db2c3b576"
+    },
+    {
+      "attributes": {
+        "model": "toy-llm",
+        "request_id": "r07",
+        "route": "/generate",
+        "tenant": "silver"
+      },
+      "duration_ms": 655.5,
+      "end_ms": 673.0,
+      "name": "inference.server",
+      "parent_span_id": null,
+      "span_id": "span-0070",
+      "start_ms": 17.5,
+      "status": "OK",
+      "trace_id": "f315e4a477c8e93f"
+    },
+    {
+      "attributes": {
+        "batch_id": "batch-02",
+        "queue": "decode"
+      },
+      "duration_ms": 498.1,
+      "end_ms": 515.6,
+      "name": "scheduler.queue_wait",
+      "parent_span_id": "span-0070",
+      "span_id": "span-0071",
+      "start_ms": 17.5,
+      "status": "OK",
+      "trace_id": "f315e4a477c8e93f"
+    },
+    {
+      "attributes": {
+        "device_uuid": "toy-gpu-0",
+        "prompt_tokens": 12
+      },
+      "duration_ms": 18.9,
+      "end_ms": 534.5,
+      "name": "model.prefill",
+      "parent_span_id": "span-0070",
+      "span_id": "span-0072",
+      "start_ms": 515.6,
+      "status": "OK",
+      "trace_id": "f315e4a477c8e93f"
+    },
+    {
+      "attributes": {
+        "collective_seq": 7,
+        "network_ms": 99.0,
+        "output_tokens": 7
+      },
+      "duration_ms": 134.0,
+      "end_ms": 671.5,
+      "name": "model.decode",
+      "parent_span_id": "span-0070",
+      "span_id": "span-0073",
+      "start_ms": 537.5,
+      "status": "OK",
+      "trace_id": "f315e4a477c8e93f"
+    },
+    {
+      "attributes": {
+        "stream": true
+      },
+      "duration_ms": 1.5,
+      "end_ms": 673.0,
+      "name": "response.serialize",
+      "parent_span_id": "span-0070",
+      "span_id": "span-0074",
+      "start_ms": 671.5,
+      "status": "OK",
+      "trace_id": "f315e4a477c8e93f"
+    },
+    {
+      "attributes": {
+        "peer": "shard-1",
+        "retransmits": 4
+      },
+      "duration_ms": 99.0,
+      "end_ms": 637.5,
+      "name": "network.rpc",
+      "parent_span_id": "span-0073",
+      "span_id": "span-0075",
+      "start_ms": 538.5,
+      "status": "OK",
+      "trace_id": "f315e4a477c8e93f"
+    },
+    {
+      "attributes": {
+        "model": "toy-llm",
+        "request_id": "r08",
+        "route": "/generate",
+        "tenant": "bronze"
+      },
+      "duration_ms": 700.3,
+      "end_ms": 720.3,
+      "name": "inference.server",
+      "parent_span_id": null,
+      "span_id": "span-0080",
+      "start_ms": 20.0,
+      "status": "OK",
+      "trace_id": "a0a3ded97a52da7e"
+    },
+    {
+      "attributes": {
+        "batch_id": "batch-02",
+        "queue": "decode"
+      },
+      "duration_ms": 653.0,
+      "end_ms": 673.0,
+      "name": "scheduler.queue_wait",
+      "parent_span_id": "span-0080",
+      "span_id": "span-0081",
+      "start_ms": 20.0,
+      "status": "OK",
+      "trace_id": "a0a3ded97a52da7e"
+    },
+    {
+      "attributes": {
+        "device_uuid": "toy-gpu-0",
+        "prompt_tokens": 14
+      },
+      "duration_ms": 19.8,
+      "end_ms": 692.8,
+      "name": "model.prefill",
+      "parent_span_id": "span-0080",
+      "span_id": "span-0082",
+      "start_ms": 673.0,
+      "status": "OK",
+      "trace_id": "a0a3ded97a52da7e"
+    },
+    {
+      "attributes": {
+        "collective_seq": 8,
+        "network_ms": 0.0,
+        "output_tokens": 4
+      },
+      "duration_ms": 23.0,
+      "end_ms": 718.8,
+      "name": "model.decode",
+      "parent_span_id": "span-0080",
+      "span_id": "span-0083",
+      "start_ms": 695.8,
+      "status": "OK",
+      "trace_id": "a0a3ded97a52da7e"
+    },
+    {
+      "attributes": {
+        "stream": true
+      },
+      "duration_ms": 1.5,
+      "end_ms": 720.3,
+      "name": "response.serialize",
+      "parent_span_id": "span-0080",
+      "span_id": "span-0084",
+      "start_ms": 718.8,
+      "status": "OK",
+      "trace_id": "a0a3ded97a52da7e"
+    },
+    {
+      "attributes": {
+        "model": "toy-llm",
+        "request_id": "r09",
+        "route": "/generate",
+        "tenant": "gold"
+      },
+      "duration_ms": 751.5,
+      "end_ms": 774.0,
+      "name": "inference.server",
+      "parent_span_id": null,
+      "span_id": "span-0090",
+      "start_ms": 22.5,
+      "status": "OK",
+      "trace_id": "c6ecc293c71edbdc"
+    },
+    {
+      "attributes": {
+        "batch_id": "batch-03",
+        "queue": "decode"
+      },
+      "duration_ms": 698.3,
+      "end_ms": 720.8,
+      "name": "scheduler.queue_wait",
+      "parent_span_id": "span-0090",
+      "span_id": "span-0091",
+      "start_ms": 22.5,
+      "status": "OK",
+      "trace_id": "c6ecc293c71edbdc"
+    },
+    {
+      "attributes": {
+        "device_uuid": "toy-gpu-0",
+        "prompt_tokens": 16
+      },
+      "duration_ms": 21.7,
+      "end_ms": 742.5,
+      "name": "model.prefill",
+      "parent_span_id": "span-0090",
+      "span_id": "span-0092",
+      "start_ms": 720.8,
+      "status": "OK",
+      "trace_id": "c6ecc293c71edbdc"
+    },
+    {
+      "attributes": {
+        "collective_seq": 9,
+        "network_ms": 0.0,
+        "output_tokens": 5
+      },
+      "duration_ms": 27.0,
+      "end_ms": 772.5,
+      "name": "model.decode",
+      "parent_span_id": "span-0090",
+      "span_id": "span-0093",
+      "start_ms": 745.5,
+      "status": "OK",
+      "trace_id": "c6ecc293c71edbdc"
+    },
+    {
+      "attributes": {
+        "stream": true
+      },
+      "duration_ms": 1.5,
+      "end_ms": 774.0,
+      "name": "response.serialize",
+      "parent_span_id": "span-0090",
+      "span_id": "span-0094",
+      "start_ms": 772.5,
+      "status": "OK",
+      "trace_id": "c6ecc293c71edbdc"
+    },
+    {
+      "attributes": {
+        "model": "toy-llm",
+        "request_id": "r10",
+        "route": "/generate",
+        "tenant": "silver"
+      },
+      "duration_ms": 892.1,
+      "end_ms": 917.1,
+      "name": "inference.server",
+      "parent_span_id": null,
+      "span_id": "span-0100",
+      "start_ms": 25.0,
+      "status": "ERROR",
+      "trace_id": "329542d289780310"
+    },
+    {
+      "attributes": {
+        "batch_id": "batch-03",
+        "queue": "decode"
+      },
+      "duration_ms": 750.0,
+      "end_ms": 775.0,
+      "name": "scheduler.queue_wait",
+      "parent_span_id": "span-0100",
+      "span_id": "span-0101",
+      "start_ms": 25.0,
+      "status": "OK",
+      "trace_id": "329542d289780310"
+    },
+    {
+      "attributes": {
+        "device_uuid": "toy-gpu-0",
+        "prompt_tokens": 8
+      },
+      "duration_ms": 15.6,
+      "end_ms": 790.6,
+      "name": "model.prefill",
+      "parent_span_id": "span-0100",
+      "span_id": "span-0102",
+      "start_ms": 775.0,
+      "status": "OK",
+      "trace_id": "329542d289780310"
+    },
+    {
+      "attributes": {
+        "collective_seq": 10,
+        "network_ms": 91.0,
+        "output_tokens": 6
+      },
+      "duration_ms": 122.0,
+      "end_ms": 915.6,
+      "name": "model.decode",
+      "parent_span_id": "span-0100",
+      "span_id": "span-0103",
+      "start_ms": 793.6,
+      "status": "OK",
+      "trace_id": "329542d289780310"
+    },
+    {
+      "attributes": {
+        "stream": true
+      },
+      "duration_ms": 1.5,
+      "end_ms": 917.1,
+      "name": "response.serialize",
+      "parent_span_id": "span-0100",
+      "span_id": "span-0104",
+      "start_ms": 915.6,
+      "status": "OK",
+      "trace_id": "329542d289780310"
+    },
+    {
+      "attributes": {
+        "peer": "shard-1",
+        "retransmits": 3
+      },
+      "duration_ms": 91.0,
+      "end_ms": 885.6,
+      "name": "network.rpc",
+      "parent_span_id": "span-0103",
+      "span_id": "span-0105",
+      "start_ms": 794.6,
+      "status": "OK",
+      "trace_id": "329542d289780310"
+    },
+    {
+      "attributes": {
+        "model": "toy-llm",
+        "request_id": "r11",
+        "route": "/generate",
+        "tenant": "bronze"
+      },
+      "duration_ms": 946.6,
+      "end_ms": 974.1,
+      "name": "inference.server",
+      "parent_span_id": null,
+      "span_id": "span-0110",
+      "start_ms": 27.5,
+      "status": "OK",
+      "trace_id": "34c1f5b6a881769a"
+    },
+    {
+      "attributes": {
+        "batch_id": "batch-03",
+        "queue": "decode"
+      },
+      "duration_ms": 889.6,
+      "end_ms": 917.1,
+      "name": "scheduler.queue_wait",
+      "parent_span_id": "span-0110",
+      "span_id": "span-0111",
+      "start_ms": 27.5,
+      "status": "OK",
+      "trace_id": "34c1f5b6a881769a"
+    },
+    {
+      "attributes": {
+        "device_uuid": "toy-gpu-0",
+        "prompt_tokens": 10
+      },
+      "duration_ms": 17.5,
+      "end_ms": 934.6,
+      "name": "model.prefill",
+      "parent_span_id": "span-0110",
+      "span_id": "span-0112",
+      "start_ms": 917.1,
+      "status": "OK",
+      "trace_id": "34c1f5b6a881769a"
+    },
+    {
+      "attributes": {
+        "collective_seq": 11,
+        "network_ms": 0.0,
+        "output_tokens": 7
+      },
+      "duration_ms": 35.0,
+      "end_ms": 972.6,
+      "name": "model.decode",
+      "parent_span_id": "span-0110",
+      "span_id": "span-0113",
+      "start_ms": 937.6,
+      "status": "OK",
+      "trace_id": "34c1f5b6a881769a"
+    },
+    {
+      "attributes": {
+        "stream": true
+      },
+      "duration_ms": 1.5,
+      "end_ms": 974.1,
+      "name": "response.serialize",
+      "parent_span_id": "span-0110",
+      "span_id": "span-0114",
+      "start_ms": 972.6,
+      "status": "OK",
+      "trace_id": "34c1f5b6a881769a"
+    }
+  ],
+  "telemetry": [
+    {
+      "device_uuid": "toy-gpu-0",
+      "disk_io_latency_ms": 0.0,
+      "memory_used_bytes": 2008192,
+      "network_retransmits": 0,
+      "nvlink_tx_bytes": 0,
+      "sm_active_ratio": 0.82,
+      "timestamp_ms": 18.6
+    },
+    {
+      "device_uuid": "toy-gpu-0",
+      "disk_io_latency_ms": 0.0,
+      "memory_used_bytes": 2010240,
+      "network_retransmits": 4,
+      "nvlink_tx_bytes": 120000,
+      "sm_active_ratio": 0.612,
+      "timestamp_ms": 64.1
+    },
+    {
+      "device_uuid": "toy-gpu-0",
+      "disk_io_latency_ms": 0.0,
+      "memory_used_bytes": 2012288,
+      "network_retransmits": 0,
+      "nvlink_tx_bytes": 0,
+      "sm_active_ratio": 0.82,
+      "timestamp_ms": 197.0
+    },
+    {
+      "device_uuid": "toy-gpu-0",
+      "disk_io_latency_ms": 0.0,
+      "memory_used_bytes": 2014336,
+      "network_retransmits": 0,
+      "nvlink_tx_bytes": 0,
+      "sm_active_ratio": 0.82,
+      "timestamp_ms": 253.3
+    },
+    {
+      "device_uuid": "toy-gpu-0",
+      "disk_io_latency_ms": 0.0,
+      "memory_used_bytes": 2016384,
+      "network_retransmits": 3,
+      "nvlink_tx_bytes": 120000,
+      "sm_active_ratio": 0.632,
+      "timestamp_ms": 315.0
+    },
+    {
+      "device_uuid": "toy-gpu-0",
+      "disk_io_latency_ms": 0.0,
+      "memory_used_bytes": 2008192,
+      "network_retransmits": 0,
+      "nvlink_tx_bytes": 0,
+      "sm_active_ratio": 0.82,
+      "timestamp_ms": 433.6
+    },
+    {
+      "device_uuid": "toy-gpu-0",
+      "disk_io_latency_ms": 0.0,
+      "memory_used_bytes": 2010240,
+      "network_retransmits": 0,
+      "nvlink_tx_bytes": 0,
+      "sm_active_ratio": 0.82,
+      "timestamp_ms": 482.1
+    },
+    {
+      "device_uuid": "toy-gpu-0",
+      "disk_io_latency_ms": 0.0,
+      "memory_used_bytes": 2012288,
+      "network_retransmits": 4,
+      "nvlink_tx_bytes": 120000,
+      "sm_active_ratio": 0.573,
+      "timestamp_ms": 537.5
+    },
+    {
+      "device_uuid": "toy-gpu-0",
+      "disk_io_latency_ms": 0.0,
+      "memory_used_bytes": 2014336,
+      "network_retransmits": 0,
+      "nvlink_tx_bytes": 0,
+      "sm_active_ratio": 0.82,
+      "timestamp_ms": 695.8
+    },
+    {
+      "device_uuid": "toy-gpu-0",
+      "disk_io_latency_ms": 0.0,
+      "memory_used_bytes": 2016384,
+      "network_retransmits": 0,
+      "nvlink_tx_bytes": 0,
+      "sm_active_ratio": 0.82,
+      "timestamp_ms": 745.5
+    },
+    {
+      "device_uuid": "toy-gpu-0",
+      "disk_io_latency_ms": 0.0,
+      "memory_used_bytes": 2008192,
+      "network_retransmits": 3,
+      "nvlink_tx_bytes": 120000,
+      "sm_active_ratio": 0.592,
+      "timestamp_ms": 793.6
+    },
+    {
+      "device_uuid": "toy-gpu-0",
+      "disk_io_latency_ms": 0.0,
+      "memory_used_bytes": 2010240,
+      "network_retransmits": 0,
+      "nvlink_tx_bytes": 0,
+      "sm_active_ratio": 0.82,
+      "timestamp_ms": 937.6
+    }
+  ],
+  "traces": [
+    {
+      "attributes": {
+        "model": "toy-llm",
+        "request_id": "r00",
+        "route": "/generate",
+        "tenant": "gold"
+      },
+      "duration_ms": 43.1,
+      "end_ms": 43.1,
+      "name": "inference.server",
+      "parent_span_id": null,
+      "span_id": "span-0000",
+      "start_ms": 0.0,
+      "status": "OK",
+      "trace_id": "de56b5d0a2f8b5d6"
+    },
+    {
+      "attributes": {
+        "batch_id": "batch-00",
+        "queue": "decode"
+      },
+      "duration_ms": 0.0,
+      "end_ms": 0.0,
+      "name": "scheduler.queue_wait",
+      "parent_span_id": "span-0000",
+      "span_id": "span-0001",
+      "start_ms": 0.0,
+      "status": "OK",
+      "trace_id": "de56b5d0a2f8b5d6"
+    },
+    {
+      "attributes": {
+        "device_uuid": "toy-gpu-0",
+        "prompt_tokens": 8
+      },
+      "duration_ms": 15.6,
+      "end_ms": 15.6,
+      "name": "model.prefill",
+      "parent_span_id": "span-0000",
+      "span_id": "span-0002",
+      "start_ms": 0.0,
+      "status": "OK",
+      "trace_id": "de56b5d0a2f8b5d6"
+    },
+    {
+      "attributes": {
+        "collective_seq": 0,
+        "network_ms": 0.0,
+        "output_tokens": 4
+      },
+      "duration_ms": 23.0,
+      "end_ms": 41.6,
+      "name": "model.decode",
+      "parent_span_id": "span-0000",
+      "span_id": "span-0003",
+      "start_ms": 18.6,
+      "status": "OK",
+      "trace_id": "de56b5d0a2f8b5d6"
+    },
+    {
+      "attributes": {
+        "stream": true
+      },
+      "duration_ms": 1.5,
+      "end_ms": 43.1,
+      "name": "response.serialize",
+      "parent_span_id": "span-0000",
+      "span_id": "span-0004",
+      "start_ms": 41.6,
+      "status": "OK",
+      "trace_id": "de56b5d0a2f8b5d6"
+    },
+    {
+      "attributes": {
+        "model": "toy-llm",
+        "request_id": "r01",
+        "route": "/generate",
+        "tenant": "silver"
+      },
+      "duration_ms": 173.1,
+      "end_ms": 175.6,
+      "name": "inference.server",
+      "parent_span_id": null,
+      "span_id": "span-0010",
+      "start_ms": 2.5,
+      "status": "OK",
+      "trace_id": "b0dae400a143f4d0"
+    },
+    {
+      "attributes": {
+        "batch_id": "batch-00",
+        "queue": "decode"
+      },
+      "duration_ms": 41.1,
+      "end_ms": 43.6,
+      "name": "scheduler.queue_wait",
+      "parent_span_id": "span-0010",
+      "span_id": "span-0011",
+      "start_ms": 2.5,
+      "status": "OK",
+      "trace_id": "b0dae400a143f4d0"
+    },
+    {
+      "attributes": {
+        "device_uuid": "toy-gpu-0",
+        "prompt_tokens": 10
+      },
+      "duration_ms": 17.5,
+      "end_ms": 61.1,
+      "name": "model.prefill",
+      "parent_span_id": "span-0010",
+      "span_id": "span-0012",
+      "start_ms": 43.6,
+      "status": "OK",
+      "trace_id": "b0dae400a143f4d0"
+    },
+    {
+      "attributes": {
+        "collective_seq": 1,
+        "network_ms": 83.0,
+        "output_tokens": 5
+      },
+      "duration_ms": 110.0,
+      "end_ms": 174.1,
+      "name": "model.decode",
+      "parent_span_id": "span-0010",
+      "span_id": "span-0013",
+      "start_ms": 64.1,
+      "status": "OK",
+      "trace_id": "b0dae400a143f4d0"
+    },
+    {
+      "attributes": {
+        "stream": true
+      },
+      "duration_ms": 1.5,
+      "end_ms": 175.6,
+      "name": "response.serialize",
+      "parent_span_id": "span-0010",
+      "span_id": "span-0014",
+      "start_ms": 174.1,
+      "status": "OK",
+      "trace_id": "b0dae400a143f4d0"
+    },
+    {
+      "attributes": {
+        "peer": "shard-1",
+        "retransmits": 4
+      },
+      "duration_ms": 83.0,
+      "end_ms": 148.1,
+      "name": "network.rpc",
+      "parent_span_id": "span-0013",
+      "span_id": "span-0015",
+      "start_ms": 65.1,
+      "status": "OK",
+      "trace_id": "b0dae400a143f4d0"
+    },
+    {
+      "attributes": {
+        "model": "toy-llm",
+        "request_id": "r02",
+        "route": "/generate",
+        "tenant": "bronze"
+      },
+      "duration_ms": 224.5,
+      "end_ms": 229.5,
+      "name": "inference.server",
+      "parent_span_id": null,
+      "span_id": "span-0020",
+      "start_ms": 5.0,
+      "status": "OK",
+      "trace_id": "007b31a2353e37af"
+    },
+    {
+      "attributes": {
+        "batch_id": "batch-00",
+        "queue": "decode"
+      },
+      "duration_ms": 170.6,
+      "end_ms": 175.6,
+      "name": "scheduler.queue_wait",
+      "parent_span_id": "span-0020",
+      "span_id": "span-0021",
+      "start_ms": 5.0,
+      "status": "OK",
+      "trace_id": "007b31a2353e37af"
+    },
+    {
+      "attributes": {
+        "device_uuid": "toy-gpu-0",
+        "prompt_tokens": 12
+      },
+      "duration_ms": 18.4,
+      "end_ms": 194.0,
+      "name": "model.prefill",
+      "parent_span_id": "span-0020",
+      "span_id": "span-0022",
+      "start_ms": 175.6,
+      "status": "OK",
+      "trace_id": "007b31a2353e37af"
+    },
+    {
+      "attributes": {
+        "collective_seq": 2,
+        "network_ms": 0.0,
+        "output_tokens": 6
+      },
+      "duration_ms": 31.0,
+      "end_ms": 228.0,
+      "name": "model.decode",
+      "parent_span_id": "span-0020",
+      "span_id": "span-0023",
+      "start_ms": 197.0,
+      "status": "OK",
+      "trace_id": "007b31a2353e37af"
+    },
+    {
+      "attributes": {
+        "stream": true
+      },
+      "duration_ms": 1.5,
+      "end_ms": 229.5,
+      "name": "response.serialize",
+      "parent_span_id": "span-0020",
+      "span_id": "span-0024",
+      "start_ms": 228.0,
+      "status": "OK",
+      "trace_id": "007b31a2353e37af"
+    },
+    {
+      "attributes": {
+        "model": "toy-llm",
+        "request_id": "r03",
+        "route": "/generate",
+        "tenant": "gold"
+      },
+      "duration_ms": 282.3,
+      "end_ms": 289.8,
+      "name": "inference.server",
+      "parent_span_id": null,
+      "span_id": "span-0030",
+      "start_ms": 7.5,
+      "status": "OK",
+      "trace_id": "81e4271a1172a77b"
+    },
+    {
+      "attributes": {
+        "batch_id": "batch-01",
+        "queue": "decode"
+      },
+      "duration_ms": 222.5,
+      "end_ms": 230.0,
+      "name": "scheduler.queue_wait",
+      "parent_span_id": "span-0030",
+      "span_id": "span-0031",
+      "start_ms": 7.5,
+      "status": "OK",
+      "trace_id": "81e4271a1172a77b"
+    },
+    {
+      "attributes": {
+        "device_uuid": "toy-gpu-0",
+        "prompt_tokens": 14
+      },
+      "duration_ms": 20.3,
+      "end_ms": 250.3,
+      "name": "model.prefill",
+      "parent_span_id": "span-0030",
+      "span_id": "span-0032",
+      "start_ms": 230.0,
+      "status": "OK",
+      "trace_id": "81e4271a1172a77b"
+    },
+    {
+      "attributes": {
+        "collective_seq": 3,
+        "network_ms": 0.0,
+        "output_tokens": 7
+      },
+      "duration_ms": 35.0,
+      "end_ms": 288.3,
+      "name": "model.decode",
+      "parent_span_id": "span-0030",
+      "span_id": "span-0033",
+      "start_ms": 253.3,
+      "status": "OK",
+      "trace_id": "81e4271a1172a77b"
+    },
+    {
+      "attributes": {
+        "stream": true
+      },
+      "duration_ms": 1.5,
+      "end_ms": 289.8,
+      "name": "response.serialize",
+      "parent_span_id": "span-0030",
+      "span_id": "span-0034",
+      "start_ms": 288.3,
+      "status": "OK",
+      "trace_id": "81e4271a1172a77b"
+    },
+    {
+      "attributes": {
+        "model": "toy-llm",
+        "request_id": "r04",
+        "route": "/generate",
+        "tenant": "silver"
+      },
+      "duration_ms": 404.5,
+      "end_ms": 414.5,
+      "name": "inference.server",
+      "parent_span_id": null,
+      "span_id": "span-0040",
+      "start_ms": 10.0,
+      "status": "OK",
+      "trace_id": "f783b1e1aeaadc25"
+    },
+    {
+      "attributes": {
+        "batch_id": "batch-01",
+        "queue": "decode"
+      },
+      "duration_ms": 280.8,
+      "end_ms": 290.8,
+      "name": "scheduler.queue_wait",
+      "parent_span_id": "span-0040",
+      "span_id": "span-0041",
+      "start_ms": 10.0,
+      "status": "OK",
+      "trace_id": "f783b1e1aeaadc25"
+    },
+    {
+      "attributes": {
+        "device_uuid": "toy-gpu-0",
+        "prompt_tokens": 16
+      },
+      "duration_ms": 21.2,
+      "end_ms": 312.0,
+      "name": "model.prefill",
+      "parent_span_id": "span-0040",
+      "span_id": "span-0042",
+      "start_ms": 290.8,
+      "status": "OK",
+      "trace_id": "f783b1e1aeaadc25"
+    },
+    {
+      "attributes": {
+        "collective_seq": 4,
+        "network_ms": 75.0,
+        "output_tokens": 4
+      },
+      "duration_ms": 98.0,
+      "end_ms": 413.0,
+      "name": "model.decode",
+      "parent_span_id": "span-0040",
+      "span_id": "span-0043",
+      "start_ms": 315.0,
+      "status": "OK",
+      "trace_id": "f783b1e1aeaadc25"
+    },
+    {
+      "attributes": {
+        "stream": true
+      },
+      "duration_ms": 1.5,
+      "end_ms": 414.5,
+      "name": "response.serialize",
+      "parent_span_id": "span-0040",
+      "span_id": "span-0044",
+      "start_ms": 413.0,
+      "status": "OK",
+      "trace_id": "f783b1e1aeaadc25"
+    },
+    {
+      "attributes": {
+        "peer": "shard-1",
+        "retransmits": 3
+      },
+      "duration_ms": 75.0,
+      "end_ms": 391.0,
+      "name": "network.rpc",
+      "parent_span_id": "span-0043",
+      "span_id": "span-0045",
+      "start_ms": 316.0,
+      "status": "OK",
+      "trace_id": "f783b1e1aeaadc25"
+    },
+    {
+      "attributes": {
+        "model": "toy-llm",
+        "request_id": "r05",
+        "route": "/generate",
+        "tenant": "bronze"
+      },
+      "duration_ms": 449.6,
+      "end_ms": 462.1,
+      "name": "inference.server",
+      "parent_span_id": null,
+      "span_id": "span-0050",
+      "start_ms": 12.5,
+      "status": "OK",
+      "trace_id": "4c780c6b8c968bb9"
+    },
+    {
+      "attributes": {
+        "batch_id": "batch-01",
+        "queue": "decode"
+      },
+      "duration_ms": 402.0,
+      "end_ms": 414.5,
+      "name": "scheduler.queue_wait",
+      "parent_span_id": "span-0050",
+      "span_id": "span-0051",
+      "start_ms": 12.5,
+      "status": "OK",
+      "trace_id": "4c780c6b8c968bb9"
+    },
+    {
+      "attributes": {
+        "device_uuid": "toy-gpu-0",
+        "prompt_tokens": 8
+      },
+      "duration_ms": 16.1,
+      "end_ms": 430.6,
+      "name": "model.prefill",
+      "parent_span_id": "span-0050",
+      "span_id": "span-0052",
+      "start_ms": 414.5,
+      "status": "OK",
+      "trace_id": "4c780c6b8c968bb9"
+    },
+    {
+      "attributes": {
+        "collective_seq": 5,
+        "network_ms": 0.0,
+        "output_tokens": 5
+      },
+      "duration_ms": 27.0,
+      "end_ms": 460.6,
+      "name": "model.decode",
+      "parent_span_id": "span-0050",
+      "span_id": "span-0053",
+      "start_ms": 433.6,
+      "status": "OK",
+      "trace_id": "4c780c6b8c968bb9"
+    },
+    {
+      "attributes": {
+        "stream": true
+      },
+      "duration_ms": 1.5,
+      "end_ms": 462.1,
+      "name": "response.serialize",
+      "parent_span_id": "span-0050",
+      "span_id": "span-0054",
+      "start_ms": 460.6,
+      "status": "OK",
+      "trace_id": "4c780c6b8c968bb9"
+    },
+    {
+      "attributes": {
+        "model": "toy-llm",
+        "request_id": "r06",
+        "route": "/generate",
+        "tenant": "gold"
+      },
+      "duration_ms": 499.6,
+      "end_ms": 514.6,
+      "name": "inference.server",
+      "parent_span_id": null,
+      "span_id": "span-0060",
+      "start_ms": 15.0,
+      "status": "OK",
+      "trace_id": "66b25b6db2c3b576"
+    },
+    {
+      "attributes": {
+        "batch_id": "batch-02",
+        "queue": "decode"
+      },
+      "duration_ms": 447.1,
+      "end_ms": 462.1,
+      "name": "scheduler.queue_wait",
+      "parent_span_id": "span-0060",
+      "span_id": "span-0061",
+      "start_ms": 15.0,
+      "status": "OK",
+      "trace_id": "66b25b6db2c3b576"
+    },
+    {
+      "attributes": {
+        "device_uuid": "toy-gpu-0",
+        "prompt_tokens": 10
+      },
+      "duration_ms": 17.0,
+      "end_ms": 479.1,
+      "name": "model.prefill",
+      "parent_span_id": "span-0060",
+      "span_id": "span-0062",
+      "start_ms": 462.1,
+      "status": "OK",
+      "trace_id": "66b25b6db2c3b576"
+    },
+    {
+      "attributes": {
+        "collective_seq": 6,
+        "network_ms": 0.0,
+        "output_tokens": 6
+      },
+      "duration_ms": 31.0,
+      "end_ms": 513.1,
+      "name": "model.decode",
+      "parent_span_id": "span-0060",
+      "span_id": "span-0063",
+      "start_ms": 482.1,
+      "status": "OK",
+      "trace_id": "66b25b6db2c3b576"
+    },
+    {
+      "attributes": {
+        "stream": true
+      },
+      "duration_ms": 1.5,
+      "end_ms": 514.6,
+      "name": "response.serialize",
+      "parent_span_id": "span-0060",
+      "span_id": "span-0064",
+      "start_ms": 513.1,
+      "status": "OK",
+      "trace_id": "66b25b6db2c3b576"
+    },
+    {
+      "attributes": {
+        "model": "toy-llm",
+        "request_id": "r07",
+        "route": "/generate",
+        "tenant": "silver"
+      },
+      "duration_ms": 655.5,
+      "end_ms": 673.0,
+      "name": "inference.server",
+      "parent_span_id": null,
+      "span_id": "span-0070",
+      "start_ms": 17.5,
+      "status": "OK",
+      "trace_id": "f315e4a477c8e93f"
+    },
+    {
+      "attributes": {
+        "batch_id": "batch-02",
+        "queue": "decode"
+      },
+      "duration_ms": 498.1,
+      "end_ms": 515.6,
+      "name": "scheduler.queue_wait",
+      "parent_span_id": "span-0070",
+      "span_id": "span-0071",
+      "start_ms": 17.5,
+      "status": "OK",
+      "trace_id": "f315e4a477c8e93f"
+    },
+    {
+      "attributes": {
+        "device_uuid": "toy-gpu-0",
+        "prompt_tokens": 12
+      },
+      "duration_ms": 18.9,
+      "end_ms": 534.5,
+      "name": "model.prefill",
+      "parent_span_id": "span-0070",
+      "span_id": "span-0072",
+      "start_ms": 515.6,
+      "status": "OK",
+      "trace_id": "f315e4a477c8e93f"
+    },
+    {
+      "attributes": {
+        "collective_seq": 7,
+        "network_ms": 99.0,
+        "output_tokens": 7
+      },
+      "duration_ms": 134.0,
+      "end_ms": 671.5,
+      "name": "model.decode",
+      "parent_span_id": "span-0070",
+      "span_id": "span-0073",
+      "start_ms": 537.5,
+      "status": "OK",
+      "trace_id": "f315e4a477c8e93f"
+    },
+    {
+      "attributes": {
+        "stream": true
+      },
+      "duration_ms": 1.5,
+      "end_ms": 673.0,
+      "name": "response.serialize",
+      "parent_span_id": "span-0070",
+      "span_id": "span-0074",
+      "start_ms": 671.5,
+      "status": "OK",
+      "trace_id": "f315e4a477c8e93f"
+    },
+    {
+      "attributes": {
+        "peer": "shard-1",
+        "retransmits": 4
+      },
+      "duration_ms": 99.0,
+      "end_ms": 637.5,
+      "name": "network.rpc",
+      "parent_span_id": "span-0073",
+      "span_id": "span-0075",
+      "start_ms": 538.5,
+      "status": "OK",
+      "trace_id": "f315e4a477c8e93f"
+    },
+    {
+      "attributes": {
+        "model": "toy-llm",
+        "request_id": "r08",
+        "route": "/generate",
+        "tenant": "bronze"
+      },
+      "duration_ms": 700.3,
+      "end_ms": 720.3,
+      "name": "inference.server",
+      "parent_span_id": null,
+      "span_id": "span-0080",
+      "start_ms": 20.0,
+      "status": "OK",
+      "trace_id": "a0a3ded97a52da7e"
+    },
+    {
+      "attributes": {
+        "batch_id": "batch-02",
+        "queue": "decode"
+      },
+      "duration_ms": 653.0,
+      "end_ms": 673.0,
+      "name": "scheduler.queue_wait",
+      "parent_span_id": "span-0080",
+      "span_id": "span-0081",
+      "start_ms": 20.0,
+      "status": "OK",
+      "trace_id": "a0a3ded97a52da7e"
+    },
+    {
+      "attributes": {
+        "device_uuid": "toy-gpu-0",
+        "prompt_tokens": 14
+      },
+      "duration_ms": 19.8,
+      "end_ms": 692.8,
+      "name": "model.prefill",
+      "parent_span_id": "span-0080",
+      "span_id": "span-0082",
+      "start_ms": 673.0,
+      "status": "OK",
+      "trace_id": "a0a3ded97a52da7e"
+    },
+    {
+      "attributes": {
+        "collective_seq": 8,
+        "network_ms": 0.0,
+        "output_tokens": 4
+      },
+      "duration_ms": 23.0,
+      "end_ms": 718.8,
+      "name": "model.decode",
+      "parent_span_id": "span-0080",
+      "span_id": "span-0083",
+      "start_ms": 695.8,
+      "status": "OK",
+      "trace_id": "a0a3ded97a52da7e"
+    },
+    {
+      "attributes": {
+        "stream": true
+      },
+      "duration_ms": 1.5,
+      "end_ms": 720.3,
+      "name": "response.serialize",
+      "parent_span_id": "span-0080",
+      "span_id": "span-0084",
+      "start_ms": 718.8,
+      "status": "OK",
+      "trace_id": "a0a3ded97a52da7e"
+    },
+    {
+      "attributes": {
+        "model": "toy-llm",
+        "request_id": "r09",
+        "route": "/generate",
+        "tenant": "gold"
+      },
+      "duration_ms": 751.5,
+      "end_ms": 774.0,
+      "name": "inference.server",
+      "parent_span_id": null,
+      "span_id": "span-0090",
+      "start_ms": 22.5,
+      "status": "OK",
+      "trace_id": "c6ecc293c71edbdc"
+    },
+    {
+      "attributes": {
+        "batch_id": "batch-03",
+        "queue": "decode"
+      },
+      "duration_ms": 698.3,
+      "end_ms": 720.8,
+      "name": "scheduler.queue_wait",
+      "parent_span_id": "span-0090",
+      "span_id": "span-0091",
+      "start_ms": 22.5,
+      "status": "OK",
+      "trace_id": "c6ecc293c71edbdc"
+    },
+    {
+      "attributes": {
+        "device_uuid": "toy-gpu-0",
+        "prompt_tokens": 16
+      },
+      "duration_ms": 21.7,
+      "end_ms": 742.5,
+      "name": "model.prefill",
+      "parent_span_id": "span-0090",
+      "span_id": "span-0092",
+      "start_ms": 720.8,
+      "status": "OK",
+      "trace_id": "c6ecc293c71edbdc"
+    },
+    {
+      "attributes": {
+        "collective_seq": 9,
+        "network_ms": 0.0,
+        "output_tokens": 5
+      },
+      "duration_ms": 27.0,
+      "end_ms": 772.5,
+      "name": "model.decode",
+      "parent_span_id": "span-0090",
+      "span_id": "span-0093",
+      "start_ms": 745.5,
+      "status": "OK",
+      "trace_id": "c6ecc293c71edbdc"
+    },
+    {
+      "attributes": {
+        "stream": true
+      },
+      "duration_ms": 1.5,
+      "end_ms": 774.0,
+      "name": "response.serialize",
+      "parent_span_id": "span-0090",
+      "span_id": "span-0094",
+      "start_ms": 772.5,
+      "status": "OK",
+      "trace_id": "c6ecc293c71edbdc"
+    },
+    {
+      "attributes": {
+        "model": "toy-llm",
+        "request_id": "r10",
+        "route": "/generate",
+        "tenant": "silver"
+      },
+      "duration_ms": 892.1,
+      "end_ms": 917.1,
+      "name": "inference.server",
+      "parent_span_id": null,
+      "span_id": "span-0100",
+      "start_ms": 25.0,
+      "status": "ERROR",
+      "trace_id": "329542d289780310"
+    },
+    {
+      "attributes": {
+        "batch_id": "batch-03",
+        "queue": "decode"
+      },
+      "duration_ms": 750.0,
+      "end_ms": 775.0,
+      "name": "scheduler.queue_wait",
+      "parent_span_id": "span-0100",
+      "span_id": "span-0101",
+      "start_ms": 25.0,
+      "status": "OK",
+      "trace_id": "329542d289780310"
+    },
+    {
+      "attributes": {
+        "device_uuid": "toy-gpu-0",
+        "prompt_tokens": 8
+      },
+      "duration_ms": 15.6,
+      "end_ms": 790.6,
+      "name": "model.prefill",
+      "parent_span_id": "span-0100",
+      "span_id": "span-0102",
+      "start_ms": 775.0,
+      "status": "OK",
+      "trace_id": "329542d289780310"
+    },
+    {
+      "attributes": {
+        "collective_seq": 10,
+        "network_ms": 91.0,
+        "output_tokens": 6
+      },
+      "duration_ms": 122.0,
+      "end_ms": 915.6,
+      "name": "model.decode",
+      "parent_span_id": "span-0100",
+      "span_id": "span-0103",
+      "start_ms": 793.6,
+      "status": "OK",
+      "trace_id": "329542d289780310"
+    },
+    {
+      "attributes": {
+        "stream": true
+      },
+      "duration_ms": 1.5,
+      "end_ms": 917.1,
+      "name": "response.serialize",
+      "parent_span_id": "span-0100",
+      "span_id": "span-0104",
+      "start_ms": 915.6,
+      "status": "OK",
+      "trace_id": "329542d289780310"
+    },
+    {
+      "attributes": {
+        "peer": "shard-1",
+        "retransmits": 3
+      },
+      "duration_ms": 91.0,
+      "end_ms": 885.6,
+      "name": "network.rpc",
+      "parent_span_id": "span-0103",
+      "span_id": "span-0105",
+      "start_ms": 794.6,
+      "status": "OK",
+      "trace_id": "329542d289780310"
+    },
+    {
+      "attributes": {
+        "model": "toy-llm",
+        "request_id": "r11",
+        "route": "/generate",
+        "tenant": "bronze"
+      },
+      "duration_ms": 946.6,
+      "end_ms": 974.1,
+      "name": "inference.server",
+      "parent_span_id": null,
+      "span_id": "span-0110",
+      "start_ms": 27.5,
+      "status": "OK",
+      "trace_id": "34c1f5b6a881769a"
+    },
+    {
+      "attributes": {
+        "batch_id": "batch-03",
+        "queue": "decode"
+      },
+      "duration_ms": 889.6,
+      "end_ms": 917.1,
+      "name": "scheduler.queue_wait",
+      "parent_span_id": "span-0110",
+      "span_id": "span-0111",
+      "start_ms": 27.5,
+      "status": "OK",
+      "trace_id": "34c1f5b6a881769a"
+    },
+    {
+      "attributes": {
+        "device_uuid": "toy-gpu-0",
+        "prompt_tokens": 10
+      },
+      "duration_ms": 17.5,
+      "end_ms": 934.6,
+      "name": "model.prefill",
+      "parent_span_id": "span-0110",
+      "span_id": "span-0112",
+      "start_ms": 917.1,
+      "status": "OK",
+      "trace_id": "34c1f5b6a881769a"
+    },
+    {
+      "attributes": {
+        "collective_seq": 11,
+        "network_ms": 0.0,
+        "output_tokens": 7
+      },
+      "duration_ms": 35.0,
+      "end_ms": 972.6,
+      "name": "model.decode",
+      "parent_span_id": "span-0110",
+      "span_id": "span-0113",
+      "start_ms": 937.6,
+      "status": "OK",
+      "trace_id": "34c1f5b6a881769a"
+    },
+    {
+      "attributes": {
+        "stream": true
+      },
+      "duration_ms": 1.5,
+      "end_ms": 974.1,
+      "name": "response.serialize",
+      "parent_span_id": "span-0110",
+      "span_id": "span-0114",
+      "start_ms": 972.6,
+      "status": "OK",
+      "trace_id": "34c1f5b6a881769a"
+    }
+  ]
+}
