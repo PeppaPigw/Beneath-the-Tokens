@@ -34,6 +34,7 @@ const sidebars: SidebarsConfig = {
     'chapters/ch28-vllm-and-sglang-serving',
     'chapters/ch29-speculative-and-structured-decoding',
     'chapters/ch30-kv-compression-and-tiering',
+    'chapters/ch31-moe-and-expert-parallelism',
     'chapter-template',
     'lab-standards',
     'source-policy',
