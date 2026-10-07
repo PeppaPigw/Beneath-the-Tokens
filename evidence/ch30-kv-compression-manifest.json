@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "chapter": "30-kv-compression-and-tiering",
+  "access_date": "2026-10-07",
+  "purpose": "Evidence index for KV cache quantization, low-rank/sparse representations, tiering, admission/eviction, and quality-capacity-latency evaluation",
+  "entries": [
+    {
+      "id": "kivi",
+      "type": "paper",
+      "title": "KIVI: A Tuning-Free Asymmetric 2-bit Quantization for KV Cache",
+      "url": "https://arxiv.org/abs/2402.02750",
+      "claims": ["asymmetric low-bit KV quantization", "different key/value granularity", "long-context memory reduction"],
+      "verification": "pin model, calibration/workload, group layout, kernel and compare K/V error to FP16",
+      "status": "primary-source"
+    },
+    {
+      "id": "kvquant",
+      "type": "paper",
+      "title": "KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization",
+      "url": "https://arxiv.org/abs/2401.18079",
+      "claims": ["outlier-aware KV quantization", "per-channel/per-token choices", "long-context evaluation"],
+      "verification": "record outlier policy, scale granularity, sequence length and task metrics",
+      "status": "primary-source"
+    },
+    {
+      "id": "h2o",
+      "type": "paper",
+      "title": "H2O: Heavy-Hitter Oracle for Efficient Generative Inference of Large Language Models",
+      "url": "https://arxiv.org/abs/2306.14048",
+      "claims": ["attention-based important-token retention", "KV cache eviction heuristic"],
+      "verification": "measure retention, hit/recompute cost and quality by workload; do not generalize one task",
+      "status": "primary-source"
+    },
+    {
+      "id": "scissorhands",
+      "type": "paper",
+      "title": "Scissorhands: Exploiting the Persistence of Importance Hypothesis for LLM KV Cache Compression",
+      "url": "https://arxiv.org/abs/2305.17118",
+      "claims": ["persistence-of-importance token selection", "KV cache compression"],
+      "verification": "pin model/context and test importance drift, protected tokens and recovery",
+      "status": "primary-source"
+    },
+    {
+      "id": "snapkv",
+      "type": "paper",
+      "title": "SnapKV: LLM Knows What You Are Looking for Before Generation",
+      "url": "https://arxiv.org/abs/2404.14469",
+      "claims": ["prompt-side KV compression", "head-specific observation windows"],
+      "verification": "separate prompt-compression quality from general decode cache eviction",
+      "status": "primary-source"
+    },
+    {
+      "id": "pyramidkv",
+      "type": "paper",
+      "title": "PyramidKV: Dynamic KV Cache Compression based on Pyramidal Information Funneling",
+      "url": "https://arxiv.org/abs/2406.02069",
+      "claims": ["layer-aware KV budget", "pyramidal compression"],
+      "verification": "record layer budgets, context distribution and downstream quality",
+      "status": "primary-source"
+    },
+    {
+      "id": "flexgen",
+      "type": "paper",
+      "title": "FlexGen: High-Throughput Generative Inference of Large Language Models with a Single GPU",
+      "url": "https://arxiv.org/abs/2303.06865",
+      "claims": ["GPU/CPU/SSD offload and tiered inference", "bandwidth-capacity trade-offs"],
+      "verification": "pin device topology and workload; compare transfer, recompute and tail latency",
+      "status": "primary-source"
+    },
+    {
+      "id": "paged-attention",
+      "type": "paper",
+      "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention",
+      "url": "https://arxiv.org/abs/2309.06180",
+      "claims": ["paged KV allocation", "fragmentation-aware serving memory management"],
+      "verification": "measure allocator high-water mark, page size and metadata on target runtime",
+      "status": "primary-source"
+    },
+    {
+      "id": "vllm-quantization-docs",
+      "type": "official_documentation",
+      "title": "vLLM quantization documentation",
+      "url": "https://docs.vllm.ai/en/stable/features/quantization/",
+      "claims": ["supported quantization formats and runtime constraints"],
+      "verification": "pin vLLM tag, hardware, backend, KV dtype flags and collect metrics",
+      "status": "primary-source"
+    },
+    {
+      "id": "vllm-kv-cache-docs",
+      "type": "official_documentation",
+      "title": "vLLM KV cache configuration documentation",
+      "url": "https://docs.vllm.ai/en/stable/configuration/engine_args.html",
+      "claims": ["KV cache dtype, block and memory configuration entry points"],
+      "verification": "capture target version --help/config and verify actual worker behavior",
+      "status": "primary-source"
+    },
+    {
+      "id": "sglang-cache-docs",
+      "type": "official_documentation",
+      "title": "SGLang cache and RadixAttention documentation",
+      "url": "https://docs.sglang.ai/advanced_features/hicache.html",
+      "claims": ["hierarchical cache concepts and runtime integration"],
+      "verification": "pin SGLang commit, inspect tier/eviction/metrics semantics and run a controlled workload",
+      "status": "primary-source"
+    },
+    {
+      "id": "ch30-toy-lab",
+      "type": "reproducible_measurement",
+      "title": "Chapter 30 CPU compression and tiering toy",
+      "path": "labs/ch30_kv_compression_lab.py",
+      "claims": ["per-group quantization accounting", "low-rank/sparse byte model", "online tier promotion/demotion/admission/eviction"],
+      "verification": "python3 labs/ch30_kv_compression_lab.py --seed 30 --requests 64 --pages 48 --accesses 600 --page-tokens 32 --hbm-bytes 12000000 --dram-bytes 6000000 --ssd-bytes 40000000 --admission-threshold 0.20",
+      "status": "local-measurement-not-production-proof"
+    },
+    {
+      "id": "ch30-toy-tests",
+      "type": "reproducible_measurement",
+      "title": "Chapter 30 toy contract tests",
+      "path": "tests/test_ch30_kv_compression_lab.py",
+      "claims": ["quantization determinism", "sparse/rank error bounds", "tier state reproducibility", "CLI JSON contract"],
+      "verification": "python3 tests/test_ch30_kv_compression_lab.py (or pytest -q)",
+      "status": "local-test-only"
+    },
+    {
+      "id": "ch30-report",
+      "type": "reproducible_measurement",
+      "title": "Chapter 30 experiment report and JSON output",
+      "path": "reports/ch30-kv-compression-report.md",
+      "claims": ["commands, toy results, interpretation and explicit non-production boundaries"],
+      "verification": "compare report table with reports/ch30-kv-compression.json and rerun command",
+      "status": "local-measurement-not-production-proof"
+    }
+  ]
+}
