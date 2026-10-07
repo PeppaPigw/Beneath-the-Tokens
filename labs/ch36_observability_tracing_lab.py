@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import random
 from dataclasses import asdict, dataclass
 from pathlib import Path
@@ -78,7 +79,7 @@ def pctl(values: Iterable[float], percentile: float) -> float | None:
     if len(xs) == 1:
         return round(xs[0], 6)
     rank = (len(xs) - 1) * percentile / 100.0
-    lo, hi = int(rank), int(rank + 0.999999999)
+    lo, hi = math.floor(rank), math.ceil(rank)
     return round(xs[lo] + (xs[hi] - xs[lo]) * (rank - lo), 6)
 
 
@@ -132,7 +133,7 @@ def _metric_series_guard(metric_labels: Sequence[str], budget: int) -> dict[str,
             "dropped_series": dropped, "forbidden_labels": ["trace_id", "request_id"]}
 
 
-def tail_sample(spans: Sequence[Span], *, fault: str, threshold_ms: float = 180.0, head_rate: float = 0.10) -> dict[str, object]:
+def tail_sample(spans: Sequence[Span], *, fault: str = "none", threshold_ms: float = 180.0, head_rate: float = 0.10) -> dict[str, object]:
     """Keep errors/slow traces plus deterministic head samples."""
     by_trace: dict[str, list[Span]] = {}
     for span in spans:
@@ -160,8 +161,7 @@ def tail_sample(spans: Sequence[Span], *, fault: str, threshold_ms: float = 180.
             "total_traces": len(by_trace), "kept_count": len(kept)}
 
 
-def simulate(*, fault: str = "none", seed: int = 7, cardinality_budget: int = 8,
-             requests: Sequence[Request] | None = None) -> dict[str, object]:
+def simulate(requests: Sequence[Request] | None = None, *, fault: str = "none", seed: int = 7, cardinality_budget: int = 8) -> dict[str, object]:
     if fault not in {"none", "network_tail", "storage_tail", "gpu_throttle"}:
         raise ValueError("fault must be none, network_tail, storage_tail or gpu_throttle")
     reqs = tuple(requests or make_workload())
@@ -259,6 +259,7 @@ def simulate(*, fault: str = "none", seed: int = 7, cardinality_budget: int = 8,
         cursor = finish + rng.choice((0.0, 0.5, 1.0))
     metrics = {name: {"p50_ms": pctl(values, 50), "p95_ms": pctl(values, 95), "p99_ms": pctl(values, 99),
                       "histogram": histogram(values)} for name, values in phase_values.items()}
+    metrics["labels"] = {"model": "toy-llm", "route": "/generate", "device": "toy-gpu-0"}
     metrics["counters"] = {"inference_requests_total": len(reqs), "inference_errors_total": sum(row["status"] == "ERROR" for row in request_rows),
                             "network_retransmits_total": sum(int(item["network_retransmits"]) for item in telemetry),
                             "telemetry_dropped_spans_total": 0}
