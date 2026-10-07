@@ -1,0 +1,97 @@
+{
+  "artifact": {
+    "artifact": {
+      "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "name": "toy-llm",
+      "version": "2026.10.0"
+    },
+    "decision": "allow",
+    "evidence": {
+      "digest": true,
+      "provenance": true,
+      "sbom": true,
+      "signature": true
+    },
+    "missing_or_invalid": []
+  },
+  "audit_events": [
+    {
+      "action": "release_check",
+      "actor": "policy-engine",
+      "fault": "none",
+      "hash": "64c31c8f2abe3ea960c7a4dde1510bf550079aac9648cfb661d971f93cc00c49",
+      "prev_hash": "GENESIS",
+      "reason": "admit",
+      "seq": 0
+    },
+    {
+      "action": "evidence_review",
+      "actor": "security-ci",
+      "fault": "none",
+      "hash": "b9702e31fbf8f98d8a0bebc5bf0911e15ad2b348bfe33fecb5a6620a08cb33d0",
+      "prev_hash": "64c31c8f2abe3ea960c7a4dde1510bf550079aac9648cfb661d971f93cc00c49",
+      "reason": "all_gates_pass",
+      "seq": 1
+    },
+    {
+      "action": "incident_action",
+      "actor": "on-call",
+      "fault": "none",
+      "hash": "aadceac7debbca989ba71fa2e0b76df33f09140ba459ff95afef72401d33a9f8",
+      "prev_hash": "b9702e31fbf8f98d8a0bebc5bf0911e15ad2b348bfe33fecb5a6620a08cb33d0",
+      "reason": "no_action",
+      "seq": 2
+    }
+  ],
+  "decision": "admit",
+  "deny_reasons": [],
+  "dependencies": {
+    "critical_or_high": 0,
+    "decision": "allow",
+    "findings": [],
+    "manifest_entries": 2
+  },
+  "fault": "none",
+  "incident": {
+    "containment": "no_action",
+    "preserve_evidence": true,
+    "revocation": false
+  },
+  "invariants": {
+    "all_required_evidence": true,
+    "audit_chain_valid": true,
+    "fail_closed": true,
+    "no_secret_values_in_events": true
+  },
+  "model_data": {
+    "poisoning": {
+      "canary_relative_delta": 0.01,
+      "decision": "allow",
+      "detected": false,
+      "label_anomaly_rate": 0.0,
+      "model_hash": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "poison_rate": 0.0,
+      "reasons": []
+    },
+    "quality": {
+      "canary_relative_delta": 0.01,
+      "decision": "allow",
+      "detected": false,
+      "label_anomaly_rate": 0.0,
+      "model_hash": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "poison_rate": 0.0,
+      "reasons": []
+    }
+  },
+  "runtime": {
+    "decision": "allow",
+    "effective_boundary": {
+      "gpu_partition": "mig-isolated",
+      "network_policy": "model-registry-only",
+      "read_only_rootfs": true,
+      "rootless": true
+    },
+    "findings": []
+  },
+  "schema_version": 1
+}
