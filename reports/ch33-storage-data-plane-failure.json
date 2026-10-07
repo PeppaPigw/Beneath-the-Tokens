@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "experiment": "ch33-storage-data-plane-cpu-toy",
+  "seed": 33,
+  "config": {
+    "shards": 12,
+    "workers": 3,
+    "shard_mib": 4,
+    "checkpoint_step": 100,
+    "fail_after": 8
+  },
+  "backends": {
+    "object": {
+      "backend": "object",
+      "objects": 12,
+      "bytes": 50331648,
+      "elapsed_ms": 362.666667,
+      "throughput_mb_s": 132.352941
+    },
+    "posix": {
+      "backend": "posix",
+      "objects": 12,
+      "bytes": 50331648,
+      "elapsed_ms": 131.085714,
+      "throughput_mb_s": 366.172624
+    },
+    "nvme": {
+      "backend": "nvme",
+      "objects": 12,
+      "bytes": 50331648,
+      "elapsed_ms": 40.96,
+      "throughput_mb_s": 1171.875
+    }
+  },
+  "assignment": {
+    "worker_shards": [
+      [
+        0,
+        3,
+        6,
+        9
+      ],
+      [
+        1,
+        4,
+        7,
+        10
+      ],
+      [
+        2,
+        5,
+        8,
+        11
+      ]
+    ],
+    "all_shards_unique": true,
+    "coverage": 12
+  },
+  "checkpoint": {
+    "step": 100,
+    "shard_count": 12,
+    "written_shards": 8,
+    "manifest_hash": "393e297498fbf957049239d88bb7dd26568690354583b248c74d48f11dc3ac37",
+    "committed": false,
+    "recoverable": false,
+    "reason": "incomplete shards; reader must ignore uncommitted prefix"
+  },
+  "summary": {
+    "fastest_backend": "nvme",
+    "object_elapsed_ms": 362.666667,
+    "posix_elapsed_ms": 131.085714,
+    "nvme_elapsed_ms": 40.96,
+    "checkpoint_committed": false,
+    "checkpoint_recoverable": false,
+    "uncommitted_write_is_visible": true
+  }
+}
