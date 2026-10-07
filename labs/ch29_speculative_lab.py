@@ -99,19 +99,27 @@ def exact_verify(
     On rejection, one residual target sample is committed and the chain ends.
     """
     accepted = 0
-    for token, q in zip(draft_tokens, draft_probs):
-        p = target[token]
-        ratio = min(1.0, p / q[token]) if q[token] > 0 else 1.0
+    # Accept either one target distribution (legacy/unit-test convenience) or
+    # one distribution per candidate position (the real chain case).
+    nested = bool(target) and isinstance(target[0], (list, tuple))  # type: ignore[index]
+    for j, (token, q) in enumerate(zip(draft_tokens, draft_probs)):
+        p_dist = target[j] if nested else target  # type: ignore[index]
+        p = p_dist[token]
+        # A token with q=0 cannot be sampled by a valid draft. Treat an
+        # externally supplied zero-q candidate as a rejection, never as an
+        # automatic acceptance.
+        ratio = min(1.0, p / q[token]) if q[token] > 0 else 0.0
         if rng.random() < ratio:
             accepted += 1
             continue
-        residual = [max(0.0, p_i - q_i) for p_i, q_i in zip(target, q)]
+        residual = [max(0.0, p_i - q_i) for p_i, q_i in zip(p_dist, q)]
         if sum(residual) <= 1e-12:
-            residual = list(target)
+            residual = list(p_dist)
         _ = sample(rng, normalize(residual))
         return accepted, accepted + 1, 1
     # Draft chain exhausted; target samples the one lookahead token.
-    _ = sample(rng, target)
+    p_last = target[len(draft_tokens)] if nested and len(target) > len(draft_tokens) else target  # type: ignore[index]
+    _ = sample(rng, p_last)
     return accepted, accepted + 1, 0
 
 
@@ -145,18 +153,24 @@ def constrained_speculative(
                 tok = next(iter(json_allowed(pos + j)))
             d_tokens.append(tok)
             d_probs.append(p)
-        p_target = target_distribution(pos)
+        p_targets = [target_distribution(pos + j) for j in range(k + 1)]
         if grammar:
-            p_target = masked_distribution(p_target, json_allowed(pos))
-        a, advance, rej = exact_verify(rng, p_target, d_tokens, d_probs)
-        # A rejected candidate commits a grammar-valid target correction in the
-        # toy; actual engines sample the residual distribution under the mask.
+            p_targets = [masked_distribution(p, json_allowed(pos + j)) for j, p in enumerate(p_targets)]
+        a, advance, rej = exact_verify(rng, p_targets, d_tokens, d_probs)
+        # Materialize committed prefix plus a grammar-valid correction/bonus.
+        # The exact sampler above draws the correction internally; this toy
+        # records a deterministic allowed representative so state transitions
+        # remain inspectable without exposing floating-point logits.
         advance = min(advance, remaining)
         accepted += min(a, advance)
-        committed += advance
+        committed_part = list(d_tokens[:a])
+        correction_pos = pos + len(committed_part)
+        if len(committed_part) < advance:
+            committed_part.append(min(json_allowed(correction_pos)) if grammar else 0)
+        committed_tokens.extend(committed_part)
+        committed += len(committed_part)
         drafts += k
-        committed_tokens.extend(d_tokens[:advance])
-        pos += advance
+        pos += len(committed_part)
     return {
         "output_tokens": committed,
         "draft_tokens": drafts,
