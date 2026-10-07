@@ -172,7 +172,7 @@ def queue_model(workload: Workload, *, replicas: int | None = None,
     effective_tokens_per_second = effective_rate * workload.request_tokens
     service_success_rate = effective_rate / max(1e-9, workload.arrival_rate_rps)
     device_utilization = min(0.99, rho + workload.retry_rate * 0.5)
-    effective_utilization = min(1.0, service_success_rate * (1 - workload.retry_rate))
+    effective_utilization = min(device_utilization, service_success_rate * (1 - workload.retry_rate))
     deadline_miss = min(1.0, max(0.0, queue_wait_ms / 1000.0 / workload.deadline_seconds))
     availability = max(0.0, min(1.0, service_success_rate * (1 - deadline_miss)))
     return {
