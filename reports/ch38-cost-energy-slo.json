@@ -40,7 +40,7 @@
     "budget_action": "within_fixture_budget",
     "carbon_kg": 1.23375,
     "device_utilization": 0.938333,
-    "effective_utilization": 0.99,
+    "effective_utilization": 0.938333,
     "tags_complete": true,
     "unallocated": false,
     "unit": "usd_per_slo_compliant_request_and_kg_per_request"
@@ -77,7 +77,7 @@
     "device_utilization": 0.938333,
     "effective_rate_rps": 140.0,
     "effective_tokens_per_second": 126000.0,
-    "effective_utilization": 0.99,
+    "effective_utilization": 0.938333,
     "failure_rate": 0.0,
     "overflow_rps": 0.0,
     "p95_wait_ms": 2820.0,
