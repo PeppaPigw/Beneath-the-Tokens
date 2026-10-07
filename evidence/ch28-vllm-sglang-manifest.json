@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "chapter": "28-vllm-and-sglang-serving",
+  "access_date": "2026-10-07",
+  "purpose": "Evidence index for vLLM and SGLang serving architecture, schedulers, KV reuse, speculative and structured generation",
+  "entries": [
+    {
+      "id": "pagedattention-paper",
+      "type": "paper",
+      "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention",
+      "url": "https://arxiv.org/abs/2309.06180",
+      "claims": ["paged KV block table", "PagedAttention and scheduler co-design", "reported 2-4x throughput under stated experiments"],
+      "verification": "record model, GPU, baseline, context lengths, cache state and workload before reproducing",
+      "status": "primary-source"
+    },
+    {
+      "id": "sglang-paper",
+      "type": "paper",
+      "title": "SGLang: Efficient Execution of Structured Language Model Programs",
+      "url": "https://arxiv.org/abs/2312.07104",
+      "claims": ["RadixAttention", "structured language programs", "compressed FSM and continuous batching", "prefix reuse under stated workloads"],
+      "verification": "pin code revision and report shared-prefix distribution, schema and hardware",
+      "status": "primary-source"
+    },
+    {
+      "id": "vllm-architecture",
+      "type": "official_documentation",
+      "title": "vLLM Architecture Overview",
+      "url": "https://github.com/vllm-project/vllm/blob/main/docs/design/arch_overview.md",
+      "claims": ["API server", "engine core", "worker/model runner request path"],
+      "verification": "compare target vLLM tag documentation and source",
+      "status": "primary-source"
+    },
+    {
+      "id": "vllm-metrics",
+      "type": "official_documentation",
+      "title": "vLLM Metrics Design",
+      "url": "https://github.com/vllm-project/vllm/blob/main/docs/design/metrics.md",
+      "claims": ["queue/prefill/decode/request metrics", "KV and eviction observations", "speculative ITL/TPOT caveat"],
+      "verification": "run target version metrics endpoint and inspect labels/cardinality",
+      "status": "primary-source"
+    },
+    {
+      "id": "vllm-docs",
+      "type": "official_documentation",
+      "title": "vLLM Stable Documentation",
+      "url": "https://docs.vllm.ai/en/stable/",
+      "claims": ["continuous batching", "speculative decoding", "structured outputs", "disaggregated serving feature entry points"],
+      "verification": "pin docs/version and run matching --help",
+      "status": "primary-source"
+    },
+    {
+      "id": "sglang-bench",
+      "type": "official_documentation",
+      "title": "SGLang Bench Serving Guide",
+      "url": "https://docs.sglang.ai/developer_guide/bench_serving",
+      "claims": ["bench_serving workloads", "TTFT/ITL/TPOT/E2E", "JSONL output", "speculative accept length"],
+      "verification": "save command, dataset, warmup and output JSONL",
+      "status": "primary-source"
+    },
+    {
+      "id": "sglang-observability",
+      "type": "official_documentation",
+      "title": "SGLang Observability",
+      "url": "https://docs.sglang.ai/advanced_features/observability.html",
+      "claims": ["production metrics and observability entry points"],
+      "verification": "pin target docs/commit and inspect actual exporter",
+      "status": "primary-source"
+    },
+    {
+      "id": "sglang-pd",
+      "type": "official_documentation",
+      "title": "SGLang PD Disaggregation",
+      "url": "https://docs.sglang.ai/backend/pd_disaggregation.html",
+      "claims": ["prefill/decode separation", "DP attention imbalance caveat", "deployment configuration"],
+      "verification": "record topology, bandwidth and model before any reproduction",
+      "status": "primary-source"
+    },
+    {
+      "id": "sglang-blog",
+      "type": "official_source",
+      "title": "Fast and Expressive LLM Inference with RadixAttention and SGLang",
+      "url": "https://www.lmsys.org/blog/2024-01-17-sglang/",
+      "claims": ["RadixAttention intuition", "structured-program serving examples"],
+      "verification": "cross-check claims against paper and target source revision",
+      "status": "primary-source"
+    },
+    {
+      "id": "vllm-repo",
+      "type": "mature_source_code",
+      "title": "vLLM source repository",
+      "url": "https://github.com/vllm-project/vllm",
+      "claims": ["scheduler/block manager/model runner/metrics implementation entry points"],
+      "verification": "pin commit and run relevant unit/integration tests",
+      "status": "primary-source"
+    },
+    {
+      "id": "sglang-repo",
+      "type": "mature_source_code",
+      "title": "SGLang source repository",
+      "url": "https://github.com/sgl-project/sglang",
+      "claims": ["scheduler/radix cache/grammar/benchmark implementation entry points"],
+      "verification": "pin commit and run backend tests",
+      "status": "primary-source"
+    },
+    {
+      "id": "toy-lab",
+      "type": "reproducible_measurement",
+      "title": "Chapter 28 CPU serving runtime toy",
+      "path": "labs/ch28_vllm_sglang_lab.py",
+      "claims": ["token-budget scheduling", "paged/radix prefix accounting", "speculative acceptance", "grammar rejection", "logical TTFT/ITL/E2E"],
+      "verification": "python3 labs/ch28_vllm_sglang_lab.py --seed 7 --requests 40 --concurrency 8 --input-len 256 --output-len 64 --shared-prefix 128 --engine radix",
+      "status": "local-measurement-not-production-proof"
+    },
+    {
+      "id": "toy-tests",
+      "type": "reproducible_measurement",
+      "title": "Chapter 28 toy contract tests",
+      "path": "tests/test_ch28_vllm_sglang_lab.py",
+      "claims": ["budget completion", "radix hit direction", "paged no-hit", "bounded speculative acceptance", "reproducible grammar", "CLI JSON"],
+      "verification": "python3 tests/test_ch28_vllm_sglang_lab.py (or pytest -q)",
+      "status": "local-test-only"
+    }
+  ]
+}
