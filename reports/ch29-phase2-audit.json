@@ -1,0 +1,1486 @@
+Warning: truncated output (original token count: 20627)
+Total output lines: 2967
+
+{
+  "docs": "/workspace/scratch/4dcc55129e39/Beneath-the-Tokens/docs",
+  "error_classes": [],
+  "errors": [],
+  "files": [
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": true,
+        "headings": 63,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 3
+      },
+      "errors": [],
+      "id": "ch01-ai-infrastructure",
+      "path": "chapters/01-ai-infrastructure.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": true,
+        "headings": 65,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 10
+      },
+      "errors": [],
+      "id": "ch02-linux-process-files-observability",
+      "path": "chapters/02-linux-observability.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": true,
+        "headings": 65,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 20
+      },
+      "errors": [],
+      "id": "ch03-networking",
+      "path": "chapters/03-ai-networking.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": true,
+        "headings": 71,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 0
+      },
+      "errors": [],
+      "id": "ch04-performance-math",
+      "path": "chapters/04-performance-mathematics.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": true,
+        "headings": 50,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 6
+      },
+      "errors": [],
+      "id": "ch05-gpu-cuda",
+      "path": "chapters/05-gpu-cuda.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": true,
+        "headings": 99,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 13
+      },
+      "errors": [],
+      "id": "ch06-pytorch-execution",
+      "path": "chapters/06-pytorch-execution.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": true,
+        "headings": 87,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 11
+      },
+      "errors": [],
+      "id": "ch07-numerical-precision",
+      "path": "chapters/07-numerical-precision.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": true,
+        "headings": 80,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 13
+      },
+      "errors": [],
+      "id": "ch08-distributed-collectives",
+      "path": "chapters/08-distributed-collectives.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": true,
+        "headings": 61,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 13
+      },
+      "errors": [],
+      "id": "ch09-distributed-training",
+      "path": "chapters/09-distributed-training.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": true,
+        "headings": 57,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 16
+      },
+      "errors": [],
+      "id": "ch10-training-ops",
+      "path": "chapters/10-training-operations.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": true,
+        "headings": 71,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 24
+      },
+      "errors": [],
+      "id": "ch11-data-systems",
+      "path": "chapters/11-ai-data-systems.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": true,
+        "headings": 72,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 14
+      },
+      "errors": [],
+      "id": "ch12-evaluation",
+      "path": "chapters/12-data-evaluation.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": true,
+        "headings": 62,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 20
+      },
+      "errors": [],
+      "id": "ch13-artifact-management",
+      "path": "chapters/13-artifact-management.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": true,
+        "headings": 67,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 15
+      },
+      "errors": [],
+      "id": "ch14-retrieval",
+      "path": "chapters/14-retrieval-rag.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": true,
+        "headings": 60,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 12
+      },
+      "errors": [],
+      "id": "ch15-inference-execution",
+      "path": "chapters/15-inference-execution.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": true,
+        "headings": 60,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 12
+      },
+      "errors": [],
+      "id": "ch16-model-serving-system",
+      "path": "chapters/16-serving-systems.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": true,
+        "headings": 54,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 0
+      },
+      "errors": [],
+      "id": "ch17-kubernetes-gpu-orchestration",
+      "path": "chapters/17-kubernetes-gpu.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": true,
+        "headings": 78,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 12
+      },
+      "errors": [],
+      "id": "ch18-ray-distributed-application-runtimes",
+      "path": "chapters/18-ray-runtime.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": true,
+        "headings": 73,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 24
+      },
+      "errors": [],
+      "id": "ch19-inference-optimization-accelerator-stack",
+      "path": "chapters/19-inference-optimization.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": true,
+        "headings": 59,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 18
+      },
+      "errors": [],
+      "id": "ch20-observability-debugging-incident-response",
+      "path": "chapters/20-observability-debugging.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": true,
+        "headings": 76,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 18
+      },
+      "errors": [],
+      "id": "ch21-ai-reliability-engineering",
+      "path": "chapters/21-reliability-engineering.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": true,
+        "headings": 62,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 25
+      },
+      "errors": [],
+      "id": "ch22-ai-infra-security-privacy-supply-chain",
+      "path": "chapters/22-security-privacy-supply-chain.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": true,
+        "headings": 62,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 9
+      },
+      "errors": [],
+      "id": "ch23-ai-infra-cost-capacity-energy-carbon",
+      "path": "chapters/23-cost-capacity-energy.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": true,
+        "headings": 23,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 14
+      },
+      "errors": [],
+      "id": "ch24-platform-engineering",
+      "path": "chapters/24-platform-engineering.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": true,
+        "headings": 65,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 20
+      },
+      "errors": [],
+      "id": "ch25-ai-infra-frontiers",
+      "path": "chapters/25-ai-infra-frontiers.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": true,
+        "headings": 68,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 18
+      },
+      "errors": [],
+      "id": "ch26-end-to-end-ai-infra-capstone",
+      "path": "chapters/26-end-to-end-ai-infra-capstone.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": true,
+        "headings": 89,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 15
+      },
+      "errors": [],
+      "id": "ch27-kv-transfer-and-connectors",
+      "path": "chapters/27-kv-transfer-and-connectors.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": true,
+        "headings": 91,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 11
+      },
+      "errors": [],
+      "id": "ch28-vllm-and-sglang-serving",
+      "path": "chapters/28-vllm-and-sglang-serving.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": true,
+        "headings": 55,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 13
+      },
+      "errors": [],
+      "id": "ch29-speculative-and-structured-decoding",
+      "path": "chapters/29-speculative-and-structured-decoding.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": false,
+        "headings": 37,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 0
+      },
+      "errors": [],
+      "id": null,
+      "path": "curriculum.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": false,
+        "headings": 3,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 0
+      },
+      "errors": [],
+      "id": null,
+      "path": "index.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": false,
+        "headings": 3,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 0
+      },
+      "errors": [],
+      "id": null,
+      "path": "lab-standards.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": false,
+        "headings": 1,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 0
+      },
+      "errors": [],
+      "id": null,
+      "path": "site-architecture.md"
+    },
+    {
+      "checks": {
+        "error_count": 0,
+        "fences": true,
+        "frontmatter": false,
+        "headings": 1,
+        "pedagogical_sections": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "script_syntax": true,
+        "urls": 0
+      },
+      "errors": [],
+      "id": null,
+      "path": "source-policy.md"
+    }
+  ],
+  "network_checks": [],
+  "passed": true,
+  "skipped_network_checks": [
+    {
+      "paths": [
+        "chapters/18-ray-runtime.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "http://127.0.0.1:8000"
+    },
+    {
+      "paths": [
+        "chapters/14-retrieval-rag.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://aclanthology.org/2020.emnlp-main.550/"
+    },
+    {
+      "paths": [
+        "chapters/14-retrieval-rag.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://aclanthology.org/2020.sigir-main.257/"
+    },
+    {
+      "paths": [
+        "chapters/12-data-evaluation.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://aclanthology.org/P16-1162/"
+    },
+    {
+      "paths": [
+        "chapters/24-platform-engineering.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://argo-workflows.readthedocs.io/）。即使团队不采用"
+    },
+    {
+      "paths": [
+        "chapters/11-ai-data-systems.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://arrow.apache.org/docs/format/CDataInterface.html"
+    },
+    {
+      "paths": [
+        "chapters/11-ai-data-systems.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://arrow.apache.org/docs/format/Columnar.html"
+    },
+    {
+      "paths": [
+        "chapters/25-ai-infra-frontiers.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://arxiv.org/abs/1602.05629"
+    },
+    {
+      "paths": [
+        "chapters/14-retrieval-rag.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://arxiv.org/abs/1603.09320"
+    },
+    {
+      "paths": [
+        "chapters/22-security-privacy-supply-chain.md",
+        "chapters/25-ai-infra-frontiers.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://arxiv.org/abs/1607.00133"
+    },
+    {
+      "paths": [
+        "chapters/22-security-privacy-supply-chain.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://arxiv.org/abs/1610.05820"
+    },
+    {
+      "paths": [
+        "chapters/15-inference-execution.md",
+        "chapters/16-serving-systems.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://arxiv.org/abs/1706.03762"
+    },
+    {
+      "paths": [
+        "chapters/09-distributed-training.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://arxiv.org/abs/1806.03377"
+    },
+    {
+      "paths": [
+        "chapters/09-distributed-training.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://arxiv.org/abs/1811.06965"
+    },
+    {
+      "paths": [
+        "chapters/25-ai-infra-frontiers.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://arxiv.org/abs/1901.02860"
+    },
+    {
+      "paths": [
+        "chapters/14-retrieval-rag.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://arxiv.org/abs/1908.10084"
+    },
+    {
+      "paths": [
+        "chapters/23-cost-capacity-energy.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://arxiv.org/abs/1910.01500"
+    },
+    {
+      "paths": [
+        "chapters/09-distributed-training.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://arxiv.org/abs/1910.02054"
+    },
+    {
+      "paths": [
+        "chapters/23-cost-capacity-energy.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://arxiv.org/abs/1911.02549"
+    },
+    {
+      "paths": [
+        "chapters/14-retrieval-rag.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://arxiv.org/abs/2002.08909"
+    },
+    {
+      "paths": [
+        "chapters/14-retrieval-rag.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://arxiv.org/abs/2005.11401"
+    },
+    {
+      "paths": [
+        "chapters/25-ai-infra-frontiers.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://arxiv.org/abs/2006.16668"
+    },
+    {
+      "paths": [
+        "chapters/09-distributed-training.md",
+        "chapters/25-ai-infra-frontiers.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://arxiv.org/abs/2101.03961"
+    },
+    {
+      "paths": [
+        "chapters/15-inference-execution.md",
+        "chapters/19-inference-optimization.md",
+        "chapters/25-ai-infra-frontiers.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://arxiv.org/abs/2205.14135"
+    },
+    {
+      "paths": [
+        "chapters/19-inference-optimization.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://arxiv.org/abs/2210.17323"
+    },
+    {
+      "paths": [
+        "chapters/19-inference-optimization.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://arxiv.org/abs/2211.10438"
+    },
+    {
+      "paths": [
+        "chapters/15-inference-execution.md",
+        "chapters/29-speculative-and-structured-decoding.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://arxiv.org/abs/2211.17192"
+    },
+    {
+      "paths": [
+        "chapters/15-inference-execution.md",
+        "chapters/29-speculative-and-structured-decoding.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://arxiv.org/abs/2302.01318"
+    },
+    {
+      "paths": [
+        "chapters/29-speculative-and-structured-decoding.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://arxiv.org/abs/2305.09781"
+    },
+    {
+      "paths": [
+        "chapters/15-inference-execution.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://arxiv.org/abs/2305.13245"
+    },
+    {
+      "paths": [
+        "chapters/19-inference-optimization.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://arxiv.org/abs/2306.00978"
+    },
+    {
+      "paths": [
+        "chapters/19-inference-optimization.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://arxiv.org/abs/2307.08691"
+    },
+    {
+      "paths": [
+        "chapters/15-inference-execution.md",
+        "chapters/16-serving-systems.md",
+        "chapters/19-inference-optimization.md",
+        "chapters/28-vllm-…10627 tokens truncated…     "reason": "network_check_disabled",
+      "url": "https://opentelemetry.io/docs/concepts/signals/metrics/"
+    },
+    {
+      "paths": [
+        "chapters/14-retrieval-rag.md",
+        "chapters/15-inference-execution.md",
+        "chapters/16-serving-systems.md",
+        "chapters/19-inference-optimization.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://opentelemetry.io/docs/concepts/signals/traces/"
+    },
+    {
+      "paths": [
+        "chapters/20-observability-debugging.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://opentelemetry.io/docs/specs/"
+    },
+    {
+      "paths": [
+        "chapters/03-ai-networking.md",
+        "chapters/26-end-to-end-ai-infra-capstone.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://opentelemetry.io/docs/specs/otel/"
+    },
+    {
+      "paths": [
+        "chapters/20-observability-debugging.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/"
+    },
+    {
+      "paths": [
+        "chapters/08-distributed-collectives.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://openucx.readthedocs.io/"
+    },
+    {
+      "paths": [
+        "chapters/13-artifact-management.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://oras.land/"
+    },
+    {
+      "paths": [
+        "chapters/14-retrieval-rag.md",
+        "chapters/15-inference-execution.md",
+        "chapters/16-serving-systems.md",
+        "chapters/22-security-privacy-supply-chain.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+    },
+    {
+      "paths": [
+        "chapters/11-ai-data-systems.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://parquet.apache.org/docs/overview/"
+    },
+    {
+      "paths": [
+        "chapters/02-linux-observability.md",
+        "chapters/20-observability-debugging.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://perf.wiki.kernel.org/"
+    },
+    {
+      "paths": [
+        "chapters/14-retrieval-rag.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://plg.uwaterloo.ca/~gvcormac/trec-2013-crowd.pdf"
+    },
+    {
+      "paths": [
+        "chapters/21-reliability-engineering.md",
+        "chapters/26-end-to-end-ai-infra-capstone.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://principlesofchaos.org/"
+    },
+    {
+      "paths": [
+        "chapters/20-observability-debugging.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://prometheus.io/docs/concepts/metric_types/"
+    },
+    {
+      "paths": [
+        "chapters/26-end-to-end-ai-infra-capstone.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://prometheus.io/docs/practices/histograms/"
+    },
+    {
+      "paths": [
+        "chapters/20-observability-debugging.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://prometheus.io/docs/prometheus/latest/feature_flags/#exemplars-storage"
+    },
+    {
+      "paths": [
+        "chapters/03-ai-networking.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://protobuf.dev/programming-guides/encoding/"
+    },
+    {
+      "paths": [
+        "chapters/06-pytorch-execution.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://pytorch.org/blog/optimizing-production-pytorch-performance-with-graph-transformations/"
+    },
+    {
+      "paths": [
+        "chapters/10-training-operations.md",
+        "chapters/21-reliability-engineering.md",
+        "chapters/26-end-to-end-ai-infra-capstone.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://pytorch.org/docs/stable/distributed.checkpoint.html"
+    },
+    {
+      "paths": [
+        "chapters/10-training-operations.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://pytorch.org/docs/stable/elastic/run.html"
+    },
+    {
+      "paths": [
+        "chapters/10-training-operations.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://pytorch.org/docs/stable/notes/randomness.html"
+    },
+    {
+      "paths": [
+        "chapters/19-inference-optimization.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://pytorch.org/docs/stable/torch.compiler.html"
+    },
+    {
+      "paths": [
+        "chapters/12-data-evaluation.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://repository.upenn.edu/asc_papers/43/"
+    },
+    {
+      "paths": [
+        "chapters/13-artifact-management.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://reproducible-builds.org/docs/definition/"
+    },
+    {
+      "paths": [
+        "chapters/24-platform-engineering.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://reproducible-builds.org/docs/definition/），用于区分位级复现与流程复现。以上资料与本章的开源实现形成互证：论文提供问题框架，规范给出契约，代码展示可运行的取舍。"
+    },
+    {
+      "paths": [
+        "chapters/12-data-evaluation.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://research.google/pubs/the-ml-test-score-a-rubric-for-ml-production-readiness-and-technical-debt-reduction/"
+    },
+    {
+      "paths": [
+        "chapters/25-ai-infra-frontiers.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://resources.nvidia.com/en-us-tensor-core"
+    },
+    {
+      "paths": [
+        "chapters/23-cost-capacity-energy.md",
+        "chapters/25-ai-infra-frontiers.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://sci.greensoftware.foundation/"
+    },
+    {
+      "paths": [
+        "chapters/25-ai-infra-frontiers.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://sdk.upmem.com/"
+    },
+    {
+      "paths": [
+        "chapters/13-artifact-management.md",
+        "chapters/22-security-privacy-supply-chain.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://slsa.dev/spec/v1.0/"
+    },
+    {
+      "paths": [
+        "chapters/22-security-privacy-supply-chain.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://slsa.dev/spec/v1.0/levels"
+    },
+    {
+      "paths": [
+        "chapters/24-platform-engineering.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://slsa.dev/spec/v1.2/）。平台不应只显示“通过/失败”，还应显示证据缺失的位置、证据新鲜度和可接受的例外范围。例外必须有责任人、理由、有效期和后续补救任务，不能用永久白名单掩盖风险。"
+    },
+    {
+      "paths": [
+        "chapters/10-training-operations.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://slurm.schedmd.com/checkpoint_blcr.html"
+    },
+    {
+      "paths": [
+        "chapters/10-training-operations.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://slurm.schedmd.com/overview.html"
+    },
+    {
+      "paths": [
+        "chapters/11-ai-data-systems.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html"
+    },
+    {
+      "paths": [
+        "chapters/13-artifact-management.md",
+        "chapters/22-security-privacy-supply-chain.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://spdx.dev/specifications/"
+    },
+    {
+      "paths": [
+        "chapters/22-security-privacy-supply-chain.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://spiffe.io/docs/"
+    },
+    {
+      "paths": [
+        "chapters/22-security-privacy-supply-chain.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://spiffe.io/docs/latest/spiffe-specs/spiffe_workload_api/"
+    },
+    {
+      "paths": [
+        "chapters/20-observability-debugging.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://sre.google/sre-book/part-II-practical-application/"
+    },
+    {
+      "paths": [
+        "chapters/21-reliability-engineering.md",
+        "chapters/26-end-to-end-ai-infra-capstone.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://sre.google/sre-book/service-level-objectives/"
+    },
+    {
+      "paths": [
+        "chapters/24-platform-engineering.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://sre.google/sre-book/table-of-contents/），用于错误预算、服务目标和事故管理；DORA"
+    },
+    {
+      "paths": [
+        "chapters/16-serving-systems.md",
+        "chapters/20-observability-debugging.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://sre.google/workbook/"
+    },
+    {
+      "paths": [
+        "chapters/21-reliability-engineering.md",
+        "chapters/26-end-to-end-ai-infra-capstone.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://sre.google/workbook/implementing-slos/"
+    },
+    {
+      "paths": [
+        "chapters/12-data-evaluation.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://statweb.stanford.edu/~tibs/stat315a/lectures/boot.pdf"
+    },
+    {
+      "paths": [
+        "chapters/13-artifact-management.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://theupdateframework.io/docs/"
+    },
+    {
+      "paths": [
+        "chapters/19-inference-optimization.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://tvm.apache.org/"
+    },
+    {
+      "paths": [
+        "chapters/25-ai-infra-frontiers.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://tvm.apache.org/docs/"
+    },
+    {
+      "paths": [
+        "chapters/12-data-evaluation.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://unicode.org/reports/tr15/"
+    },
+    {
+      "paths": [
+        "chapters/07-numerical-precision.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://uxlfoundation.github.io/oneDNN/dev_guide_int8_computations.html"
+    },
+    {
+      "paths": [
+        "chapters/10-training-operations.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://volcano.sh/en/docs/"
+    },
+    {
+      "paths": [
+        "chapters/24-platform-engineering.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://wiki.nixos.org/wiki/Flakes/en）。语言生态也可采用等价机制，例如"
+    },
+    {
+      "paths": [
+        "chapters/25-ai-infra-frontiers.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.amd.com/en/products/accelerators/instinct/mi300"
+    },
+    {
+      "paths": [
+        "chapters/02-linux-observability.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.brendangregg.com/linuxperf.html"
+    },
+    {
+      "paths": [
+        "chapters/20-observability-debugging.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.brendangregg.com/systems-performance-2nd-edition-book.html"
+    },
+    {
+      "paths": [
+        "chapters/12-data-evaluation.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.cs.princeton.edu/courses/archive/spring13/cos598C/lloyd-minhash.pdf"
+    },
+    {
+      "paths": [
+        "chapters/25-ai-infra-frontiers.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.deepspeed.ai/tutorials/mixture-of-experts/"
+    },
+    {
+      "paths": [
+        "chapters/21-reliability-engineering.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.deepspeed.ai/tutorials/zero-offload/"
+    },
+    {
+      "paths": [
+        "chapters/09-distributed-training.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.deepspeed.ai/tutorials/zero/"
+    },
+    {
+      "paths": [
+        "chapters/21-reliability-engineering.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/upstream/circuit_breaking"
+    },
+    {
+      "paths": [
+        "chapters/26-end-to-end-ai-infra-capstone.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.finops.org/framework/"
+    },
+    {
+      "paths": [
+        "chapters/03-ai-networking.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.infinibandta.org/ibta-specification-download/"
+    },
+    {
+      "paths": [
+        "chapters/14-retrieval-rag.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.iso.org/standard/81230.html"
+    },
+    {
+      "paths": [
+        "chapters/12-data-evaluation.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.itl.nist.gov/div898/handbook/"
+    },
+    {
+      "paths": [
+        "chapters/12-data-evaluation.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.jstor.org/stable/2346101"
+    },
+    {
+      "paths": [
+        "chapters/11-ai-data-systems.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.kernel.org/doc/html/latest/block/index.html"
+    },
+    {
+      "paths": [
+        "chapters/10-training-operations.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.kubeflow.org/docs/components/trainer/overview/"
+    },
+    {
+      "paths": [
+        "chapters/28-vllm-and-sglang-serving.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.lmsys.org/blog/2024-01-17-sglang/"
+    },
+    {
+      "paths": [
+        "chapters/24-platform-engineering.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.melconway.com/Home/Committees_Paper.html），用于理解组织沟通结构与系统模块的关系；Cook"
+    },
+    {
+      "paths": [
+        "chapters/08-distributed-collectives.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.mpi-forum.org/docs/"
+    },
+    {
+      "paths": [
+        "chapters/08-distributed-collectives.md",
+        "chapters/09-distributed-training.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.mpi-forum.org/docs/mpi-4.1/mpi41-report.pdf"
+    },
+    {
+      "paths": [
+        "chapters/11-ai-data-systems.md",
+        "chapters/14-retrieval-rag.md",
+        "chapters/15-inference-execution.md",
+        "chapters/16-serving-systems.md",
+        "chapters/22-security-privacy-supply-chain.md",
+        "chapters/26-end-to-end-ai-infra-capstone.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+    },
+    {
+      "paths": [
+        "chapters/11-ai-data-systems.md",
+        "chapters/20-observability-debugging.md",
+        "chapters/25-ai-infra-frontiers.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.nist.gov/privacy-framework"
+    },
+    {
+      "paths": [
+        "chapters/22-security-privacy-supply-chain.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence"
+    },
+    {
+      "paths": [
+        "chapters/24-platform-engineering.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.openpolicyagent.org/docs）。一个策略决策至少返回"
+    },
+    {
+      "paths": [
+        "chapters/05-gpu-cuda.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.pcisig.com/，https://www.nvidia.com/en-us/data-center/nvlink/）：链路代际、编码开销、拓扑和"
+    },
+    {
+      "paths": [
+        "chapters/03-ai-networking.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.rfc-editor.org/rfc/rfc3168"
+    },
+    {
+      "paths": [
+        "chapters/03-ai-networking.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.rfc-editor.org/rfc/rfc791"
+    },
+    {
+      "paths": [
+        "chapters/03-ai-networking.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.rfc-editor.org/rfc/rfc8200"
+    },
+    {
+      "paths": [
+        "chapters/13-artifact-management.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.rfc-editor.org/rfc/rfc8785"
+    },
+    {
+      "paths": [
+        "chapters/03-ai-networking.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.rfc-editor.org/rfc/rfc9000"
+    },
+    {
+      "paths": [
+        "chapters/21-reliability-engineering.md",
+        "chapters/26-end-to-end-ai-infra-capstone.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.rfc-editor.org/rfc/rfc9110"
+    },
+    {
+      "paths": [
+        "chapters/03-ai-networking.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.rfc-editor.org/rfc/rfc9113"
+    },
+    {
+      "paths": [
+        "chapters/03-ai-networking.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.rfc-editor.org/rfc/rfc9114"
+    },
+    {
+      "paths": [
+        "chapters/03-ai-networking.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.rfc-editor.org/rfc/rfc9293"
+    },
+    {
+      "paths": [
+        "chapters/16-serving-systems.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.rfc-editor.org/rfc/rfc9457"
+    },
+    {
+      "paths": [
+        "chapters/13-artifact-management.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.sigstore.dev/"
+    },
+    {
+      "paths": [
+        "chapters/14-retrieval-rag.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.staff.city.ac.uk/~sbrp622/IR2015/Godwin-Okosieme%20BM25.pdf"
+    },
+    {
+      "paths": [
+        "chapters/25-ai-infra-frontiers.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.tensorflow.org/federated"
+    },
+    {
+      "paths": [
+        "chapters/11-ai-data-systems.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.tensorflow.org/tfx/guide/tfdv"
+    },
+    {
+      "paths": [
+        "chapters/25-ai-infra-frontiers.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.top500.org/lists/green500/"
+    },
+    {
+      "paths": [
+        "chapters/18-ray-runtime.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.usenix.org/conference/osdi18/presentation/moritz"
+    },
+    {
+      "paths": [
+        "chapters/15-inference-execution.md",
+        "chapters/16-serving-systems.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.usenix.org/conference/osdi22/presentation/yu"
+    },
+    {
+      "paths": [
+        "chapters/13-artifact-management.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.usenix.org/conference/usenixsecurity19/presentation/torres-arias"
+    },
+    {
+      "paths": [
+        "chapters/27-kv-transfer-and-connectors.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.usenix.org/system/files/osdi24-zhong-yinmin.pdf"
+    },
+    {
+      "paths": [
+        "chapters/11-ai-data-systems.md",
+        "chapters/13-artifact-management.md",
+        "chapters/14-retrieval-rag.md"
+      ],
+      "reason": "network_check_disabled",
+      "url": "https://www.w3.org/TR/prov-overview/"
+    }
+  ],
+  "structural_passed": true,
+  "summary": {
+    "error_classes": [],
+    "errors": 0,
+    "fatal_errors": 0,
+    "files": 34,
+    "urls": 334
+  },
+  "version": 1
+}
