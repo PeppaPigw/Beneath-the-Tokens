@@ -1,0 +1,359 @@
+{
+  "schema_version": 1,
+  "chapter": "35-serving-scheduling-and-slo",
+  "access_date": "2026-10-07",
+  "purpose": "Evidence index for queueing, TTFT/ITL/E2E, continuous batching, prefill/decode disaggregation, admission, fairness, streaming cancellation/backpressure and multi-tenant SLO",
+  "entries": [
+    {
+      "id": "orca",
+      "type": "paper",
+      "title": "Orca OSDI 2022",
+      "url": "https://www.usenix.org/conference/osdi22/presentation/yu",
+      "claims": [
+        "iteration-level scheduling",
+        "selective batching"
+      ],
+      "verification": "pin implementation and replay request trace",
+      "status": "primary-source"
+    },
+    {
+      "id": "vllm",
+      "type": "paper",
+      "title": "vLLM PagedAttention",
+      "url": "https://arxiv.org/abs/2309.06180",
+      "claims": [
+        "paged KV cache",
+        "continuous batching serving context"
+      ],
+      "verification": "pin vLLM commit, model, GPU and KV settings",
+      "status": "primary-source"
+    },
+    {
+      "id": "distserve",
+      "type": "paper",
+      "title": "DistServe",
+      "url": "https://arxiv.org/abs/2401.09670",
+      "claims": [
+        "prefill/decode disaggregation",
+        "SLO-aware capacity planning"
+      ],
+      "verification": "measure KV transfer and stage queues on target hardware",
+      "status": "primary-source"
+    },
+    {
+      "id": "splitwise",
+      "type": "paper",
+      "title": "Splitwise",
+      "url": "https://arxiv.org/abs/2311.18677",
+      "claims": [
+        "phase splitting",
+        "heterogeneous inference resources"
+      ],
+      "verification": "pin workload and interconnect",
+      "status": "primary-source"
+    },
+    {
+      "id": "sarathi",
+      "type": "paper",
+      "title": "Sarathi-Serve",
+      "url": "https://arxiv.org/abs/2403.02310",
+      "claims": [
+        "chunked prefill",
+        "throughput-latency scheduling"
+      ],
+      "verification": "record chunk size and decode protection",
+      "status": "primary-source"
+    },
+    {
+      "id": "llumnix",
+      "type": "paper",
+      "title": "Llumnix",
+      "url": "https://arxiv.org/abs/2406.04837",
+      "claims": [
+        "dynamic scheduling and migration",
+        "SLO guarantees"
+      ],
+      "verification": "record KV migration cost and failure behavior",
+      "status": "primary-source"
+    },
+    {
+      "id": "fastserve",
+      "type": "paper",
+      "title": "FastServe",
+      "url": "https://arxiv.org/abs/2305.05920",
+      "claims": [
+        "preemptive serving scheduling",
+        "latency/throughput tradeoff"
+      ],
+      "verification": "pin scheduler and GPU target",
+      "status": "primary-source"
+    },
+    {
+      "id": "clockwork",
+      "type": "paper",
+      "title": "Clockwork",
+      "url": "https://www.usenix.org/conference/osdi20/presentation/gujarati",
+      "claims": [
+        "predictable inference scheduling",
+        "resource provisioning"
+      ],
+      "verification": "compare trace and admission assumptions",
+      "status": "primary-source"
+    },
+    {
+      "id": "vllm-docs",
+      "type": "official_documentation",
+      "title": "vLLM documentation",
+      "url": "https://docs.vllm.ai/",
+      "claims": [
+        "serving configuration and metrics context"
+      ],
+      "verification": "pin docs release and engine arguments",
+      "status": "primary-source"
+    },
+    {
+      "id": "sglang",
+      "type": "official_documentation",
+      "title": "SGLang documentation",
+      "url": "https://docs.sglang.ai/",
+      "claims": [
+        "runtime scheduling and serving interfaces"
+      ],
+      "verification": "pin runtime release",
+      "status": "primary-source"
+    },
+    {
+      "id": "triton-batcher",
+      "type": "official_documentation",
+      "title": "Triton dynamic batcher",
+      "url": "https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/user_guide/model_configuration.html#dynamic-batcher",
+      "claims": [
+        "queue delay and preferred batch controls"
+      ],
+      "verification": "pin Triton version and model config",
+      "status": "primary-source"
+    },
+    {
+      "id": "ray-batching",
+      "type": "official_documentation",
+      "title": "Ray Serve dynamic batching",
+      "url": "https://docs.ray.io/en/latest/serve/advanced-guides/dynamic-request-batching.html",
+      "claims": [
+        "request batching API and limits"
+      ],
+      "verification": "pin Ray version and deployment config",
+      "status": "primary-source"
+    },
+    {
+      "id": "kserve",
+      "type": "official_documentation",
+      "title": "KServe data plane",
+      "url": "https://kserve.github.io/website/latest/modelserving/data_plane/",
+      "claims": [
+        "inference request/response contract"
+      ],
+      "verification": "pin protocol and server version",
+      "status": "primary-source"
+    },
+    {
+      "id": "grpc-deadlines",
+      "type": "official_documentation",
+      "title": "gRPC deadlines",
+      "url": "https://grpc.io/docs/guides/deadlines/",
+      "claims": [
+        "deadline propagation and timeout semantics"
+      ],
+      "verification": "test clock and retry behavior",
+      "status": "primary-source"
+    },
+    {
+      "id": "grpc-cancel",
+      "type": "official_documentation",
+      "title": "gRPC cancellation",
+      "url": "https://grpc.io/docs/guides/cancellation/",
+      "claims": [
+        "cross-process cancellation propagation"
+      ],
+      "verification": "measure cancel-to-resource-free",
+      "status": "primary-source"
+    },
+    {
+      "id": "sse",
+      "type": "web_standard_documentation",
+      "title": "MDN Server-sent events",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events",
+      "claims": [
+        "event-stream framing and client behavior"
+      ],
+      "verification": "test reconnect and heartbeat",
+      "status": "primary-source"
+    },
+    {
+      "id": "rfc9110",
+      "type": "standard",
+      "title": "HTTP Semantics RFC 9110",
+      "url": "https://www.rfc-editor.org/rfc/rfc9110",
+      "claims": [
+        "status codes, retry and request semantics"
+      ],
+      "verification": "map 429/503 to API contract",
+      "status": "primary-source"
+    },
+    {
+      "id": "rfc9113",
+      "type": "standard",
+      "title": "HTTP/2 RFC 9113",
+      "url": "https://www.rfc-editor.org/rfc/rfc9113",
+      "claims": [
+        "stream flow control and cancellation"
+      ],
+      "verification": "test intermediary behavior",
+      "status": "primary-source"
+    },
+    {
+      "id": "rfc9114",
+      "type": "standard",
+      "title": "HTTP/3 RFC 9114",
+      "url": "https://www.rfc-editor.org/rfc/rfc9114",
+      "claims": [
+        "QUIC stream semantics"
+      ],
+      "verification": "pin proxy and client versions",
+      "status": "primary-source"
+    },
+    {
+      "id": "k8s-apf",
+      "type": "official_documentation",
+      "title": "Kubernetes API Priority and Fairness",
+      "url": "https://kubernetes.io/docs/concepts/cluster-administration/flow-control/",
+      "claims": [
+        "priority levels and fair queuing concepts"
+      ],
+      "verification": "adapt only as conceptual reference",
+      "status": "primary-source"
+    },
+    {
+      "id": "envoy-circuit",
+      "type": "official_documentation",
+      "title": "Envoy circuit breaking",
+      "url": "https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/upstream/circuit_breaking",
+      "claims": [
+        "concurrency/retry budgets and overload protection"
+      ],
+      "verification": "pin Envoy config and observe counters",
+      "status": "primary-source"
+    },
+    {
+      "id": "prom-hist",
+      "type": "official_documentation",
+      "title": "Prometheus histograms",
+      "url": "https://prometheus.io/docs/practices/histograms/",
+      "claims": [
+        "quantile measurement and bucket tradeoffs"
+      ],
+      "verification": "choose fixed buckets and sample window",
+      "status": "primary-source"
+    },
+    {
+      "id": "otel-genai",
+      "type": "specification",
+      "title": "OpenTelemetry GenAI semantic conventions",
+      "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/",
+      "claims": [
+        "trace and metric field vocabulary"
+      ],
+      "verification": "review privacy and cardinality",
+      "status": "primary-source"
+    },
+    {
+      "id": "little-law",
+      "type": "course_material",
+      "title": "MIT Queuing Theory and Applications",
+      "url": "https://ocw.mit.edu/courses/15-072-queuing-theory-and-applications-spring-2006/",
+      "claims": [
+        "Little law and queueing model foundations"
+      ],
+      "verification": "state model assumptions before applying",
+      "status": "primary-source"
+    },
+    {
+      "id": "pk",
+      "type": "reference",
+      "title": "Pollaczek-Khinchine formula notation",
+      "url": "https://en.wikipedia.org/wiki/Pollaczek%E2%80%93Khinchine_formula",
+      "claims": [
+        "M/G/1 second-moment waiting intuition"
+      ],
+      "verification": "use primary queueing text for production proof",
+      "status": "secondary-reference"
+    },
+    {
+      "id": "jain",
+      "type": "paper",
+      "title": "Jain fairness index",
+      "url": "https://www.cse.wustl.edu/~jain/papers/ftp/fairness.pdf",
+      "claims": [
+        "normalized fairness calculation"
+      ],
+      "verification": "define resource unit and weights",
+      "status": "primary-source"
+    },
+    {
+      "id": "otel-traces",
+      "type": "official_documentation",
+      "title": "OpenTelemetry traces",
+      "url": "https://opentelemetry.io/docs/concepts/signals/traces/",
+      "claims": [
+        "span and context propagation concepts"
+      ],
+      "verification": "redact prompt content and cap cardinality",
+      "status": "primary-source"
+    },
+    {
+      "id": "failure-json",
+      "type": "reproducible_measurement",
+      "title": "Chapter 35 failure-boundary evidence",
+      "path": "reports/ch35-serving-scheduling-failure.json",
+      "claims": [
+        "admission rejection before GPU allocation",
+        "cancellation terminal state",
+        "bounded stream backpressure"
+      ],
+      "verification": "compare rejection reasons and terminal summary with lab contracts",
+      "status": "local-measurement-not-production-proof"
+    },
+    {
+      "id": "lab",
+      "type": "reproducible_measurement",
+      "title": "Chapter 35 CPU scheduling toy",
+      "path": "labs/ch35_serving_scheduling_lab.py",
+      "claims": [
+        "queue, batching, SLO metrics, admission, cancellation and stream backpressure"
+      ],
+      "verification": "python3 labs/ch35_serving_scheduling_lab.py --output reports/ch35-serving-scheduling-default.json",
+      "status": "local-measurement-not-production-proof"
+    },
+    {
+      "id": "tests",
+      "type": "reproducible_measurement",
+      "title": "Chapter 35 contract tests",
+      "path": "tests/test_ch35_serving_scheduling_lab.py",
+      "claims": [
+        "determinism, caps, fairness policy, cancellation and CLI"
+      ],
+      "verification": "python3 tests/test_ch35_serving_scheduling_lab.py",
+      "status": "local-test-only"
+    },
+    {
+      "id": "report",
+      "type": "reproducible_measurement",
+      "title": "Chapter 35 experiment report",
+      "path": "reports/ch35-serving-scheduling-report.md",
+      "claims": [
+        "commands, results, failure boundaries and production checklist"
+      ],
+      "verification": "compare report with both JSON outputs",
+      "status": "local-measurement-not-production-proof"
+    }
+  ]
+}
