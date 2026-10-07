@@ -25,6 +25,7 @@ python3 tests/test_ch31_moe_parallelism_lab.py
 ## 证据与解释
 
 - `routing.expert_prob` 是 router softmax 概率均值，`selected_fraction` 是实际 accepted fraction；`aux_loss = E * sum(f_e * P_e)`，用于方向性比较。
+- `dropped_tokens` 是 unique token 分母，`dropped_assignments` 是 overflow 后未进入 expert 的 route 数；`overflow_assignments` 还包括由 `second`/`residual` 处理的 route。`residual_tokens` 只在 residual policy 下计数。
 - `all_to_all.send_matrix` 和 `recv_matrix` 的元素总和均等于 accepted assignments；bytes 按 4096 hidden bytes 计算。
 - `latency_proxy_ms` 是 `compute + max(bytes) / 50 MiB/s + skew penalty` 的透明 toy 公式，不能用于硬件容量规划。
 - hot bias 只改变 synthetic logits，不模拟真实模型语义；没有质量指标或 GPU kernel。
