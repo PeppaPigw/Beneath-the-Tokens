@@ -1,0 +1,305 @@
+{
+  "schema_version": 1,
+  "chapter": "32-gpu-cluster-topology",
+  "access_date": "2026-10-07",
+  "purpose": "Evidence index for GPU/NVLink/PCIe topology, NCCL collectives, RDMA fabrics, topology-aware scheduling, distributed training/inference failure boundaries, and CPU-only reproducibility",
+  "entries": [
+    {
+      "id": "nccl-guide",
+      "type": "official_documentation",
+      "title": "NVIDIA NCCL User Guide",
+      "url": "https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/index.html",
+      "claims": ["collective semantics", "topology and transport configuration", "debugging and environment variables"],
+      "verification": "pin NCCL version; capture algorithm/protocol, process groups, topology logs and collective timings",
+      "status": "primary-source"
+    },
+    {
+      "id": "nccl-networking-troubleshooting",
+      "type": "official_documentation",
+      "title": "NCCL Networking Troubleshooting",
+      "url": "https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/troubleshooting/networking_troubleshooting.html",
+      "claims": ["IB/RoCE link diagnostics", "NIC selection", "PFC/ECN and GID troubleshooting"],
+      "verification": "run ibstat, ib_write_bw/lat, ibdiagnet or equivalent on the target fabric and correlate with NCCL logs",
+      "status": "primary-source"
+    },
+    {
+      "id": "nccl-performance-tuning",
+      "type": "official_documentation",
+      "title": "NCCL Performance and Tuning",
+      "url": "https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/troubleshooting/performance_and_tuning.html",
+      "claims": ["nvidia-smi topo usage", "NVLink/PCIe versus network bottleneck isolation", "CPU/NIC affinity"],
+      "verification": "compare nvbandwidth, ib_write_bw and application trace under fixed placement",
+      "status": "primary-source"
+    },
+    {
+      "id": "nccl-gpu-troubleshooting",
+      "type": "official_documentation",
+      "title": "NCCL GPU Troubleshooting",
+      "url": "https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/troubleshooting/gpu_troubleshooting.html",
+      "claims": ["GPU Direct P2P/GDRDMA prerequisites", "IOMMU/ACS/nvidia-peermem failure modes"],
+      "verification": "check P2P, IOMMU, ACS, peer-memory module, container /sys and driver versions",
+      "status": "primary-source"
+    },
+    {
+      "id": "nccl-ras-blog",
+      "type": "official_blog",
+      "title": "Networking Reliability and Observability at Scale with NCCL 2.24",
+      "url": "https://developer.nvidia.com/blog/networking-reliability-and-observability-at-scale-with-nccl-2-24/",
+      "claims": ["RAS health view", "MISMATCH/INCOMPLETE/DEAD rank diagnostics", "large-scale failure observability"],
+      "verification": "enable the target NCCL RAS features and preserve rank/collective evidence during injected failures",
+      "status": "primary-source"
+    },
+    {
+      "id": "nccl-cross-dc",
+      "type": "official_blog",
+      "title": "NCCL Deep Dive: Cross Data Center Communication and Network Topology Awareness",
+      "url": "https://developer.nvidia.com/blog/nccl-deep-dive-cross-data-center-communication-and-network-topology-awareness/",
+      "claims": ["fabricID/netPath", "cross-DC ring edge minimization", "heterogeneous IB/RoCE/TCP paths"],
+      "verification": "record DC/rack fabric IDs and compare cross-domain bytes and failure behavior",
+      "status": "primary-source"
+    },
+    {
+      "id": "nccl-source",
+      "type": "mature_source_code",
+      "title": "NCCL source repository",
+      "url": "https://github.com/NVIDIA/nccl",
+      "claims": ["topology discovery", "transport and collective implementation"],
+      "verification": "pin commit and inspect topology, graph, transport and communicator code paths",
+      "status": "primary-source"
+    },
+    {
+      "id": "nccl-tests",
+      "type": "mature_source_code",
+      "title": "NCCL tests",
+      "url": "https://github.com/NVIDIA/nccl-tests",
+      "claims": ["all-reduce/all-to-all benchmark harness", "size and rank scaling measurements"],
+      "verification": "run fixed message sizes, ranks, placement and concurrent background traffic",
+      "status": "primary-source"
+    },
+    {
+      "id": "cuda-multi-gpu",
+      "type": "official_documentation",
+      "title": "CUDA Multi-GPU Systems",
+      "url": "https://docs.nvidia.com/cuda/cuda-programming-guide/03-advanced/multi-gpu-systems.html",
+      "claims": ["P2P topology", "IOMMU/ACS constraints", "multi-GPU programming model"],
+      "verification": "check target platform P2P access and copy path with CUDA samples",
+      "status": "primary-source"
+    },
+    {
+      "id": "nvidia-smi",
+      "type": "official_documentation",
+      "title": "nvidia-smi documentation",
+      "url": "https://docs.nvidia.com/deploy/nvidia-smi/index.html",
+      "claims": ["GPU topology query", "Xid and health counters", "NVLink telemetry"],
+      "verification": "save nvidia-smi topo/health output with GPU UUID and timestamp",
+      "status": "primary-source"
+    },
+    {
+      "id": "gpudirect-rdma",
+      "type": "official_documentation",
+      "title": "CUDA GPUDirect RDMA",
+      "url": "https://docs.nvidia.com/cuda/gpudirect-rdma/",
+      "claims": ["GPU memory RDMA access", "registration and mapping constraints"],
+      "verification": "compare GPUDirect and host-staging paths on the target NIC/driver/container",
+      "status": "primary-source"
+    },
+    {
+      "id": "rdma-core",
+      "type": "mature_source_code",
+      "title": "Linux rdma-core",
+      "url": "https://github.com/linux-rdma/rdma-core",
+      "claims": ["userspace RDMA stack", "verbs/providers and device interfaces"],
+      "verification": "pin package/provider versions and inspect device/port state",
+      "status": "primary-source"
+    },
+    {
+      "id": "pytorch-distributed",
+      "type": "official_documentation",
+      "title": "PyTorch Distributed",
+      "url": "https://pytorch.org/docs/stable/distributed.html",
+      "claims": ["process groups", "NCCL backend", "collective and mismatch behavior"],
+      "verification": "pin PyTorch release; log group membership, backend, timeout and tensor shapes",
+      "status": "primary-source"
+    },
+    {
+      "id": "torchrun-elastic",
+      "type": "official_documentation",
+      "title": "torchrun Elastic Launch",
+      "url": "https://docs.pytorch.org/docs/stable/elastic/run.html",
+      "claims": ["rendezvous", "rank/world-size", "restart and membership semantics"],
+      "verification": "inject worker/node failure and verify restart, checkpoint and sampler contracts",
+      "status": "primary-source"
+    },
+    {
+      "id": "pytorch-ddp-multinode",
+      "type": "official_tutorial",
+      "title": "PyTorch multi-node DDP tutorial",
+      "url": "https://pytorch.org/tutorials/intermediate/ddp_series_multinode.html",
+      "claims": ["multi-node launch", "NCCL_SOCKET_IFNAME and Slurm troubleshooting", "network bottleneck context"],
+      "verification": "reproduce with target launcher and interface allowlist",
+      "status": "primary-source"
+    },
+    {
+      "id": "k8s-device-plugin",
+      "type": "official_documentation",
+      "title": "Kubernetes Device Plugins",
+      "url": "https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/device-plugins/",
+      "claims": ["GPU/RDMA registration", "health and Allocate", "TopologyInfo handoff"],
+      "verification": "inspect plugin version, Allocate response and kubelet topology hints",
+      "status": "primary-source"
+    },
+    {
+      "id": "k8s-topology-manager",
+      "type": "official_documentation",
+      "title": "Kubernetes Topology Manager",
+      "url": "https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/",
+      "claims": ["NUMA-aware admission", "policy and scope"],
+      "verification": "record policy/scope and inspect pod CPU/GPU/NIC NUMA placement",
+      "status": "primary-source"
+    },
+    {
+      "id": "gpu-operator",
+      "type": "official_documentation",
+      "title": "NVIDIA GPU Operator",
+      "url": "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/",
+      "claims": ["driver/device-plugin/DCGM deployment", "Kubernetes GPU lifecycle"],
+      "verification": "pin operator/chart and validate upgrades, health checks and permissions",
+      "status": "primary-source"
+    },
+    {
+      "id": "slurm-gres",
+      "type": "official_documentation",
+      "title": "Slurm GRES",
+      "url": "https://slurm.schedmd.com/gres.html",
+      "claims": ["GPU allocation", "CUDA_VISIBLE_DEVICES", "MIG/MPS/sharing"],
+      "verification": "capture gres.conf, job allocation, GPU binding and UUID mapping",
+      "status": "primary-source"
+    },
+    {
+      "id": "slurm-cons-tres",
+      "type": "official_documentation",
+      "title": "Slurm cons_tres",
+      "url": "https://slurm.schedmd.com/cons_tres.html",
+      "claims": ["consumable resources and GPU scheduling"],
+      "verification": "check accounting and preemption behavior for gang jobs",
+      "status": "primary-source"
+    },
+    {
+      "id": "slurm-topology",
+      "type": "official_documentation",
+      "title": "Slurm topology plugins",
+      "url": "https://slurm.schedmd.com/topology.html",
+      "claims": ["topology-aware scheduling"],
+      "verification": "compare placement before/after topology plugin and node labels",
+      "status": "primary-source"
+    },
+    {
+      "id": "megascale",
+      "type": "paper",
+      "title": "MegaScale: Scaling Large Language Model Training to More Than 10,000 GPUs",
+      "url": "https://www.usenix.org/system/files/nsdi24-jiang-ziheng.pdf",
+      "claims": ["large-scale DP/PP/TP", "CLOS and congestion", "heartbeat, diagnosis, checkpoint/recovery"],
+      "verification": "compare target topology and failure telemetry against published architecture; do not generalize throughput",
+      "status": "primary-source"
+    },
+    {
+      "id": "megatron-lm",
+      "type": "paper",
+      "title": "Efficient Large-Scale Language Model Training on GPU Clusters",
+      "url": "https://arxiv.org/abs/2104.04473",
+      "claims": ["tensor/pipeline/data parallel communication placement", "large GPU training"],
+      "verification": "pin implementation and map parallel groups to target topology",
+      "status": "primary-source"
+    },
+    {
+      "id": "zero-paper",
+      "type": "paper",
+      "title": "ZeRO: Memory Optimizations Toward Training Trillion Parameter Models",
+      "url": "https://arxiv.org/abs/1910.02054",
+      "claims": ["optimizer/gradient/parameter sharding", "reduce-scatter/all-gather trade-offs"],
+      "verification": "measure communication and recovery with target ZeRO stage and topology",
+      "status": "primary-source"
+    },
+    {
+      "id": "byteps",
+      "type": "paper",
+      "title": "A Unified Architecture for Accelerating Distributed DNN Training in Heterogeneous GPU/CPU Clusters (BytePS)",
+      "url": "https://www.usenix.org/system/files/osdi20-jiang.pdf",
+      "claims": ["heterogeneous PCIe/NVLink/network topology", "hierarchical aggregation"],
+      "verification": "test whether CPU-assisted/hierarchical path helps target non-uniform cluster",
+      "status": "primary-source"
+    },
+    {
+      "id": "vllm-parallelism",
+      "type": "official_documentation",
+      "title": "vLLM Parallelism and Scaling",
+      "url": "https://docs.vllm.ai/en/stable/serving/parallelism_scaling/",
+      "claims": ["single-node TP", "multi-node TP/PP", "topology-aware serving choices"],
+      "verification": "pin vLLM tag/model revision; test TP/PP group health and p99 on target placement",
+      "status": "primary-source"
+    },
+    {
+      "id": "tensorrt-disaggregated",
+      "type": "official_documentation",
+      "title": "TensorRT-LLM Disaggregated Serving",
+      "url": "https://nvidia.github.io/TensorRT-LLM/features/disagg-serving.html",
+      "claims": ["prefill/decode separation", "KV-cache network boundary"],
+      "verification": "measure TTFT/TPOT, KV transfer bandwidth and failure isolation by GPU pool",
+      "status": "primary-source"
+    },
+    {
+      "id": "volcano-network-topology",
+      "type": "mature_source_code",
+      "title": "Volcano Network Topology Aware Scheduling",
+      "url": "https://github.com/volcano-sh/volcano/blob/v1.14.0/docs/design/Network%20Topology%20Aware%20Scheduling.md",
+      "claims": ["network topology aware gang placement", "switch/HyperNode locality"],
+      "verification": "pin Volcano version and inspect PodGroup placement across labeled topology",
+      "status": "primary-source"
+    },
+    {
+      "id": "ch32-toy-lab",
+      "type": "reproducible_measurement",
+      "title": "Chapter 32 CPU GPU topology and failure-boundary toy",
+      "path": "labs/ch32_gpu_topology_lab.py",
+      "claims": ["rank mapping", "all-to-all and ring byte accounting", "GPU/node/switch failure scope"],
+      "verification": "python3 labs/ch32_gpu_topology_lab.py --nodes 2 --gpus-per-node 4 --payload-mib 64 --requests 128 --replicas 2",
+      "status": "local-measurement-not-production-proof"
+    },
+    {
+      "id": "ch32-toy-tests",
+      "type": "reproducible_measurement",
+      "title": "Chapter 32 toy contract tests",
+      "path": "tests/test_ch32_gpu_topology_lab.py",
+      "claims": ["path classification", "payload conservation", "ring edge count", "failure semantics", "CLI JSON contract"],
+      "verification": "python3 tests/test_ch32_gpu_topology_lab.py",
+      "status": "local-test-only"
+    },
+    {
+      "id": "ch32-default-report",
+      "type": "reproducible_measurement",
+      "title": "Chapter 32 default topology JSON",
+      "path": "reports/ch32-gpu-topology-default.json",
+      "claims": ["2x4 topology all-to-all/ring proxy and replica baseline"],
+      "verification": "rerun command in reports/ch32-gpu-topology-report.md and compare JSON",
+      "status": "local-measurement-not-production-proof"
+    },
+    {
+      "id": "ch32-node-failure-report",
+      "type": "reproducible_measurement",
+      "title": "Chapter 32 node failure JSON",
+      "path": "reports/ch32-gpu-topology-node-failure.json",
+      "claims": ["node failure stops synchronous collective and preserves other replica"],
+      "verification": "rerun node-failure command in reports/ch32-gpu-topology-report.md and compare JSON",
+      "status": "local-measurement-not-production-proof"
+    },
+    {
+      "id": "ch32-report",
+      "type": "reproducible_measurement",
+      "title": "Chapter 32 experiment report",
+      "path": "reports/ch32-gpu-topology-report.md",
+      "claims": ["commands", "result tables", "test contract", "toy/production boundary"],
+      "verification": "compare report tables with JSON outputs and rerun tests",
+      "status": "local-measurement-not-production-proof"
+    }
+  ]
+}
