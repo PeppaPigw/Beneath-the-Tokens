@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "docs": "/workspace/scratch/4dcc55129e39/Beneath-the-Tokens/docs",
+  "target": "chapters/37-security-and-supply-chain.md",
+  "files": [
+    {
+      "id": "ch37-security-and-supply-chain",
+      "path": "chapters/37-security-and-supply-chain.md",
+      "checks": {
+        "error_count": 0,
+        "frontmatter": true,
+        "fences": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "pedagogical_sections": true,
+        "script_syntax": true,
+        "headings": 49,
+        "urls": 42,
+        "min_chars": 21071,
+        "required_headings": ["问题/边界", "心智模型", "机制", "实验", "故障诊所/失败", "理解检查", "练习", "来源"]
+      },
+      "errors": []
+    },
+    {
+      "id": "ch37-security-supply-chain-lab",
+      "path": "../labs/ch37_security_supply_chain_lab.py",
+      "checks": {
+        "py_compile": true,
+        "cpu_only": true,
+        "deterministic": true,
+        "cli_json": true,
+        "threat_model_evidence": true,
+        "artifact_digest_signature_provenance_sbom": true,
+        "model_data_poisoning": true,
+        "dependency_vulnerability": true,
+        "runtime_isolation": true,
+        "gpu_multi_tenancy": true,
+        "secret_handling": true,
+        "network_policy": true,
+        "audit_chain_and_incident_response": true
+      },
+      "errors": []
+    },
+    {
+      "id": "ch37-security-supply-chain-tests",
+      "path": "../tests/test_ch37_security_supply_chain_lab.py",
+      "checks": {
+        "direct_test": true,
+        "contracts": [
+          "deterministic baseline and terminal decision",
+          "digest/signature/provenance/SBOM gates",
+          "model-data poisoning quarantine",
+          "critical dependency vulnerability deny",
+          "unsafe runtime and GPU tenancy isolation",
+          "secret and network fail-closed policy",
+          "component validation and CLI JSON output"
+        ]
+      },
+      "errors": []
+    }
+  ],
+  "error_classes": [],
+  "errors": [],
+  "structural_passed": true,
+  "passed": true,
+  "summary": {
+    "error_classes": [],
+    "errors": 0,
+    "fatal_errors": 0,
+    "files": 3,
+    "urls": 42
+  },
+  "network_checks": [],
+  "skipped_network_checks": [],
+  "note": "Focused local audit record. URLs are primary-source references and require version-pinned production verification; the CPU toy is not a Kubernetes, GPU/MIG, vulnerability scanner or supply-chain security certification."
+}
