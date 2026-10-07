@@ -31,6 +31,7 @@ const sidebars: SidebarsConfig = {
     'chapters/ch25-ai-infra-frontiers',
     'chapters/ch26-end-to-end-ai-infra-capstone',
     'chapters/ch27-kv-transfer-and-connectors',
+    'chapters/ch28-vllm-and-sglang-serving',
     'phase2/chapters/phase2-23-decoding-and-sampling',
     'phase2/chapters/phase2-26-kv-cache-and-paged-attention',
     'chapter-template',
