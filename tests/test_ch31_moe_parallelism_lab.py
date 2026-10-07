@@ -40,6 +40,14 @@ def test_second_policy_uses_fallback_without_duplicate_expert():
     assert sum(result.expert_load) >= 1
 
 
+def test_residual_policy_reports_residual_tokens_without_drop():
+    cfg = RoutingConfig(num_experts=4, top_k=2, capacity_factor=0.5, overflow_policy="residual", num_ranks=2)
+    result = route_tokens(make_logits(10, 4, seed=3, hot_expert=0, hot_bias=10.0), cfg)
+    assert result.residual_tokens > 0
+    assert result.dropped_tokens == 0
+    assert result.dropped_assignments == 0
+
+
 def test_all_to_all_matrix_conserves_assignments():
     assignments = ((0, 2), (1,), (3, 0), ())
     plan = build_all_to_all(assignments, num_ranks=2, num_experts=4, bytes_per_token=100)
@@ -76,6 +84,7 @@ if __name__ == "__main__":
     test_softmax_is_normalized_and_stable()
     test_capacity_bounds_assignments_and_reports_overflow()
     test_second_policy_uses_fallback_without_duplicate_expert()
+    test_residual_policy_reports_residual_tokens_without_drop()
     test_all_to_all_matrix_conserves_assignments()
     test_simulation_is_reproducible_and_exposes_contract_fields()
     import tempfile
