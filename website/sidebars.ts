@@ -33,6 +33,7 @@ const sidebars: SidebarsConfig = {
     'chapters/ch27-kv-transfer-and-connectors',
     'chapters/ch28-vllm-and-sglang-serving',
     'chapters/ch29-speculative-and-structured-decoding',
+    'chapters/ch30-kv-compression-and-tiering',
     'chapter-template',
     'lab-standards',
     'source-policy',
