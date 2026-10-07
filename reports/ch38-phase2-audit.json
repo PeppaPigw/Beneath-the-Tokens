@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "docs": "/workspace/scratch/4dcc55129e39/Beneath-the-Tokens/docs",
+  "target": "chapters/38-cost-capacity-and-energy.md",
+  "files": [
+    {
+      "id": "ch38-cost-capacity-and-energy",
+      "path": "chapters/38-cost-capacity-and-energy.md",
+      "checks": {
+        "error_count": 0,
+        "frontmatter": true,
+        "fences": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "pedagogical_sections": true,
+        "script_syntax": true,
+        "headings": 54,
+        "urls": 43,
+        "min_chars": 20502,
+        "required_headings": ["问题/边界", "心智模型", "机制", "实验", "故障诊所/失败", "理解检查", "练习", "来源"]
+      },
+      "errors": []
+    },
+    {
+      "id": "ch38-cost-capacity-and-energy-lab",
+      "path": "../labs/ch38_cost_energy_lab.py",
+      "checks": {
+        "py_compile": true,
+        "cpu_only": true,
+        "deterministic": true,
+        "cli_json": true,
+        "capacity_planning": true,
+        "queue_and_utilization_trap": true,
+        "reserved_spot_ondemand_cost": true,
+        "elastic_and_thermal_guardrail": true,
+        "power_pue_carbon": true,
+        "training_inference_tco": true,
+        "slo_cost_and_finops": true,
+        "faults_fail_closed": true
+      },
+      "errors": []
+    },
+    {
+      "id": "ch38-cost-capacity-and-energy-tests",
+      "path": "../tests/test_ch38_cost_energy_lab.py",
+      "checks": {
+        "direct_test": true,
+        "contracts": [
+          "deterministic CPU-only baseline admitted",
+          "capacity planning and queue rho/utilization trap",
+          "reserved/spot/on-demand expected cost with interruption",
+          "energy PUE/carbon formula and thermal/carbon faults",
+          "underprovisioned, spot and SLO fail-closed decisions",
+          "input validation and CLI JSON stdout/file equality"
+        ]
+      },
+      "errors": []
+    }
+  ],
+  "error_classes": [],
+  "errors": [],
+  "structural_passed": true,
+  "passed": true,
+  "summary": {
+    "error_classes": [],
+    "errors": 0,
+    "fatal_errors": 0,
+    "files": 3,
+    "urls": 43
+  },
+  "network_checks": [],
+  "skipped_network_checks": [],
+  "note": "Focused local audit record. URLs are primary-source references and require version-pinned production verification; synthetic prices, queue rates, power, PUE and carbon factors are CPU-only toy inputs, not cloud billing, facility-meter or SLO certification."
+}
