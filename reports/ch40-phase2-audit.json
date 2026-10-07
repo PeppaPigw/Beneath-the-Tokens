@@ -14,10 +14,19 @@
         "prerequisites": true,
         "pedagogical_sections": true,
         "script_syntax": true,
-        "headings": 72,
+        "headings": 74,
         "urls": 25,
-        "min_chars": 37681,
-        "required_headings": ["问题/边界", "心智模型", "机制", "实验", "故障诊所/失败", "理解检查", "练习", "来源"]
+        "min_chars": 25001,
+        "required_headings": [
+          "问题/边界",
+          "心智模型",
+          "机制",
+          "实验",
+          "故障诊所/失败",
+          "理解检查",
+          "练习",
+          "来源"
+        ]
       },
       "errors": []
     },
@@ -59,7 +68,13 @@
   "errors": [],
   "structural_passed": true,
   "passed": true,
-  "summary": {"error_classes": [], "errors": 0, "fatal_errors": 0, "files": 3, "urls": 25},
+  "summary": {
+    "error_classes": [],
+    "errors": 0,
+    "fatal_errors": 0,
+    "files": 3,
+    "urls": 25
+  },
   "network_checks": [],
   "skipped_network_checks": [],
   "note": "Focused local audit record. URLs are primary-source references and require version-pinned production verification; synthetic capacity, SLO, quality, cost and energy values are CPU-only teaching inputs, not production certification."
