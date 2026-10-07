@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "docs": "docs",
+  "target": "chapters/36-observability-and-tracing.md",
+  "files": [
+    {
+      "id": "ch36-observability-and-tracing",
+      "path": "chapters/36-observability-and-tracing.md",
+      "checks": {
+        "error_count": 0,
+        "frontmatter": true,
+        "fences": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "pedagogical_sections": true,
+        "script_syntax": true,
+        "headings": 55,
+        "urls": 50,
+        "min_chars": 22387
+      },
+      "errors": []
+    },
+    {
+      "id": "ch36-observability-tracing-lab",
+      "path": "../labs/ch36_observability_tracing_lab.py",
+      "checks": {
+        "py_compile": true,
+        "cpu_only": true,
+        "deterministic": true,
+        "cli_json": true,
+        "otel_like_spans": true,
+        "prometheus_histograms": true,
+        "tail_sampling": true,
+        "cardinality_guard": true,
+        "gpu_network_storage_telemetry": true,
+        "cross_layer_diagnosis": true
+      },
+      "errors": []
+    },
+    {
+      "id": "ch36-observability-tracing-tests",
+      "path": "../tests/test_ch36_observability_tracing_lab.py",
+      "checks": {
+        "direct_test": true,
+        "contracts": [
+          "deterministic replay",
+          "span parent/context correlation",
+          "network fault diagnosis",
+          "storage fault diagnosis",
+          "tail sampling predicates",
+          "cardinality forbidden labels",
+          "CLI JSON output"
+        ]
+      },
+      "errors": []
+    }
+  ],
+  "error_classes": [],
+  "errors": [],
+  "structural_passed": true,
+  "passed": true,
+  "summary": {
+    "error_classes": [],
+    "errors": 0,
+    "fatal_errors": 0,
+    "files": 3,
+    "urls": 50
+  },
+  "network_checks": [],
+  "skipped_network_checks": [],
+  "note": "Focused local audit record. URLs are primary-source references and require version-pinned production verification; the CPU-only toy is not a DCGM/Nsight/eBPF/Prometheus performance or correctness guarantee."
+}
