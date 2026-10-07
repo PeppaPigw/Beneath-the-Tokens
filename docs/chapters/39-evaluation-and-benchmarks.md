@@ -10,7 +10,7 @@ prerequisites:
   - ch06-pytorch-execution
   - ch12-evaluation
   - ch16-model-serving-system
-  - ch20-observability-and-tracing
+  - ch20-observability-debugging-incident-response
   - ch21-ai-reliability-engineering
   - ch35-serving-scheduling-and-slo
   - ch36-observability-and-tracing
