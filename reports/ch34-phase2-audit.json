@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "docs": "/workspace/scratch/4dcc55129e39/Beneath-the-Tokens/docs",
+  "target": "chapters/34-compilers-and-kernels.md",
+  "files": [
+    {
+      "id": "ch34-compilers-and-kernels",
+      "path": "chapters/34-compilers-and-kernels.md",
+      "checks": {
+        "error_count": 0,
+        "frontmatter": true,
+        "fences": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "pedagogical_sections": true,
+        "script_syntax": true,
+        "headings": 60,
+        "urls": 36,
+        "min_chars": 21509
+      },
+      "errors": []
+    },
+    {
+      "id": "ch34-compiler-kernel-lab",
+      "path": "../labs/ch34_compiler_kernel_lab.py",
+      "checks": {
+        "py_compile": true,
+        "cpu_only": true,
+        "deterministic": true,
+        "cli_json": true,
+        "graph_capture": true,
+        "fusion_cost_model": true,
+        "autotune_budget": true,
+        "correctness_reference": true
+      },
+      "errors": []
+    },
+    {
+      "id": "ch34-compiler-kernel-tests",
+      "path": "../tests/test_ch34_compiler_kernel_lab.py",
+      "checks": {
+        "direct_test": true,
+        "contracts": [
+          "capture guards and graph breaks",
+          "pointwise fusion and reduction boundary",
+          "compile cache key and hit",
+          "launch/compile cost direction",
+          "reference/fused numerical equality",
+          "autotune budget and safe fallback",
+          "CLI JSON output"
+        ]
+      },
+      "errors": []
+    }
+  ],
+  "error_classes": [],
+  "errors": [],
+  "structural_passed": true,
+  "passed": true,
+  "summary": {
+    "error_classes": [],
+    "errors": 0,
+    "fatal_errors": 0,
+    "files": 3,
+    "urls": 36
+  },
+  "network_checks": [],
+  "skipped_network_checks": [],
+  "note": "Focused local audit record. URLs are primary-source references and require version-pinned production verification; the CPU toy is not a Triton/CUDA/XLA performance or correctness guarantee."
+}
