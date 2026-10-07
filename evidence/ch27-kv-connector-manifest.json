@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "chapter": "27-kv-transfer-and-connectors",
+  "access_date": "2026-10-07",
+  "purpose": "Evidence index for KV cache transfer, connectors, and prefill/decode disaggregation claims",
+  "entries": [
+    {
+      "id": "nixl-overview",
+      "type": "official_documentation",
+      "title": "NIXL Overview",
+      "url": "https://docs.nvidia.com/nixl/getting-started/overview/",
+      "claims": ["NIXL is an inference data-transfer library", "VRAM/DRAM/file/block/object memory types", "backend plugin architecture and asynchronous transfers"],
+      "verification": "recheck the versioned Overview and run the matching Quick Start",
+      "status": "primary-source"
+    },
+    {
+      "id": "nixl-architecture",
+      "type": "official_documentation",
+      "title": "NIXL Architecture",
+      "url": "https://docs.nvidia.com/nixl/getting-started/architecture/",
+      "claims": ["Transfer Agent", "Memory Section", "backend interface", "metadata exchange and non-blocking post/status lifecycle"],
+      "verification": "compare descriptor and metadata handler behavior with the pinned source release",
+      "status": "primary-source"
+    },
+    {
+      "id": "nixl-quickstart",
+      "type": "official_documentation",
+      "title": "NIXL Quick Start",
+      "url": "https://docs.nvidia.com/nixl/getting-started/quick-start/",
+      "claims": ["create agent", "register memory", "exchange metadata", "post transfer", "poll status", "cleanup"],
+      "verification": "execute a minimal registered-memory read/write on the target backend",
+      "status": "primary-source"
+    },
+    {
+      "id": "nixl-backend-guide",
+      "type": "official_source",
+      "title": "NIXL Backend Guide",
+      "url": "https://github.com/ai-dynamo/nixl/blob/main/docs/BackendGuide.md",
+      "claims": ["descriptor fields", "READ/WRITE capability", "local/remote/notification backend capabilities"],
+      "verification": "pin a commit and inspect backend capability tests",
+      "status": "primary-source"
+    },
+    {
+      "id": "mooncake-paper",
+      "type": "paper",
+      "title": "Mooncake: A KVCache-centric Disaggregated Architecture for LLM Serving",
+      "url": "https://arxiv.org/abs/2407.00079",
+      "claims": ["prefill/decode separation", "distributed KV across CPU/DRAM/SSD/RDMA", "Conductor placement", "paged prefix block workflow"],
+      "verification": "record model, hardware, workload, cache hit rate and SLO when reproducing any reported result",
+      "status": "primary-source"
+    },
+    {
+      "id": "mooncake-repo",
+      "type": "official_source",
+      "title": "Mooncake source repository",
+      "url": "https://github.com/kvcache-ai/Mooncake",
+      "claims": ["reference implementation entry point", "Transfer Engine integration"],
+      "verification": "pin commit/tag and run repository tests or a documented partial reproduction",
+      "status": "primary-source"
+    },
+    {
+      "id": "mooncake-transfer-engine",
+      "type": "official_documentation",
+      "title": "Mooncake Transfer Engine design",
+      "url": "https://kvcache-ai.github.io/Mooncake/design/transfer-engine/",
+      "claims": ["Segment", "BatchTransfer", "asynchronous READ/WRITE", "RDMA/TCP/NVMe-oF/NVLink/SHM transports", "status polling"],
+      "verification": "inspect the pinned API and validate buffer registration and failure handling",
+      "status": "primary-source"
+    },
+    {
+      "id": "lmcache-docs",
+      "type": "official_documentation",
+      "title": "LMCache documentation",
+      "url": "https://docs.lmcache.ai/",
+      "claims": ["layered KV cache management", "CPU/SSD/remote backends", "control APIs and connector integrations"],
+      "verification": "pin docs and engine versions; verify lookup, cleanup, and TTL behavior",
+      "status": "primary-source"
+    },
+    {
+      "id": "lmcache-pd",
+      "type": "official_documentation",
+      "title": "LMCache disaggregated prefill quickstart",
+      "url": "https://docs.lmcache.ai/getting_started/quickstart/disaggregated_prefill.html",
+      "claims": ["prefiller/decoder/proxy roles", "NIXL channel configuration", "bidirectional lookup", "bandwidth caveat"],
+      "verification": "run the documented configuration in a bounded test environment and retain logs",
+      "status": "primary-source"
+    },
+    {
+      "id": "lmcache-paper",
+      "type": "paper",
+      "title": "LMCache: An Efficient, Portable, and Elastic KV Cache Layer",
+      "url": "https://arxiv.org/abs/2510.09665",
+      "claims": ["extract/load/persist/transfer APIs", "chunking and compute/I/O pipeline", "cross-engine compatibility"],
+      "verification": "separate reported hardware measurements from local reproduction",
+      "status": "primary-source"
+    },
+    {
+      "id": "vllm-disagg",
+      "type": "official_source",
+      "title": "vLLM disaggregated prefill documentation",
+      "url": "https://github.com/vllm-project/vllm/blob/main/docs/features/disagg_prefill.md",
+      "claims": ["scheduler/worker connectors", "LookupBuffer insert/drop_select", "Pipe", "Nixl/Mooncake/LMCache connector integration", "disaggregation does not automatically improve throughput"],
+      "verification": "pin vLLM commit and test out-of-order completion, cancellation, and backpressure",
+      "status": "primary-source"
+    },
+    {
+      "id": "vllm-nixl",
+      "type": "official_source",
+      "title": "vLLM NixlConnector usage",
+      "url": "https://github.com/vllm-project/vllm/blob/main/docs/features/nixl_connector_usage.md",
+      "claims": ["async send/receive", "side-channel handshake", "lease/TTL", "fail/recompute policy", "token-sequence alignment caveat"],
+      "verification": "check defaults in the pinned release and inject remote failure",
+      "status": "primary-source"
+    },
+    {
+      "id": "distserve-paper",
+      "type": "paper",
+      "title": "DistServe: Disaggregating Prefill and Decoding for Goodput-optimized Large Language Model Serving",
+      "url": "https://arxiv.org/abs/2401.09670",
+      "claims": ["compute-bound prefill versus memory-bound decode", "P/D resource separation", "bandwidth-aware placement", "reported goodput/SLO improvements under stated conditions"],
+      "verification": "re-run with target model, topology, request distribution, and SLO; do not generalize headline numbers",
+      "status": "primary-source"
+    },
+    {
+      "id": "distserve-repo",
+      "type": "official_source",
+      "title": "DistServe source repository",
+      "url": "https://github.com/LLMServe/DistServe",
+      "claims": ["implementation and experiment entry points"],
+      "verification": "pin commit, inspect placement and communication code, record deviations",
+      "status": "primary-source"
+    },
+    {
+      "id": "toy-lab",
+      "type": "reproducible_measurement",
+      "title": "Chapter 27 CPU connector toy lab",
+      "path": "labs/ch27_kv_connector_lab.py",
+      "claims": ["KV byte formula", "page accounting", "state transitions", "cache hits", "bounded retries"],
+      "verification": "python3 labs/ch27_kv_connector_lab.py --seed 7 --requests 20 --tokens 1024 --page-tokens 128",
+      "status": "local-measurement-not-production-proof"
+    },
+    {
+      "id": "toy-tests",
+      "type": "reproducible_measurement",
+      "title": "Chapter 27 toy lab contract tests",
+      "path": "tests/test_ch27_kv_connector_lab.py",
+      "claims": ["six executable toy contracts"],
+      "verification": "python3 tests/test_ch27_kv_connector_lab.py (or pytest when installed)",
+      "status": "local-test-only"
+    }
+  ]
+}
