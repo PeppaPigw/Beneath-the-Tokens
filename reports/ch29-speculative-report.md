@@ -46,17 +46,17 @@ python3 tests/test_ch29_speculative_lab.py
 | 场景 | 完成请求 | scheduler steps | logical time ms | TTFT p50/p95 ms | target tokens | draft tokens | accepted tokens | acceptance | grammar rejects | 最终输出 tokens |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | target-only baseline | 24 | 4 | 63.640000 | 15.01 / 43.58 | 768 | 0 | 0 | 0.000000 | 0 | 768 |
-| speculative + grammar | 24 | 4 | 37.910833 | 6.678333 / 22.464167 | 296 | 1,092 | 496 | 0.454212 | 83 | 768 |
-| lookahead + grammar | 24 | 4 | 38.270833 | 6.768333 / 22.734167 | 296 | 1,092 | 496 | 0.454212 | 83 | 768 |
+| speculative + grammar | 24 | 4 | 22.912500 | 3.773333 / 11.988333 | 172 | 641 | 620 | 0.967239 | 34 | 768 |
+| lookahead + grammar | 24 | 4 | 23.272500 | 3.863333 / 12.258333 | 172 | 641 | 620 | 0.967239 | 34 | 768 |
 
 这些结果只反映脚本中的成本常数：speculative 每轮最多 4 个候选，目标推进按 accepted/correction 估算；lookahead 额外加一个 tree bookkeeping 常数。`target tokens` 不是 GPU forward FLOPs，`logical time` 不是硬件时间。speculative 场景最终 output token 数与 baseline 一致，说明 toy 的 request-level completion 合同成立；不说明 token 内容分布与真实 target 一致。
 
 ## 观察和机制解释
 
-1. **候选减少目标推进。** 在相同 768 个最终输出 token 下，speculative toy 统计 296 个 target logical tokens、1,092 个 draft tokens、496 个 accepted tokens。逻辑时间从 63.64 ms 降到 37.91 ms，是人为设置的 target/draft 成本结果，不能转译成 GPU 加速比例。
-2. **grammar 成本可见。** 83 次 grammar reject 被单独记录，最终输出 token 数仍是 768。该指标只说明有限状态 mask/retry 账本工作；脚本 grammar 不是 JSON Schema parser，不能证明 JSON 语义合法。
-3. **lookahead 不是免费。** lookahead 与 speculative 使用相同候选参数，但 tree bookkeeping 使逻辑时间略高（38.27 ms vs 37.91 ms）。真实树验证还会受到候选分支、attention mask、KV scatter 和 kernel occupancy 的影响。
-4. **acceptance 不是质量指标。** acceptance=0.454212 表示 toy 的 q/p 提案在 mask 和随机种子下被接受的比例；高 acceptance 不代表事实性、安全或 schema 业务正确。
+1. **候选减少目标推进。** 在相同 768 个最终输出 token 下，speculative toy 统计 172 个 target logical tokens、641 个 draft tokens、620 个 accepted tokens。逻辑时间从 63.64 ms 降到 22.91 ms，是人为设置的 target/draft 成本结果，不能转译成 GPU 加速比例。
+2. **grammar 成本可见。** 34 次 grammar reject 被单独记录，最终输出 token 数仍是 768。该指标只说明有限状态 mask/retry 账本工作；脚本 grammar 不是 JSON Schema parser，不能证明 JSON 语义合法。
+3. **lookahead 不是免费。** lookahead 与 speculative 使用相同候选参数，但 tree bookkeeping 使逻辑时间略高（23.27 ms vs 22.91 ms）。真实树验证还会受到候选分支、attention mask、KV scatter 和 kernel occupancy 的影响。
+4. **acceptance 不是质量指标。** acceptance=0.967239 表示 toy 的 q/p 提案在 mask 和随机种子下被接受的比例；高 acceptance 不代表事实性、安全或 schema 业务正确。
 5. **TTFT 需要定义边界。** 本模拟将第一个 committed token 的逻辑事件作为 TTFT；draft token 从未写入输出流。真实 serving 必须确认 stream writer 只发送 commit queue，避免把可能 rollback 的 token 泄漏给客户端。
 
 ## 合同测试
