@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "docs": "/workspace/scratch/4dcc55129e39/Beneath-the-Tokens/docs",
+  "target": "chapters/33-storage-and-data-plane.md",
+  "files": [
+    {
+      "id": "ch33-storage-and-data-plane",
+      "path": "chapters/33-storage-and-data-plane.md",
+      "checks": {
+        "error_count": 0,
+        "frontmatter": true,
+        "fences": true,
+        "placeholders": true,
+        "prerequisites": true,
+        "pedagogical_sections": true,
+        "script_syntax": true,
+        "headings": 60,
+        "urls": 30,
+        "min_chars": 23021
+      },
+      "errors": []
+    },
+    {
+      "id": "ch33-storage-data-plane-lab",
+      "path": "../labs/ch33_storage_data_plane_lab.py",
+      "checks": {
+        "py_compile": true,
+        "cpu_only": true,
+        "deterministic": true,
+        "cli_json": true
+      },
+      "errors": []
+    },
+    {
+      "id": "ch33-storage-data-plane-tests",
+      "path": "../tests/test_ch33_storage_data_plane_lab.py",
+      "checks": {
+        "direct_test": true,
+        "contracts": [
+          "shard uniqueness",
+          "latency ordering",
+          "checkpoint atomicity",
+          "CLI output"
+        ]
+      },
+      "errors": []
+    }
+  ],
+  "error_classes": [],
+  "errors": [],
+  "structural_passed": true,
+  "passed": true,
+  "summary": {
+    "error_classes": [],
+    "errors": 0,
+    "fatal_errors": 0,
+    "files": 3,
+    "urls": 30
+  },
+  "network_checks": [],
+  "skipped_network_checks": [],
+  "note": "Focused local audit record. URLs are primary-source references and require version-pinned production verification; the CPU toy is not a backend performance or durability guarantee."
+}
