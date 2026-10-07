@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "experiment": "ch34-compiler-kernel-cpu-toy",
+  "config": {
+    "backend": "inductor",
+    "dynamic_shape": false,
+    "unsupported_op": false,
+    "fail_after": null,
+    "budget_ms": 8.0
+  },
+  "graph": {
+    "nodes": [
+      {
+        "name": "add",
+        "op": "add",
+        "shape": [
+          16
+        ],
+        "dtype": "fp32",
+        "layout": "contiguous",
+        "bytes": 64,
+        "flops": 16,
+        "side_effect": false
+      },
+      {
+        "name": "mul",
+        "op": "mul",
+        "shape": [
+          16
+        ],
+        "dtype": "fp32",
+        "layout": "contiguous",
+        "bytes": 64,
+        "flops": 16,
+        "side_effect": false
+      },
+      {
+        "name": "relu",
+        "op": "relu",
+        "shape": [
+          16
+        ],
+        "dtype": "fp32",
+        "layout": "contiguous",
+        "bytes": 64,
+        "flops": 16,
+        "side_effect": false
+      }
+    ],
+    "guards": [
+      "backend=inductor",
+      "shape=(16,)",
+      "dtype=fp32",
+      "layout=contiguous"
+    ],
+    "breaks": [],
+    "graphable": true
+  },
+  "fusion": {
+    "groups": [
+      {
+        "nodes": [
+          "add",
+          "mul",
+          "relu"
+        ],
+        "fused": true,
+        "reason": "pointwise_chain"
+      }
+    ],
+    "fused_group_count": 1
+  },
+  "compile": {
+    "first": {
+      "cache_key": "25fd0179e81a9b592d699c40b5a5be3caeb9eb6557df63554e1093b6480ae5c2",
+      "cache_hit": false,
+      "backend": "inductor",
+      "shape_key": [
+        16
+      ],
+      "dtype": "fp32",
+      "groups": [
+        [
+          "add",
+          "mul",
+          "relu"
+        ]
+      ]
+    },
+    "second": {
+      "cache_key": "25fd0179e81a9b592d699c40b5a5be3caeb9eb6557df63554e1093b6480ae5c2",
+      "cache_hit": true,
+      "backend": "inductor",
+      "shape_key": [
+        16
+      ],
+      "dtype": "fp32",
+      "groups": [
+        [
+          "add",
+          "mul",
+          "relu"
+        ]
+      ]
+    },
+    "cache_entries": 1
+  },
+  "cost": {
+    "first": {
+      "launches": 1,
+      "bytes": 128,
+      "flops": 48,
+      "compile_ms": 4.6,
+      "steady_ms": 0.012001,
+      "total_first_ms": 4.612001
+    },
+    "hot": {
+      "launches": 1,
+      "bytes": 128,
+      "flops": 48,
+      "compile_ms": 0.0,
+      "steady_ms": 0.012001,
+      "total_first_ms": 0.012001
+    }
+  },
+  "correctness": {
+    "max_abs_error": 0.0,
+    "within_tolerance": true,
+    "values": 16
+  },
+  "autotune": {
+    "result": {
+      "best": {
+        "block": 64,
+        "warps": 1,
+        "stages": 1,
+        "proxy_ms": 1.45
+      },
+      "candidates": [
+        {
+          "block": 64,
+          "warps": 1,
+          "stages": 1,
+          "proxy_ms": 1.45
+        },
+        {
+          "block": 128,
+          "warps": 2,
+          "stages": 1,
+          "proxy_ms": 1.575
+        },
+        {
+          "block": 256,
+          "warps": 4,
+          "stages": 2,
+          "proxy_ms": 2.225
+        }
+      ],
+      "compile_budget_ms": 8.0,
+      "spent_ms": 5.25,
+      "stopped_early": true
+    },
+    "selected": {
+      "mode": "autotuned",
+      "block": 64,
+      "warps": 1,
+      "stages": 1,
+      "proxy_ms": 1.45
+    },
+    "fallback": false
+  },
+  "summary": {
+    "cache_hit_on_second": true,
+    "graph_break_count": 0,
+    "fusion_reduced_launches": true,
+    "correctness_pass": true,
+    "safe_fallback": true
+  }
+}
