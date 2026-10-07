@@ -23,6 +23,7 @@ python3 labs/ch36_observability_tracing_lab.py --fault storage_tail --output rep
 | none | 无 | `no_injected_fault` | phase histograms、GPU telemetry、trace topology |
 | network_tail | 3 个请求增加 RPC/collective 尾部，含 retransmit | `network_or_collective_tail` | `network.rpc` spans、`network_retransmits_total`、decode/ITL tail |
 | storage_tail | 3 个请求增加 NVMe fsync/IO 延迟 | `storage_io_tail` | `storage.checkpoint_fsync` spans、`disk_io_latency_ms`、queue tail |
+| gpu_throttle | 3 个请求增加 power-limit throttle | `gpu_power_or_thermal_throttle` | `gpu.throttle` spans、`power_throttle`、GPU 利用率 |
 
 所有场景应满足：
 
