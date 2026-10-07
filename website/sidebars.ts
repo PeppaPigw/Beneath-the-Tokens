@@ -42,6 +42,7 @@ const sidebars: SidebarsConfig = {
     'chapters/ch36-observability-and-tracing',
     'chapters/ch37-security-and-supply-chain',
     'chapters/ch38-cost-capacity-and-energy',
+    'chapters/ch39-evaluation-and-benchmarks',
     'chapter-template',
     'lab-standards',
     'source-policy',
