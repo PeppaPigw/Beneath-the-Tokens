@@ -2,3 +2,19 @@
 :root { --ifm-color-primary: #2457d6; --ifm-color-primary-dark: #1d46ad; --ifm-code-font-size: 92%; }
 .hero__title { letter-spacing: -0.02em; }
 .markdown h1, .markdown h2, .markdown h3 { scroll-margin-top: 5rem; }
+
+/* Keep the long course index usable on short desktop viewports. Docusaurus
+ * already hides the desktop sidebar below 997px and exposes the mobile drawer;
+ * this only adds an independent scroll region to the desktop sidebar. */
+@media (min-width: 997px) {
+  .theme-doc-sidebar-container {
+    max-height: calc(100vh - var(--ifm-navbar-height));
+  }
+
+  .theme-doc-sidebar-container .menu {
+    max-height: calc(100vh - var(--ifm-navbar-height));
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-gutter: stable;
+  }
+}
