@@ -3,7 +3,6 @@
 .hero__title { letter-spacing: -0.02em; }
 .markdown h1, .markdown h2, .markdown h3 { scroll-margin-top: 5rem; }
 .theme-doc-markdown { font-size: calc(1rem * var(--book-font-scale)); }
-.theme-doc-markdown code, .theme-doc-markdown pre, .theme-doc-markdown .katex { font-size: calc(1em * var(--book-font-scale)); }
 
 .fontScaleControl {
   align-items: center; background: var(--ifm-navbar-background-color);
