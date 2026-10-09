@@ -31,21 +31,20 @@
     overflow-y: auto; overflow-x: hidden; scrollbar-gutter: stable;
   }
 
-  /* Keep only edge arrows if a cached theme bundle renders the original text. */
-  .theme-doc-sidebar-container button[class*="collapseSidebarButton"] {
+  /* Docusaurus's native controls are class-scoped by CSS modules.  Hide their
+   * labels everywhere and preserve only the arrow affordance at the edge. */
+  button[class*="collapseSidebarButton"] {
     align-items: center; display: flex; font-size: 0; justify-content: center;
     min-height: 2rem; min-width: 2rem; overflow: hidden; padding: 0.25rem; width: 2rem;
   }
-  .theme-doc-sidebar-container button[class*="collapseSidebarButton"] svg {
+  button[class*="collapseSidebarButton"] svg {
     flex: 0 0 auto; height: 1rem; width: 1rem;
   }
-  .theme-doc-toc-mobile button[class*="tocCollapsibleButton"],
-  .theme-doc-toc-desktop button[class*="tocCollapsibleButton"] {
+  button[class*="tocCollapsibleButton"] {
     align-items: center; display: flex; font-size: 0; justify-content: center;
     min-height: 2rem; min-width: 2rem; overflow: hidden; padding: 0.25rem;
   }
-  .theme-doc-toc-mobile button[class*="tocCollapsibleButton"]::after,
-  .theme-doc-toc-desktop button[class*="tocCollapsibleButton"]::after {
+  button[class*="tocCollapsibleButton"]::after {
     content: '⌄'; display: block; font-size: 1.1rem; line-height: 1;
   }
 }
